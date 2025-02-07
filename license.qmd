@@ -1,0 +1,11 @@
+---
+title: "CC BY-NC-SA 4.0 license"
+---
+
+&#169; 2024 Deri Siswara. License adapted from [Jadey Ryan](https://jadeyryan.com/license)
+
+Opinions expressed are solely my own and do not express the views of my employer or any organizations I am associated with.
+
+My content is released under the [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA) license](https://creativecommons.org/licenses/by-nc-sa/4.0/).
+
+You may share and adapt this content with appropriate credit and notation of any changes. You may not use this material for any commercial purposes.

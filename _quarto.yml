@@ -1,0 +1,66 @@
+project:
+  type: website
+  preview:
+    port: 3434
+    browser: true
+    watch-inputs: true
+    timeout: 3600
+
+execute:
+  freeze: auto
+
+website:
+  title: ""
+  description: "R code, economics, and data science."
+  site-url: https://derisiswara.org/
+  favicon: assets/img/logods2.webp
+  open-graph:
+    locale: en_EN
+  page-navigation: true
+
+  navbar:
+    pinned: true
+    logo: assets/img/logods2.webp
+    left:
+      - text: About
+        icon: person-circle
+        href: index.qmd
+      - text: Experience
+        icon: file-text-fill
+        href: cv.qmd
+      - text: Blog
+        icon: pen-fill
+        href: blog_00.qmd
+      - text: Projects
+        icon: puzzle-fill
+        href: blog2_00.qmd
+
+    right:
+      - icon: github
+        text: GitHub
+        href: https://github.com/derisiswara
+      - icon: linkedin
+        text: LinkedIn
+        href: https://www.linkedin.com/in/derisiswara/
+      - text: "🫶"
+        href: https://trakteer.id/deri_rstudio
+
+  page-footer:
+    border: true
+    left: "&#169; 2024 Deri Siswara"
+    center:
+      - text: License
+        href: license.qmd
+    right: "made with ︎♥️ & [Quarto](https://quarto.org)"
+
+format:
+  html:
+    theme: [flatly, assets/styling/theme.scss]
+    toc: true
+    toc-depth: 4
+    pagetitle: "Deri Siswara | {{< meta title >}}"
+    page-layout: article
+    smooth-scroll: true
+    link-external-newwindow: true
+    code-link: true
+    highlight-style: a11y
