@@ -28,12 +28,9 @@ website:
       - text: Experience
         icon: file-text-fill
         href: cv.qmd
-      - text: Blog
+      - text: Teaching
         icon: pen-fill
         href: blog_00.qmd
-      - text: Projects
-        icon: puzzle-fill
-        href: blog2_00.qmd
 
     right:
       - icon: github
@@ -42,8 +39,6 @@ website:
       - icon: linkedin
         text: LinkedIn
         href: https://www.linkedin.com/in/derisiswara/
-      - text: "🫶"
-        href: https://trakteer.id/deri_rstudio
 
   page-footer:
     border: true

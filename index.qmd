@@ -17,9 +17,7 @@ about:
       href: https://www.linkedin.com/in/derisiswara/
     - icon: send
       text: Email
-      href: mailto:derikayz@gmail.com
-    - text: "🫶 Support me"
-      href: https://trakteer.id/deri_rstudio
+      href: mailto:derisiswarads@gmail.com
 toc: false
 anchor-sections: false
 execute: 
@@ -33,7 +31,7 @@ execute:
 
 Welcome to My Website – I'm Thrilled You're Here!
 
-I’m a freelance economist and data scientist, with a deep passion for both fields. My academic journey spans Islamic Economics (Bachelor of Economics) and Statistics & Data Science (Master of Science), reflecting my long-standing love for data and the economy.
+I’m a freelance economist and data scientist, with a deep passion for both fields. My academic journey spans  Economics (Bachelor of Economics) and Statistics & Data Science (Master of Science), reflecting my long-standing love for data and the economy.
 
 I’ve finally found my sweet spot, working in the intersection of economics and data science, while connecting with brilliant people in the R and open-source communities.
 
