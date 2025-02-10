@@ -1,0 +1,283 @@
+---
+title: "Mata Kuliah: **Machine Learning**"
+subtitle: "Introduction to Machine Learning"
+format:
+  revealjs: 
+    slide-number: true
+    chalkboard: 
+      buttons: false
+    preview-links: auto
+    logo: img/Logo-Horizontal.png
+    css: styles.css
+    footer: '@2025 - Deri Siswara'
+---
+
+## Informasi Mata Kuliah {.smaller}
+
+| Mata Kuliah      | Keterangan  |
+|------------------|----------------------------------------------------|
+| Machine Learning | 3 SKS (2-1) |
+| Kode Mata Kuliah | TII111      |
+
+**Putaka**
+
+1.  Introduction to Machine Learning with Python: A Guide for Data Scientist, Andreas C. Muller & Sarah Guido, O’Reilly Media Inc. 2017
+2.  Mastering Machine Learning with Python in Six Steps: A Practical Implementation Guide to Predictive Data Analytics Using Python, Manohar Swamynathan, Apress. 2017
+3.  Introduction To Machine Learning Second Edition, Ethem Alpaydin, The MIT Press. 2010
+
+![](img/book123.png){.absolute top="500" left="20" width="400" height="200"}
+
+## Informasi Mata Kuliah
+
+::: {style="text-align: center; margin-top: 1em"}
+| Komponen Penilaian                 | Bobot |
+|------------------------------------|------------|
+| UTS                                | 25        |
+| UAS                                | 35        |
+| Project Kelompok                   | 20        |
+| Kuliah (Keaktifan, Quiz, Project Mandiri) | 20        |
+:::
+
+## Pre-Test
+
+Mapping kemampuan mahasiswa dalam tentang dasar **statistika, matematika, dan bahasa pemrograman**. Selain itu juga terkait Integrated Development Environment (IDE) dan tools yang biasa digunakan.
+
+-   Silakan klik link di bawah ini untuk mengikuti pre-test.
+
+::: {style="text-align: center; margin-top: 1em"}
+[s.id/pretest_ml1](https://s.id/pretest_ml1){preview-link="true" style="text-align: center"}
+:::
+
+## What is Machine Learning
+
+![](img/a1.png){.absolute top="250"}
+
+::: {.notes}
+X adalah input, dan Y adalah poutput.
+:::
+
+## What is Machine Learning
+
+![](img/a2.png){.absolute top="100"}
+
+## What is Machine Learning
+
+![](img/a3.png){.absolute top="100"}
+
+## What is Machine Learning
+
+- **Prediksi** adalah tujuan utama dari Machine Learning.
+- Membuat fungsi pendekatan (approximation functions – model).
+- Meningkatkan akurasi model melalui optimasi fitur input/output.
+- *in short, “Machine Learning is a collection of algorithms and techniques used to create computational systems that learn from data in order to make predictions.*
+
+## Machine Learning dan Artificial Intelligence {.smaller}
+
+
+::: columns
+::: {.column width="30%"}
+
+![](img/b1.png){.absolute top="100" height="500"}
+
+:::
+
+::: {.column width="20%"}
+:::
+
+::: {.column width="50%"}
+- **Natural Language Processing (NLP)** – Mampu berkomunikasi secara efektif dalam suatu bahasa.  
+- **Automated Reasoning** – Menganalisis pengetahuan yang tersimpan untuk menjawab pertanyaan dan menyimpulkan informasi baru.  
+- **Machine Learning** – Mendeteksi pola dan beradaptasi dengan data baru.  
+- **Computer Vision** – Mengenali objek dan menganalisis gambar.  
+- **Robotics** – Berinteraksi dengan serta memanipulasi lingkungan.  
+:::
+:::
+
+::: {.notes}
+- **Planning & Optimization** – Mengembangkan strategi untuk mencapai tujuan dan mengevaluasi kinerjanya.  
+- **Knowledge Representation** – Menyimpan dan menggunakan informasi untuk pengambilan keputusan (**Sistem Pakar**).  
+:::
+
+## Stastistic vs Data Mining vs Data Analytics vs Data Science {.smaller}
+
+- **Statistik** – Ilmu yang mempelajari cara mengumpulkan, menganalisis, menafsirkan, dan menyajikan data.
+- **Data Mining** – Proses menemukan pola dalam data.
+- **Data Analytics** – Proses menganalisis data untuk mengekstrak informasi yang bermanfaat.
+- **Data Science** – Ilmu yang memadukan statistik, data mining, dan data analytics.
+
+![](img/c0.png){.absolute top="400"}
+
+::: {.notes}
+Machine Learning adalah bagian dari ilmu2 di atas
+:::
+
+## Job Role
+
+![](img/c1.jpg)
+
+## Problems Machine Learning Can Solve #1 {.smaller}
+#### Email Spam Filtering
+
+Filter email spam (tidak diinginkan) dari email yang masuk.
+
+![](img/c3.png){.absolute top="200"}
+
+## Problems Machine Learning Can Solve #2 {.smaller}
+#### Product Recommendation
+
+Menggunakan data historis untuk merekomendasikan produk kepada pengguna dengan tujuan meningkatkan penjualan.
+
+![](img/c4.png){.absolute top="180"}
+
+## Problems Machine Learning Can Solve #3 {.smaller}
+#### Prediksi Tekanan (Krisis) Pasar Saham
+
+![](img/c5.jpg){.absolute top="100"}
+
+::: footer
+:::
+
+## Problems Machine Learning Can Solve #4 {.smaller}
+#### Hot Research
+
+- Driverless Cars
+- Speech Recognition
+- Image Recognition
+- AI Agents
+
+**Machine Learning** adalah bagian dari **Artificial Intelligence** yang memungkinkan komputer untuk belajar dari data. Kasus penggunaan Machine Learning dengan data dan proses training lebih kompleks biasanya disebut **Deep Learning**. 
+
+## Problems Machine Learning Can Solve #5 {.smaller}
+#### Machine Learning dapat mengolah data dalam bentuk:
+- **Teks** – Contohnya **NLP, Chatbot, Machine Translation, dll.**  
+- **Gambar** – Contohnya **Image Recognition, Object Detection, dll.**  
+- **Suara** – Contohnya **Speech Recognition, dll.**  
+
+#### Machine Learning umumnya digunakan dalam kondisi:
+- No-Human Expertise
+- Human can’t explain "why" a system works 
+- The solution always changes** 
+- Very huge problem size
+
+## Data Size VS ML Performance
+
+Semakin banyak data yang digunakan, maka semakin baik performa dari Machine Learning.
+
+![](img/c6.png){.absolute top="200" width="800" height="500"}
+
+
+## Machine Learning Categories: Supervised Learning, Unsupervised Learning, Reinforcement Learning {.smaller}
+
+![](img/d1.png)
+
+
+## Supervised Learning {.smaller}
+*Supervised learning is where you have input variables (x) and an output variable (Y) and you use an algorithm to learn the mapping function from the input to the output.*
+
+1. **Regression**  
+   - Output yang diprediksi berupa nilai **kontinu (numeric)** berdasarkan dataset input yang diberikan.  
+   - **Contoh kasus:**  
+     - Prediksi penjualan ritel  
+     - Perkiraan jumlah staf yang dibutuhkan per shift  
+     - Prediksi jumlah tempat parkir yang diperlukan untuk toko ritel  
+     - Skor kredit pelanggan  
+
+2. **Classification**  
+   - Output yang diprediksi berupa **kelas (kateggori) atau probabilitas** suatu peristiwa.  
+   - **Contoh kasus:**  
+     - Filtering email spam (mengklasifikasikan email sebagai "spam" atau "bukan spam")  
+
+::: {.notes}
+Supervised learning adalah metode pembelajaran mesin di mana algoritma diberikan dataset input beserta output atau kelas yang sesuai. Dataset ini biasanya disiapkan dengan bantuan ahli di bidangnya. Tujuan utama dari supervised learning adalah menemukan pola dalam data dan membangun aturan umum untuk memetakan input ke kelas atau peristiwa.
+:::
+
+
+## Unsupervised Learning {.smaller} 
+*Unsupervised learning is where you only have input data (X) and no corresponding output variables.*
+
+1. **Clustering**  
+   - Membagi dataset menjadi kelompok-kelompok berdasarkan kemiripan antar data.  
+   - **Contoh kasus:**  
+     - Mengelompokkan artikel berita yang memiliki topik serupa  
+     - Mengelompokkan pelanggan berdasarkan profil dan kebiasaannya  
+
+2. **Dimension Reduction**  
+   - Menyederhanakan dataset besar dengan mereduksi jumlah dimensi sambil tetap mempertahankan informasi penting.  
+   - **Contoh kasus:**  
+     - Menyaring variabel utama yang menyimpan 95% informasi dalam dataset untuk analisis yang lebih efisien  
+
+::: {.notes}
+Dalam unsupervised learning, output atau kelas dari dataset historis tidak diketahui. Tujuan utama adalah menemukan pola dalam data dan mengelompokkan informasi yang memiliki karakteristik serupa.
+:::
+
+## Reinforcement Learning {.smaller}
+
+Reinforcement Learning (RL) adalah metode pembelajaran mesin di mana model belajar melalui trial and error dengan mendapatkan reward (penghargaan) atau punishment (hukuman) berdasarkan tindakannya.
+
+#### Cara kerjanya:
+
+- Agent (model) mengambil suatu tindakan dalam lingkungan tertentu.
+- Lingkungan memberikan umpan balik berupa reward (positif) atau punishment (negatif).
+- Agent belajar dari pengalaman ini untuk mengambil tindakan yang lebih baik di masa depan.
+
+#### Contoh sederhana:
+
+- Game AI: Algoritma belajar bermain catur dengan mencoba berbagai langkah dan mendapatkan poin saat menang.
+- Mobil Otonom: Mobil belajar mengemudi dengan menghindari rintangan dan mengikuti jalur yang benar.
+
+::: {.notes}
+Perbedaan dengan RL Klasik:
+- RL dalam game atau robotika: Model belajar melalui trial and error dengan mendapatkan reward langsung dari lingkungan.
+- RLHF dalam ChatGPT: Model belajar dari umpan balik manusia untuk meningkatkan kualitas jawaban, bukan dari lingkungan otomatis seperti game.
+:::
+
+## Machine Learning Python Packages {.smaller}
+#### Data Analysis Packages: NumPy, Pandas, Matplotlib
+
+Dalam Machine Learning, data analisis merupakan langkah penting sebelum melakukan pelatihan model. Beberapa package utama untuk analisis data adalah:
+
+- **NumPy** → Mengelola array numerik dan operasi matematika.  
+- **Pandas** → Manipulasi dan analisis data berbasis tabel (DataFrame).  
+- **Matplotlib** → Membantu dalam visualisasi data melalui grafik dan plot.  
+
+```python
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Contoh penggunaan
+data = np.array([[1, 2, 3], [4, 5, 6]])
+df = pd.DataFrame(data, columns=['A', 'B', 'C'])
+df.plot(kind='bar')
+plt.show()
+```
+
+## Machine Learning Python Packages {.smaller}
+#### Machine Learning Core Libraries
+
+Berikut adalah pustaka utama untuk membangun dan melatih model Machine Learning di Python:
+
+- **Scikit-Learn** → Library utama untuk algoritma ML klasik seperti regresi, klasifikasi, dan clustering.
+- **TensorFlow** → Framework berbasis deep learning dari Google untuk neural networks.
+- **PyTorch** → Framework deep learning yang lebih fleksibel dan digunakan secara luas oleh komunitas riset.
+
+```python
+from sklearn.linear_model import LogisticRegression
+import tensorflow as tf
+import torch
+
+# Contoh model ML dengan Scikit-Learn
+model = LogisticRegression()
+print("Model Logistic Regression dibuat!")
+
+# Contoh inisialisasi tensor di PyTorch
+tensor = torch.tensor([1, 2, 3])
+print("Tensor PyTorch:", tensor)
+```
+
+## Reference
+- Introduction to Machine Learning with Python: A Guide for Data Scientist, Andreas C. Muller & Sarah Guido, O’Reilly Media Inc. 2017
+- Mastering Machine Learning with Python in Six Steps: A Practical Implementation Guide to Predictive Data Analytics Using Python, Manohar Swamynathan, Apress. 2017
+- Introduction To Machine Learning Second Edition, Ethem Alpaydin, The MIT Press. 2010
+- Pacmann Academy
+

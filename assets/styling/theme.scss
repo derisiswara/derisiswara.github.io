@@ -367,3 +367,9 @@ div.quarto-post .listing-categories .listing-category:hover, .quarto-category:ho
     width: 100%;
   }
 }
+
+.slide-deck {
+    width: 100%;
+    height: 80vh; /* Menyesuaikan tinggi dengan viewport */
+    border: none;
+}

@@ -30,7 +30,7 @@ website:
         href: cv.qmd
       - text: Teaching
         icon: pen-fill
-        href: blog_00.qmd
+        href: Teaching.qmd
 
     right:
       - icon: github
@@ -42,7 +42,7 @@ website:
 
   page-footer:
     border: true
-    left: "&#169; 2024 Deri Siswara"
+    left: "&#169; 2025 Deri Siswara"
     center:
       - text: License
         href: license.qmd
