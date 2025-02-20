@@ -1,0 +1,36 @@
+---
+pagetitle: "About DS"
+title: "Deri Siswara"
+subtitle: "💰 Economist & Data Scientist 📊"
+image: assets/img/logods2.webp
+
+about:
+  id: hero-heading
+  template: jolla
+  image: assets/img/deri.webp
+  links:
+    - icon: github
+      text: GitHub
+      href: https://github.com/derisiswara
+    - icon: linkedin
+      text: LinkedIn
+      href: https://www.linkedin.com/in/derisiswara/
+    - icon: send
+      text: Email
+      href: mailto:derisiswarads@gmail.com
+    - icon: paperclip
+      text: CV
+      href: https://drive.google.com/file/d/1oSj4pgafiRg3WiXlBGMpb4vl8S7fxVeQ/view
+
+toc: false
+anchor-sections: false
+execute: 
+  freeze: true
+---
+
+::: {#hero-heading}
+:::
+
+## Hello everyone 👋
+
+I am currently a lecturer at Perbanas Institute, in the Data Science program. My research and teaching focus on econometric modeling and data science. I hold a Bachelor's degree in Economics and a Master's degree in Statistics and Data Science.

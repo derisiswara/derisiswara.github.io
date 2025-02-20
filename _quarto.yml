@@ -22,16 +22,10 @@ website:
     pinned: true
     logo: assets/img/logods2.webp
     left:
-      - text: About
-        icon: person-circle
+      - text: Home
         href: index.qmd
-      # text: Experience
-      #  icon: file-text-fill
-       # href: cv.qmd
-      - text: Teaching
-        icon: pen-fill
-        href: Teaching.qmd
-
+      - text: About
+        href: about.qmd
     right:
       - icon: github
         text: GitHub
@@ -46,7 +40,7 @@ website:
     center:
       - text: License
         href: license.qmd
-    right: "made with ︎♥️ & [Quarto](https://quarto.org)"
+    right: "made with [Quarto](https://quarto.org)"
 
 format:
   html:

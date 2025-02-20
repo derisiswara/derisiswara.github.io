@@ -1,0 +1,17 @@
+---
+title: "Bahan Ajar Mata Kuliah Machine Learning"
+description: "Tayangan dan code exercise untuk mata kuliah Machine Learning"
+author: Deri Siswara
+date: last-modified 
+image: img/ml.png
+categories:
+  - Teaching
+  - Python
+---
+
+## Introduction to Machine Learning
+
+[Code Exercise](https://drive.google.com/file/d/1zqMxohS_dTCCXkFEz2kNbWyksxg6iX5k/view?usp=sharing)
+
+<iframe class="slides" src="https://derikayz.quarto.pub/ml_w1/#/title-slide"></iframe>
+

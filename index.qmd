@@ -1,42 +1,15 @@
 ---
-pagetitle: "Deri Siswara | About"
-title: "Deri Siswara"
-subtitle: "💰 Economist & Data Scientist 📊"
-image: assets/img/logods2.webp
-
-about:
-  id: hero-heading
-  template: jolla
-  image: assets/img/deri.webp
-  links:
-    - icon: github
-      text: GitHub
-      href: https://github.com/derisiswara
-    - icon: linkedin
-      text: LinkedIn
-      href: https://www.linkedin.com/in/derisiswara/
-    - icon: send
-      text: Email
-      href: mailto:derisiswarads@gmail.com
-    - icon: paperclip
-      text: CV
-      href: https://drive.google.com/file/d/1oSj4pgafiRg3WiXlBGMpb4vl8S7fxVeQ/view
-
-toc: false
-anchor-sections: false
-execute: 
-  freeze: true
+pagetitle: "DS"
+title: ""
+listing:
+  contents: projects
+  type: grid
+  fields: 
+    - title
+    - description
+    - date
+    - image
+    - categories
+  categories: true
+  sort: "date desc"
 ---
-
-::: {#hero-heading}
-:::
-
-## Hi there!
-
-Welcome to My Website – I'm Thrilled You're Here!
-
-I’m a freelance economist and data scientist, with a deep passion for both fields. My academic journey spans  Economics (Bachelor of Economics) and Statistics & Data Science (Master of Science), reflecting my long-standing love for data and the economy.
-
-I’ve finally found my sweet spot, working in the intersection of economics and data science, while connecting with brilliant people in the R and open-source communities.
-
-Thank you for being a part of my journey. I'm not an expert in everything, but this space is where I’ll be sharing my learning experiences, and I hope you'll learn with me along the way!

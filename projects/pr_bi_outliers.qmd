@@ -1,0 +1,17 @@
+---
+title: "Kajian Kewajaran Data Bank Indonesia"
+description: "Tayangan dan code exercise untuk kajian deteksi ketidakwajaran data Bank Indonesia dengan pendekatan statistika"
+author: Deri Siswara
+date: last-modified 
+image: img/out.png
+categories:
+  - Projects
+  - R
+---
+
+## Outlier Analysis
+
+Kajian ini berlangsung selama tiga hari di Bank Indonesia, Jakarta. Kajian ini bertujuan mencari parameter dan metode mendeteksi ketidakwajaran data pada data harian transaksi, neraca, dan laporan keuangan lainnya.
+
+<iframe class="slides" src="https://derikayz.quarto.pub/outliers/#/title-slide"></iframe>
+
