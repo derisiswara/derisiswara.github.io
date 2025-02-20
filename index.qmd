@@ -18,6 +18,10 @@ about:
     - icon: send
       text: Email
       href: mailto:derisiswarads@gmail.com
+    - icon: paperclip
+      text: CV
+      href: https://drive.google.com/file/d/1oSj4pgafiRg3WiXlBGMpb4vl8S7fxVeQ/view
+
 toc: false
 anchor-sections: false
 execute: 

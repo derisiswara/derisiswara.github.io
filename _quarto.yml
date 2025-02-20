@@ -25,9 +25,9 @@ website:
       - text: About
         icon: person-circle
         href: index.qmd
-      - text: Experience
-        icon: file-text-fill
-        href: cv.qmd
+      # text: Experience
+      #  icon: file-text-fill
+       # href: cv.qmd
       - text: Teaching
         icon: pen-fill
         href: Teaching.qmd

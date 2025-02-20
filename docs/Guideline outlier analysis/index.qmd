@@ -1,0 +1,249 @@
+---
+title: "Guidelines for outlier analysis"
+subtitle: "Deri Siswara"
+format:
+  revealjs: 
+    slide-number: true
+    chalkboard: 
+      buttons: false
+    preview-links: auto
+    # logo: img/Logo-Horizontal.png
+    css: styles.css
+    footer: '@2025 - Deri Siswara'
+---
+
+## An introduction to outlier analysis {.smaller}
+
+- Outlier adalah sebuah pengamatan yang nilainya sangat berbeda jauh dari pengamatan lainnya, sehingga menimbulkan kecurigaan bahwa data tersebut mungkin berasal dari proses atau sumber yang berbeda.
+
+- Metode analisis outlier memiliki dua tipe output anslisis outlier, yaitu outlier scores (outlierness) dan label biner (outlier atau tidak).
+ 
+
+![](img/1a.png){.absolute top="250"}
+
+
+## An introduction to outlier analysis {.smaller}
+
+Outlier dapat berupa noise atau anomali. Tidak ada batasan yang jelas, semuanya bersifat **subjektif** tergantung pada analisis dan tujuan yang ingin dicapai.
+
+![](img/1b.png){.absolute top="200"}
+
+::: {.notes}
+Noise: Fluktuasi / Variasi yang tidak terduga pada data.
+Anomali: "Sesuatu yang tidak biasa" pada data, perlu di tindaklanjuti.
+:::
+
+## The data model is everything {.smaller}
+
+Hampir semua algoritma deteksi outlier membangun model pola **normal** dalam data dan menghitung skor outlier berdasarkan deviasi dari pola tersebut. Oleh sebab itu, pemilihan model data sangat krusial. Sebagai contoh, metode deteksi outlier dengan Z-Score membutuhkan asumsi distribusi normal pada data.
+
+![](img/2a.png){.absolute top="250"}
+
+## The data model is everything {.smaller}
+
+Contoh lain: **Model berbasis regresi** akan paling cocok untuk menemukan pencilan dalam distribusi data pada Gambar berikut. 
+
+![](img/2b.png){.absolute top="200"}
+
+## Probabilistic and statistical models {.smaller}
+
+Metode analisis outlier berbasis model probabilistik dan statistik atau sebaran (distribusi data) populer sejak abad kesembilan belas. Misal metode Z-Score, IQR, dan Mahalanobis Distance. Kelemahan dari pendekatan ini adalah ketergantungan pada asumsi distribusi yang spesifik.
+
+![](img/iqr.png){.absolute top="200" left="150" width="600" height="500"}
+
+::: {.notes}
+Z-Score, Modified Z-Score, IQR, Mahalanobis Distance, dll.
+:::
+
+## Linear models {.smaller}
+
+Atribut data di real world umumnya saling berkorelasi. Ketergantungan ini memungkinkan kita untuk saling memprediksi antar data. Outlier adalah nilai yang menyimpang dari nilai yang diharapkan (atau diprediksi) berdasarkan suatu model linear tertentu. Efektif saat korelasi tinggi dan dimensi rendah. 
+
+![](img/lin1.png){.absolute top="200" left="10" width="500" height="500"}  
+![](img/lin2.png){.absolute top="200" left="500" width="500" height="500"}
+
+ 
+::: {.notes}
+The main assumption in linear models is that the (normal) data is embedded in a
+lower-dimensional subspace.
+
+Cek: 
+linear Modeling with Mean-Squared Projection Error
+Applications of Dependent Variable Modeling
+PCA Untuk dimensionality reduction. It can find optimal representation
+hyperplanes of any dimensionality.
+Bisa juga ke arah transformasi menjadi linier
+
+Metode2: One Class SVM, Neural Networks.
+::: 
+
+## Proximity-based models {.smaller}
+
+Model berbasis kedekatan (proximity-based) mendefinisikan suatu titik data sebagai outlier apabila tingkat ketidakdekatan atau ketidakmiripan cukup jauh. Kedekatan sebuah titik data dapat didefinisikan dengan berbagai cara yang berbeda. Efektif ketika data mengandung sedikit noise.
+
+::: columns
+::: {.column width="50%"}
+
+- Berbasis Klaster (**Cluster-based**): Suatu titik data dianggap outlier jika tidak masuk ke dalam klaster manapun.
+- Berbasis Jarak (**Distance-based**): Suatu titik data dianggap outlier jika jaraknya ke titik-titik data terdekat (misalnya, k-tetangga terdekat) sangat besar.
+- Berbasis Kepadatan (**Density-based**): Suatu titik data dianggap outlier jika daerah sekitarnya (dalam radius atau wilayah tertentu) memiliki jumlah titik data yang sedikit.
+
+:::
+
+::: {.column width="5%"}
+:::
+
+::: {.column width="45%"}
+
+![](img/prox1.png){.absolute top="200" width="500" height="500"}
+
+:::
+:::
+
+
+::: {.notes}
+global and local analysis in proximity-based
+LOF: Local Outlier Factor termasuk density-based
+::: 
+
+## Outlier ensembles {.smaller}
+    
+Metode ini menggabungkan hasil output dari beberapa algoritma atau metode menjadi satu hasil. Ide dasarnya adalah bahwa beberapa algoritma mungkin bekerja lebih baik pada bagian data tertentu, sementara algoritma lain lebih unggul pada bagian data yang berbeda.
+
+Dalam membuat metode ensemble, ada dua pilihan penting:
+
+- **Pemilihan Base Detector:** Langkah awal adalah memilih base detector. Base detector ini berupa metode yang berbeda, parameter yang berbeda, atau bahkan data yang telah direkonstruksi dari data asli.
+
+- **Normalisasi dan Penggabungan Skor:** Setiap detector mungkin menghasilkan skor dengan skala yang berbeda. Misalnya, detector k-nearest neighbor menghasilkan skor berupa jarak mentah, sedangkan algoritma LOF memberikan nilai yang sudah dinormalisasi. Karena perbedaan ini, penting untuk menormalkan skor dari berbagai detector sehingga dapat digabungkan. Setelah dinormalisasi, kita harus memilih cara untuk menggabungkan skor—umumnya dengan mengambil rata-rata atau nilai maksimum dari skor-skor tersebut.
+
+
+::: {.notes}
+Bias adalah kesalahan sistematis yang muncul karena model atau asumsi yang kita gunakan tidak sesuai dengan data sebenarnya. Misalnya, jika model kita mengasumsikan distribusi outlier yang berbeda dari kenyataan, maka hasilnya akan secara konsisten menyimpang dari nilai ideal.
+
+Variance adalah variabilitas atau fluktuasi hasil model ketika kita menggunakan dataset pelatihan yang berbeda. Contohnya, jika skor outlier dari metode k-nearest neighbor berubah-ubah karena dataset pelatihan yang berbeda, maka itu merupakan variance.
+
+Contoh Metode: Kebanyakan metode2 ensamble learning seperti Random Forest, Gradient Boosting, isolation forest, dll.
+:::
+
+## The basic data types for analysis {.smaller}
+
+Data  bisa jauh lebih kompleks baik dalam hal jenis atribut maupun ketergantungan antar titik, seperti terlihat pada contoh data dunia nyata yang mencakup atribut kategorikal, teks, dan campuran.
+
+#### Times-Series Data and Data Streams
+
+::: columns
+::: {.column width="50%"}
+
+- **Time Series Data:** Data yang diukur dan dicatat secara berurutan sepanjang waktu—biasanya pada interval yang konsisten—sehingga kita dapat melihat tren atau pola dari waktu ke waktu.
+
+- **Data Streaming:** Data yang terus mengalir secara real-time. Data ini diproses seketika saat diterima dan tidak selalu tersimpan secara lengkap.
+
+:::
+
+::: {.column width="5%"}
+:::
+
+::: {.column width="45%"}
+
+![](img/ts1.png){.absolute top="200" width="500" height="400"}
+
+:::
+:::
+
+## Time series and streaming outlier {.smaller}
+#### Perubahan mendadak dalam deret waktu
+
+Suatu nilai dianggap outlier jika tidak konsisten dengan data sebelumnya, baik dalam jangka pendek (perubahan tiba-tiba) maupun jangka panjang (pola atau bentuk yang berbeda). Jika seluruh deret waktu tersedia secara offline, kita bisa memanfaatkan data historis untuk mendeteksi anomali. Jika ada beberapa data deret waktu, korelasi antar deret juga bisa dipertimbangkan, meskipun data time series sangat bergantung pada konteks waktu.
+
+#### Deteksi novelty dan perubahan 
+
+Outlier pada data deret waktu belum bisa dikatakan sebagai anomali. Outlier bisa jadi novelty atau pola baru yang belum terdeteksi sebelumnya. Bisa dalam bentuk:
+
+- Perubahan tren agregat (kolektif). Pola subsekuens data berubah.
+
+- Perubahan pada titik individual (kontekstua). Titik data baru yang sangat berbeda dari data sebelumnya.
+
+
+## Time series and streaming outlier {.smaller}
+#### Prediction-based outlier detection in streaming time series
+
+Metode deteksi outlier pada data deret waktu streaming (real-time) dengan pendekatan prediksi, di mana titik data dianggap outlier (kontekstua) jika nilainya menyimpang secara signifikan dari nilai yang diprediksi oleh model (Misal regresi). Metode ini mengandalkan dua jenis korelasi:
+
+- **Korelasi antar waktu:** Nilai pada titik waktu berikutnya diprediksi berdasarkan nilai sebelumnya. Jika terjadi pelanggaran terhadap pola temporal yang kontinu, titik tersebut dianggap outlier.
+- **Korelasi antar individu:** Misalnya, nilai dari satu bank dapat diprediksi dengan menggunakan data dari bank lain yang berkorelasi. Penyimpangan dari prediksi ini juga diindikasikan sebagai outlier.
+
+::: {.notes}
+The most common application of temporal outlier detection is that of detecting deviation- based outliers of specific time-instants with the use of regression-based forecasting models. These anomalies are contextual anomalies, because they define abnormalities at specific instants of the data, on the basis of relationships between data values at adjacent time instants. 
+:::
+
+## Supervised Outlier Detection {.smaller}
+Dalam banyak kasus, beberapa data telah dilabeli sebagai **ourlier atau anomali** sehingga kita bisa melatih model pendeteksian outlier secara terawasi (supervised). Model ini menggunakan label untuk mengidentifikasi anomali sesuai dengan kebutuhan aplikasi, sehingga hasilnya bisa berbeda dengan metode yang tidak punya label (unsupervised). *The general recommendation for outlier analysis is to always
+use supervision where possible.*
+
+::: {style="text-align: center; margin-top: 1em"}
+
+3, 2, 3, 2, 3, 87, 2, 2, 3, 3, 3, 84, 91, 86, 91, 81
+
+:::
+
+::: {style="text-align: left; margin-top: 1em"}
+Dalam konteks unsupervised,nilai **87 dan 84** bisa dianggap sebagai outlier. Dalam konteks transaksi kartu kredit, data historis yang sudah dilabeli menunjukkan bahwa pola nilai yang tinggi secara berurutan dapat dianggap sebagai anomali. Artinya, jika hanya terjadi satu nilai tinggi (**misalnya 87**) yang muncul secara terpisah, hal itu tidak dianggap anomali. Namun, jika nilai tinggi seperti 84 muncul dan diikuti oleh nilai-nilai tinggi lainnya, secara keseluruhan pola tersebut dianggap sebagai anomali karena menunjukkan perubahan tren yang tidak normal (Kolektif).
+:::
+
+::: {.notes}
+
+Dalam konteks transaksi kartu kredit, data historis yang sudah dilabeli menunjukkan bahwa pola nilai yang tinggi secara berurutan dapat dianggap sebagai anomali. Artinya, jika hanya terjadi satu nilai tinggi (misalnya 87) yang muncul secara terpisah, hal itu tidak dianggap anomali. Namun, jika nilai tinggi seperti 84 muncul dan diikuti oleh nilai-nilai tinggi lainnya, secara keseluruhan pola tersebut dianggap sebagai anomali karena menunjukkan perubahan tren yang tidak normal.
+
+:::
+
+## Outlier evaluation techniques {.smaller}
+
+Evaluasi algoritma atau metode analisis outlier itu sulit karena outlier jarang terjadi dan data label (ground truth) sering tidak tersedia, terutama dalam skenario unsupervised. Banyak penelitian menggunakan validasi internal untuk evaluasi. Metode evaluasi internal (misalnya, mengukur "kebaikan" model dengan metrik seperti mean-squared radius) bisa dimanipulasi oleh algoritma tertentu sehingga tidak sepenuhnya andal. Dengan kata lain, interpretasinya bisa berbeda tergantung pada algoritma yang digunakan. Oleh karena itu, evaluasi eksternal lebih sering digunakan, yaitu dalam kerangka supervised. Evaluasi trade-off antara **false positives** dan **false negatives** diukur dengan metrik seperti precision dan recall.
+
+![](img/eval1.png){.absolute top="400" width="600" height="300"}
+
+::: {.notes}
+
+Precision dihitung sebagai rasio antara jumlah pencilan yang terdeteksi dengan benar terhadap semua yang diprediksi sebagai pencilan. Recall dihitung sebagai rasio antara jumlah pencilan yang terdeteksi dengan benar terhadap total pencilan aktual. Lebih sensitif terhadap perubahan jumlah pencilan yang benar diidentifikasi, sehingga lebih cocok untuk evaluasi model deteksi pencilan
+
+ROC curve memplot True Positive Rate (TPR) (sensitivitas) terhadap False Positive Rate (FPR) pada berbagai nilai ambang (threshold).
+
+Dengan mengubah ambang deteksi, model akan menghasilkan kombinasi TPR dan FPR yang berbeda. ROC curve membantu melihat trade-off antara mendeteksi pencilan yang benar (TPR tinggi) dan menghindari kesalahan deteksi (FPR rendah). Tidak cocok untuk data tidak seimbang atau pencilan.
+
+:::
+
+## Outlier evaluation techniques {.smaller}
+#### Kesalahan umum dalam evaluasi outlier
+
+- **Pemilihan Paramter:** Kesalahan umum dalam benchmarking algoritma analisis outlier terjadi ketika parameter yang ditetapkan oleh pengguna (misalnya, nilai k pada k-nearest neighbor) dioptimalkan dengan menggunakan label outlier. Hal ini bisa menyebabkan overfitting dan hasil yang bias.
+
+- **Risiko Overfitting:** Model yang terlalu kompleks bisa menghasilkan hasil yang sangat baik pada data pelatihan, tetapi buruk pada data baru. Perlu dilakukan validasi eksternal dan evaluasi berkala untuk menghindari overfitting.
+
+- **Peran Pengalaman Analis:** Karena dalam setting unsupervised tidak ada ground truth yang pasti, desain eksperimen dan pemilihan parameter sangat bergantung pada pengalaman dan penilaian yang baik dari analis (Expert Judgment.
+
+## Guidelines for the practitioner {.smaller}
+- Normalisasi data sangat penting.
+- Pembedaan antara noise dan anomali perlu diperhatikan.
+- Tahap ekstraksi fitur (prediktor) merupakan langkah yang krusial.
+- Domain knowledge seringkali mudah diintegrasikan ke dalam algoritma unsupervised.
+- Data berlabel (ground truth) sebaiknya digunakan jika memungkinkan.
+- Analisis eksploratif dan visual dapat berguna di seluruh tahap analisis outlier.
+- Keterlibatan manusia (human in the loop) mempermudah proses pelabelan dalam kombinasi dengan algoritma unsupervised.
+- Penggunaan metode ensemble outlier dapat mengurangi risiko overfitting.
+
+## Which unsupervised algorithms work best? {.smaller}
+
+Sangat mustahil untuk mengidentifikasi algoritma optimal tanpa adanya ground truth. Karena masalah analisis outlier bersifat unsupervised, efektivitas suatu algoritma pada suatu dataset bergantung pada "keberuntungan" dalam mencerminkan distribusi sebenarnya dari data normal.
+
+## Illustrative example
+
+::: {style="text-align: center; margin-top: 2em"}
+[Ilustarasi analisis outlier dengan R](https://rpubs.com/kayzedu/1272534){preview-link="true" style="text-align: center"}
+:::
+
+## Reference {.smaller}
+- Aggarwal, C. C., & Aggarwal, C. C. (2017). Outlier analysis. Springer International Publishing.
+- https://rpubs.com/maulikpatel/228329
+- 
+
+

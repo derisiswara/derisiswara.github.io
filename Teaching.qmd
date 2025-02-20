@@ -3,13 +3,14 @@ title: "Teaching"
 slide-format: revealjs
 ---
 
+## Machine Learning
+
 #### Introduction to Machine Learning
 
-<div>
+[Code Exercise](https://drive.google.com/file/d/10RY7n6PBWH8stMqHB7r2LxLQyWmPj-4F/view?usp=sharing)
 
-```{=html}
-<iframe class="slide-deck" src="docs/DS-ML-Perbanas/Week1/"></iframe>
-```
+<iframe class="slides" src="docs/DS-ML-Perbanas/Week1/"></iframe>
 
-<div>
+## Outlier Analysis
 
+<iframe class="slides" src="docs/Guideline outlier analysis/"></iframe>
