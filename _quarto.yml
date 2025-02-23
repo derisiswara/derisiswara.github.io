@@ -17,6 +17,7 @@ website:
   open-graph:
     locale: en_EN
   page-navigation: true
+  back-to-top-navigation: true
 
   navbar:
     pinned: true
@@ -41,6 +42,9 @@ website:
       - text: License
         href: license.qmd
     right: "made with [Quarto](https://quarto.org)"
+  comments:
+    giscus:
+      repo: derisiswara/ds_website
 
 format:
   html:

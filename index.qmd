@@ -1,6 +1,7 @@
 ---
 pagetitle: "DS"
 title: ""
+comments: false
 listing:
   contents: projects
   type: grid

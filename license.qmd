@@ -1,5 +1,6 @@
 ---
 title: "CC BY-NC-SA 4.0 license"
+comments: false
 ---
 
 @2025 Deri Siswara. License adapted from [Jadey Ryan](https://jadeyryan.com/license)

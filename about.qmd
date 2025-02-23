@@ -3,7 +3,7 @@ pagetitle: "About DS"
 title: "Deri Siswara"
 subtitle: "💰 Economist & Data Scientist 📊"
 image: assets/img/logods2.webp
-
+comments: false
 about:
   id: hero-heading
   template: jolla

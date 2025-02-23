@@ -2,8 +2,10 @@
 title: "Bahan Ajar Mata Kuliah Machine Learning"
 description: "Tayangan dan code exercise untuk mata kuliah Machine Learning"
 author: Deri Siswara
-date: last-modified 
+date: 2/23/2025 
 image: img/ml.png
+citation: true
+bibliography: biblio.bib
 categories:
   - Teaching
   - Python
