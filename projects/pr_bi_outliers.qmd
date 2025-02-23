@@ -15,4 +15,4 @@ categories:
 
 Kajian ini berlangsung selama tiga hari di Bank Indonesia, Jakarta. Kajian ini bertujuan mencari parameter dan metode mendeteksi ketidakwajaran data pada data harian transaksi, neraca, dan laporan keuangan lainnya.
 
-<iframe class="slides" src="https://derikayz.quarto.pub/outliers/#/title-slide"></iframe>
+<iframe class="slides" src="https://derisiswara.quarto.pub/outliers_bi/#/title-slide"></iframe>

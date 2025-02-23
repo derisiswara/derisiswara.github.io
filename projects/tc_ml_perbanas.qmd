@@ -15,12 +15,12 @@ categories:
 
 [Code Exercise](https://drive.google.com/file/d/1zqMxohS_dTCCXkFEz2kNbWyksxg6iX5k/view?usp=sharing)
 
-<iframe class="slides" src="https://derikayz.quarto.pub/ml_w1/#/title-slide"></iframe>
+<iframe class="slides" src="https://derisiswara.quarto.pub/ml_w1/#/title-slide"></iframe>
 
 ## Machine Learning Workflow
 
-[Code Exercise 1](https://derikayz.quarto.pub/ml_wf_smpl/)
+[Code Exercise 1](https://derisiswara.quarto.pub/ml_wf_smpl/)
 
-[Code Exercise 2](https://derikayz.quarto.pub/code_exercise_ml_wf/)
+[Code Exercise 2](https://derisiswara.quarto.pub/code_exercise_ml_wf/)
 
-<iframe class="slides" src="https://derikayz.quarto.pub/ml_w2/#/title-slide"></iframe>
+<iframe class="slides" src="https://derisiswara.quarto.pub/ml_w2/#/title-slide"></iframe>
