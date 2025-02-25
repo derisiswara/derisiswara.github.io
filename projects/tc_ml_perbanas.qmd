@@ -24,3 +24,11 @@ categories:
 [Code Exercise 2](https://derisiswara.quarto.pub/code_exercise_ml_wf/)
 
 <iframe class="slides" src="https://derisiswara.quarto.pub/ml_w2/#/title-slide"></iframe>
+
+## Regresi Linier dan Teknik Seleksi Peubah: Subset-Selection
+
+[Code Exercise](https://derisiswara.quarto.pub/regresi-linier-dan-teknik-seleksi-peubah---subset-selection/#mtcars-dataset/)
+
+<iframe class="slides" src="https://derisiswara.quarto.pub/ml_w3/#/title-slide"></iframe>
+
+
