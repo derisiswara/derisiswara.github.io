@@ -32,3 +32,10 @@ categories:
 <iframe class="slides" src="https://derisiswara.quarto.pub/ml_w3/#/title-slide"></iframe>
 
 
+## Regresi Linier dan Teknik Seleksi Peubah: Shrinkage Methods (Ridge, Lasso, Elastic Net)
+
+[Code Exercise](https://derisiswara.quarto.pub/week4_ml/)
+
+<iframe class="slides" src="https://derisiswara.quarto.pub/ml_w4/#/title-slide"></iframe>
+
+
