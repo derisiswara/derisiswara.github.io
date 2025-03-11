@@ -38,4 +38,9 @@ categories:
 
 <iframe class="slides" src="https://derisiswara.quarto.pub/ml_w4/#/title-slide"></iframe>
 
+## Regresi Tak Linear
+
+[Code Exercise](https://derisiswara.quarto.pub/week5_ml/)
+
+<iframe class="slides" src="https://derisiswara.quarto.pub/ml_w5/#/title-slide"></iframe>
 
