@@ -1,5 +1,5 @@
 ---
-pagetitle: "About DS"
+pagetitle: "Deri Siswara | About"
 title: "Deri Siswara"
 subtitle: "💰 Economist & Data Scientist 📊"
 image: assets/img/logods2.webp
