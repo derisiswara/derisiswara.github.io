@@ -1,0 +1,17 @@
+---
+title: "Introduction to Machine Learning"
+description: "Slides for the Introduction to Machine Learning course created with Quarto presentation"
+author: Deri Siswara
+date: 2/23/2025 
+image: img/1.png
+citation: true
+bibliography: biblio.bib
+categories:
+  - Teaching
+  - Python
+  - Machine Learning
+---
+
+## Slides
+
+<iframe class="slides" src="https://derisiswara.quarto.pub/ml_w1/#/title-slide"></iframe>

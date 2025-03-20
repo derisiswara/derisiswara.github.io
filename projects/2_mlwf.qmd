@@ -1,0 +1,21 @@
+---
+title: "Machine Learning Workflow"
+description: "Slides and code exercises about Machine Learning Workflow created with Quarto presentation"
+author: Deri Siswara
+date: 2/28/2025 
+image: img/2.png
+citation: true
+bibliography: biblio.bib
+categories:
+  - Teaching
+  - Python
+  - Machine Learning
+---
+
+<span class="listing-btn-group">
+<a href="https://derisiswara.quarto.pub/ml_wf_smpl/" class="btn" role="button">{{< fa box >}} Code Exercise 1 </a>
+<a href="https://derisiswara.quarto.pub/code_exercise_ml_wf/" class="btn" role="button">{{< fa box >}} Code Exercise 2 </a>
+
+## Slides
+
+<iframe class="slides" src="https://derisiswara.quarto.pub/ml_w2/#/title-slide"></iframe>

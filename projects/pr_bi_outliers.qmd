@@ -1,6 +1,6 @@
 ---
-title: "Kajian Kewajaran Data Bank Indonesia"
-description: "Tayangan dan code exercise untuk kajian deteksi ketidakwajaran data Bank Indonesia dengan pendekatan statistika"
+title: "Bank Indonesia Data Anomalies Study"
+description: "Slides and code exercise for the study of detecting anomalies in Bank Indonesia data using statistical approaches"
 author: Deri Siswara
 date: 2/21/2025 
 image: img/out.png
@@ -13,6 +13,6 @@ categories:
 
 ## Outlier Analysis
 
-Kajian ini berlangsung selama tiga hari di Bank Indonesia, Jakarta. Kajian ini bertujuan mencari parameter dan metode mendeteksi ketidakwajaran data pada data harian transaksi, neraca, dan laporan keuangan lainnya.
+This study was conducted over three days at Bank Indonesia, Jakarta. The aim of this study is to find parameters and methods to detect anomalies in daily transaction data, balance sheets, and other financial reports.
 
 <iframe class="slides" src="https://derisiswara.quarto.pub/outliers_bi/#/title-slide"></iframe>

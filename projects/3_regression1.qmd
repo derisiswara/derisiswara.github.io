@@ -1,0 +1,20 @@
+---
+title: "Linear Regression and Variable Selection Techniques: Subset-Selection"
+description: "Slides and code exercises about Linear Regression and Variable Selection Techniques: Subset-Selection created with Quarto presentation"
+author: Deri Siswara
+date: 3/5/2025 
+image: img/3.png
+citation: true
+bibliography: biblio.bib
+categories:
+  - Teaching
+  - Python
+  - Machine Learning
+---
+
+<span class="listing-btn-group">
+<a href="https://derisiswara.quarto.pub/regresi-linier-dan-teknik-seleksi-peubah---subset-selection/" class="btn" role="button">{{< fa box >}} Code Exercise </a>
+
+## Slides
+
+<iframe class="slides" src="https://derisiswara.quarto.pub/ml_w3/#/title-slide"></iframe>
