@@ -44,3 +44,6 @@ categories:
 
 <iframe class="slides" src="https://derisiswara.quarto.pub/ml_w5/#/title-slide"></iframe>
 
+## Coba
+
+<iframe src="https://dseconometrics.netlify.app/"></iframe>

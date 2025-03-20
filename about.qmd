@@ -20,7 +20,7 @@ about:
       href: mailto:derisiswarads@gmail.com
     - icon: paperclip
       text: CV
-      href: https://drive.google.com/file/d/1oSj4pgafiRg3WiXlBGMpb4vl8S7fxVeQ/view
+      href: https://drive.google.com/drive/folders/16FpgUNqK4U7y_n81vyEIVv3TYFzhrQC_?usp=sharing
 
 toc: false
 anchor-sections: false
@@ -33,4 +33,4 @@ execute:
 
 ## Hello everyone 👋
 
-I am currently a lecturer at Perbanas Institute, in the Data Science program. My research and teaching focus on econometric modeling and data science. I hold a Bachelor's degree in Economics and a Master's degree in Statistics and Data Science.
+I am an experienced Data Analyst skilled at transforming raw data into actionable insights. Proficient in R, Python, SQL, STATA, EViews, Looker, Tableau, and Power BI. I focus on statistical analysis and data visualization to support informed decision-making. In addition, I am actively involved in research for academic journals, applying data analysis techniques to explore new methodologies and contribute to scholarly work. I’m open to collaboration and always eager to take on new challenges in the data world.

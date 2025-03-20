@@ -23,7 +23,7 @@ website:
     pinned: true
     logo: assets/img/logods2.webp
     left:
-      - text: Home
+      - text: Portfolio
         href: index.qmd
       - text: About
         href: about.qmd
