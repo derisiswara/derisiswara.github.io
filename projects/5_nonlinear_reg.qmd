@@ -3,7 +3,7 @@ title: "Nonlinear Regression"
 description: "Slides and code exercises about Nonlinear Regression created with Quarto presentation"
 author: Deri Siswara
 date: 3/19/2025 
-image: img/4.png
+image: img/5.png
 citation: true
 bibliography: biblio.bib
 categories:

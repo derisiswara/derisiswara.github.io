@@ -4,13 +4,15 @@ title: ""
 comments: false
 listing:
   contents: projects
-  type: grid
+  type: default
   fields: 
     - title
     - description
     - date
     - image
     - categories
+    - author
   categories: true
   sort: "date desc"
+  page-size: 3
 ---

@@ -1,0 +1,20 @@
+---
+title: "Decision Tree Regression"
+description: "Slides and code exercises about Decision Tree Regression created with Quarto presentation"
+author: Deri Siswara
+date: 3/26/2025 
+image: img/6.png
+citation: true
+bibliography: biblio.bib
+categories:
+  - Teaching
+  - Python
+  - Machine Learning
+---
+
+<span class="listing-btn-group">
+<a href="https://derisiswara.quarto.pub/week6_ml/" class="btn" role="button">{{< fa box >}} Code Exercise </a>
+
+## Slides
+
+<iframe class="slides" src="https://derisiswara.quarto.pub/ml_w6/#/title-slide"></iframe>
