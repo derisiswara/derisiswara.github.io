@@ -1,7 +1,7 @@
 ---
 pagetitle: "Deri Siswara | About"
 title: "Deri Siswara"
-subtitle: "💰 Economist & Data Scientist 📊"
+subtitle: "💰 Economist & Data Analyst 📊"
 image: assets/img/logods2.webp
 comments: false
 about:
