@@ -19,7 +19,7 @@ categories:
 
 <span class="listing-btn-group">
 <a href="https://01965396-054c-21e8-4395-ba46cc5b7b37.share.connect.posit.cloud/" class="btn" role="button">{{< fa box >}} App R </a>
-<a href="https://01965396-054c-21e8-4395-ba46cc5b7b37.share.connect.posit.cloud/" class="btn" role="button">{{< fa box >}} App Python </a>
+<a href="https://019653e4-e0ca-c5cd-61c9-227030eba27f.share.connect.posit.cloud/" class="btn" role="button">{{< fa box >}} App Python </a>
 </span>
 
 ## Data
