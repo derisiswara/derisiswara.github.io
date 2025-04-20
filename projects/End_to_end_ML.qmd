@@ -1,0 +1,391 @@
+---
+title: "End To End Machine Learning (R, Python, Quato, Shiny, GitHub, Posit Connect)"
+description: "Tutorial ini akan membahas tentang bagaimana cara membuat aplikasi machine learning dengan menggunakan kombinasi R, Python, Quarto, Shiny, GitHub, dan Posit Connect. Tutorial ini juga akan membahas tentang bagaimana cara mengintegrasikan semua komponen tersebut untuk membuat aplikasi machine learning yang dapat digunakan oleh pengguna lain."
+author: Deri Siswara
+date: 4/20/2025 
+image: img/ml.jpg
+citation: true
+bibliography: biblio.bib
+executable: 
+  warning: false
+  message: false
+categories:
+  - Teaching
+  - Python
+  - R
+  - Dashboard
+  - Machine Learning
+---
+
+<span class="listing-btn-group">
+<a href="https://01965396-054c-21e8-4395-ba46cc5b7b37.share.connect.posit.cloud/" class="btn" role="button">{{< fa box >}} App R </a>
+<a href="https://01965396-054c-21e8-4395-ba46cc5b7b37.share.connect.posit.cloud/" class="btn" role="button">{{< fa box >}} App Python </a>
+</span>
+
+## Data
+
+```{r}
+df1 <- read.csv("data/heart.csv")
+head(df1)
+```
+
+### Keterangan Data
+
+| No. | Variabel | Tipe / Satuan | Nilai /Kategori (Ter­definisi) | Arti Klinis singkat |
+|-------------|-------------|-------------|----------------------|-------------|
+| 1 | **age** | Numerik (tahun) | ± 29 – 77 | Usia pasien; faktor risiko kardiovaskular meningkat seiring bertambahnya usia. |
+| 2 | **sex** | Biner | 1 = laki‑laki, 0 = perempuan | Perbedaan hormonal & anatomi memengaruhi kejadian penyakit jantung. |
+| 3 | **cp** | Kategorik (1‑4) | 1 = angina tipikal 2 = angina atypical 3 = nyeri non‑angina 4 = asimptomatik | Jenis nyeri membantu menilai risiko penyakit arteri koroner. |
+| 4 | **trestbps** | Numerik (mm Hg) | ± 90 – 200 | Tekanan darah istirahat tinggi meningkatkan beban jantung. |
+| 5 | **chol** | Numerik (mg/dL) | ± 120 – 564 | Kadar kolesterol tinggi berkaitan dengan aterosklerosis. |
+| 6 | **fbs** | Biner | 1 = gula puasa \> 120 mg/dL, 0 = tidak | Hiperglikemia kronis mempercepat kerusakan pembuluh darah. |
+| 7 | **restecg** | Kategorik (0‑2) | 0 = normal 1 = ST‑T abnormal 2 = LVH | Abnormalitas EKG istirahat menandakan gangguan listrik jantung awal. |
+| 8 | **thalach** | Numerik (bpm) | ± 60 – 202 | Denyut jantung maksimum saat tes; indikasi kapasitas aerobik & iskemia. |
+| 9 | **exang** | Biner | 1 = angina saat latihan, 0 = tidak | Nyeri dada saat treadmill → iskemia terinduksi stres. |
+| 10 | **oldpeak** | Numerik (mV) | 0.0 – 6.2 | Besar depresi ST; semakin besar → iskemia lebih berat. |
+| 11 | **slope** | Kategorik (1‑3) | 1 = up‑sloping 2 = flat 3 = down‑sloping | Down‑sloping paling berkorelasi dengan CAD. |
+| 12 | **ca** | Numerik diskret (0‑3) | 0, 1, 2, 3 | Jumlah pembuluh besar tersumbat; indikator keparahan. |
+| 13 | **thal** | Kategorik (3/6/7) | 3 = normal 6 = defek tetap 7 = defek reversibel | Defek reversibel → iskemia; defek tetap → infark lama. |
+| 14 | **num** | Biner (label) | 0 = \< 50 % stenosis 1 = ≥ 50 % stenosis | Diagnosa penyakit arteri koroner signifikan (target model). |
+
+
+```{r}
+df1 <- transform(
+  df1,
+  age=as.integer(age),
+  sex=as.factor(sex),
+  cp=as.factor(cp),
+  trestbps=as.integer(trestbps),
+  choi=as.integer(choi),
+  fbs=as.factor(fbs),
+  restecg=as.factor(restecg),
+  thalach=as.integer(thalach),
+  exang=as.factor(exang),
+  oldpeak=as.numeric(oldpeak),
+  slope=as.factor(slope),
+  ca=factor(ca,labels=c("0","1","2","3")),
+  thai=factor(thai,labels=c("3","6","7")),
+  num=as.factor(num)
+)
+
+head(df1)
+```
+
+## Fitting Model di R
+
+**Catatan: EDA dan Hyperparameter tuning tidak ditampilkan di sini. Kedepannya, EDA dan Hyperparameter tuning perlu dilakukan karena bagian dari proses pemodelan machine learning yang dapat meningkatkan akurasi model. Namun, untuk keperluan tutorial ini, EDA dan Hyperparameter tuning tidak ditampilkan.**
+
+Di R, kita dapat menggunakan package `tidymodels` untuk fitting model. Package ini merupakan koleksi dari beberapa package yang saling terintegrasi untuk memudahkan kita dalam melakukan pemodelan machine learning.
+
+```{r, warning=FALSE, message=FALSE}
+library(tidymodels)
+```
+
+### Algoritma Regresi Logistik
+
+```{r}
+# ────────────────────────────────────────────────────────────────────────────────
+# 1. Pustaka & reproducibility
+set.seed(26)
+
+# ────────────────────────────────────────────────────────────────────────────────
+# 2. Train–test split (stratified)
+# ────────────────────────────────────────────────────────────────────────────────
+split_obj  <- initial_split(df1, prop = 0.75, strata = num)   # num = label biner
+train_data <- training(split_obj)
+test_data  <- testing(split_obj)
+
+# ────────────────────────────────────────────────────────────────────────────────
+# 3. Recipe (praproses fitur)
+# ────────────────────────────────────────────────────────────────────────────────
+heart_rec <- recipe(num ~ ., data = train_data) %>% 
+  step_dummy(all_nominal_predictors(), one_hot = TRUE) %>%  # encode factor → 0/1
+  step_zv(all_predictors())                                # hilangkan variabel var. 0
+# *Jika data sudah siap, cukup recipe(num ~ ., data = train_data)
+
+# ────────────────────────────────────────────────────────────────────────────────
+# 4. Spesifikasi model regresi logistik
+# ────────────────────────────────────────────────────────────────────────────────
+log_spec <- 
+  logistic_reg() %>%        # default = tanpa regularisasi, link logit
+  set_engine("glm") %>%     # backend base-R glm()
+  set_mode("classification")
+
+# ────────────────────────────────────────────────────────────────────────────────
+# 5. Workflow
+# ────────────────────────────────────────────────────────────────────────────────
+log_wf <- workflow() %>% 
+  add_recipe(heart_rec) %>% 
+  add_model(log_spec)
+
+# ────────────────────────────────────────────────────────────────────────────────
+# 6. Fit model
+# ────────────────────────────────────────────────────────────────────────────────
+log_fit <- fit(log_wf, data = train_data)
+
+# ────────────────────────────────────────────────────────────────────────────────
+# 7. Prediksi & evaluasi
+# ────────────────────────────────────────────────────────────────────────────────
+log_preds <- predict(log_fit, test_data, type = "prob") %>%   # probabilitas kelas 1
+  bind_cols(predict(log_fit, test_data, type = "class")) %>%  # label hasil klasifikasi
+  bind_cols(test_data %>% select(num))
+
+# Metrik umum
+metrics(log_preds, truth = num, estimate = .pred_class)[1,] # akurasi
+
+# Confusion matrix
+conf_mat(log_preds, truth = num, estimate = .pred_class)
+
+# ────────────────────────────────────────────────────────────────────────────────
+# 8. Simpan model
+# ────────────────────────────────────────────────────────────────────────────────
+saveRDS(log_fit, "results/logreg_R.rda")
+
+```
+Akurasi dari model regresi logistik yang dihasilkan adalah 0.828. Model ini sudah disimpan dalam bentuk file RDS dengan nama `logreg_R.rda`. File ini dapat digunakan untuk memprediksi data baru.
+
+### Algoritma Random Forest
+
+```{r}
+# ── 1. Pustaka & reproducibility ───────────────────────────────────────────────
+set.seed(26)
+
+# ── 2. Train–test split --------------------------------------------------------
+split_obj   <- initial_split(df1, prop = 0.75, strata = num)
+train_data  <- training(split_obj)
+test_data   <- testing(split_obj)
+
+# ── 3. Recipe (opsional: praproses) -------------------------------------------
+heart_rec <- 
+  recipe(num ~ ., data = train_data) |>
+  step_dummy(all_nominal_predictors(), one_hot = TRUE) |>   # encode faktor
+  step_zv(all_predictors())                                # buang variabel var. 0
+
+# ── 4. Spesifikasi model -------------------------------------------------------
+rf_spec <- 
+  rand_forest() |>
+  set_engine("randomForest") |>
+  set_mode("classification")
+
+# ── 5. Workflow ----------------------------------------------------------------
+rf_wf <- workflow() |>
+  add_recipe(heart_rec) |>
+  add_model(rf_spec)
+
+# ── 6. Fit model ---------------------------------------------------------------
+rf_fit <- fit(rf_wf, data = train_data)
+
+# ── 7. Prediksi & evaluasi -----------------------------------------------------
+rf_preds <- predict(rf_fit, test_data) |> 
+            bind_cols(test_data |> select(num))
+
+metrics(rf_preds, truth = num, estimate = .pred_class)[1,] # akurasi
+
+# Confusion matrix
+conf_mat(rf_preds, truth = num, estimate = .pred_class)
+
+# ── 8. Simpan model --------------------------------------------
+saveRDS(rf_fit, "results/rf_R.rda")
+```
+
+Akurasi dari model random forest yang dihasilkan adalah 0.842. Model ini sudah disimpan dalam bentuk file RDS dengan nama `rf_R.rda`. File ini dapat digunakan untuk memprediksi data baru.
+
+**Model Terbaik**
+
+Model terbaik dari kedua algoritma yang digunakan adalah model random forest. Model ini yang akan dideploy ke dalam aplikasi Shiny.
+
+## Fitting Model di Python
+
+```{r, warning=FALSE, message=FALSE}
+# Load reticulate package
+# Pakckage ini digunakan untuk menghubungkan R dengan Python
+library(reticulate)
+```
+
+```{python}
+import pandas as pd
+import numpy as np
+
+# Load data
+df1 = pd.read_csv("data/heart.csv")
+df1.head()
+```
+
+```{python}
+import pandas as pd
+
+# ---- fungsi utilitas -------------------------------------------------------
+def as_category(series, categories=None):
+    """
+    Ubah series ke pandas.Categorical.
+    Jika 'categories' diberikan, urutannya disetel eksplisit (mirip labels R).
+    """
+    if categories is not None:
+        return pd.Categorical(series, categories=categories, ordered=False)
+    return series.astype("category")
+
+
+# ---- transformasi tipe -----------------------------------------------------
+df1 = (
+    df1
+      .assign(
+          age      = lambda x: x["age"].astype("int32"),
+          sex      = lambda x: as_category(x["sex"]),
+          cp       = lambda x: as_category(x["cp"]),
+          trestbps = lambda x: x["trestbps"].astype("int32"),
+          choi     = lambda x: x["choi"].astype("int32"),   # ganti 'choi' → 'chol' bila perlu
+          fbs      = lambda x: as_category(x["fbs"]),
+          restecg  = lambda x: as_category(x["restecg"]),
+          thalach  = lambda x: x["thalach"].astype("int32"),
+          exang    = lambda x: as_category(x["exang"]),
+          oldpeak  = lambda x: pd.to_numeric(x["oldpeak"], errors="coerce"),
+          slope    = lambda x: as_category(x["slope"]),
+          ca       = lambda x: as_category(x["ca"],   categories=[0, 1, 2, 3]),
+          thai     = lambda x: as_category(x["thai"], categories=[3, 6, 7]),
+          num      = lambda x: as_category(x["num"])
+      )
+)
+
+# ---- lihat hasil -----------------------------------------------------------
+print(df1.head())
+print(df1.dtypes)
+```
+Di Python, kita dapat menggunakan package `scikit-learn` untuk fitting model. Package ini merupakan package yang paling banyak digunakan untuk pemodelan machine learning di Python.
+
+### Algoritma Regresi Logistik
+
+```{python}
+# ───────────────────────────────────────────────────────────────────────────────
+# 0. Pustaka & reproducibility
+# ───────────────────────────────────────────────────────────────────────────────
+import numpy as np
+import pandas as pd
+
+from sklearn.model_selection import train_test_split
+from sklearn.compose import ColumnTransformer
+from sklearn.preprocessing import OneHotEncoder
+from sklearn.feature_selection import VarianceThreshold
+from sklearn.pipeline import Pipeline
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score, confusion_matrix
+import joblib          # untuk simpan / load model
+np.random.seed(26)
+
+# ───────────────────────────────────────────────────────────────────────────────
+# 1. Train–test split  (stratified, 75 % train)
+# ───────────────────────────────────────────────────────────────────────────────
+X = df1.drop(columns=["num"])
+y = df1["num"]
+
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y,
+    train_size=0.75,
+    stratify=y,
+    random_state=26
+)
+
+# ───────────────────────────────────────────────────────────────────────────────
+# 2. Pre‑processing (recipe setara)
+#    • One‑hot seluruh kolom kategorik
+#    • Buang prediktor varian 0 (mirip step_zv)
+# ───────────────────────────────────────────────────────────────────────────────
+cat_cols  = X.select_dtypes(include=["object", "category"]).columns
+num_cols  = X.select_dtypes(include=["number"]).columns
+
+preprocess = ColumnTransformer(
+    transformers=[
+        ("cat", OneHotEncoder(drop="first", handle_unknown="ignore"), cat_cols),
+        ("num", "passthrough", num_cols)
+    ]
+)
+
+# ───────────────────────────────────────────────────────────────────────────────
+# 3. Spesifikasi model + Workflow (Pipeline)
+# ───────────────────────────────────────────────────────────────────────────────
+log_pipeline = Pipeline(steps=[
+    ("preprocess", preprocess),
+    ("nzv", VarianceThreshold(threshold=0.0)),           # hilangkan varian 0
+    ("model", LogisticRegression())
+])
+
+# ───────────────────────────────────────────────────────────────────────────────
+# 4. Fit model
+# ───────────────────────────────────────────────────────────────────────────────
+log_pipeline.fit(X_train, y_train)
+
+# ───────────────────────────────────────────────────────────────────────────────
+# 5. Prediksi & evaluasi
+# ───────────────────────────────────────────────────────────────────────────────
+y_pred  = log_pipeline.predict(X_test)
+y_prob  = log_pipeline.predict_proba(X_test)[:, 1]       # prob kelas 1 (≥ 50 % stenosis)
+
+acc = accuracy_score(y_test, y_pred)
+cm  = confusion_matrix(y_test, y_pred)
+
+print(f"Accuracy : {acc:.3f}")
+print("Confusion matrix:\n", cm)
+
+# ───────────────────────────────────────────────────────────────────────────────
+# 6. Simpan model
+# ───────────────────────────────────────────────────────────────────────────────
+joblib.dump(log_pipeline, "results/logreg_py.joblib")   # simpan
+
+```
+### Algoritma Random Forest
+
+```{python}
+
+from sklearn.ensemble import RandomForestClassifier
+
+# reproducibility
+np.random.seed(26)
+
+# ── 1. Split data (stratified 75 % train) ──────────────────────────────────────
+X = df1.drop(columns=["num"])
+y = df1["num"]
+
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y,
+    train_size=0.75,
+    stratify=y,
+    random_state=26
+)
+
+# ── 2. Pre‑processing ----------------------------------------------------------
+cat_cols = X.select_dtypes(include=["object", "category"]).columns
+num_cols = X.select_dtypes(include=["number"]).columns
+
+preprocess = ColumnTransformer(
+    transformers=[
+        ("cat", OneHotEncoder(drop="first", handle_unknown="ignore"), cat_cols),
+        ("num", "passthrough", num_cols)
+    ]
+)
+
+# ── 3. Spesifikasi Random Forest -----------------------------------
+rf_model = RandomForestClassifier(
+    random_state=26,
+    n_jobs=-1              # gunakan seluruh core
+)
+
+# ── 4. Pipeline workflow -------------------------------------------------------
+rf_pipeline = Pipeline(steps=[
+    ("preprocess", preprocess),
+    ("nzv", VarianceThreshold(threshold=0.0)),   # buang varian 0
+    ("model", rf_model)
+])
+
+# ── 5. Fit model ---------------------------------------------------------------
+rf_pipeline.fit(X_train, y_train)
+
+# ── 6. Evaluasi ---------------------------------------------------------------
+y_pred = rf_pipeline.predict(X_test)
+acc    = accuracy_score(y_test, y_pred)
+cm     = confusion_matrix(y_test, y_pred)
+
+print(f"Accuracy : {acc:.3f}")
+print("Confusion matrix:\n", cm)
+
+# ── 7. Simpan model -----------------------------------------------------------
+joblib.dump(rf_pipeline, "results/rf_py.joblib")
+```
