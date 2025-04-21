@@ -1,0 +1,20 @@
+---
+title: "Logistic Regression"
+description: "Slides and code exercises about Logistic Regression created with Quarto presentation"
+author: Deri Siswara
+date: 4/21/2025 
+image: img/w8.png
+citation: true
+bibliography: biblio.bib
+categories:
+  - Teaching
+  - Python
+  - Machine Learning
+---
+
+<span class="listing-btn-group">
+<a href="https://derisiswara.org/projects/End_to_end_ML.html" class="btn" role="button">{{< fa box >}} Code Exercise </a>
+
+## Slides
+
+<iframe class="slides" src="https://derisiswara.quarto.pub/ml_w8/#/title-slide"></iframe>
