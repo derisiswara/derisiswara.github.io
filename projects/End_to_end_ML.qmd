@@ -22,6 +22,8 @@ categories:
 <a href="https://github.com/derisiswara/Aplikasi-Mendiagnosa-Penyakit-Arteri-Koroner-dengan-Python-Shiny" class="btn" role="button">{{< fa brands github >}} App Python Code</a>
 </span>
 
+![](img/end_to_end.png)
+
 Tutorial ini akan membahas tentang bagaimana cara membuat aplikasi machine learning dengan menggunakan kombinasi R, Python, Quarto, Shiny, GitHub, dan Posit Connect. Tutorial ini juga akan membahas tentang bagaimana cara mengintegrasikan semua komponen tersebut untuk membuat aplikasi machine learning yang dapat digunakan oleh pengguna lain.
 
 ## Data
