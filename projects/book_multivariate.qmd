@@ -9,9 +9,7 @@ bibliography: biblio.bib
 categories:
   - R
   - Book
-  - R Markdown
-  - Multivariate
-  - Quantitative Methods
+  - Multivariate / Quantitative Methods
 ---
 <span class="listing-btn-group">
 <a href="https://dsmultivariate.netlify.app/" class="btn" role="button">{{< fa box >}} Site</a>

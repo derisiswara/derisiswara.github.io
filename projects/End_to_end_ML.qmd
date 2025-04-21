@@ -1,19 +1,17 @@
 ---
 title: "End To End Machine Learning (R, Python, Quarto, Shiny, GitHub, Posit Connect)"
-description: "Tutorial ini akan membahas tentang bagaimana cara membuat aplikasi machine learning dengan menggunakan kombinasi R, Python, Quarto, Shiny, GitHub, dan Posit Connect. Tutorial ini juga akan membahas tentang bagaimana cara mengintegrasikan semua komponen tersebut untuk membuat aplikasi machine learning yang dapat digunakan oleh pengguna lain."
+description: "Tutorial on building a machine learning application using R, Python, Quarto, Shiny, GitHub, and Posit Connect"
 author: Deri Siswara
 date: 4/20/2025 
-image: img/ml.jpg
+image: img/end_to_end.png
 citation: true
 bibliography: biblio.bib
 executable: 
   warning: false
   message: false
 categories:
-  - Teaching
   - Python
   - R
-  - Dashboard
   - Machine Learning
 ---
 
@@ -23,6 +21,8 @@ categories:
 <a href="https://019653e4-e0ca-c5cd-61c9-227030eba27f.share.connect.posit.cloud/" class="btn" role="button">{{< fa box >}} App Python </a>
 <a href="https://github.com/derisiswara/Aplikasi-Mendiagnosa-Penyakit-Arteri-Koroner-dengan-Python-Shiny" class="btn" role="button">{{< fa brands github >}} App Python Code</a>
 </span>
+
+Tutorial ini akan membahas tentang bagaimana cara membuat aplikasi machine learning dengan menggunakan kombinasi R, Python, Quarto, Shiny, GitHub, dan Posit Connect. Tutorial ini juga akan membahas tentang bagaimana cara mengintegrasikan semua komponen tersebut untuk membuat aplikasi machine learning yang dapat digunakan oleh pengguna lain.
 
 ## Data
 

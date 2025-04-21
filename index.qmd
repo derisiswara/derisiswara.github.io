@@ -14,5 +14,5 @@ listing:
     - author
   categories: true
   sort: "date desc"
-  page-size: 3
+  page-size: 4
 ---

@@ -9,7 +9,6 @@ bibliography: biblio.bib
 categories:
   - R
   - Book
-  - R Markdown
   - Econometrics
 ---
 <span class="listing-btn-group">
