@@ -24,16 +24,31 @@ categories:
 
 ![](img/end_to_end.png)
 
-Tutorial ini akan membahas tentang bagaimana cara membuat aplikasi machine learning dengan menggunakan kombinasi R, Python, Quarto, Shiny, GitHub, dan Posit Connect. Tutorial ini juga akan membahas tentang bagaimana cara mengintegrasikan semua komponen tersebut untuk membuat aplikasi machine learning yang dapat digunakan oleh pengguna lain.
+Tutorial ini akan membahas tentang bagaimana cara membuat aplikasi machine learning sederhana dengan menggunakan kombinasi R, Python, Quarto, Shiny, GitHub, dan Posit Connect Cloud. Tutorial ini merupakan gambaran proyek end-to-end machine learning mulai dari pengolahan data, pemodelan, hingga deployment ke dalam aplikasi yang dapat diakses oleh pengguna (user). Tutorial ini sangat sederhana dengan tujuan menunjukkan proses end-to-end machine learning yang pada kenyataannya cukup kompleks. Dalam tutorial ini, proses dibuat sederhana untuk menunjukkan titik awal dan akhir. Banyak proses yang dipersingkat demi efisiensi tutorial.
 
-## Data
+Secara singkat, berikut penjelasan kegunaan beberapa tools yang digunakan dalam tutorial ini:
+1. **R** dan **Python**: Dua bahasa pemrograman yang paling banyak digunakan untuk machine learning. R dan Python digunakan untuk melakukan training/fitting model machine learning.
+2. **Quarto**: Quarto adalah alat open-source markdown yang digunakan untuk membuat dokumen, presentasi, dan laporan interaktif. Panduan tutorial ini ditulis menggunakan Quarto. Dengan ini, tutorial ini bisa dipublikasikan melalui personal web atau platform GitHub.
+3. **Shiny**: Shiny adalah framework R yang digunakan untuk membuat aplikasi web interaktif. Shiny digunakan untuk membuat aplikasi web yang dapat diakses oleh pengguna. Model yang sudah dilatih di R dan Python dideploy ke dalam aplikasi Shiny.
+4. **GitHub**: GitHub adalah platform untuk menyimpan dan mengelola kode sumber. GitHub digunakan untuk menyimpan kode sumber dari aplikasi yang dibuat.
+5. **Posit Connect**: Posit Connect adalah platform untuk menyebarkan aplikasi Shiny ke cloud. Posit Connect digunakan untuk menyebarkan aplikasi Shiny yang sudah dibuat agar dapat diakses oleh pengguna. Publikasi aplikasi ke dalam Posit Connect Cloud memerlukan akun Posit Connect.
+ 
+## Langkah 1: Training/Fitting Model Machine Learning dengan R atau Python
+
+Pada tuorial ini, disajikan dua pilihan bahasa pemrograman untuk melakukan fitting model machine learning, yaitu R dan Python. Anda dapat memilih salah satu bahasa pemrograman yang paling Anda kuasai.
+
+Workflow machine learning cukup panjang dan kompleks. Pada tutorial ini aakan disajikan langkah-langkah yang paling umum dilakukan dalam machine learning. Detil tentang workflow machine learning dapat dilihat ![di sini](https://derisiswara.org/projects/2_mlwf.html).
+
+### Data
+
+Dataset yang digunakan dalam tutorial ini adalah dataset penyakit jantung dari UCI Machine Learning Repository. Dataset ini berisi informasi tentang pasien dengan penyakit jantung koroner (CAD). Dataset ini dapat diunduh dari [sini](https://archive.ics.uci.edu/ml/datasets/heart+Disease). Dataset ini juga sudah disertakan dalam folder `data` pada repositori GitHub.
 
 ```{r}
 df1 <- read.csv("data/heart.csv")
 head(df1)
 ```
 
-### Keterangan Data
+#### Keterangan Data
 
 | No. | Variabel | Tipe / Satuan | Nilai /Kategori (Ter­definisi) | Arti Klinis singkat |
 |-------------|-------------|-------------|----------------------|-------------|
@@ -75,17 +90,22 @@ df1 <- transform(
 head(df1)
 ```
 
-## Fitting Model di R
+### Fitting Model di R
 
 **Catatan: EDA dan Hyperparameter tuning tidak ditampilkan di sini. Kedepannya, EDA dan Hyperparameter tuning perlu dilakukan karena bagian dari proses pemodelan machine learning yang dapat meningkatkan akurasi model. Namun, untuk keperluan tutorial ini, EDA dan Hyperparameter tuning tidak ditampilkan.**
 
 Di R, kita dapat menggunakan package `tidymodels` untuk fitting model. Package ini merupakan koleksi dari beberapa package yang saling terintegrasi untuk memudahkan kita dalam melakukan pemodelan machine learning.
 
+Jika tertarik belajar lebih lanjut tentang `tidymodels` bisa membuka sumber-sumber berikut:
+1. Buku [Tidy Modeling with R](https://www.tmwr.org/)  
+2. Website [Learning tidymodels](https://www.tidymodels.org/learn/)  
+3. Youtube [Playlist TidyX - tidymodels](https://www.youtube.com/playlist?list=PLdb0LTjA9iQyCgTd8MmRS38vYrRIzdx2j)
+
 ```{r, warning=FALSE, message=FALSE}
 library(tidymodels)
 ```
 
-### Algoritma Regresi Logistik
+#### Algoritma Regresi Logistik
 
 ```{r}
 # ────────────────────────────────────────────────────────────────────────────────
@@ -148,7 +168,7 @@ saveRDS(log_fit, "results/logreg_R.rda")
 ```
 Akurasi dari model regresi logistik yang dihasilkan adalah 0.828. Model ini sudah disimpan dalam bentuk file RDS dengan nama `logreg_R.rda`. File ini dapat digunakan untuk memprediksi data baru.
 
-### Algoritma Random Forest
+#### Algoritma Random Forest
 
 ```{r}
 # ── 1. Pustaka & reproducibility ───────────────────────────────────────────────
@@ -198,7 +218,14 @@ Akurasi dari model random forest yang dihasilkan adalah 0.842. Model ini sudah d
 
 Model terbaik dari kedua algoritma yang digunakan adalah model random forest. Model ini yang akan dideploy ke dalam aplikasi Shiny.
 
-## Fitting Model di Python
+### Fitting Model di Python
+
+Di Python, kita dapat menggunakan package `scikit-learn` untuk fitting model. Package ini merupakan package yang paling banyak digunakan untuk pemodelan machine learning di Python.
+
+Jika tertarik belajar lebih lanjut tentang `scikit-learn` bisa membuka sumber-sumber berikut:
+1. Buku [Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow](https://www.oreilly.com/library/view/hands-on-machine-learning/9781492032632/)
+2. Website [Scikit-learn](https://scikit-learn.org/stable/index.html)
+3. Youtube [Playlist Scikit-learn](https://www.youtube.com/playlist?list=PLVHgQku8Z9348d6xguTn8zbcUYntz3dQG)
 
 ```{r, warning=FALSE, message=FALSE}
 # Load reticulate package
@@ -254,9 +281,8 @@ df1 = (
 print(df1.head())
 print(df1.dtypes)
 ```
-Di Python, kita dapat menggunakan package `scikit-learn` untuk fitting model. Package ini merupakan package yang paling banyak digunakan untuk pemodelan machine learning di Python.
 
-### Algoritma Regresi Logistik
+#### Algoritma Regresi Logistik
 
 ```{python}
 # ───────────────────────────────────────────────────────────────────────────────
@@ -335,7 +361,8 @@ print("Confusion matrix:\n", cm)
 joblib.dump(log_pipeline, "results/logreg_py.joblib")   # simpan
 
 ```
-### Algoritma Random Forest
+
+#### Algoritma Random Forest
 
 ```{python}
 
@@ -393,3 +420,24 @@ print("Confusion matrix:\n", cm)
 # ── 7. Simpan model -----------------------------------------------------------
 joblib.dump(rf_pipeline, "results/rf_py.joblib")
 ```
+
+## Langkah 2: Deploy Model dan Membuat Aplikasi Shiny
+
+Setelah model dilatih, langkah selanjutnya adalah mendepoy model dan membuat aplikasi Shiny. Model yang dilatih di R disimpan dalam bentuk file RDS, sedangkan model yang dilatih di Python disimpan dalam bentuk file joblib. File-file ini akan digunakan untuk memprediksi data baru.
+
+Aplikasi Shiny adalah aplikasi web interaktif yang dibuat dengan menggunakan bahasa pemrograman R atau Python. Aplikasi ini dapat digunakan untuk memprediksi data baru dengan menggunakan model yang sudah dilatih. Aplikasi Shiny dapat diakses oleh pengguna melalui web browser. 
+
+Jika tertarik belajar lebih lanjut tentang Shiny bisa membuka sumber-sumber berikut:
+1. Buku [Mastering Shiny](https://mastering-shiny.org/)
+2. Website [Shiny](https://shiny.posit.co/)
+
+Kode aplikasi Shiny untuk tutorial dapat dilihat pada repositori GitHub. 
+<span class="listing-btn-group">
+<a href="https://github.com/derisiswara/Aplikasi-Mendiagnosa-Penyakit-Arteri-Koroner-dengan-R-Shiny" class="btn" role="button">{{< fa brands github >}} App R Code </a>
+<a href="https://github.com/derisiswara/Aplikasi-Mendiagnosa-Penyakit-Arteri-Koroner-dengan-Python-Shiny" class="btn" role="button">{{< fa brands github >}} App Python Code</a>
+</span>
+
+Gambaran model yang sudah didepoy ke dalam aplikasi Shiny dapat dilihat pada berikut (App R)
+
+## Langkah 3: Buat Repositori GitHub untuk Aplikasi Shiny
+## Langkah 4: Publikasi Aplikasi Shiny ke Posit Connect Cloud

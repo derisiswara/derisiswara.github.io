@@ -7,7 +7,7 @@ image: img/out.png
 citation: true
 bibliography: biblio.bib
 categories:
-  - Projects
+  - Talks
   - R
 ---
 

@@ -25,6 +25,8 @@ website:
     left:
       - text: Portfolio
         href: index.qmd
+ #     - text: Book Updates
+ #       href: book.qmd  
       - text: About
         href: about.qmd
     right:
