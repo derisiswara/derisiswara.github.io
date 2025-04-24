@@ -29,6 +29,9 @@ website:
  #       href: book.qmd  
       - text: About
         href: about.qmd
+      - text: Workshop RStudio 2025
+        href: workshop.qmd
+
     right:
       - icon: github
         text: GitHub
