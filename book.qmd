@@ -33,24 +33,10 @@ d <- read_sheet("https://docs.google.com/spreadsheets/d/1rdIKjvjiQWa2yOlBptmxQ8c
 
 library(janitor)
 d |>
-  filter(!is.na(session)) |>
-  select(-dow, -admin_notes, -number, -session) |>
-  mutate(date = as.Date(date)) |>
-  relocate(due, .after = materials) |>
   gt() |>
-  fmt_date(date, date_style = 31) |>
-  sub_missing(columns = c(week, prepare, topic, materials, due), missing_text = "") |>
-  cols_align(
-    align = "center", 
-    columns = c(week)
-  ) |>
-  cols_align(
-    align = "right", 
-    columns = c(date)
-  ) |>
   cols_align(
     align = "left", 
-    columns = c(topic, prepare, materials, due)
+    columns = c(topic, updates, books)
   ) |>
   tab_style(
     style = cell_borders(
@@ -59,19 +45,16 @@ d |>
       style = "solid"
     ),
     locations = cells_body(
-      columns = c(date, topic, prepare, materials)
+      columns = c(topic, updates, books)
     )
   ) |>
   fmt_markdown(
-    columns = c(topic, prepare, materials, due)
+    columns = c(topic, updates, books)
   ) |>
   cols_width(
-    week ~ px(45),
-    date ~ px(100), 
-    prepare ~ px(200),
-    topic ~ px(250),
-    materials ~ px(150),
-    due ~ px(150)
+    topic ~ pct(40),
+    updates ~ pct(35), 
+    books ~ pct(25)
   ) |>
   cols_label_with(fn = function(x) {
       janitor::make_clean_names(x, case = "title") |>
@@ -79,6 +62,9 @@ d |>
         stringr::str_replace_all("^|$", "**") |>
         md()
     }) |>
-  tab_options(table.font.size = 13) |>
+  tab_options(
+    table.font.size = 13,
+    table.width = pct(100) # Make table take full width
+  ) |>
   opt_row_striping()
 ```

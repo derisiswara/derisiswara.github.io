@@ -1,0 +1,36 @@
+---
+title: "Dashboard Omnitest X University"
+description: "This dashboard is created using R and Quarto."
+author: Deri Siswara
+date: 5/03/2025 
+image: img/dashboard_1.png
+citation: true
+bibliography: biblio.bib
+categories:
+  - Visualization
+  - Dashboard Project
+  - R
+---
+
+![](img/dashboard_1.png)
+
+<span class="listing-btn-group">
+<a href="https://01969522-1355-9b04-c2da-46e09a474dcd.share.connect.posit.cloud/" class="btn" role="button">{{< fa box >}} Dashboard Site </a>
+</span>
+
+## Introduction
+
+This dashboard provides analytics and insights for Omnitest data X University student data.Omnitest or OMNI Personality Inventory is a self-report questionnaire designed for use with adolescents and adults between 18 and 74 years of age. This is a broad measure that assesses a wide range of personality traits, including both normal and abnormal characteristics. It consists of 375 items and 25 scales for normal traits and 10 scales for abnormal traits, along with two validity scales and seven broad scales. 
+
+## Tools
+
+The dashboard leverages several key Tools:
+
+- **R**: For data wrangling, statistical analysis, and visualization
+- **Quarto**: For creating the interactive dashboard framework
+- **plotly**: For interactive charts and visualizations
+- **DT**: For interactive data tables
+
+## Tutorial
+
+The tutorial will be created soon. 
