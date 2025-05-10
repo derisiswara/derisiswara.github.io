@@ -33,10 +33,5 @@ execute:
 
 ## Hello👋
 
-I am an experienced Data Analyst skilled at transforming raw data into actionable insights. Proficient in R, Python, SQL, STATA, EViews, Looker, Tableau, and Power BI. I focus on statistical analysis and data visualization to support informed decision-making. In addition, I am actively involved in research for academic journals, applying data analysis techniques to explore new methodologies and contribute to scholarly work. I’m open to collaboration and always eager to take on new challenges in the data world.
+I am currently an Adjunct Lecturer at the Department of Data Science, Perbanas Institute. I graduated from IPB University in 2020 with a S.E. in Economics and in 2024 with an M.Si. in Statistics and Data Science. I enjoy grinding data with R and Python. I'm also proficient in various software tools including Tableau, Power BI, Looker, STATA, EViews, and others. I'm interested in econometrics and machine learning. My research has mostly been in finance, but I'm now shifting to applying machine learning in social sciences, particularly with microdata. I'm open to any collaboration, project, or new opportunity.  
 
-
-I am currently an Adjunct Lecturer with the Teaching Courses on Data Science in Perbanas Institute. I graduated from IPB University University in 2024 with a M.Si in Statistics and Data Science.
-
-
-When not reading detective fiction or tinkering on stuff in Python or R, I occasionally do some volunteer teaching for the folks at The Carpentries.
