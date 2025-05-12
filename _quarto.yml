@@ -19,27 +19,31 @@ website:
   page-navigation: true
   back-to-top-navigation: true
 
-  navbar:
+  sidebar:
+    logo: assets/img/deri.png
     pinned: true
-    logo: assets/img/logods2.webp
-    left:
+    align: center
+    tools: 
+      - icon: linkedin
+        href: https://www.linkedin.com/in/derisiswara/
+        text: "LinkedIn"
+      - icon: github
+        href: https://github.com/derisiswara
+        text: "Github"
+      - icon: send
+        text: "Email"
+        href: mailto:derisiswarads@gmail.com
+    style: "docked"
+    search: true
+    collapse-level: 1
+    contents:
       - text: Portfolio
         href: index.qmd
       - text: Book Updates
-        href: book.qmd  
-      - text: Workshop RStudio 2025
-        href: workshop.qmd
-      - text: About
-        href: about.qmd
-
-    right:
-      - icon: github
-        text: GitHub
-        href: https://github.com/derisiswara
-      - icon: linkedin
-        text: LinkedIn
-        href: https://www.linkedin.com/in/derisiswara/
-
+        href: book/book.qmd
+#      - text: CV
+#        href: cv/cv.qmd  
+        
   page-footer:
     border: true
     left: "&#169; 2025 Deri Siswara"
@@ -53,10 +57,10 @@ website:
 
 format:
   html:
-    theme: [flatly, assets/styling/theme.scss]
-    toc: true
+    theme: [cosmo, assets/styling/light.scss]
+    toc: true    
     toc-depth: 4
-    pagetitle: "DS | {{< meta title >}}"
+    pagetitle: "{{< meta title >}} - Deri Siswara"
     page-layout: article
     smooth-scroll: true
     link-external-newwindow: true

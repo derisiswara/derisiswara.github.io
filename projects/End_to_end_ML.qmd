@@ -445,8 +445,12 @@ Jika tertarik belajar lebih lanjut tentang Shiny bisa membuka sumber-sumber beri
 2. Website [Shiny](https://shiny.posit.co/)
 
 Kode aplikasi Shiny untuk tutorial dapat dilihat pada repositori GitHub. 
+
 <span class="listing-btn-group">
 <a href="https://github.com/derisiswara/Aplikasi-Mendiagnosa-Penyakit-Arteri-Koroner-dengan-R-Shiny" class="btn" role="button">{{< fa brands github >}} App R Code </a>
+</span>
+
+<span class="listing-btn-group">
 <a href="https://github.com/derisiswara/Aplikasi-Mendiagnosa-Penyakit-Arteri-Koroner-dengan-Python-Shiny" class="btn" role="button">{{< fa brands github >}} App Python Code</a>
 </span>
 

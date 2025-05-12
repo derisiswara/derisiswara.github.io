@@ -1,0 +1,107 @@
+/*-- scss:defaults --*/
+:root {
+    --animate-delay: 0.5s;
+}
+
+/*-- scss:rules --*/
+body {
+    background-image: url("assets/img/succulent_right_wall.png");
+    background-repeat: no-repeat;
+    background-size: 280px; 
+    background-position: bottom right;
+    background-position-y: 175px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 400;
+}
+
+.sidebar.sidebar-navigation:not(.rollup) {
+    border-right: none !important;
+}
+
+#quarto-sidebar {
+    background-color: #FFFFFF;
+    div.sidebar-item-container:hover, 
+    div.sidebar-item-container:focus {
+        color: #545555;
+    }
+    a.sidebar-item-text {
+        &:hover {
+            color: rgb(83, 144, 165);
+        }
+        position: relative;
+        text-decoration: none;
+    }
+    a.sidebar-item-text::after {
+        transition: transform 0.25s ease-out;
+    }
+    a.sidebar-item-text:hover::after {
+        transform: scaleX(1);
+        transform-origin: bottom left;
+    }
+    // customize colors for LinkedIn and Github tool links
+    a.quarto-navigation-tool[title="LinkedIn"]:hover {
+        color: #0077B5;
+    }
+    a.quarto-navigation-tool[title="Github"]:hover {
+        color: #000000;
+    }
+}
+
+// transition link hovers
+a {
+    transition: 0.4s;
+    -webkit-transition: 0.4s;
+}
+
+.quarto-grid-item {
+    transition: 0.4s;
+    -webkit-transition: 0.4s;
+    border-radius: 5px;
+    .post-contents {
+        border-radius: 5px;
+    }
+    .card-body {
+        background-color: #f6f5f1;
+    }
+    .card-img-top > img{
+        border-radius: 5px 5px 0 0;
+    }
+    &:hover {
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        transform: scale(1.01);
+    }
+}
+
+.listing-btn-group a {
+    color: white; // Button text color
+    background-color: #007BFF; // Button background color
+    padding: 10px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+// Slide iframes
+
+.slides {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  border-style: solid;
+  border-width: 1px;
+}
+
+// code
+
+code {
+  font-family: Fira Mono, monospace;
+}
+
+pre.sourceCode {
+  font-size: 0.9em;
+}
+
+.sourceCode pre code {
+  padding: 0.9em;
+}
