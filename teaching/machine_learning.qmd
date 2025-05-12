@@ -1,0 +1,67 @@
+---
+title: "Machine Learning"
+description: "Slides and materials for the Machine Learning course."
+author: Deri Siswara
+date: 2025-01-01
+image: img/ml.png
+citation: true
+bibliography: biblio.bib
+number-sections: true
+categories:
+  - Python
+  - Machine Learning
+---
+
+## Introduction to Machine Learning
+
+<iframe class="slides" src="https://derisiswara.quarto.pub/ml_w1/#/title-slide"></iframe>
+
+## Machine Learning Workflow
+
+<span class="listing-btn-group">
+<a href="https://derisiswara.quarto.pub/ml_wf_smpl/" class="btn" role="button">{{< fa box >}} Code Exercise 1 </a>
+<a href="https://derisiswara.quarto.pub/code_exercise_ml_wf/" class="btn" role="button">{{< fa box >}} Code Exercise 2 </a>
+
+<iframe class="slides" src="https://derisiswara.quarto.pub/ml_w2/#/title-slide"></iframe>
+
+## Linear Regression and Variable Selection Techniques: Subset-Selection
+
+<span class="listing-btn-group">
+<a href="https://derisiswara.quarto.pub/regresi-linier-dan-teknik-seleksi-peubah---subset-selection/" class="btn" role="button">{{< fa box >}} Code Exercise </a>
+
+<iframe class="slides" src="https://derisiswara.quarto.pub/ml_w3/#/title-slide"></iframe>
+
+## Linear Regression and Variable Selection Techniques: Shrinkage Methods (Ridge, Lasso, Elastic Net)
+
+<span class="listing-btn-group">
+<a href="https://derisiswara.quarto.pub/week4_ml/" class="btn" role="button">{{< fa box >}} Code Exercise </a>
+
+<iframe class="slides" src="https://derisiswara.quarto.pub/ml_w4/#/title-slide"></iframe>
+
+## Nonlinear Regression
+
+<span class="listing-btn-group">
+<a href="https://derisiswara.quarto.pub/week5_ml/" class="btn" role="button">{{< fa box >}} Code Exercise </a>
+
+<iframe class="slides" src="https://derisiswara.quarto.pub/ml_w5/#/title-slide"></iframe>
+
+## Decision Tree Regression
+
+<span class="listing-btn-group">
+<a href="https://derisiswara.quarto.pub/week6_ml/" class="btn" role="button">{{< fa box >}} Code Exercise </a>
+
+<iframe class="slides" src="https://derisiswara.quarto.pub/ml_w6/#/title-slide"></iframe>
+
+## Random Forest Regression
+
+<span class="listing-btn-group">
+<a href="https://derisiswara.quarto.pub/week6_ml/" class="btn" role="button">{{< fa box >}} Code Exercise </a>
+
+<iframe class="slides" src="https://derisiswara.quarto.pub/ml_w6/#/random-forest"></iframe>
+
+## Logistic Regression
+
+<span class="listing-btn-group">
+<a href="https://derisiswara.org/projects/End_to_end_ML.html" class="btn" role="button">{{< fa box >}} Code Exercise </a>
+
+<iframe class="slides" src="https://derisiswara.quarto.pub/ml_w8/#/title-slide"></iframe>

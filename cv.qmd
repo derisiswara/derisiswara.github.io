@@ -1,0 +1,92 @@
+---
+title: "Curriculum Vitae"
+anchor-sections: false
+---
+
+<h1 style="font-size: 2.5em;">Hi! I'm <strong>Deri Siswara</strong> 👋</h1>
+
+<span class="listing-btn-group">
+<a href="cv/CV_Deri Siswara_T.pdf" target="_blank" class="btn" role="button"> View Teaching CV PDF </a>
+</span>
+
+<span class="listing-btn-group">
+<a href="cv/CV_Deri Siswara_DA.pdf" target="_blank" class="btn" role="button"> View Data Analyst CV PDF </a>
+</span>
+
+<!-- Education -->
+
+### <i class="bi bi-mortarboard-fill"></i> Education
+
+-  MSc in Statistics and Data Science, IPB University, 2024
+-  Bachelor of Economics, IPB University, 2020
+
+<!-- Professional Experience -->
+
+### <i class="bi bi-briefcase-fill"></i> Work Experience
+
+#### **Perbanas Institute**, Indonesia  
+
+**Adjunct Lecturer** *(February 2025 - Present)*  
+
+- Teaching *Data Science* courses.
+
+#### **Project-Based Work**  
+
+**Economics and Statistics Expert** *(2020 - Present)*  
+
+- Participated in various projects in the fields of economics and statistics, including data analysis, econometric modeling, and machine learning applications funded by various institutions. Some of the projects are showcased in my project garden and PDF CV.
+
+<!-- Skills -->
+
+### <i class="bi bi-tools"></i> Skills
+
+-  Technical skills: R, Python, HTML/CSS, SQL. 
+-  Tools: GitHub, RStudio, VS Code, Tableau, STATA, EViews.
+-  Research methods in economics and social sciences.
+-  Work efficiency.
+
+<!-- Publications -->
+
+### <i class="bi bi-journal-bookmark-fill"></i> Publications
+
+<span class="listing-btn-group">
+<a href="https://scholar.google.co.id/citations?user=NNhhI5IAAAAJ&hl=id&oi=ao" class="btn" role="button"> My Google Scholar </a>
+</span>
+
+-   Integrasi Pasar Saham Syariah Negara OKI dalam Krisis Pasar Saham Tiongkok dan Perang Dagang AS Tiongkok
+-   Pemodelan Klasifikasi dengan RNN-based, Random Forest, dan XGBoost untuk Data Tidak Seimbang: Kasus Deteksi Dini Tekanan di Pasar Modal ASEAN-5
+-   Metode Kuantitatif dengan RStudio
+-   Aplikasi Model Ekonometrika dengan RStudio Edisi Kedua
+-   Aplikasi Model Ekonometrika dengan RStudio: Model Time-Series, Panel, Spatial
+-   Regional Tourism Development in Nusa Tenggara Barat: Maximizing Local Economic Development, EcceS: Economics Social and Development Studies 9 (2), 107-127
+-   Classification Modeling with RNN-based, Random Forest, and XGBoost for Imbalanced Data: A Case of Early Crash Detection in ASEAN-5 Stock Markets. (2024). Scientific Journal of Informatics, 11(3), 569-582
+
+<!-- Honors & Awards -->
+
+### <i class="bi bi-award-fill"></i> Honor & Awards
+
+- Jabar Future Leaders Scholarship [Sep 2021]
+- Oral presentation - 12th International Conference on Islamic Economics & Finance [Aug 2020]
+
+<!-- Back to Top Button -->
+
+<button onclick="topFunction()" id="myBtn" title="Go to top">Back to Top</button>
+
+<script>
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        document.getElementById("myBtn").style.display = "block";
+    } else {
+        document.getElementById("myBtn").style.display = "none";
+    }
+}
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+    document.body.scrollTop = 0; // For Safari
+    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+}
+</script>

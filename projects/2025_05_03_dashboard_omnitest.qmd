@@ -8,7 +8,7 @@ citation: true
 bibliography: biblio.bib
 categories:
   - Visualization
-  - Dashboard Project
+  - Dashboard
   - R
 ---
 

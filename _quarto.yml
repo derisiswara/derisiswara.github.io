@@ -37,12 +37,14 @@ website:
     search: true
     collapse-level: 1
     contents:
-      - text: Portfolio
+      - text: Projects
         href: index.qmd
+      - text: Teaching
+        href: teaching.qmd        
       - text: Book Updates
-        href: book/book.qmd
-#      - text: CV
-#        href: cv/cv.qmd  
+        href: book.qmd
+      - text: CV
+        href: cv.qmd  
         
   page-footer:
     border: true
@@ -59,7 +61,7 @@ format:
   html:
     theme: [cosmo, assets/styling/light.scss]
     toc: true    
-    toc-depth: 4
+    toc-depth: 3
     pagetitle: "{{< meta title >}} - Deri Siswara"
     page-layout: article
     smooth-scroll: true

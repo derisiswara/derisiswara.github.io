@@ -1,16 +1,21 @@
 ---
 title: "RStudio Workshop 2025"
 description: "Peningkatan Research Quality dengan RStudio"
-author: 
-  - name: Deri Siswara
-date: "5/6/2025"
+author: Deri Siswara
+date: 5/6/2025 
+image: img/workshop.png
+categories:
+  - Workshop
+  - R
+  - Econometrics
+  - Statistics
 ---
 
 <span class="listing-btn-group">
 <a href="https://derisiswara.quarto.pub/workshop-r/" class="btn" role="button">{{< fa box >}} Workshop Material</a> 
 </span>
 
-![](iseiwork.jpeg)
+![](img/iseiwork.jpeg)
 
 ### Details
 
