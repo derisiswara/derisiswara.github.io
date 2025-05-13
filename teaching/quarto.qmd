@@ -1,0 +1,20 @@
+---
+title: "Introduction to Quarto"
+description: "Slides and code exercises for the introduction to Quarto."
+author: Deri Siswara
+date: 11/05/2025 
+image: img/quarto.png
+citation: true
+bibliography: biblio.bib
+categories:
+  - Talks
+  - Quarto
+---
+
+Have a chance for sharing about the Quarto framework in the BelajaR community. The slides and code exercises are provided below.
+
+<iframe class="slides" src="https://derisiswara.quarto.pub/dasar-quarto/#/title-slide"></iframe>
+
+**Documentation**: 
+
+![](img/quarto.jpeg){style="border-radius:1em;margin-top:auto"}
