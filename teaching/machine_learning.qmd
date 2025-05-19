@@ -62,6 +62,36 @@ categories:
 ## Logistic Regression
 
 <span class="listing-btn-group">
-<a href="https://derisiswara.org/projects/End_to_end_ML.html" class="btn" role="button">{{< fa box >}} Code Exercise </a>
+<a href="https://derisiswara.org/projects/End_to_end_ML.html" class="btn" role="button">{{< fa box >}} Code Exercise 1 </a>
+
+<span class="listing-btn-group">
+<a href="https://derisiswara.quarto.pub/logistic-regression-workflow/" class="btn" role="button">{{< fa box >}} Code Exercise 2 </a>
 
 <iframe class="slides" src="https://derisiswara.quarto.pub/ml_w8/#/title-slide"></iframe>
+
+## K-Nearest Neighbors, Support Vector Machine, and Bayesian Classifier
+
+<iframe class="slides" src="https://derisiswara.quarto.pub/ml_w10/#/title-slide"></iframe>
+
+## XGBoost dan Isu Dalam Pemodelan Klasifikasi
+
+<span class="listing-btn-group">
+<a href="https://derisiswara.quarto.pub/code-exercise-w11/" class="btn" role="button">{{< fa box >}} Code Exercise </a>
+
+<iframe class="slides" src="https://derisiswara.quarto.pub/ml_w11/#/title-slide"></iframe>
+
+## Unsupervised Learning: Clustering
+
+<span class="listing-btn-group">
+<a href="https://derisiswara.quarto.pub/code-exercise-w12/" class="btn" role="button">{{< fa box >}} Code Exercise </a>
+
+<iframe class="slides" src="https://derisiswara.quarto.pub/ml_w12/#/title-slide"></iframe>
+
+## Neural Networks
+
+## Project-Based Learning
+
+<span class="listing-btn-group">
+<a href="https://derisiswara.quarto.pub/panduan-project-based-learning-(tugas-terstruktur/" class="btn" role="button">{{< fa box >}} Panduan </a>
+
+Akan di presentasikan pada pertemuan sebelum UAS, yaitu pada Rabu, 04 Juni 2025.
