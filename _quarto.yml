@@ -33,9 +33,9 @@ website:
       - icon: send
         text: "Email"
         href: mailto:derisiswarads@gmail.com
- #     - icon: book
- #       text: "Goodreads"
- #       href: https://www.goodreads.com/user/show/190226365-deri-siswara  
+      - icon: book
+        text: "Goodreads"
+        href: https://www.goodreads.com/user/show/190226365-deri-siswara  
     style: "docked"
     search: true
     collapse-level: 1

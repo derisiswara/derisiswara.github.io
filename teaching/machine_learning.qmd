@@ -89,6 +89,14 @@ categories:
 
 ## Neural Networks
 
+<span class="listing-btn-group">
+<a href="https://derisiswara.quarto.pub/neural-network-basic-implementation-9381/" class="btn" role="button">{{< fa box >}} Code Exercise 1 </a>
+
+<span class="listing-btn-group">
+<a href="https://derisiswara.quarto.pub/neural-network-for-tabular-data-using-tensorflow/" class="btn" role="button">{{< fa box >}} Code Exercise 2 </a>
+
+<iframe class="slides" src="https://derisiswara.quarto.pub/ml_w13/#/title-slide"></iframe>
+
 ## Project-Based Learning
 
 <span class="listing-btn-group">
