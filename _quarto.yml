@@ -59,7 +59,7 @@ website:
     right: "made with [Quarto](https://quarto.org)"
   comments:
     giscus:
-      repo: derisiswara/ds_website
+      repo: derisiswara/derisiswara.github.io
 
 format:
   html:
