@@ -13,7 +13,7 @@ execute:
 website:
   title: ""
   description: "R code, economics, and data science."
-  site-url: https://derisiswara.org/
+  site-url: https://www.derisiswara.org/
   favicon: assets/img/logods2.webp
   open-graph:
     locale: en_EN
@@ -45,12 +45,10 @@ website:
         href: index.qmd
       - text: Teaching
         href: teaching.qmd        
-      - text: Book Updates
-        href: book.qmd
+#      - text: Book Updates
+#        href: book.qmd
       - text: CV
         href: cv/dericv/template/main.pdf
-      - text: EAQ
-        href: cv/dericv/template/main.pdf  
         
   page-footer:
     border: true
