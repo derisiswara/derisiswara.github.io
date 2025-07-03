@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.7.32">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
 <meta name="author" content="Deri Siswara">
 <meta name="dcterms.date" content="2025-04-20">
 <meta name="description" content="Tutorial on building a machine learning application using R, Python, Quarto, Shiny, GitHub, and Posit Connect">
+
 <title>End To End Machine Learning (R, Python, Quarto, Shiny, GitHub, Posit Connect) - Deri Siswara</title>
 <style>
 code{white-space: pre-wrap;}
@@ -57,6 +60,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 </style>
 
+
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -73,9 +77,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-b6e6edf6cb1293d7f667c2f39c143ab5.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-f1f1ec6f2265b7eca22d0b64b864eff6.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-e4db71cb6fd8f4614c3f90e68a49d265.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
-<link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
+<link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -101,7 +106,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script><style>html{ scroll-behavior: smooth; }</style>
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+
 <meta property="og:title" content="End To End Machine Learning (R, Python, Quarto, Shiny, GitHub, Posit Connect) - Deri Siswara">
 <meta property="og:description" content="Tutorial on building a machine learning application using R, Python, Quarto, Shiny, GitHub, and Posit Connect">
 <meta property="og:image" content="https://derisiswara.org/projects/img/end_to_end.png">
@@ -109,10 +117,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta property="og:image:height" content="1732">
 <meta property="og:image:width" content="2410">
 </head>
+
 <body class="nav-sidebar docked quarto-light">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
@@ -123,11 +134,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <i class="bi bi-search"></i>
       </button>
     </div>
-  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto"><div class="pt-lg-2 mt-2 text-center sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-center sidebar-header">
       <a href="../index.html" class="sidebar-logo-link">
-      <img src="../assets/img/deri.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none"></a>
+      <img src="../assets/img/deri.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
       <div class="sidebar-tools-main tools-wide">
     <a href="https://www.linkedin.com/in/derisiswara/" title="LinkedIn" class="quarto-navigation-tool px-1" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
     <a href="https://github.com/derisiswara" title="Github" class="quarto-navigation-tool px-1" aria-label="Github"><i class="bi bi-github"></i></a>
@@ -142,7 +158,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-<li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Projects</span></a>
@@ -156,7 +172,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../book.html" class="sidebar-item-text sidebar-link">
+  <a href="../book.qmd" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Book Updates</span></a>
   </div>
 </li>
@@ -169,32 +185,36 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../cv/dericv/template/main.pdf" class="sidebar-item-text sidebar-link">
- <span class="menu-text">EA</span></a>
+ <span class="menu-text">EAQ</span></a>
   </div>
 </li>
     </ul>
-</div>
-</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
    
   <ul>
-<li>
-<a href="#langkah-1-trainingfitting-model-machine-learning-dengan-r-atau-python" id="toc-langkah-1-trainingfitting-model-machine-learning-dengan-r-atau-python" class="nav-link active" data-scroll-target="#langkah-1-trainingfitting-model-machine-learning-dengan-r-atau-python">Langkah 1: Training/Fitting Model Machine Learning dengan R atau Python</a>
+  <li><a href="#langkah-1-trainingfitting-model-machine-learning-dengan-r-atau-python" id="toc-langkah-1-trainingfitting-model-machine-learning-dengan-r-atau-python" class="nav-link active" data-scroll-target="#langkah-1-trainingfitting-model-machine-learning-dengan-r-atau-python">Langkah 1: Training/Fitting Model Machine Learning dengan R atau Python</a>
   <ul class="collapse">
-<li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a></li>
+  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a></li>
   <li><a href="#fitting-model-di-r" id="toc-fitting-model-di-r" class="nav-link" data-scroll-target="#fitting-model-di-r">Fitting Model di R</a></li>
   <li><a href="#fitting-model-di-python" id="toc-fitting-model-di-python" class="nav-link" data-scroll-target="#fitting-model-di-python">Fitting Model di Python</a></li>
-  </ul>
-</li>
+  </ul></li>
   <li><a href="#langkah-2-deploy-model-dan-membuat-aplikasi-shiny" id="toc-langkah-2-deploy-model-dan-membuat-aplikasi-shiny" class="nav-link" data-scroll-target="#langkah-2-deploy-model-dan-membuat-aplikasi-shiny">Langkah 2: Deploy Model dan Membuat Aplikasi Shiny</a></li>
   <li><a href="#langkah-3-buat-repositori-github-untuk-aplikasi-shiny" id="toc-langkah-3-buat-repositori-github-untuk-aplikasi-shiny" class="nav-link" data-scroll-target="#langkah-3-buat-repositori-github-untuk-aplikasi-shiny">Langkah 3: Buat Repositori GitHub untuk Aplikasi Shiny</a></li>
   <li><a href="#langkah-4-publikasi-aplikasi-shiny-ke-posit-connect-cloud" id="toc-langkah-4-publikasi-aplikasi-shiny-ke-posit-connect-cloud" class="nav-link" data-scroll-target="#langkah-4-publikasi-aplikasi-shiny-ke-posit-connect-cloud">Langkah 4: Publikasi Aplikasi Shiny ke Posit Connect Cloud</a></li>
-  </ul></nav>
+  </ul>
+</nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
 <h1 class="title">End To End Machine Learning (R, Python, Quarto, Shiny, GitHub, Posit Connect)</h1>
   <div class="quarto-categories">
     <div class="quarto-category">Python</div>
@@ -231,7 +251,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   
 
 
-</header><p><span class="listing-btn-group"> <a href="https://01965396-054c-21e8-4395-ba46cc5b7b37.share.connect.posit.cloud/" class="btn" role="button"><i class="fa-solid fa-box" aria-label="box"></i> App R </a> <a href="https://github.com/derisiswara/Aplikasi-Mendiagnosa-Penyakit-Arteri-Koroner-dengan-R-Shiny" class="btn" role="button"><i class="fa-brands fa-github" aria-label="github"></i> App R Code </a> <a href="https://019653e4-e0ca-c5cd-61c9-227030eba27f.share.connect.posit.cloud/" class="btn" role="button"><i class="fa-solid fa-box" aria-label="box"></i> App Python </a> <a href="https://github.com/derisiswara/Aplikasi-Mendiagnosa-Penyakit-Arteri-Koroner-dengan-Python-Shiny" class="btn" role="button"><i class="fa-brands fa-github" aria-label="github"></i> App Python Code</a> </span></p>
+</header>
+
+
+<p><span class="listing-btn-group"> <a href="https://01965396-054c-21e8-4395-ba46cc5b7b37.share.connect.posit.cloud/" class="btn" role="button"><i class="fa-solid fa-box" aria-label="box"></i> App R </a> <a href="https://github.com/derisiswara/Aplikasi-Mendiagnosa-Penyakit-Arteri-Koroner-dengan-R-Shiny" class="btn" role="button"><i class="fa-brands fa-github" aria-label="github"></i> App R Code </a> <a href="https://019653e4-e0ca-c5cd-61c9-227030eba27f.share.connect.posit.cloud/" class="btn" role="button"><i class="fa-solid fa-box" aria-label="box"></i> App Python </a> <a href="https://github.com/derisiswara/Aplikasi-Mendiagnosa-Penyakit-Arteri-Koroner-dengan-Python-Shiny" class="btn" role="button"><i class="fa-brands fa-github" aria-label="github"></i> App Python Code</a> </span></p>
 <p><img src="img/end_to_end.png" class="img-fluid"></p>
 <p>Tutorial ini akan membahas tentang bagaimana cara membuat aplikasi machine learning sederhana dengan menggunakan kombinasi R, Python, Quarto, Shiny, GitHub, dan Posit Connect Cloud. Tutorial ini merupakan gambaran proyek end-to-end machine learning mulai dari pengolahan data, pemodelan, hingga deployment ke dalam aplikasi yang dapat diakses oleh pengguna (user). Tutorial ini sangat sederhana dengan tujuan menunjukkan proses end-to-end machine learning yang pada kenyataannya cukup kompleks. Dalam tutorial ini, proses dibuat sederhana untuk menunjukkan titik awal dan akhir. Banyak proses yang dipersingkat demi efisiensi tutorial. Sebagai catatan, tutorial ini dibuat untuk intermediate user yang sudah memahami dasar-dasar beberapa tools yang digunakan.</p>
 <p>Secara singkat, berikut penjelasan kegunaan beberapa tools yang digunakan dalam tutorial ini:</p>
@@ -242,14 +265,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><strong>GitHub</strong>: GitHub adalah platform untuk menyimpan dan mengelola kode sumber. GitHub digunakan untuk menyimpan kode sumber dari aplikasi yang dibuat.</p></li>
 <li><p><strong>Posit Connect</strong>: Posit Connect adalah platform untuk menyebarkan aplikasi Shiny ke cloud. Posit Connect digunakan untuk menyebarkan aplikasi Shiny yang sudah dibuat agar dapat diakses oleh pengguna. Publikasi aplikasi ke dalam Posit Connect Cloud memerlukan akun Posit Connect.</p></li>
 </ol>
-<section id="langkah-1-trainingfitting-model-machine-learning-dengan-r-atau-python" class="level2"><h2 class="anchored" data-anchor-id="langkah-1-trainingfitting-model-machine-learning-dengan-r-atau-python">Langkah 1: Training/Fitting Model Machine Learning dengan R atau Python</h2>
+<section id="langkah-1-trainingfitting-model-machine-learning-dengan-r-atau-python" class="level2">
+<h2 class="anchored" data-anchor-id="langkah-1-trainingfitting-model-machine-learning-dengan-r-atau-python">Langkah 1: Training/Fitting Model Machine Learning dengan R atau Python</h2>
 <p>Pada tuorial ini, disajikan dua pilihan bahasa pemrograman untuk melakukan fitting model machine learning, yaitu R dan Python. Anda dapat memilih salah satu bahasa pemrograman yang paling Anda kuasai.</p>
 <p>Workflow machine learning cukup panjang dan kompleks. Pada tutorial ini aakan disajikan langkah-langkah yang paling umum dilakukan dalam machine learning. Detil tentang workflow machine learning dapat dilihat <a href="https://derisiswara.org/projects/2_mlwf.html">di sini</a>.</p>
-<section id="data" class="level3"><h3 class="anchored" data-anchor-id="data">Data</h3>
+<section id="data" class="level3">
+<h3 class="anchored" data-anchor-id="data">Data</h3>
 <p>Dataset yang digunakan dalam tutorial ini adalah dataset penyakit jantung dari UCI Machine Learning Repository. Dataset ini berisi informasi tentang pasien dengan penyakit jantung koroner (CAD). Dataset ini dapat diunduh dari <a href="https://archive.ics.uci.edu/ml/datasets/heart+Disease">sini</a>. Dataset ini juga sudah disertakan dalam folder <code>data</code> pada repositori GitHub.</p>
 <div class="cell">
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span><span class="st">"data/heart.csv"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">df1</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>df1 <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/heart.csv"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  age sex cp trestbps choi fbs restecg thalach exang oldpeak slope ca thai num
 1  63   1  1      145  233   1       2     150     0     2.3     3  0    6   0
@@ -260,7 +285,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 6  56   1  2      120  236   0       0     178     0     0.8     1  0    3   0</code></pre>
 </div>
 </div>
-<section id="keterangan-data" class="level4"><h4 class="anchored" data-anchor-id="keterangan-data">Keterangan Data</h4>
+<section id="keterangan-data" class="level4">
+<h4 class="anchored" data-anchor-id="keterangan-data">Keterangan Data</h4>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 17%">
@@ -269,13 +295,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <col style="width: 29%">
 <col style="width: 17%">
 </colgroup>
-<thead><tr class="header">
+<thead>
+<tr class="header">
 <th>No.</th>
 <th>Variabel</th>
 <th>Tipe / Satuan</th>
 <th>Nilai&nbsp;/Kategori&nbsp;(Ter­definisi)</th>
 <th>Arti&nbsp;Klinis&nbsp;singkat</th>
-</tr></thead>
+</tr>
+</thead>
 <tbody>
 <tr class="odd">
 <td>1</td>
@@ -378,25 +406,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tbody>
 </table>
 <div class="cell">
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/transform.html">transform</a></span><span class="op">(</span></span>
-<span>  <span class="va">df1</span>,</span>
-<span>  age<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/integer.html">as.integer</a></span><span class="op">(</span><span class="va">age</span><span class="op">)</span>,</span>
-<span>  sex<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">sex</span><span class="op">)</span>,</span>
-<span>  cp<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">cp</span><span class="op">)</span>,</span>
-<span>  trestbps<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/integer.html">as.integer</a></span><span class="op">(</span><span class="va">trestbps</span><span class="op">)</span>,</span>
-<span>  choi<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/integer.html">as.integer</a></span><span class="op">(</span><span class="va">choi</span><span class="op">)</span>,</span>
-<span>  fbs<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">fbs</span><span class="op">)</span>,</span>
-<span>  restecg<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">restecg</span><span class="op">)</span>,</span>
-<span>  thalach<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/integer.html">as.integer</a></span><span class="op">(</span><span class="va">thalach</span><span class="op">)</span>,</span>
-<span>  exang<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">exang</span><span class="op">)</span>,</span>
-<span>  oldpeak<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">oldpeak</span><span class="op">)</span>,</span>
-<span>  slope<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">slope</span><span class="op">)</span>,</span>
-<span>  ca<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">ca</span>,labels<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"0"</span>,<span class="st">"1"</span>,<span class="st">"2"</span>,<span class="st">"3"</span><span class="op">)</span><span class="op">)</span>,</span>
-<span>  thai<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">thai</span>,labels<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"3"</span>,<span class="st">"6"</span>,<span class="st">"7"</span><span class="op">)</span><span class="op">)</span>,</span>
-<span>  num<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">num</span><span class="op">)</span></span>
-<span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">df1</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>df1 <span class="ot">&lt;-</span> <span class="fu">transform</span>(</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  df1,</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">age=</span><span class="fu">as.integer</span>(age),</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">sex=</span><span class="fu">as.factor</span>(sex),</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">cp=</span><span class="fu">as.factor</span>(cp),</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">trestbps=</span><span class="fu">as.integer</span>(trestbps),</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">choi=</span><span class="fu">as.integer</span>(choi),</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">fbs=</span><span class="fu">as.factor</span>(fbs),</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">restecg=</span><span class="fu">as.factor</span>(restecg),</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">thalach=</span><span class="fu">as.integer</span>(thalach),</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">exang=</span><span class="fu">as.factor</span>(exang),</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">oldpeak=</span><span class="fu">as.numeric</span>(oldpeak),</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">slope=</span><span class="fu">as.factor</span>(slope),</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">ca=</span><span class="fu">factor</span>(ca,<span class="at">labels=</span><span class="fu">c</span>(<span class="st">"0"</span>,<span class="st">"1"</span>,<span class="st">"2"</span>,<span class="st">"3"</span>)),</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">thai=</span><span class="fu">factor</span>(thai,<span class="at">labels=</span><span class="fu">c</span>(<span class="st">"3"</span>,<span class="st">"6"</span>,<span class="st">"7"</span>)),</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">num=</span><span class="fu">as.factor</span>(num)</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  age sex cp trestbps choi fbs restecg thalach exang oldpeak slope ca thai num
 1  63   1  1      145  233   1       2     150     0     2.3     3  0    6   0
@@ -407,7 +435,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 6  56   1  2      120  236   0       0     178     0     0.8     1  0    3   0</code></pre>
 </div>
 </div>
-</section></section><section id="fitting-model-di-r" class="level3"><h3 class="anchored" data-anchor-id="fitting-model-di-r">Fitting Model di R</h3>
+</section>
+</section>
+<section id="fitting-model-di-r" class="level3">
+<h3 class="anchored" data-anchor-id="fitting-model-di-r">Fitting Model di R</h3>
 <p><strong>Catatan: EDA dan Hyperparameter tuning tidak ditampilkan di sini. Kedepannya, EDA dan Hyperparameter tuning perlu dilakukan karena bagian dari proses pemodelan machine learning yang dapat meningkatkan akurasi model. Namun, untuk keperluan tutorial ini, EDA dan Hyperparameter tuning tidak ditampilkan.</strong></p>
 <p>Di R, kita dapat menggunakan package <code>tidymodels</code> untuk fitting model. Package ini merupakan koleksi dari beberapa package yang saling terintegrasi untuk memudahkan kita dalam melakukan pemodelan machine learning.</p>
 <p>Jika tertarik belajar lebih lanjut tentang <code>tidymodels</code> bisa membuka sumber-sumber berikut:</p>
@@ -417,134 +448,140 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Youtube <a href="https://www.youtube.com/playlist?list=PLdb0LTjA9iQyCgTd8MmRS38vYrRIzdx2j">Playlist TidyX - tidymodels</a></p></li>
 </ol>
 <div class="cell">
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidymodels.tidymodels.org">tidymodels</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidymodels)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<section id="algoritma-regresi-logistik" class="level4"><h4 class="anchored" data-anchor-id="algoritma-regresi-logistik">Algoritma Regresi Logistik</h4>
+<section id="algoritma-regresi-logistik" class="level4">
+<h4 class="anchored" data-anchor-id="algoritma-regresi-logistik">Algoritma Regresi Logistik</h4>
 <div class="cell">
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># ────────────────────────────────────────────────────────────────────────────────</span></span>
-<span><span class="co"># 1. Pustaka &amp; reproducibility</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">26</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># ────────────────────────────────────────────────────────────────────────────────</span></span>
-<span><span class="co"># 2. Train–test split (stratified)</span></span>
-<span><span class="co"># ────────────────────────────────────────────────────────────────────────────────</span></span>
-<span><span class="va">split_obj</span>  <span class="op">&lt;-</span> <span class="fu">initial_split</span><span class="op">(</span><span class="va">df1</span>, prop <span class="op">=</span> <span class="fl">0.75</span>, strata <span class="op">=</span> <span class="va">num</span><span class="op">)</span>   <span class="co"># num = label biner</span></span>
-<span><span class="va">train_data</span> <span class="op">&lt;-</span> <span class="fu">training</span><span class="op">(</span><span class="va">split_obj</span><span class="op">)</span></span>
-<span><span class="va">test_data</span>  <span class="op">&lt;-</span> <span class="fu">testing</span><span class="op">(</span><span class="va">split_obj</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># ────────────────────────────────────────────────────────────────────────────────</span></span>
-<span><span class="co"># 3. Recipe (praproses fitur)</span></span>
-<span><span class="co"># ────────────────────────────────────────────────────────────────────────────────</span></span>
-<span><span class="va">heart_rec</span> <span class="op">&lt;-</span> <span class="fu">recipe</span><span class="op">(</span><span class="va">num</span> <span class="op">~</span> <span class="va">.</span>, data <span class="op">=</span> <span class="va">train_data</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
-<span>  <span class="fu">step_dummy</span><span class="op">(</span><span class="fu">all_nominal_predictors</span><span class="op">(</span><span class="op">)</span>, one_hot <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">%&gt;%</span>  <span class="co"># encode factor → 0/1</span></span>
-<span>  <span class="fu">step_zv</span><span class="op">(</span><span class="fu">all_predictors</span><span class="op">(</span><span class="op">)</span><span class="op">)</span>                                <span class="co"># hilangkan variabel var.&nbsp;0</span></span>
-<span><span class="co"># *Jika data sudah siap, cukup recipe(num ~ ., data = train_data)</span></span>
-<span></span>
-<span><span class="co"># ────────────────────────────────────────────────────────────────────────────────</span></span>
-<span><span class="co"># 4. Spesifikasi model regresi logistik</span></span>
-<span><span class="co"># ────────────────────────────────────────────────────────────────────────────────</span></span>
-<span><span class="va">log_spec</span> <span class="op">&lt;-</span> </span>
-<span>  <span class="fu">logistic_reg</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>        <span class="co"># default = tanpa regularisasi, link logit</span></span>
-<span>  <span class="fu">set_engine</span><span class="op">(</span><span class="st">"glm"</span><span class="op">)</span> <span class="op">%&gt;%</span>     <span class="co"># backend base-R glm()</span></span>
-<span>  <span class="fu">set_mode</span><span class="op">(</span><span class="st">"classification"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># ────────────────────────────────────────────────────────────────────────────────</span></span>
-<span><span class="co"># 5. Workflow</span></span>
-<span><span class="co"># ────────────────────────────────────────────────────────────────────────────────</span></span>
-<span><span class="va">log_wf</span> <span class="op">&lt;-</span> <span class="fu">workflow</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
-<span>  <span class="fu">add_recipe</span><span class="op">(</span><span class="va">heart_rec</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
-<span>  <span class="fu">add_model</span><span class="op">(</span><span class="va">log_spec</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># ────────────────────────────────────────────────────────────────────────────────</span></span>
-<span><span class="co"># 6. Fit model</span></span>
-<span><span class="co"># ────────────────────────────────────────────────────────────────────────────────</span></span>
-<span><span class="va">log_fit</span> <span class="op">&lt;-</span> <span class="fu">fit</span><span class="op">(</span><span class="va">log_wf</span>, data <span class="op">=</span> <span class="va">train_data</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># ────────────────────────────────────────────────────────────────────────────────</span></span>
-<span><span class="co"># 7. Prediksi &amp; evaluasi</span></span>
-<span><span class="co"># ────────────────────────────────────────────────────────────────────────────────</span></span>
-<span><span class="va">log_preds</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">log_fit</span>, <span class="va">test_data</span>, type <span class="op">=</span> <span class="st">"prob"</span><span class="op">)</span> <span class="op">%&gt;%</span>   <span class="co"># probabilitas kelas&nbsp;1</span></span>
-<span>  <span class="fu">bind_cols</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">log_fit</span>, <span class="va">test_data</span>, type <span class="op">=</span> <span class="st">"class"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>  <span class="co"># label hasil klasifikasi</span></span>
-<span>  <span class="fu">bind_cols</span><span class="op">(</span><span class="va">test_data</span> <span class="op">%&gt;%</span> <span class="fu">select</span><span class="op">(</span><span class="va">num</span><span class="op">)</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># Metrik umum</span></span>
-<span><span class="fu">metrics</span><span class="op">(</span><span class="va">log_preds</span>, truth <span class="op">=</span> <span class="va">num</span>, estimate <span class="op">=</span> <span class="va">.pred_class</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span>,<span class="op">]</span> <span class="co"># akurasi</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ────────────────────────────────────────────────────────────────────────────────</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Pustaka &amp; reproducibility</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">26</span>)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co"># ────────────────────────────────────────────────────────────────────────────────</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Train–test split (stratified)</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co"># ────────────────────────────────────────────────────────────────────────────────</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>split_obj  <span class="ot">&lt;-</span> <span class="fu">initial_split</span>(df1, <span class="at">prop =</span> <span class="fl">0.75</span>, <span class="at">strata =</span> num)   <span class="co"># num = label biner</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>train_data <span class="ot">&lt;-</span> <span class="fu">training</span>(split_obj)</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>test_data  <span class="ot">&lt;-</span> <span class="fu">testing</span>(split_obj)</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="co"># ────────────────────────────────────────────────────────────────────────────────</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Recipe (praproses fitur)</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="co"># ────────────────────────────────────────────────────────────────────────────────</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>heart_rec <span class="ot">&lt;-</span> <span class="fu">recipe</span>(num <span class="sc">~</span> ., <span class="at">data =</span> train_data) <span class="sc">%&gt;%</span> </span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_dummy</span>(<span class="fu">all_nominal_predictors</span>(), <span class="at">one_hot =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span>  <span class="co"># encode factor → 0/1</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_zv</span>(<span class="fu">all_predictors</span>())                                <span class="co"># hilangkan variabel var.&nbsp;0</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="co"># *Jika data sudah siap, cukup recipe(num ~ ., data = train_data)</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a><span class="co"># ────────────────────────────────────────────────────────────────────────────────</span></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. Spesifikasi model regresi logistik</span></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a><span class="co"># ────────────────────────────────────────────────────────────────────────────────</span></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>log_spec <span class="ot">&lt;-</span> </span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">logistic_reg</span>() <span class="sc">%&gt;%</span>        <span class="co"># default = tanpa regularisasi, link logit</span></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_engine</span>(<span class="st">"glm"</span>) <span class="sc">%&gt;%</span>     <span class="co"># backend base-R glm()</span></span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_mode</span>(<span class="st">"classification"</span>)</span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a><span class="co"># ────────────────────────────────────────────────────────────────────────────────</span></span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a><span class="co"># 5. Workflow</span></span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a><span class="co"># ────────────────────────────────────────────────────────────────────────────────</span></span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>log_wf <span class="ot">&lt;-</span> <span class="fu">workflow</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_recipe</span>(heart_rec) <span class="sc">%&gt;%</span> </span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_model</span>(log_spec)</span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a><span class="co"># ────────────────────────────────────────────────────────────────────────────────</span></span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a><span class="co"># 6. Fit model</span></span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a><span class="co"># ────────────────────────────────────────────────────────────────────────────────</span></span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>log_fit <span class="ot">&lt;-</span> <span class="fu">fit</span>(log_wf, <span class="at">data =</span> train_data)</span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a><span class="co"># ────────────────────────────────────────────────────────────────────────────────</span></span>
+<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a><span class="co"># 7. Prediksi &amp; evaluasi</span></span>
+<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a><span class="co"># ────────────────────────────────────────────────────────────────────────────────</span></span>
+<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a>log_preds <span class="ot">&lt;-</span> <span class="fu">predict</span>(log_fit, test_data, <span class="at">type =</span> <span class="st">"prob"</span>) <span class="sc">%&gt;%</span>   <span class="co"># probabilitas kelas&nbsp;1</span></span>
+<span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_cols</span>(<span class="fu">predict</span>(log_fit, test_data, <span class="at">type =</span> <span class="st">"class"</span>)) <span class="sc">%&gt;%</span>  <span class="co"># label hasil klasifikasi</span></span>
+<span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_cols</span>(test_data <span class="sc">%&gt;%</span> <span class="fu">select</span>(num))</span>
+<span id="cb6-46"><a href="#cb6-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-47"><a href="#cb6-47" aria-hidden="true" tabindex="-1"></a><span class="co"># Metrik umum</span></span>
+<span id="cb6-48"><a href="#cb6-48" aria-hidden="true" tabindex="-1"></a><span class="fu">metrics</span>(log_preds, <span class="at">truth =</span> num, <span class="at">estimate =</span> .pred_class)[<span class="dv">1</span>,] <span class="co"># akurasi</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 3
   .metric  .estimator .estimate
   &lt;chr&gt;    &lt;chr&gt;          &lt;dbl&gt;
 1 accuracy binary         0.829</code></pre>
 </div>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Confusion matrix</span></span>
-<span><span class="fu">conf_mat</span><span class="op">(</span><span class="va">log_preds</span>, truth <span class="op">=</span> <span class="va">num</span>, estimate <span class="op">=</span> <span class="va">.pred_class</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Confusion matrix</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">conf_mat</span>(log_preds, <span class="at">truth =</span> num, <span class="at">estimate =</span> .pred_class)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>          Truth
 Prediction  0  1
          0 37  9
          1  4 26</code></pre>
 </div>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># ────────────────────────────────────────────────────────────────────────────────</span></span>
-<span><span class="co"># 8. Simpan model</span></span>
-<span><span class="co"># ────────────────────────────────────────────────────────────────────────────────</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/readRDS.html">saveRDS</a></span><span class="op">(</span><span class="va">log_fit</span>, <span class="st">"results/logreg_R.rda"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ────────────────────────────────────────────────────────────────────────────────</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 8. Simpan model</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ────────────────────────────────────────────────────────────────────────────────</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(log_fit, <span class="st">"results/logreg_R.rda"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Akurasi dari model regresi logistik yang dihasilkan adalah 0.828. Model ini sudah disimpan dalam bentuk file RDS dengan nama <code>logreg_R.rda</code>. File ini dapat digunakan untuk memprediksi data baru.</p>
-</section><section id="algoritma-random-forest" class="level4"><h4 class="anchored" data-anchor-id="algoritma-random-forest">Algoritma Random Forest</h4>
+</section>
+<section id="algoritma-random-forest" class="level4">
+<h4 class="anchored" data-anchor-id="algoritma-random-forest">Algoritma Random Forest</h4>
 <div class="cell">
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># ── 1. Pustaka &amp; reproducibility ───────────────────────────────────────────────</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">26</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># ── 2. Train–test split --------------------------------------------------------</span></span>
-<span><span class="va">split_obj</span>   <span class="op">&lt;-</span> <span class="fu">initial_split</span><span class="op">(</span><span class="va">df1</span>, prop <span class="op">=</span> <span class="fl">0.75</span>, strata <span class="op">=</span> <span class="va">num</span><span class="op">)</span></span>
-<span><span class="va">train_data</span>  <span class="op">&lt;-</span> <span class="fu">training</span><span class="op">(</span><span class="va">split_obj</span><span class="op">)</span></span>
-<span><span class="va">test_data</span>   <span class="op">&lt;-</span> <span class="fu">testing</span><span class="op">(</span><span class="va">split_obj</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># ── 3. Recipe (opsional: praproses) -------------------------------------------</span></span>
-<span><span class="va">heart_rec</span> <span class="op">&lt;-</span> </span>
-<span>  <span class="fu">recipe</span><span class="op">(</span><span class="va">num</span> <span class="op">~</span> <span class="va">.</span>, data <span class="op">=</span> <span class="va">train_data</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">step_dummy</span><span class="op">(</span><span class="fu">all_nominal_predictors</span><span class="op">(</span><span class="op">)</span>, one_hot <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">|&gt;</span>   <span class="co"># encode faktor</span></span>
-<span>  <span class="fu">step_zv</span><span class="op">(</span><span class="fu">all_predictors</span><span class="op">(</span><span class="op">)</span><span class="op">)</span>                                <span class="co"># buang variabel var.&nbsp;0</span></span>
-<span></span>
-<span><span class="co"># ── 4. Spesifikasi model -------------------------------------------------------</span></span>
-<span><span class="va">rf_spec</span> <span class="op">&lt;-</span> </span>
-<span>  <span class="fu">rand_forest</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">set_engine</span><span class="op">(</span><span class="st">"randomForest"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">set_mode</span><span class="op">(</span><span class="st">"classification"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># ── 5. Workflow ----------------------------------------------------------------</span></span>
-<span><span class="va">rf_wf</span> <span class="op">&lt;-</span> <span class="fu">workflow</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">add_recipe</span><span class="op">(</span><span class="va">heart_rec</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">add_model</span><span class="op">(</span><span class="va">rf_spec</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># ── 6. Fit model ---------------------------------------------------------------</span></span>
-<span><span class="va">rf_fit</span> <span class="op">&lt;-</span> <span class="fu">fit</span><span class="op">(</span><span class="va">rf_wf</span>, data <span class="op">=</span> <span class="va">train_data</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># ── 7. Prediksi &amp; evaluasi -----------------------------------------------------</span></span>
-<span><span class="va">rf_preds</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">rf_fit</span>, <span class="va">test_data</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>            <span class="fu">bind_cols</span><span class="op">(</span><span class="va">test_data</span> <span class="op">|&gt;</span> <span class="fu">select</span><span class="op">(</span><span class="va">num</span><span class="op">)</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu">metrics</span><span class="op">(</span><span class="va">rf_preds</span>, truth <span class="op">=</span> <span class="va">num</span>, estimate <span class="op">=</span> <span class="va">.pred_class</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span>,<span class="op">]</span> <span class="co"># akurasi</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ── 1. Pustaka &amp; reproducibility ───────────────────────────────────────────────</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">26</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># ── 2. Train–test split --------------------------------------------------------</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>split_obj   <span class="ot">&lt;-</span> <span class="fu">initial_split</span>(df1, <span class="at">prop =</span> <span class="fl">0.75</span>, <span class="at">strata =</span> num)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>train_data  <span class="ot">&lt;-</span> <span class="fu">training</span>(split_obj)</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>test_data   <span class="ot">&lt;-</span> <span class="fu">testing</span>(split_obj)</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="co"># ── 3. Recipe (opsional: praproses) -------------------------------------------</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>heart_rec <span class="ot">&lt;-</span> </span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">recipe</span>(num <span class="sc">~</span> ., <span class="at">data =</span> train_data) <span class="sc">|&gt;</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_dummy</span>(<span class="fu">all_nominal_predictors</span>(), <span class="at">one_hot =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span>   <span class="co"># encode faktor</span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_zv</span>(<span class="fu">all_predictors</span>())                                <span class="co"># buang variabel var.&nbsp;0</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a><span class="co"># ── 4. Spesifikasi model -------------------------------------------------------</span></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>rf_spec <span class="ot">&lt;-</span> </span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rand_forest</span>() <span class="sc">|&gt;</span></span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_engine</span>(<span class="st">"randomForest"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_mode</span>(<span class="st">"classification"</span>)</span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a><span class="co"># ── 5. Workflow ----------------------------------------------------------------</span></span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>rf_wf <span class="ot">&lt;-</span> <span class="fu">workflow</span>() <span class="sc">|&gt;</span></span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_recipe</span>(heart_rec) <span class="sc">|&gt;</span></span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_model</span>(rf_spec)</span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a><span class="co"># ── 6. Fit model ---------------------------------------------------------------</span></span>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a>rf_fit <span class="ot">&lt;-</span> <span class="fu">fit</span>(rf_wf, <span class="at">data =</span> train_data)</span>
+<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a><span class="co"># ── 7. Prediksi &amp; evaluasi -----------------------------------------------------</span></span>
+<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a>rf_preds <span class="ot">&lt;-</span> <span class="fu">predict</span>(rf_fit, test_data) <span class="sc">|&gt;</span> </span>
+<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a>            <span class="fu">bind_cols</span>(test_data <span class="sc">|&gt;</span> <span class="fu">select</span>(num))</span>
+<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a><span class="fu">metrics</span>(rf_preds, <span class="at">truth =</span> num, <span class="at">estimate =</span> .pred_class)[<span class="dv">1</span>,] <span class="co"># akurasi</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 3
   .metric  .estimator .estimate
   &lt;chr&gt;    &lt;chr&gt;          &lt;dbl&gt;
 1 accuracy binary         0.842</code></pre>
 </div>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Confusion matrix</span></span>
-<span><span class="fu">conf_mat</span><span class="op">(</span><span class="va">rf_preds</span>, truth <span class="op">=</span> <span class="va">num</span>, estimate <span class="op">=</span> <span class="va">.pred_class</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Confusion matrix</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">conf_mat</span>(rf_preds, <span class="at">truth =</span> num, <span class="at">estimate =</span> .pred_class)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>          Truth
 Prediction  0  1
          0 38  9
          1  3 26</code></pre>
 </div>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># ── 8. Simpan model --------------------------------------------</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/readRDS.html">saveRDS</a></span><span class="op">(</span><span class="va">rf_fit</span>, <span class="st">"results/rf_R.rda"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ── 8. Simpan model --------------------------------------------</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(rf_fit, <span class="st">"results/rf_R.rda"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Akurasi dari model random forest yang dihasilkan adalah 0.842. Model ini sudah disimpan dalam bentuk file RDS dengan nama <code>rf_R.rda</code>. File ini dapat digunakan untuk memprediksi data baru.</p>
 <p><strong>Model Terbaik</strong></p>
 <p>Model terbaik dari kedua algoritma yang digunakan adalah model random forest. Model ini yang akan dideploy ke dalam aplikasi Shiny.</p>
-</section></section><section id="fitting-model-di-python" class="level3"><h3 class="anchored" data-anchor-id="fitting-model-di-python">Fitting Model di Python</h3>
+</section>
+</section>
+<section id="fitting-model-di-python" class="level3">
+<h3 class="anchored" data-anchor-id="fitting-model-di-python">Fitting Model di Python</h3>
 <p>Di Python, kita dapat menggunakan package <code>scikit-learn</code> untuk fitting model. Package ini merupakan package yang paling banyak digunakan untuk pemodelan machine learning di Python.</p>
 <p>Jika tertarik belajar lebih lanjut tentang <code>scikit-learn</code> bisa membuka sumber-sumber berikut:</p>
 <ol type="1">
@@ -553,9 +590,9 @@ Prediction  0  1
 <li><p>Youtube <a href="https://www.youtube.com/playlist?list=PLVHgQku8Z9348d6xguTn8zbcUYntz3dQG">Playlist Scikit-learn</a></p></li>
 </ol>
 <div class="cell">
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Load reticulate package</span></span>
-<span><span class="co"># Pakckage ini digunakan untuk menghubungkan R dengan Python</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rstudio.github.io/reticulate/">reticulate</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load reticulate package</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Pakckage ini digunakan untuk menghubungkan R dengan Python</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(reticulate)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -641,7 +678,8 @@ num         category
 dtype: object</code></pre>
 </div>
 </div>
-<section id="algoritma-regresi-logistik-1" class="level4"><h4 class="anchored" data-anchor-id="algoritma-regresi-logistik-1">Algoritma Regresi Logistik</h4>
+<section id="algoritma-regresi-logistik-1" class="level4">
+<h4 class="anchored" data-anchor-id="algoritma-regresi-logistik-1">Algoritma Regresi Logistik</h4>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ───────────────────────────────────────────────────────────────────────────────</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 0. Pustaka &amp; reproducibility</span></span>
@@ -1116,67 +1154,26 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
   /* fitted */
   background-color: var(--sklearn-color-fitted-level-3);
 }
-</style>
-<div id="sk-container-id-1" class="sk-top-container">
-<div class="sk-text-repr-fallback">
-<pre>Pipeline(steps=[('preprocess',
+</style><div id="sk-container-id-1" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>Pipeline(steps=[('preprocess',
                  ColumnTransformer(transformers=[('cat',
                                                   OneHotEncoder(drop='first',
                                                                 handle_unknown='ignore'),
                                                   Index(['sex', 'cp', 'fbs', 'restecg', 'exang', 'slope', 'ca', 'thai'], dtype='object')),
                                                  ('num', 'passthrough',
                                                   Index(['age', 'trestbps', 'choi', 'thalach', 'oldpeak'], dtype='object'))])),
-                ('nzv', VarianceThreshold()), ('model', LogisticRegression())])</pre>
-<b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br>On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b>
-</div>
-<div class="sk-container" hidden=""><div class="sk-item sk-dashed-wrapped">
-<div class="sk-label-container"><div class="sk-label fitted sk-toggleable">
-<input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-1" type="checkbox"><label for="sk-estimator-id-1" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>Pipeline</div></div>
-<div>
-<a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.6/modules/generated/sklearn.pipeline.Pipeline.html">?<span>Documentation for Pipeline</span></a><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span>
-</div></label><div class="sk-toggleable__content fitted"><pre>Pipeline(steps=[('preprocess',
+                ('nzv', VarianceThreshold()), ('model', LogisticRegression())])</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br>On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden=""><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-1" type="checkbox"><label for="sk-estimator-id-1" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>Pipeline</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.6/modules/generated/sklearn.pipeline.Pipeline.html">?<span>Documentation for Pipeline</span></a><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></div></label><div class="sk-toggleable__content fitted"><pre>Pipeline(steps=[('preprocess',
                  ColumnTransformer(transformers=[('cat',
                                                   OneHotEncoder(drop='first',
                                                                 handle_unknown='ignore'),
                                                   Index(['sex', 'cp', 'fbs', 'restecg', 'exang', 'slope', 'ca', 'thai'], dtype='object')),
                                                  ('num', 'passthrough',
                                                   Index(['age', 'trestbps', 'choi', 'thalach', 'oldpeak'], dtype='object'))])),
-                ('nzv', VarianceThreshold()), ('model', LogisticRegression())])</pre></div> </div></div>
-<div class="sk-serial">
-<div class="sk-item sk-dashed-wrapped">
-<div class="sk-label-container"><div class="sk-label fitted sk-toggleable">
-<input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-2" type="checkbox"><label for="sk-estimator-id-2" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>preprocess: ColumnTransformer</div></div>
-<div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.6/modules/generated/sklearn.compose.ColumnTransformer.html">?<span>Documentation for preprocess: ColumnTransformer</span></a></div></label><div class="sk-toggleable__content fitted"><pre>ColumnTransformer(transformers=[('cat',
+                ('nzv', VarianceThreshold()), ('model', LogisticRegression())])</pre></div> </div></div><div class="sk-serial"><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-2" type="checkbox"><label for="sk-estimator-id-2" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>preprocess: ColumnTransformer</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.6/modules/generated/sklearn.compose.ColumnTransformer.html">?<span>Documentation for preprocess: ColumnTransformer</span></a></div></label><div class="sk-toggleable__content fitted"><pre>ColumnTransformer(transformers=[('cat',
                                  OneHotEncoder(drop='first',
                                                handle_unknown='ignore'),
                                  Index(['sex', 'cp', 'fbs', 'restecg', 'exang', 'slope', 'ca', 'thai'], dtype='object')),
                                 ('num', 'passthrough',
-                                 Index(['age', 'trestbps', 'choi', 'thalach', 'oldpeak'], dtype='object'))])</pre></div> </div></div>
-<div class="sk-parallel">
-<div class="sk-parallel-item"><div class="sk-item">
-<div class="sk-label-container"><div class="sk-label fitted sk-toggleable">
-<input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-3" type="checkbox"><label for="sk-estimator-id-3" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>cat</div></div></label><div class="sk-toggleable__content fitted"><pre>Index(['sex', 'cp', 'fbs', 'restecg', 'exang', 'slope', 'ca', 'thai'], dtype='object')</pre></div> </div></div>
-<div class="sk-serial"><div class="sk-item"><div class="sk-estimator fitted sk-toggleable">
-<input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-4" type="checkbox"><label for="sk-estimator-id-4" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>OneHotEncoder</div></div>
-<div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.6/modules/generated/sklearn.preprocessing.OneHotEncoder.html">?<span>Documentation for OneHotEncoder</span></a></div></label><div class="sk-toggleable__content fitted"><pre>OneHotEncoder(drop='first', handle_unknown='ignore')</pre></div> </div></div></div>
-</div></div>
-<div class="sk-parallel-item"><div class="sk-item">
-<div class="sk-label-container"><div class="sk-label fitted sk-toggleable">
-<input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-5" type="checkbox"><label for="sk-estimator-id-5" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>num</div></div></label><div class="sk-toggleable__content fitted"><pre>Index(['age', 'trestbps', 'choi', 'thalach', 'oldpeak'], dtype='object')</pre></div> </div></div>
-<div class="sk-serial"><div class="sk-item"><div class="sk-estimator fitted sk-toggleable">
-<input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-6" type="checkbox"><label for="sk-estimator-id-6" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>passthrough</div></div></label><div class="sk-toggleable__content fitted"><pre>passthrough</pre></div> </div></div></div>
-</div></div>
-</div>
-</div>
-<div class="sk-item"><div class="sk-estimator fitted sk-toggleable">
-<input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-7" type="checkbox"><label for="sk-estimator-id-7" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>VarianceThreshold</div></div>
-<div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.6/modules/generated/sklearn.feature_selection.VarianceThreshold.html">?<span>Documentation for VarianceThreshold</span></a></div></label><div class="sk-toggleable__content fitted"><pre>VarianceThreshold()</pre></div> </div></div>
-<div class="sk-item"><div class="sk-estimator fitted sk-toggleable">
-<input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-8" type="checkbox"><label for="sk-estimator-id-8" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>LogisticRegression</div></div>
-<div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.6/modules/generated/sklearn.linear_model.LogisticRegression.html">?<span>Documentation for LogisticRegression</span></a></div></label><div class="sk-toggleable__content fitted"><pre>LogisticRegression()</pre></div> </div></div>
-</div>
-</div></div>
-</div>
+                                 Index(['age', 'trestbps', 'choi', 'thalach', 'oldpeak'], dtype='object'))])</pre></div> </div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-3" type="checkbox"><label for="sk-estimator-id-3" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>cat</div></div></label><div class="sk-toggleable__content fitted"><pre>Index(['sex', 'cp', 'fbs', 'restecg', 'exang', 'slope', 'ca', 'thai'], dtype='object')</pre></div> </div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-4" type="checkbox"><label for="sk-estimator-id-4" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>OneHotEncoder</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.6/modules/generated/sklearn.preprocessing.OneHotEncoder.html">?<span>Documentation for OneHotEncoder</span></a></div></label><div class="sk-toggleable__content fitted"><pre>OneHotEncoder(drop='first', handle_unknown='ignore')</pre></div> </div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-5" type="checkbox"><label for="sk-estimator-id-5" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>num</div></div></label><div class="sk-toggleable__content fitted"><pre>Index(['age', 'trestbps', 'choi', 'thalach', 'oldpeak'], dtype='object')</pre></div> </div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-6" type="checkbox"><label for="sk-estimator-id-6" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>passthrough</div></div></label><div class="sk-toggleable__content fitted"><pre>passthrough</pre></div> </div></div></div></div></div></div></div><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-7" type="checkbox"><label for="sk-estimator-id-7" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>VarianceThreshold</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.6/modules/generated/sklearn.feature_selection.VarianceThreshold.html">?<span>Documentation for VarianceThreshold</span></a></div></label><div class="sk-toggleable__content fitted"><pre>VarianceThreshold()</pre></div> </div></div><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-8" type="checkbox"><label for="sk-estimator-id-8" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>LogisticRegression</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.6/modules/generated/sklearn.linear_model.LogisticRegression.html">?<span>Documentation for LogisticRegression</span></a></div></label><div class="sk-toggleable__content fitted"><pre>LogisticRegression()</pre></div> </div></div></div></div></div></div>
 </div>
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ───────────────────────────────────────────────────────────────────────────────</span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 5. Prediksi &amp; evaluasi</span></span>
@@ -1205,7 +1202,9 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 <pre><code>['results/logreg_py.joblib']</code></pre>
 </div>
 </div>
-</section><section id="algoritma-random-forest-1" class="level4"><h4 class="anchored" data-anchor-id="algoritma-random-forest-1">Algoritma Random Forest</h4>
+</section>
+<section id="algoritma-random-forest-1" class="level4">
+<h4 class="anchored" data-anchor-id="algoritma-random-forest-1">Algoritma Random Forest</h4>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.ensemble <span class="im">import</span> RandomForestClassifier</span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -1665,10 +1664,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
   /* fitted */
   background-color: var(--sklearn-color-fitted-level-3);
 }
-</style>
-<div id="sk-container-id-2" class="sk-top-container">
-<div class="sk-text-repr-fallback">
-<pre>Pipeline(steps=[('preprocess',
+</style><div id="sk-container-id-2" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>Pipeline(steps=[('preprocess',
                  ColumnTransformer(transformers=[('cat',
                                                   OneHotEncoder(drop='first',
                                                                 handle_unknown='ignore'),
@@ -1676,15 +1672,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
                                                  ('num', 'passthrough',
                                                   Index(['age', 'trestbps', 'choi', 'thalach', 'oldpeak'], dtype='object'))])),
                 ('nzv', VarianceThreshold()),
-                ('model', RandomForestClassifier(n_jobs=-1, random_state=26))])</pre>
-<b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br>On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b>
-</div>
-<div class="sk-container" hidden=""><div class="sk-item sk-dashed-wrapped">
-<div class="sk-label-container"><div class="sk-label fitted sk-toggleable">
-<input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-9" type="checkbox"><label for="sk-estimator-id-9" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>Pipeline</div></div>
-<div>
-<a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.6/modules/generated/sklearn.pipeline.Pipeline.html">?<span>Documentation for Pipeline</span></a><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span>
-</div></label><div class="sk-toggleable__content fitted"><pre>Pipeline(steps=[('preprocess',
+                ('model', RandomForestClassifier(n_jobs=-1, random_state=26))])</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br>On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden=""><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-9" type="checkbox"><label for="sk-estimator-id-9" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>Pipeline</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.6/modules/generated/sklearn.pipeline.Pipeline.html">?<span>Documentation for Pipeline</span></a><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></div></label><div class="sk-toggleable__content fitted"><pre>Pipeline(steps=[('preprocess',
                  ColumnTransformer(transformers=[('cat',
                                                   OneHotEncoder(drop='first',
                                                                 handle_unknown='ignore'),
@@ -1692,42 +1680,12 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
                                                  ('num', 'passthrough',
                                                   Index(['age', 'trestbps', 'choi', 'thalach', 'oldpeak'], dtype='object'))])),
                 ('nzv', VarianceThreshold()),
-                ('model', RandomForestClassifier(n_jobs=-1, random_state=26))])</pre></div> </div></div>
-<div class="sk-serial">
-<div class="sk-item sk-dashed-wrapped">
-<div class="sk-label-container"><div class="sk-label fitted sk-toggleable">
-<input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-10" type="checkbox"><label for="sk-estimator-id-10" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>preprocess: ColumnTransformer</div></div>
-<div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.6/modules/generated/sklearn.compose.ColumnTransformer.html">?<span>Documentation for preprocess: ColumnTransformer</span></a></div></label><div class="sk-toggleable__content fitted"><pre>ColumnTransformer(transformers=[('cat',
+                ('model', RandomForestClassifier(n_jobs=-1, random_state=26))])</pre></div> </div></div><div class="sk-serial"><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-10" type="checkbox"><label for="sk-estimator-id-10" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>preprocess: ColumnTransformer</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.6/modules/generated/sklearn.compose.ColumnTransformer.html">?<span>Documentation for preprocess: ColumnTransformer</span></a></div></label><div class="sk-toggleable__content fitted"><pre>ColumnTransformer(transformers=[('cat',
                                  OneHotEncoder(drop='first',
                                                handle_unknown='ignore'),
                                  Index(['sex', 'cp', 'fbs', 'restecg', 'exang', 'slope', 'ca', 'thai'], dtype='object')),
                                 ('num', 'passthrough',
-                                 Index(['age', 'trestbps', 'choi', 'thalach', 'oldpeak'], dtype='object'))])</pre></div> </div></div>
-<div class="sk-parallel">
-<div class="sk-parallel-item"><div class="sk-item">
-<div class="sk-label-container"><div class="sk-label fitted sk-toggleable">
-<input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-11" type="checkbox"><label for="sk-estimator-id-11" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>cat</div></div></label><div class="sk-toggleable__content fitted"><pre>Index(['sex', 'cp', 'fbs', 'restecg', 'exang', 'slope', 'ca', 'thai'], dtype='object')</pre></div> </div></div>
-<div class="sk-serial"><div class="sk-item"><div class="sk-estimator fitted sk-toggleable">
-<input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-12" type="checkbox"><label for="sk-estimator-id-12" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>OneHotEncoder</div></div>
-<div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.6/modules/generated/sklearn.preprocessing.OneHotEncoder.html">?<span>Documentation for OneHotEncoder</span></a></div></label><div class="sk-toggleable__content fitted"><pre>OneHotEncoder(drop='first', handle_unknown='ignore')</pre></div> </div></div></div>
-</div></div>
-<div class="sk-parallel-item"><div class="sk-item">
-<div class="sk-label-container"><div class="sk-label fitted sk-toggleable">
-<input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-13" type="checkbox"><label for="sk-estimator-id-13" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>num</div></div></label><div class="sk-toggleable__content fitted"><pre>Index(['age', 'trestbps', 'choi', 'thalach', 'oldpeak'], dtype='object')</pre></div> </div></div>
-<div class="sk-serial"><div class="sk-item"><div class="sk-estimator fitted sk-toggleable">
-<input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-14" type="checkbox"><label for="sk-estimator-id-14" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>passthrough</div></div></label><div class="sk-toggleable__content fitted"><pre>passthrough</pre></div> </div></div></div>
-</div></div>
-</div>
-</div>
-<div class="sk-item"><div class="sk-estimator fitted sk-toggleable">
-<input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-15" type="checkbox"><label for="sk-estimator-id-15" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>VarianceThreshold</div></div>
-<div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.6/modules/generated/sklearn.feature_selection.VarianceThreshold.html">?<span>Documentation for VarianceThreshold</span></a></div></label><div class="sk-toggleable__content fitted"><pre>VarianceThreshold()</pre></div> </div></div>
-<div class="sk-item"><div class="sk-estimator fitted sk-toggleable">
-<input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-16" type="checkbox"><label for="sk-estimator-id-16" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>RandomForestClassifier</div></div>
-<div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.6/modules/generated/sklearn.ensemble.RandomForestClassifier.html">?<span>Documentation for RandomForestClassifier</span></a></div></label><div class="sk-toggleable__content fitted"><pre>RandomForestClassifier(n_jobs=-1, random_state=26)</pre></div> </div></div>
-</div>
-</div></div>
-</div>
+                                 Index(['age', 'trestbps', 'choi', 'thalach', 'oldpeak'], dtype='object'))])</pre></div> </div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-11" type="checkbox"><label for="sk-estimator-id-11" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>cat</div></div></label><div class="sk-toggleable__content fitted"><pre>Index(['sex', 'cp', 'fbs', 'restecg', 'exang', 'slope', 'ca', 'thai'], dtype='object')</pre></div> </div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-12" type="checkbox"><label for="sk-estimator-id-12" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>OneHotEncoder</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.6/modules/generated/sklearn.preprocessing.OneHotEncoder.html">?<span>Documentation for OneHotEncoder</span></a></div></label><div class="sk-toggleable__content fitted"><pre>OneHotEncoder(drop='first', handle_unknown='ignore')</pre></div> </div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-13" type="checkbox"><label for="sk-estimator-id-13" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>num</div></div></label><div class="sk-toggleable__content fitted"><pre>Index(['age', 'trestbps', 'choi', 'thalach', 'oldpeak'], dtype='object')</pre></div> </div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-14" type="checkbox"><label for="sk-estimator-id-14" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>passthrough</div></div></label><div class="sk-toggleable__content fitted"><pre>passthrough</pre></div> </div></div></div></div></div></div></div><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-15" type="checkbox"><label for="sk-estimator-id-15" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>VarianceThreshold</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.6/modules/generated/sklearn.feature_selection.VarianceThreshold.html">?<span>Documentation for VarianceThreshold</span></a></div></label><div class="sk-toggleable__content fitted"><pre>VarianceThreshold()</pre></div> </div></div><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-16" type="checkbox"><label for="sk-estimator-id-16" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>RandomForestClassifier</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.6/modules/generated/sklearn.ensemble.RandomForestClassifier.html">?<span>Documentation for RandomForestClassifier</span></a></div></label><div class="sk-toggleable__content fitted"><pre>RandomForestClassifier(n_jobs=-1, random_state=26)</pre></div> </div></div></div></div></div></div>
 </div>
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ── 6. Evaluasi ---------------------------------------------------------------</span></span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>y_pred <span class="op">=</span> rf_pipeline.predict(X_test)</span>
@@ -1750,7 +1708,11 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 <pre><code>['results/rf_py.joblib']</code></pre>
 </div>
 </div>
-</section></section></section><section id="langkah-2-deploy-model-dan-membuat-aplikasi-shiny" class="level2"><h2 class="anchored" data-anchor-id="langkah-2-deploy-model-dan-membuat-aplikasi-shiny">Langkah 2: Deploy Model dan Membuat Aplikasi Shiny</h2>
+</section>
+</section>
+</section>
+<section id="langkah-2-deploy-model-dan-membuat-aplikasi-shiny" class="level2">
+<h2 class="anchored" data-anchor-id="langkah-2-deploy-model-dan-membuat-aplikasi-shiny">Langkah 2: Deploy Model dan Membuat Aplikasi Shiny</h2>
 <p>Setelah model dilatih, langkah selanjutnya adalah mendepoy model dan membuat aplikasi Shiny. Model yang dilatih di R disimpan dalam bentuk file RDS, sedangkan model yang dilatih di Python disimpan dalam bentuk file joblib. File-file ini akan digunakan untuk memprediksi data baru.</p>
 <p>Aplikasi Shiny adalah aplikasi web interaktif yang dibuat dengan menggunakan bahasa pemrograman R atau Python. Aplikasi ini dapat digunakan untuk memprediksi data baru dengan menggunakan model yang sudah dilatih. Aplikasi Shiny dapat diakses oleh pengguna melalui web browser.</p>
 <p>Jika tertarik belajar lebih lanjut tentang Shiny bisa membuka sumber-sumber berikut:</p>
@@ -1764,20 +1726,26 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 <p>Gambaran model yang sudah didepoy ke dalam aplikasi Shiny dapat dilihat pada berikut (App R)</p>
 <p><img src="img/app_R.gif" class="img-fluid"></p>
 <p>Pengguna dapat memasukkan data baru sesuai dengan kolom fitur yang ada pada dataset. Setelah itu, pengguna dapat menekan tombol “Submit” untuk mendapatkan hasil prediksi dari model.</p>
-</section><section id="langkah-3-buat-repositori-github-untuk-aplikasi-shiny" class="level2"><h2 class="anchored" data-anchor-id="langkah-3-buat-repositori-github-untuk-aplikasi-shiny">Langkah 3: Buat Repositori GitHub untuk Aplikasi Shiny</h2>
+</section>
+<section id="langkah-3-buat-repositori-github-untuk-aplikasi-shiny" class="level2">
+<h2 class="anchored" data-anchor-id="langkah-3-buat-repositori-github-untuk-aplikasi-shiny">Langkah 3: Buat Repositori GitHub untuk Aplikasi Shiny</h2>
 <p>Buat repositori GitHub untuk menyimpan kode sumber dari aplikasi Shiny yang sudah dibuat. Repositori ini akan digunakan untuk menyimpan kode sumber dari aplikasi Shiny.</p>
 <p><img src="img/git.webp" class="img-fluid"></p>
-</section><section id="langkah-4-publikasi-aplikasi-shiny-ke-posit-connect-cloud" class="level2"><h2 class="anchored" data-anchor-id="langkah-4-publikasi-aplikasi-shiny-ke-posit-connect-cloud">Langkah 4: Publikasi Aplikasi Shiny ke Posit Connect Cloud</h2>
+</section>
+<section id="langkah-4-publikasi-aplikasi-shiny-ke-posit-connect-cloud" class="level2">
+<h2 class="anchored" data-anchor-id="langkah-4-publikasi-aplikasi-shiny-ke-posit-connect-cloud">Langkah 4: Publikasi Aplikasi Shiny ke Posit Connect Cloud</h2>
 <p>Publikasikan aplikasi Shiny ke Posit Connect Cloud agar dapat diakses oleh pengguna (user). Publikasi melalui Posit Connect Cloud sangat mudah dilakukan.</p>
 <ol type="1">
 <li><p>Buat akun Posit Connect Cloud di <a href="https://connect.posit.cloud/">sini</a></p></li>
 <li><p>Pilih framework yang digunakan. Terdapat beberapa pilihan salah satunya adalah Shiny. Kita mempublikasikan aplikasi Shiny ke dalam Posit Connect Cloud melalui github. Pilih GitHub sebagai sumber aplikasi yang akan dipublikasikan. Sehingga kita perlu menghubungkan akun GitHub kita ke dalam Posit Connect Cloud.</p></li>
 </ol>
-<p><img src="img/positcon.webp" class="img-fluid"><img src="img/positcon2.webp" class="img-fluid"></p>
+<p><img src="img/positcon.webp" class="img-fluid"> <img src="img/positcon2.webp" class="img-fluid"></p>
 <p>Sekarang kita sudah bisa mempublikasikan dan membagikan aplikasi machine learning kita ke pengguna lain. Selamat mencoba!</p>
 
 
-</section><a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{siswara2025,
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{siswara2025,
   author = {Siswara, Deri},
   title = {End {To} {End} {Machine} {Learning} {(R,} {Python,} {Quarto,}
     {Shiny,} {GitHub,} {Posit} {Connect)}},
@@ -1788,7 +1756,8 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-siswara2025" class="csl-entry quarto-appendix-citeas" role="listitem">
 Siswara, Deri. 2025. <span>“End To End Machine Learning (R, Python,
 Quarto, Shiny, GitHub, Posit Connect).”</span> April 20, 2025. <a href="https://derisiswara.org/projects/End_to_end_ML.html">https://derisiswara.org/projects/End_to_end_ML.html</a>.
-</div></div></section></div></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</div></div></section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
     const anchorJS = new window.AnchorJS();
@@ -2191,7 +2160,10 @@ Quarto, Shiny, GitHub, Posit Connect).”</span> April 20, 2025. <a href="https:
       }
     }
   });
-  </script><input type="hidden" id="giscus-base-theme" value="light"><input type="hidden" id="giscus-alt-theme" value="dark"><script>
+  </script>
+<input type="hidden" id="giscus-base-theme" value="light">
+<input type="hidden" id="giscus-alt-theme" value="dark">
+<script>
   function loadGiscus() {
     // Function to get the theme based on body class
     const getTheme = () => {
@@ -2219,24 +2191,27 @@ Quarto, Shiny, GitHub, Posit Connect).”</span> April 20, 2025. <a href="https:
   loadGiscus();
 </script>
 </div> <!-- /content -->
-<footer class="footer"><div class="nav-footer">
+<footer class="footer">
+  <div class="nav-footer">
     <div class="nav-footer-left">
 <p>© 2025 Deri Siswara</p>
 </div>   
     <div class="nav-footer-center">
       <ul class="footer-items list-unstyled">
-<li class="nav-item">
+    <li class="nav-item">
     <a class="nav-link" href="../license.html">
 <p>License</p>
 </a>
   </li>  
 </ul>
-</div>
+    </div>
     <div class="nav-footer-right">
 <p>made with <a href="https://quarto.org">Quarto</a></p>
 </div>
   </div>
 </footer>
+
+
 
 
 <script src="../site_libs/quarto-html/zenscroll-min.js"></script>
