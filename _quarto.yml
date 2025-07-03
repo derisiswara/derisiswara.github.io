@@ -49,6 +49,8 @@ website:
         href: book.qmd
       - text: CV
         href: cv/dericv/template/main.pdf
+      - text: EA
+        href: cv/dericv/template/main.pdf  
         
   page-footer:
     border: true
