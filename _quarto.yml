@@ -1,5 +1,6 @@
 project:
   type: website
+  output-dir: docs
   preview:
     port: 3434
     browser: true
@@ -47,7 +48,7 @@ website:
       - text: Book Updates
         href: book.qmd
       - text: CV
-        href: cv.qmd  
+        href: cv/dericv/template/main.pdf
         
   page-footer:
     border: true

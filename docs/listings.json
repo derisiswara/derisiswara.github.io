@@ -1,0 +1,20 @@
+[
+  {
+    "listing": "/teaching.html",
+    "items": [
+      "/teaching/quarto.html",
+      "/teaching/workshop.html",
+      "/teaching/machine_learning.html",
+      "/teaching/outliers.html"
+    ]
+  },
+  {
+    "listing": "/index.html",
+    "items": [
+      "/projects/2025_05_03_dashboard_omnitest.html",
+      "/projects/End_to_end_ML.html",
+      "/projects/book_econ.html",
+      "/projects/book_multivariate.html"
+    ]
+  }
+]
