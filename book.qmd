@@ -10,6 +10,7 @@ execute:
 <span class="listing-btn-group">
 <a href="https://dseconometrics.netlify.app/" class="btn" role="button">{{< fa box >}} Raw Econometrics Book Codes </a>
 <a href="https://dsmultivariate.netlify.app/" class="btn" role="button">{{< fa box >}} Raw Quantitative Book Codes </a>
+</span>
 
 This page contains updates and changes made to the book. The updates are made based on the feedback from the readers and the development of the R packages used.
 
@@ -31,6 +32,8 @@ d <- read_sheet("https://docs.google.com/spreadsheets/d/1rdIKjvjiQWa2yOlBptmxQ8c
 #| echo: false
 #| message: false
 #| warning: false
+library(downlit)
+library(xml2)
 
 library(janitor)
 d |>
@@ -69,3 +72,4 @@ d |>
   ) |>
   opt_row_striping()
 ```
+
