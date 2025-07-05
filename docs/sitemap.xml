@@ -1,55 +1,123 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://derisiswara.art/teaching.html</loc>
-    <lastmod>2025-07-03T03:52:29.916Z</lastmod>
+    <loc>https://kazuyanagimoto.com/index.html</loc>
+    <lastmod>2025-07-05T04:14:00.749Z</lastmod>
   </url>
   <url>
-    <loc>https://derisiswara.art/teaching/quarto.html</loc>
-    <lastmod>2025-07-03T03:52:29.940Z</lastmod>
+    <loc>https://kazuyanagimoto.com/talks/index.html</loc>
+    <lastmod>2025-07-05T04:04:45.849Z</lastmod>
   </url>
   <url>
-    <loc>https://derisiswara.art/teaching/machine_learning.html</loc>
-    <lastmod>2025-07-03T03:52:29.939Z</lastmod>
+    <loc>https://kazuyanagimoto.com/research/index.html</loc>
+    <lastmod>2025-07-05T04:04:45.440Z</lastmod>
   </url>
   <url>
-    <loc>https://derisiswara.art/projects/book_multivariate.html</loc>
-    <lastmod>2025-07-03T03:52:29.878Z</lastmod>
+    <loc>https://kazuyanagimoto.com/research/hetero2wfe/index.html</loc>
+    <lastmod>2025-07-05T04:04:45.614Z</lastmod>
   </url>
   <url>
-    <loc>https://derisiswara.art/projects/2025_05_03_dashboard_omnitest.html</loc>
-    <lastmod>2025-07-03T03:52:29.874Z</lastmod>
+    <loc>https://kazuyanagimoto.com/research/bayan-bayanihan/index.html</loc>
+    <lastmod>2025-07-05T04:04:45.448Z</lastmod>
+  </url>
+  <url>
+    <loc>https://kazuyanagimoto.com/blog/2025/0426_research_workflow/index.html</loc>
+    <lastmod>2025-07-05T04:04:45.395Z</lastmod>
+  </url>
+  <url>
+    <loc>https://kazuyanagimoto.com/blog/2024/04/05/index.html</loc>
+    <lastmod>2025-07-05T04:04:45.291Z</lastmod>
+  </url>
+  <url>
+    <loc>https://kazuyanagimoto.com/blog/2023/06/10/quarto_com_model/index.html</loc>
+    <lastmod>2025-07-05T04:04:45.216Z</lastmod>
+  </url>
+  <url>
+    <loc>https://kazuyanagimoto.com/blog/2022/12/27/quarto_tips/index.html</loc>
+    <lastmod>2025-07-05T04:04:45.043Z</lastmod>
+  </url>
+  <url>
+    <loc>https://kazuyanagimoto.com/about/index.html</loc>
+    <lastmod>2025-07-05T04:04:44.980Z</lastmod>
+  </url>
+  <url>
+    <loc>https://kazuyanagimoto.com/blog/2022/05/24/docker_template/index.html</loc>
+    <lastmod>2025-07-05T04:04:45.022Z</lastmod>
+  </url>
+  <url>
+    <loc>https://kazuyanagimoto.com/blog/2023/04/30/quarto_multi_lang/index.html</loc>
+    <lastmod>2025-07-05T04:04:45.081Z</lastmod>
+  </url>
+  <url>
+    <loc>https://kazuyanagimoto.com/blog/2023/09/06/docker_template/index.html</loc>
+    <lastmod>2025-07-05T04:04:45.251Z</lastmod>
+  </url>
+  <url>
+    <loc>https://kazuyanagimoto.com/blog/2024/04/29/index.html</loc>
+    <lastmod>2025-07-05T04:04:45.334Z</lastmod>
+  </url>
+  <url>
+    <loc>https://kazuyanagimoto.com/blog/index.html</loc>
+    <lastmod>2025-07-05T04:04:44.993Z</lastmod>
+  </url>
+  <url>
+    <loc>https://kazuyanagimoto.com/research/common-cheetah/index.html</loc>
+    <lastmod>2025-07-05T04:04:45.458Z</lastmod>
+  </url>
+  <url>
+    <loc>https://kazuyanagimoto.com/research/icky-impala/index.html</loc>
+    <lastmod>2025-07-05T04:04:45.649Z</lastmod>
+  </url>
+  <url>
+    <loc>https://kazuyanagimoto.com/software/index.html</loc>
+    <lastmod>2025-07-05T04:04:45.678Z</lastmod>
   </url>
   <url>
     <loc>https://derisiswara.art/index.html</loc>
-    <lastmod>2025-07-03T04:25:23.849Z</lastmod>
-  </url>
-  <url>
-    <loc>https://derisiswara.art/cv/dericv/CHANGELOG.html</loc>
-    <lastmod>2025-07-01T20:04:31.727Z</lastmod>
-  </url>
-  <url>
-    <loc>https://derisiswara.art/cv.html</loc>
-    <lastmod>2025-07-03T03:52:30.095Z</lastmod>
+    <lastmod>2025-07-05T06:06:01.789Z</lastmod>
   </url>
   <url>
     <loc>https://derisiswara.art/license.html</loc>
-    <lastmod>2025-07-03T03:52:29.874Z</lastmod>
+    <lastmod>2025-07-05T04:24:36.805Z</lastmod>
   </url>
   <url>
-    <loc>https://derisiswara.art/projects/book_econ.html</loc>
-    <lastmod>2025-07-03T03:52:29.877Z</lastmod>
+    <loc>https://derisiswara.art/projects/simpleml/index.html</loc>
+    <lastmod>2025-07-05T18:14:39.436Z</lastmod>
   </url>
   <url>
-    <loc>https://derisiswara.art/projects/End_to_end_ML.html</loc>
-    <lastmod>2025-07-03T03:52:29.875Z</lastmod>
+    <loc>https://derisiswara.art/projects/index.html</loc>
+    <lastmod>2025-07-05T18:15:05.426Z</lastmod>
   </url>
   <url>
-    <loc>https://derisiswara.art/teaching/outliers.html</loc>
-    <lastmod>2025-07-03T03:52:29.940Z</lastmod>
+    <loc>https://derisiswara.art/projects/hetero2wfe/index.html</loc>
+    <lastmod>2025-07-05T04:04:45.614Z</lastmod>
   </url>
   <url>
-    <loc>https://derisiswara.art/teaching/workshop.html</loc>
-    <lastmod>2025-07-03T03:52:29.941Z</lastmod>
+    <loc>https://derisiswara.art/projects/bayan-bayanihan/index.html</loc>
+    <lastmod>2025-07-05T04:04:45.448Z</lastmod>
+  </url>
+  <url>
+    <loc>https://derisiswara.art/projects/common-cheetah/index.html</loc>
+    <lastmod>2025-07-05T04:04:45.458Z</lastmod>
+  </url>
+  <url>
+    <loc>https://derisiswara.art/projects/icky-impala/index.html</loc>
+    <lastmod>2025-07-05T04:04:45.649Z</lastmod>
+  </url>
+  <url>
+    <loc>https://derisiswara.art/software/index.html</loc>
+    <lastmod>2025-07-05T04:04:45.678Z</lastmod>
+  </url>
+  <url>
+    <loc>https://derisiswara.art/talks/index.html</loc>
+    <lastmod>2025-07-05T18:37:10.365Z</lastmod>
+  </url>
+  <url>
+    <loc>https://derisiswara.art/projects/bansos/index.html</loc>
+    <lastmod>2025-07-05T17:52:59.830Z</lastmod>
+  </url>
+  <url>
+    <loc>https://derisiswara.art/projects/book/index.html</loc>
+    <lastmod>2025-07-05T17:25:05.759Z</lastmod>
   </url>
 </urlset>

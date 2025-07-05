@@ -1,22 +1,28 @@
 ---
-pagetitle: "Projects - Deri Siswara"
-toc: false
-comments: false
-listing:
-  contents: projects
-  type: default
-  fields: 
-    - title
-    - description
-    - date
-    - image
-    - categories
-  categories: false
-  sort: "date desc"
-  page-size: 3
+title: "Deri Siswara"
+image: /static/img/Picture2.png
+about:
+  template: jolla
+  links:
+    - icon: github
+      text: GitHub
+      href: https://github.com/derisiswara
+    - icon: linkedin
+      text: LinkedIn
+      href: https://www.linkedin.com/in/derisiswara/
+    - icon: send
+      text: "Email"
+      href: mailto:derisiswarads@gmail.com
+    - icon: book
+      text: "Goodreads"
+      href: https://www.goodreads.com/user/show/190226365-deri-siswara   
 ---
 
-<h1 style="font-size: 2.5em;">Hi! I'm <strong>Deri Siswara</strong> 👋</h1>
-<p style="font-size: 1.3em;">Welcome to my portfolio garden. Research/Data Analyst with a background in Statistics and Economics. Experienced in survey design, creating dashboards, impact assessment, econometric modeling, and teaching. Worked on various projects across multiple sectors, bringing unique and diverse perspectives to problem-solving. I'm open to collaborations, projects, or new opportunities. </p>
+I take gigs as a research/data analyst.<br>
+Experienced in survey design, creating dashboards, impact assessment, econometric modeling, and teaching. 
 
-### **Projects** ⤵️
+I'm open to collaborations, projects, or new opportunities.
+
+::: {style="text-align: right"}
+[Read More →](../Projects)
+:::

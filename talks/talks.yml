@@ -1,0 +1,43 @@
+- title: "Introduction to Quarto"
+  date: 2025-05-11
+  language: Bahasa
+  description: Have a chance for sharing about the Quarto framework in the BelajaR community. The slides and code exercises are provided below.
+  location: Online
+  feature: /talks/img/quarto.png 
+  links:
+  - name: Slides
+    url: http://derisiswara.art/belajarR-quarto
+    icon: fa-solid fa-chalkboard-user
+
+- title: "RStudio Workshop 2025"
+  date: 2025-05-06
+  language: Bahasa
+  description: Peningkatan Research Quality dengan RStudio
+  location: Jambi, Indonesia
+  feature: /talks/img/workshop.png 
+  links:
+  - name: Materials
+    url: https://derisiswara.art/2025-rstudio-workshop-jambi
+    icon: fa-solid fa-chalkboard-user
+
+- title: "Machine Learning"
+  date: 2025-02-14
+  language: Bahasa
+  description: Slides and materials for the Machine Learning course.
+  location: Perbanas Institute
+  feature: /talks/img/ml.png 
+  links:
+  - name: Slides and Materials
+    url: https://derisiswara.art/
+    icon: fa-solid fa-chalkboard-user
+
+- title: "Bank Indonesia Data Anomalies Study (Outlier Analysis)"
+  date: 2025-02-06
+  language: Bahasa
+  description: Slides and code exercise for the study of detecting anomalies in Bank Indonesia data using statistical approaches.
+  location: Bank Indonesia
+  feature: /talks/img/out.png 
+  links:
+  - name: Slides
+    url: https://derisiswara.art/
+    icon: fa-solid fa-chalkboard-user

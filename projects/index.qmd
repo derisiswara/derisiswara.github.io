@@ -1,0 +1,21 @@
+---
+title: Projects
+description: This section contains my previous and ongoing projects.
+home: true
+listing:
+  - id: projects
+    contents: "/*/index.qmd"
+    sort: "date desc"
+    template: ../static/html/research/listing.ejs
+    categories: true  
+title-block-banner: "#fff"
+page-layout: full
+toc: true 
+toc-location: right
+toc-title: Contents
+---
+
+:::{#projects}
+:::
+
+{{< ai blank-just-to-add-ai-dependency-to-this-page >}}

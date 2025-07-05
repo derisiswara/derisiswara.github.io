@@ -1,0 +1,24 @@
+---
+title: Econometrics and Multivariate Methods with R (Code Version)
+subtitle: Book-2024
+date: 2024-01-01
+author:
+  - name: Deri Siswara
+    url: {{< var website-url >}}
+categories:
+  - R
+  - Book
+image: cover.png
+status: previous-projects
+hide-detail: true
+pub-info:
+  links:
+    - name: Econometrics
+      url: https://derisiswara.art/econometricsbook
+      local: true
+      icon: fa-regular fa-book
+    - name: Multivariate
+      url: https://derisiswara.art/multivariatebook
+      local: true
+      icon: fa-regular fa-book
+---

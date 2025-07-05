@@ -1,3 +1,6 @@
-### Hi there!   <img src="assets/img/logods2.webp" alt="Logo for Deri Siswara&apos;s personal website" height="85"/>
+# Personal Website of Kazuharu Yanagimoto
 
-Welcome to the repo of my personal website, which was created with [Quarto](https://quarto.org/). License adapted from [Jadey Ryan](https://jadeyryan.com/license)
+## Notes
+
+- `.github/workflows/publish.yml` is not working for Julia notebooks (issued [#8573](https://github.com/quarto-dev/quarto-cli/issues/8573))
+- To publish without GitHub Actions, run `quarto publish gh-pages` in local

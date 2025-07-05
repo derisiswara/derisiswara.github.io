@@ -1,74 +1,45 @@
 project:
   type: website
   output-dir: docs
-  preview:
-    port: 3434
+  preview: 
+    port: 5556
     browser: true
     watch-inputs: true
-    timeout: 3600
+    navigate: true
 
 execute:
   freeze: auto
+  warning: false
 
 website:
-  title: ""
-  description: "R code, economics, and data science."
-  site-url: https://derisiswara.art/
-  favicon: assets/img/logods2.webp
-  open-graph:
-    locale: en_EN
-  page-navigation: true
-  back-to-top-navigation: true
-
-  sidebar:
-    logo: assets/img/deri.png
-    pinned: true
-    align: center
-    tools: 
-      - icon: linkedin
-        href: https://www.linkedin.com/in/derisiswara/
-        text: "LinkedIn"
-      - icon: github
-        href: https://github.com/derisiswara
-        text: "Github"
-      - icon: send
-        text: "Email"
-        href: mailto:derisiswarads@gmail.com
-      - icon: book
-        text: "Goodreads"
-        href: https://www.goodreads.com/user/show/190226365-deri-siswara  
-    style: "docked"
-    search: true
-    collapse-level: 1
-    contents:
+  title: "Deri Siswara"
+  favicon: static/img/logods2.webp
+  site-url: https://derisiswara.art
+  repo-url: https://github.com/derisiswara/derisiswara.github.io
+  open-graph: true
+  navbar:
+    right:
       - text: Projects
-        href: index.qmd
-      - text: Teaching
-        href: teaching.qmd        
-#      - text: Book Updates
-#        href: book.qmd
+        file: projects/index.qmd
+      - text: Talks
+        file: talks/index.qmd
       - text: CV
-        href: derisiswara.art/cv/cv.pdf
-        
+        href: https://derisiswara.art/cv/cv.pdf
   page-footer:
-    border: true
-    left: "&#169; 2025 Deri Siswara"
-    center:
-      - text: License
-        href: license.qmd
-    right: "made with [Quarto](https://quarto.org)"
-  comments:
-    giscus:
-      repo: derisiswara/derisiswara.github.io
-
+    left: |
+      <span class="faux-block">{{< fa copyright >}} 2025 Deri Siswara </span>
+    center: |
+      [License](license.qmd)
+    right: |
+      <span class="faux-block">Made with {{< fa brands r-project >}} and [Quarto](https://quarto.org/) | Source [{{< fa brands github >}} GitHub]({{< var repo-url >}})</span>
+      
 format:
   html:
-    theme: [cosmo, assets/styling/light.scss]
-    toc: true    
-    toc-depth: 3
-    pagetitle: "{{< meta title >}} - Deri Siswara"
-    page-layout: article
-    smooth-scroll: true
-    link-external-newwindow: true
-    code-link: true
-    highlight-style: a11y
+    theme: 
+      - static/html/custom.scss
+
+bibliography: references.bib
+
+
+
+

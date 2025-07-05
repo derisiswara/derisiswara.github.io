@@ -1,0 +1,18 @@
+---
+title: Monitoring Bantuan Sosial Non Tunai (BSNT) Tahun 2025
+subtitle: IPB University dan Bank Indonesia
+date: today
+authors:
+  - name: Tony Irawan
+#    url: https://..
+    affiliation: IPB University
+  - name: Deri Siswara
+    url: {{< var website-url >}}
+categories:
+  - Survey
+  - Impact Evaluation
+status: ongoing-projects
+pub-info:
+  coauthor: Tony Irawan
+hide-detail: true
+---
