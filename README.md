@@ -1,6 +1,5 @@
-# Personal Website of Kazuharu Yanagimoto
+# Personal Website of Deri Siswara
 
 ## Notes
 
-- `.github/workflows/publish.yml` is not working for Julia notebooks (issued [#8573](https://github.com/quarto-dev/quarto-cli/issues/8573))
-- To publish without GitHub Actions, run `quarto publish gh-pages` in local
+Welcome to the repo of my personal website, which was created with [Quarto](https://quarto.org/). Website template adapted from [Kazuya Nagimoto](https://kazuyanagimoto.com). 
