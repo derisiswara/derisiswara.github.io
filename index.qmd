@@ -24,5 +24,5 @@ Experienced in survey design, creating dashboards, impact assessment, econometri
 I'm open to collaborations, projects, or new opportunities.
 
 ::: {style="text-align: right"}
-[Read More →](../Projects)
+[Read More →](../projects)
 :::
