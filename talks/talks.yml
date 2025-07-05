@@ -6,7 +6,7 @@
   feature: /talks/img/quarto.png 
   links:
   - name: Slides
-    url: http://derisiswara.art/belajarR-quarto
+    url: http://derisiswara.art/belajarR-quarto/
     icon: fa-solid fa-chalkboard-user
 
 - title: "RStudio Workshop 2025"
@@ -17,7 +17,7 @@
   feature: /talks/img/workshop.png 
   links:
   - name: Materials
-    url: https://derisiswara.art/2025-rstudio-workshop-jambi
+    url: https://derisiswara.art/2025-rstudio-workshop-jambi/
     icon: fa-solid fa-chalkboard-user
 
 - title: "Machine Learning"
@@ -28,7 +28,7 @@
   feature: /talks/img/ml.png 
   links:
   - name: Slides and Materials
-    url: https://derisiswara.art/
+    url: http://derisiswara.art/machinelearning-perbanas/
     icon: fa-solid fa-chalkboard-user
 
 - title: "Bank Indonesia Data Anomalies Study (Outlier Analysis)"

@@ -14,11 +14,11 @@ hide-detail: true
 pub-info:
   links:
     - name: Econometrics
-      url: https://derisiswara.art/econometricsbook
+      url: https://derisiswara.art/econometricsbook/
       local: true
       icon: fa-regular fa-book
     - name: Multivariate
-      url: https://derisiswara.art/multivariatebook
+      url: https://derisiswara.art/multivariatebook/
       local: true
       icon: fa-regular fa-book
 ---
