@@ -29,7 +29,7 @@ website:
     left: |
       <span class="faux-block">{{< fa copyright >}} 2025 Deri Siswara </span>
     center: |
-      [License](license.qmd)
+      [License](license.html)
     right: |
       <span class="faux-block">Made with {{< fa brands r-project >}} and [Quarto](https://quarto.org/) | Source [{{< fa brands github >}} GitHub]({{< var repo-url >}})</span>
       
