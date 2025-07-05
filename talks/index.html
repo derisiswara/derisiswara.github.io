@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="description" content="A list of my talks, workshops, or other events with a time, date, and place">
 
-<title>Deri Siswara</title>
+<title>Talks that Last – Deri Siswara</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,25 +24,28 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./static/img/logods2.webp" rel="icon">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7bd51a60a51e5c23b6c3f6a95c3214be.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-603ef122d6b84e7d2feb32d984d4e285.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
-<link href="site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../static/img/logods2.webp" rel="icon">
+<script src="../site_libs/quarto-listing/list.min.js"></script>
+<script src="../site_libs/quarto-listing/quarto-listing.js"></script>
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7bd51a60a51e5c23b6c3f6a95c3214be.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-603ef122d6b84e7d2feb32d984d4e285.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -69,24 +73,89 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script>
 
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-talks .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
 
-<meta property="og:title" content="Deri Siswara">
-<meta property="og:description" content="">
-<meta property="og:image" content="https://derisiswara.art/static/img/Picture2.png">
+    const options = {
+      valueNames: ['listing-title','listing-date','listing-language','listing-description','listing-location','listing-feature','listing-links',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] }],
+      
+      searchColumns: ["listing-title","listing-date","listing-language","listing-description","listing-location","listing-feature","listing-links"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-talks'] = new List('listing-talks', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  </script>
+<style>
+
+      .quarto-title-block .quarto-title-banner {
+        background: #fff;
+      }
+</style>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<meta property="og:title" content="Talks that Last – Deri Siswara">
+<meta property="og:description" content="A list of my talks, workshops, or other events with a time, date, and place">
+<meta property="og:image" content="https://derisiswara.art/talks/img/quarto.png">
 <meta property="og:site_name" content="Deri Siswara">
-<meta property="og:image:height" content="724">
-<meta property="og:image:width" content="724">
+<meta property="og:image:alt" content="Introduction to Quarto">
+<meta property="og:image:height" content="1299">
+<meta property="og:image:width" content="2440">
 </head>
 
-<body class="nav-fixed fullcontent quarto-light">
+<body class="nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Deri Siswara</span>
     </a>
   </div>
@@ -97,11 +166,11 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./projects/index.html"> 
+    <a class="nav-link" href="../projects/index.html"> 
 <span class="menu-text">Projects</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./talks/index.html"> 
+    <a class="nav-link active" href="../talks/index.html" aria-current="page"> 
 <span class="menu-text">Talks</span></a>
   </li>  
   <li class="nav-item">
@@ -116,52 +185,204 @@ ul.task-list li input[type="checkbox"] {
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-page">
+      <h1 class="title">Talks that Last</h1>
+                  <div>
+        <div class="description">
+          A list of my talks, workshops, or other events with a time, date, and place
+        </div>
+      </div>
+                </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta column-page">
+
+      
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
+    </div>
 <!-- main -->
-<div class="quarto-about-jolla">
-  <img src="/static/img/Picture2.png" class="about-image
-  round " style="height: 15em; width: 15em;">
- <header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Deri Siswara</h1>
+<main class="content quarto-banner-title-block column-page" id="quarto-document-content">
+
+
+
+
+
+<div id="listing-talks" class="quarto-listing quarto-listing-container-custom">
+<div class="talks">
+    
+    <div class="talk-entry">
+        <div class="feature">
+            
+            <img src="../talks/img/quarto.png" alt="Introduction to Quarto" title="Introduction to Quarto">
+            
+        </div>
+        <div class="body">
+            <p class="talk-title">
+                
+                Introduction to Quarto 
+                
+            </p>
+            <p class="talk-details">
+                <span class="talk-date">May 11, 2025</span> ∙ 
+                <span class="talk-location">Online</span>
+                
+                
+                | <span class="talk-language">Bahasa</span>
+                
+            </p>
+            <p class="talk-description">Have a chance for sharing about the Quarto framework in the BelajaR community. The slides and code exercises are provided below.</p>
+
+            <ul class="talk-links">
+                
+                <li class="talk-link">
+                    
+                    <a href="http://derisiswara.art/belajarR-quarto">
+                    
+                        <i class="fa-solid fa-chalkboard-user"></i> Slides
+                    </a>
+                </li>
+                
+            </ul>
+        </div>
+    </div>
+    
+    <div class="talk-entry">
+        <div class="feature">
+            
+            <img src="../talks/img/workshop.png" alt="RStudio Workshop 2025" title="RStudio Workshop 2025">
+            
+        </div>
+        <div class="body">
+            <p class="talk-title">
+                
+                RStudio Workshop 2025 
+                
+            </p>
+            <p class="talk-details">
+                <span class="talk-date">May 6, 2025</span> ∙ 
+                <span class="talk-location">Jambi, Indonesia</span>
+                
+                
+                | <span class="talk-language">Bahasa</span>
+                
+            </p>
+            <p class="talk-description">Peningkatan Research Quality dengan RStudio</p>
+
+            <ul class="talk-links">
+                
+                <li class="talk-link">
+                    
+                    <a href="https://derisiswara.art/2025-rstudio-workshop-jambi">
+                    
+                        <i class="fa-solid fa-chalkboard-user"></i> Materials
+                    </a>
+                </li>
+                
+            </ul>
+        </div>
+    </div>
+    
+    <div class="talk-entry">
+        <div class="feature">
+            
+            <img src="../talks/img/ml.png" alt="Machine Learning" title="Machine Learning">
+            
+        </div>
+        <div class="body">
+            <p class="talk-title">
+                
+                Machine Learning 
+                
+            </p>
+            <p class="talk-details">
+                <span class="talk-date">February 14, 2025</span> ∙ 
+                <span class="talk-location">Perbanas Institute</span>
+                
+                
+                | <span class="talk-language">Bahasa</span>
+                
+            </p>
+            <p class="talk-description">Slides and materials for the Machine Learning course.</p>
+
+            <ul class="talk-links">
+                
+                <li class="talk-link">
+                    
+                    <a href="https://derisiswara.art/">
+                    
+                        <i class="fa-solid fa-chalkboard-user"></i> Slides and Materials
+                    </a>
+                </li>
+                
+            </ul>
+        </div>
+    </div>
+    
+    <div class="talk-entry">
+        <div class="feature">
+            
+            <img src="../talks/img/out.png" alt="Bank Indonesia Data Anomalies Study (Outlier Analysis)" title="Bank Indonesia Data Anomalies Study (Outlier Analysis)">
+            
+        </div>
+        <div class="body">
+            <p class="talk-title">
+                
+                Bank Indonesia Data Anomalies Study (Outlier Analysis) 
+                
+            </p>
+            <p class="talk-details">
+                <span class="talk-date">February 6, 2025</span> ∙ 
+                <span class="talk-location">Bank Indonesia</span>
+                
+                
+                | <span class="talk-language">Bahasa</span>
+                
+            </p>
+            <p class="talk-description">Slides and code exercise for the study of detecting anomalies in Bank Indonesia data using statistical approaches.</p>
+
+            <ul class="talk-links">
+                
+                <li class="talk-link">
+                    
+                    <a href="https://derisiswara.art/">
+                    
+                        <i class="fa-solid fa-chalkboard-user"></i> Slides
+                    </a>
+                </li>
+                
+            </ul>
+        </div>
+    </div>
+    
 </div>
-<div class="quarto-title-meta">
-  </div>
-</header><main class="content" id="quarto-document-content">
-<p>I take gigs as a research/data analyst.<br> Experienced in survey design, creating dashboards, impact assessment, econometric modeling, and teaching.</p>
-<p>I’m open to collaborations, projects, or new opportunities.</p>
-<div style="text-align: right">
-<p><a href="../Projects">Read More →</a></p>
+<div class="listing-no-matching d-none">No matching items</div>
 </div>
 
 
-</main> 
-  <hr class="about-sep">
-   <div class="about-links">
-  <a href="https://github.com/derisiswara" class="about-link" rel="" target="">
-    <i class="bi bi-github"></i>
-     <span class="about-link-text">GitHub</span>
-  </a>
-  <a href="https://www.linkedin.com/in/derisiswara/" class="about-link" rel="" target="">
-    <i class="bi bi-linkedin"></i>
-     <span class="about-link-text">LinkedIn</span>
-  </a>
-  <a href="mailto:derisiswarads@gmail.com" class="about-link" rel="" target="">
-    <i class="bi bi-send"></i>
-     <span class="about-link-text">Email</span>
-  </a>
-  <a href="https://www.goodreads.com/user/show/190226365-deri-siswara" class="about-link" rel="" target="">
-    <i class="bi bi-book"></i>
-     <span class="about-link-text">Goodreads</span>
-  </a>
-</div>
-</div>
- <!-- /main -->
+
+
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
     const isCodeAnnotation = (el) => {
       for (const clz of el.classList) {
         if (clz.startsWith('code-annotation-')) {                     
@@ -559,7 +780,7 @@ ul.task-list li input[type="checkbox"] {
 <p><span class="faux-block"><i class="fa-solid fa-copyright" aria-label="copyright"></i> 2025 Deri Siswara </span></p>
 </div>   
     <div class="nav-footer-center">
-<p><a href="./license.html">License</a></p>
+<p><a href="license.qmd">License</a></p>
 </div>
     <div class="nav-footer-right">
 <p><span class="faux-block">Made with <i class="fa-brands fa-r-project" aria-label="r-project"></i> and <a href="https://quarto.org/">Quarto</a> | Source <a href="https://github.com/derisiswara/derisiswara.github.io"><i class="fa-brands fa-github" aria-label="github"></i> GitHub</a></span></p>

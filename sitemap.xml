@@ -1,55 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://derisiswara.art/teaching.html</loc>
-    <lastmod>2025-07-03T14:03:27.282Z</lastmod>
+    <loc>https://derisiswara.art/projects/index.html</loc>
+    <lastmod>2025-07-05T18:55:27.818Z</lastmod>
   </url>
   <url>
-    <loc>https://derisiswara.art/teaching/quarto.html</loc>
-    <lastmod>2025-07-03T03:52:29.940Z</lastmod>
-  </url>
-  <url>
-    <loc>https://derisiswara.art/teaching/machine_learning.html</loc>
-    <lastmod>2025-07-03T03:52:29.939Z</lastmod>
-  </url>
-  <url>
-    <loc>https://derisiswara.art/projects/book_multivariate.html</loc>
-    <lastmod>2025-07-03T03:52:29.878Z</lastmod>
-  </url>
-  <url>
-    <loc>https://derisiswara.art/projects/2025_05_03_dashboard_omnitest.html</loc>
-    <lastmod>2025-07-03T03:52:29.874Z</lastmod>
+    <loc>https://derisiswara.art/projects/simpleml/index.html</loc>
+    <lastmod>2025-07-05T18:55:27.818Z</lastmod>
   </url>
   <url>
     <loc>https://derisiswara.art/index.html</loc>
-    <lastmod>2025-07-03T04:25:23.849Z</lastmod>
+    <lastmod>2025-07-05T18:55:27.812Z</lastmod>
   </url>
   <url>
-    <loc>https://derisiswara.art/cv/dericv/CHANGELOG.html</loc>
-    <lastmod>2025-07-01T20:04:31.727Z</lastmod>
-  </url>
-  <url>
-    <loc>https://derisiswara.art/cv.html</loc>
-    <lastmod>2025-07-03T03:52:30.095Z</lastmod>
+    <loc>https://derisiswara.art/talks/index.html</loc>
+    <lastmod>2025-07-05T18:55:27.832Z</lastmod>
   </url>
   <url>
     <loc>https://derisiswara.art/license.html</loc>
-    <lastmod>2025-07-03T03:52:29.874Z</lastmod>
+    <lastmod>2025-07-05T18:55:27.812Z</lastmod>
   </url>
   <url>
-    <loc>https://derisiswara.art/projects/book_econ.html</loc>
-    <lastmod>2025-07-03T03:52:29.877Z</lastmod>
+    <loc>https://derisiswara.art/projects/book/index.html</loc>
+    <lastmod>2025-07-05T18:55:27.818Z</lastmod>
   </url>
   <url>
-    <loc>https://derisiswara.art/projects/End_to_end_ML.html</loc>
-    <lastmod>2025-07-03T03:52:29.875Z</lastmod>
-  </url>
-  <url>
-    <loc>https://derisiswara.art/teaching/outliers.html</loc>
-    <lastmod>2025-07-03T03:52:29.940Z</lastmod>
-  </url>
-  <url>
-    <loc>https://derisiswara.art/teaching/workshop.html</loc>
-    <lastmod>2025-07-03T03:52:29.941Z</lastmod>
+    <loc>https://derisiswara.art/projects/bansos/index.html</loc>
+    <lastmod>2025-07-05T18:55:27.812Z</lastmod>
   </url>
 </urlset>
