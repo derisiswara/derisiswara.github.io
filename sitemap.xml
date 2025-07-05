@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://derisiswara.art/talks/index.html</loc>
-    <lastmod>2025-07-05T18:37:10.365Z</lastmod>
-  </url>
-  <url>
     <loc>https://derisiswara.art/projects/index.html</loc>
-    <lastmod>2025-07-05T19:00:52.798Z</lastmod>
-  </url>
-  <url>
-    <loc>https://derisiswara.art/projects/bansos/index.html</loc>
-    <lastmod>2025-07-05T17:52:59.830Z</lastmod>
-  </url>
-  <url>
-    <loc>https://derisiswara.art/index.html</loc>
-    <lastmod>2025-07-05T19:03:36.420Z</lastmod>
-  </url>
-  <url>
-    <loc>https://derisiswara.art/license.html</loc>
-    <lastmod>2025-07-05T04:24:36.805Z</lastmod>
-  </url>
-  <url>
-    <loc>https://derisiswara.art/projects/book/index.html</loc>
-    <lastmod>2025-07-05T19:05:22.881Z</lastmod>
+    <lastmod>2025-07-05T19:18:26.285Z</lastmod>
   </url>
   <url>
     <loc>https://derisiswara.art/projects/simpleml/index.html</loc>
-    <lastmod>2025-07-05T19:00:33.145Z</lastmod>
+    <lastmod>2025-07-05T19:18:26.285Z</lastmod>
+  </url>
+  <url>
+    <loc>https://derisiswara.art/index.html</loc>
+    <lastmod>2025-07-05T19:18:26.280Z</lastmod>
+  </url>
+  <url>
+    <loc>https://derisiswara.art/talks/index.html</loc>
+    <lastmod>2025-07-05T19:18:26.300Z</lastmod>
+  </url>
+  <url>
+    <loc>https://derisiswara.art/license.html</loc>
+    <lastmod>2025-07-05T19:18:26.280Z</lastmod>
+  </url>
+  <url>
+    <loc>https://derisiswara.art/projects/book/index.html</loc>
+    <lastmod>2025-07-05T19:18:26.285Z</lastmod>
+  </url>
+  <url>
+    <loc>https://derisiswara.art/projects/bansos/index.html</loc>
+    <lastmod>2025-07-05T19:18:26.280Z</lastmod>
   </url>
 </urlset>
