@@ -1,0 +1,17 @@
+---
+title: Generating Generalized Impulse Response Functions (GIRFs) Using EViews and R for Measuring the Financial Transmission of Shocks
+subtitle: Research Assistance
+date: today
+authors:
+  - name: Deri Siswara
+    url: {{< var website-url >}}
+categories:
+  - Time Series Analysis
+status: ongoing-projects
+hide-detail: true
+pub-info:
+  links:
+    - name: Documentation
+      url: https://derisiswara.art/vargirf/
+      icon: fa-solid fa-file
+---
