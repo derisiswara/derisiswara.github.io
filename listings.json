@@ -1,14 +1,15 @@
 [
   {
+    "listing": "/talks/index.html",
+    "items": []
+  },
+  {
     "listing": "/projects/index.html",
     "items": [
+      "/projects/apec/index.html",
       "/projects/bansos/index.html",
       "/projects/simpleml/index.html",
       "/projects/book/index.html"
     ]
-  },
-  {
-    "listing": "/talks/index.html",
-    "items": []
   }
 ]
