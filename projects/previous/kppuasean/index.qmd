@@ -13,6 +13,7 @@ pub-info:
   links:
     - name: Report
       url: "report.pdf"
+      local: true
       icon: fa-regular fa-file-pdf
 hide-detail: true
 ---

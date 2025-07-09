@@ -51,4 +51,5 @@
   links:
   - name: Slides
     url: "slides/Catatan Panel Data Baltagi 2021.pdf"
+    local: true
     icon: fa-solid fa-chalkboard-user    
