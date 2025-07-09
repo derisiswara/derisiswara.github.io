@@ -18,6 +18,7 @@ authors:
 categories:
   - R
   - Book
+  - Econometrics
 image: cover.png
 hide-detail: true
 pub-info:

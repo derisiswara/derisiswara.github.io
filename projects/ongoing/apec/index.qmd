@@ -8,8 +8,7 @@ authors:
   - name: Deri Siswara
     url: {{< var website-url >}}
 categories:
-  - Survey
-  - Impact Evaluation
+  - Survey Data Analysis
 pub-info:
   coauthor: Biatna Dulbert Tampubolon
 hide-detail: true

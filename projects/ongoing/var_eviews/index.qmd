@@ -3,7 +3,7 @@ title: Generating Generalized Impulse Response Functions (GIRFs) Using EViews an
 subtitle: Research Assistance
 date: today
 categories:
-  - Time Series
+  - Econometrics
 hide-detail: true
 pub-info:
   links:

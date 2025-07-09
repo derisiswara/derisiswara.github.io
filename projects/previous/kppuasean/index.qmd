@@ -1,5 +1,5 @@
 ---
-title: Indonesia Report on the ASEAN Competition Business Perception Index(ACBPI)
+title: Indonesia Report on the ASEAN Competition Business Perception Index (ACBPI)
 subtitle: I conducted data analysis and visualization for the survey data.
 date: 2024-03-01
 authors:
@@ -7,7 +7,7 @@ authors:
   - name: Deri Siswara
     url: {{< var website-url >}}
 categories:
-  - Survey
+  - Survey Data Analysis
 image: cover.png
 pub-info:
   links:

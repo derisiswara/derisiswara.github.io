@@ -4,8 +4,7 @@ subtitle: Research Assistance
 date: today
 categories:
   - STATA
-  - Instrumental Variable
-  - Microdata Analysis
+  - Econometrics
 hide-detail: true
 pub-info:
   links:

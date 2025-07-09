@@ -8,8 +8,8 @@ authors:
   - name: Deri Siswara
     url: {{< var website-url >}}
 categories:
-  - Time Series
-  - Spillover
+  - Econometrics
+  - Paper
 pub-info:
   links:
     - name: Certificate
