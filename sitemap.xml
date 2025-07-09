@@ -1,43 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://derisiswara.art/projects/var_eviews/index.html</loc>
-    <lastmod>2025-07-07T21:13:08.448Z</lastmod>
+    <loc>https://derisiswara.art/projects/index.html</loc>
+    <lastmod>2025-07-09T16:56:27.558Z</lastmod>
   </url>
   <url>
-    <loc>https://derisiswara.art/projects/apec/index.html</loc>
-    <lastmod>2025-07-07T21:13:08.442Z</lastmod>
+    <loc>https://derisiswara.art/projects/previous/simpleml/index.html</loc>
+    <lastmod>2025-07-09T16:56:27.591Z</lastmod>
   </url>
   <url>
-    <loc>https://derisiswara.art/projects/bansos/index.html</loc>
-    <lastmod>2025-07-07T21:13:08.442Z</lastmod>
+    <loc>https://derisiswara.art/projects/ongoing/var_eviews/index.html</loc>
+    <lastmod>2025-07-09T16:56:27.558Z</lastmod>
   </url>
   <url>
-    <loc>https://derisiswara.art/projects/book/index.html</loc>
-    <lastmod>2025-07-07T21:13:08.447Z</lastmod>
-  </url>
-  <url>
-    <loc>https://derisiswara.art/license.html</loc>
-    <lastmod>2025-07-07T21:13:08.441Z</lastmod>
-  </url>
-  <url>
-    <loc>https://derisiswara.art/talks/index.html</loc>
-    <lastmod>2025-07-07T21:13:08.463Z</lastmod>
+    <loc>https://derisiswara.art/projects/ongoing/apec/index.html</loc>
+    <lastmod>2025-07-09T16:56:27.558Z</lastmod>
   </url>
   <url>
     <loc>https://derisiswara.art/index.html</loc>
-    <lastmod>2025-07-07T21:13:08.441Z</lastmod>
+    <lastmod>2025-07-09T16:56:27.558Z</lastmod>
   </url>
   <url>
-    <loc>https://derisiswara.art/projects/simpleml/index.html</loc>
-    <lastmod>2025-07-07T21:13:08.448Z</lastmod>
+    <loc>https://derisiswara.art/talks/index.html</loc>
+    <lastmod>2025-07-09T16:56:27.604Z</lastmod>
   </url>
   <url>
-    <loc>https://derisiswara.art/projects/index.html</loc>
-    <lastmod>2025-07-07T21:13:08.447Z</lastmod>
+    <loc>https://derisiswara.art/license.html</loc>
+    <lastmod>2025-07-09T16:56:27.558Z</lastmod>
   </url>
   <url>
-    <loc>https://derisiswara.art/projects/climate/index.html</loc>
-    <lastmod>2025-07-07T21:13:08.447Z</lastmod>
+    <loc>https://derisiswara.art/projects/ongoing/bansos/index.html</loc>
+    <lastmod>2025-07-09T16:56:27.558Z</lastmod>
+  </url>
+  <url>
+    <loc>https://derisiswara.art/projects/ongoing/climate/index.html</loc>
+    <lastmod>2025-07-09T16:56:27.558Z</lastmod>
+  </url>
+  <url>
+    <loc>https://derisiswara.art/projects/previous/book/index.html</loc>
+    <lastmod>2025-07-09T16:56:27.564Z</lastmod>
+  </url>
+  <url>
+    <loc>https://derisiswara.art/projects/previous/kppu/index.html</loc>
+    <lastmod>2025-07-09T16:56:27.565Z</lastmod>
   </url>
 </urlset>

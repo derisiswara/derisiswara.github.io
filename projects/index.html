@@ -46,8 +46,6 @@ ul.task-list li input[type="checkbox"] {
 <link href="../site_libs/bootstrap/bootstrap-603ef122d6b84e7d2feb32d984d4e285.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
 <link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
-<link href="../site_libs/quarto-contrib/academicons-1.9.2/all.css" rel="stylesheet">
-<link href="../site_libs/quarto-contrib/academicons-1.9.2/size.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -78,20 +76,49 @@ ul.task-list li input[type="checkbox"] {
 <script>
 
   window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-projects .list');
+    const listingTargetEl = window.document.querySelector('#listing-previous .list');
     if (!listingTargetEl) {
       // No listing discovered, do not attach.
       return; 
     }
 
     const options = {
-      valueNames: ['listing-project','listing-execute','listing-website','listing-format','listing-bibliography','listing-_quarto-vars','listing-language','listing-title','listing-subtitle','listing-date','listing-authors','listing-categories','listing-status','listing-pub-info','listing-hide-detail','listing-path','listing-outputHref','listing-date-modified','listing-author','listing-description','listing-filename','listing-file-modified','listing-reading-time','listing-word-count','listing-image',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-date-modified-sort'] },{ data: ['listing-file-modified-sort'] },{ data: ['listing-reading-time-sort'] },{ data: ['listing-word-count-sort'] }],
+      valueNames: ['listing-project','listing-execute','listing-website','listing-format','listing-bibliography','listing-_quarto-vars','listing-language','listing-title','listing-subtitle','listing-date','listing-authors','listing-categories','listing-image','listing-hide-detail','listing-pub-info','listing-path','listing-outputHref','listing-date-modified','listing-author','listing-description','listing-filename','listing-file-modified','listing-reading-time','listing-word-count',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-date-modified-sort'] },{ data: ['listing-file-modified-sort'] },{ data: ['listing-reading-time-sort'] },{ data: ['listing-word-count-sort'] }],
       
-      searchColumns: ["listing-project","listing-execute","listing-website","listing-format","listing-bibliography","listing-_quarto-vars","listing-language","listing-title","listing-subtitle","listing-date","listing-authors","listing-categories","listing-status","listing-pub-info","listing-hide-detail","listing-path","listing-outputHref","listing-date-modified","listing-author","listing-description","listing-filename","listing-file-modified","listing-reading-time","listing-word-count","listing-image"],
+      searchColumns: ["listing-project","listing-execute","listing-website","listing-format","listing-bibliography","listing-_quarto-vars","listing-language","listing-title","listing-subtitle","listing-date","listing-authors","listing-categories","listing-image","listing-hide-detail","listing-pub-info","listing-path","listing-outputHref","listing-date-modified","listing-author","listing-description","listing-filename","listing-file-modified","listing-reading-time","listing-word-count"],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-projects'] = new List('listing-projects', options);
+    window['quarto-listings']['listing-previous'] = new List('listing-previous', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  
+
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-ongoing .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: ['listing-project','listing-execute','listing-website','listing-format','listing-bibliography','listing-_quarto-vars','listing-language','listing-title','listing-subtitle','listing-date','listing-authors','listing-categories','listing-pub-info','listing-hide-detail','listing-path','listing-outputHref','listing-date-modified','listing-author','listing-description','listing-filename','listing-file-modified','listing-reading-time','listing-word-count',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-date-modified-sort'] },{ data: ['listing-file-modified-sort'] },{ data: ['listing-reading-time-sort'] },{ data: ['listing-word-count-sort'] }],
+      page: 3,
+    pagination: { item: "<li class='page-item'><a class='page page-link' href='#'></a></li>" },
+      searchColumns: ["listing-project","listing-execute","listing-website","listing-format","listing-bibliography","listing-_quarto-vars","listing-language","listing-title","listing-subtitle","listing-date","listing-authors","listing-categories","listing-pub-info","listing-hide-detail","listing-path","listing-outputHref","listing-date-modified","listing-author","listing-description","listing-filename","listing-file-modified","listing-reading-time","listing-word-count"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-ongoing'] = new List('listing-ongoing', options);
 
     if (window['quarto-listing-loaded']) {
       window['quarto-listing-loaded']();
@@ -143,7 +170,7 @@ window.Quarto = {
 
 <meta property="og:title" content="Projects – Deri Siswara">
 <meta property="og:description" content="This section contains my previous and ongoing projects.">
-<meta property="og:image" content="https://derisiswara.art/projects/book/cover.png">
+<meta property="og:image" content="https://derisiswara.art/projects/previous/book/cover.png">
 <meta property="og:site_name" content="Deri Siswara">
 <meta property="og:image:alt" content="Econometrics and Multivariate Methods with R (Code Version)">
 <meta property="og:image:height" content="1216">
@@ -206,334 +233,449 @@ window.Quarto = {
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(6)</span></div><div class="category" data-category="Qm9vaw==">Book <span class="quarto-category-count">(1)</span></div><div class="category" data-category="SW1wYWN0JTIwRXZhbHVhdGlvbg==">Impact Evaluation <span class="quarto-category-count">(2)</span></div><div class="category" data-category="SW5zdHJ1bWVudGFsJTIwVmFyaWFibGU=">Instrumental Variable <span class="quarto-category-count">(1)</span></div><div class="category" data-category="TWFjaGluZSUyMExlYXJuaW5n">Machine Learning <span class="quarto-category-count">(1)</span></div><div class="category" data-category="TWljcm9kYXRhJTIwQW5hbHlzaXM=">Microdata Analysis <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UHl0aG9u">Python <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Ug==">R <span class="quarto-category-count">(2)</span></div><div class="category" data-category="U1RBVEE=">STATA <span class="quarto-category-count">(1)</span></div><div class="category" data-category="U3VydmV5">Survey <span class="quarto-category-count">(2)</span></div><div class="category" data-category="VGltZSUyMFNlcmllcyUyMEFuYWx5c2lz">Time Series Analysis <span class="quarto-category-count">(1)</span></div></div></div>
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Contents</h2>
+   
+  <ul>
+  <li><a href="#previous-projects" id="toc-previous-projects" class="nav-link active" data-scroll-target="#previous-projects">PREVIOUS PROJECTS</a></li>
+  <li><a href="#ongoing-projects" id="toc-ongoing-projects" class="nav-link" data-scroll-target="#ongoing-projects">ONGOING PROJECTS</a></li>
+  </ul>
+</nav>
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(7)</span></div><div class="category" data-category="Qm9vaw==">Book <span class="quarto-category-count">(1)</span></div><div class="category" data-category="SW1wYWN0JTIwRXZhbHVhdGlvbg==">Impact Evaluation <span class="quarto-category-count">(2)</span></div><div class="category" data-category="SW5zdHJ1bWVudGFsJTIwVmFyaWFibGU=">Instrumental Variable <span class="quarto-category-count">(1)</span></div><div class="category" data-category="TWFjaGluZSUyMExlYXJuaW5n">Machine Learning <span class="quarto-category-count">(1)</span></div><div class="category" data-category="TWljcm9kYXRhJTIwQW5hbHlzaXM=">Microdata Analysis <span class="quarto-category-count">(1)</span></div><div class="category" data-category="TkFSREw=">NARDL <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UHl0aG9u">Python <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Ug==">R <span class="quarto-category-count">(2)</span></div><div class="category" data-category="U1RBVEE=">STATA <span class="quarto-category-count">(1)</span></div><div class="category" data-category="U3VydmV5">Survey <span class="quarto-category-count">(2)</span></div><div class="category" data-category="VGltZSUyMFNlcmllcyUyMEFuYWx5c2lz">Time Series Analysis <span class="quarto-category-count">(2)</span></div></div></div>
 <!-- main -->
 <main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
 
 
 
 
-<div id="listing-projects" class="quarto-listing quarto-listing-container-custom">
+<section id="previous-projects" class="level2">
+<h2 class="anchored" data-anchor-id="previous-projects">PREVIOUS PROJECTS</h2>
+<div id="listing-previous" class="quarto-listing quarto-listing-container-custom">
 <div class="list research">
     
-    
-    
-        
-            
-                <h2 class="anchored">PREVIOUS PROJECTS</h2>
-            
-            
-                <div class="research-entry" data-index="0" data-categories="TWFjaGluZSUyMExlYXJuaW5nJTJDUiUyQ1B5dGhvbg==" data-listing-date-sort="1745107200000" data-listing-file-modified-sort="1751922788448" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="1">
-                    <div class="body">
-                        <p class="title listing-title">
-                            
-                                End To End Machine Learning (R, Python, Quarto, Shiny, GitHub, Posit Connect)
-                            
-                        </p>
-                        <p class="subtitle listing-subtitle">
-                            Tutorial on building a machine learning application using R, Python, Quarto, Shiny, GitHub, and Posit Connect
-                        </p>
-                        
-                        
-                            <div class="item-categories listing-categories">
-                                
-                                <div class="item-category listing-category" onclick="window.quartoListingCategory('Machine Learning'); return false;">
-                                    Machine Learning
-                                </div>
-                                
-                                <div class="item-category listing-category" onclick="window.quartoListingCategory('R'); return false;">
-                                    R
-                                </div>
-                                
-                                <div class="item-category listing-category" onclick="window.quartoListingCategory('Python'); return false;">
-                                    Python
-                                </div>
-                                
-                            </div>
-                        
-                        <ul class="research-links">
-                            
-                                
-                                <li class="research-link">
-                                    
-                                    <a href="https://derisiswara.art/simpleml/">
-                                    
-                                        <i class="fa-solid fa-file"></i> Documentation
-                                    </a>
-                                </li>
-                                
-                            
-                        </ul>
-                    </div>
+        <div class="research-entry" data-index="0" data-categories="TWFjaGluZSUyMExlYXJuaW5nJTJDUiUyQ1B5dGhvbg==" data-listing-date-sort="1745107200000" data-listing-file-modified-sort="1752080187591" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="1">
+            <div class="body">
+                <p class="title listing-title">
                     
-                        <div class="thumbnail">
-                            <img src="../projects/simpleml/end_to_end.png" alt="End To End Machine Learning (R, Python, Quarto, Shiny, GitHub, Posit Connect)" title="End To End Machine Learning (R, Python, Quarto, Shiny, GitHub, Posit Connect)">
+                        End To End Machine Learning (R, Python, Quarto, Shiny, GitHub, Posit Connect)
+                    
+                </p>
+                <p class="subtitle listing-subtitle">
+                    Tutorial on building a machine learning application using R, Python, Quarto, Shiny, GitHub, and Posit Connect
+                </p>
+                
+                
+                    <div class="item-categories listing-categories">
+                        
+                        <div class="item-category listing-category" onclick="window.quartoListingCategory('Machine Learning'); return false;">
+                            Machine Learning
                         </div>
-                    
-                </div>
-            
-                <div class="research-entry" data-index="1" data-categories="UiUyQ0Jvb2s=" data-listing-date-sort="1704067200000" data-listing-file-modified-sort="1751922788447" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="1">
-                    <div class="body">
-                        <p class="title listing-title">
-                            
-                                Econometrics and Multivariate Methods with R (Code Version)
-                            
-                        </p>
-                        <p class="subtitle listing-subtitle">
-                            Book-2024
-                        </p>
                         
-                        
-                            <div class="item-categories listing-categories">
-                                
-                                <div class="item-category listing-category" onclick="window.quartoListingCategory('R'); return false;">
-                                    R
-                                </div>
-                                
-                                <div class="item-category listing-category" onclick="window.quartoListingCategory('Book'); return false;">
-                                    Book
-                                </div>
-                                
-                            </div>
-                        
-                        <ul class="research-links">
-                            
-                                
-                                <li class="research-link">
-                                    
-                                    <a href="https://derisiswara.art/econometricsbook/">
-                                    
-                                        <i class="fa-regular fa-book"></i> Econometrics
-                                    </a>
-                                </li>
-                                
-                                <li class="research-link">
-                                    
-                                    <a href="https://derisiswara.art/multivariatebook/">
-                                    
-                                        <i class="fa-regular fa-book"></i> Multivariate
-                                    </a>
-                                </li>
-                                
-                            
-                        </ul>
-                    </div>
-                    
-                        <div class="thumbnail">
-                            <img src="../projects/book/cover.png" alt="Econometrics and Multivariate Methods with R (Code Version)" title="Econometrics and Multivariate Methods with R (Code Version)">
+                        <div class="item-category listing-category" onclick="window.quartoListingCategory('R'); return false;">
+                            R
                         </div>
+                        
+                        <div class="item-category listing-category" onclick="window.quartoListingCategory('Python'); return false;">
+                            Python
+                        </div>
+                        
+                    </div>
+                
+                <ul class="research-links">
                     
+                        
+                        <li class="research-link">
+                            
+                            <a href="https://derisiswara.art/simpleml/">
+                            
+                                <i class="fa-solid fa-file"></i> Documentation
+                            </a>
+                        </li>
+                        
+                    
+                </ul>
+            </div>
+            
+                <div class="thumbnail">
+                    <img src="../projects/previous/simpleml/end_to_end.png" alt="End To End Machine Learning (R, Python, Quarto, Shiny, GitHub, Posit Connect)" title="End To End Machine Learning (R, Python, Quarto, Shiny, GitHub, Posit Connect)">
                 </div>
             
-                    
+        </div>
     
-        
-            
-                <h2 class="anchored">ONGOING PROJECTS</h2>
-            
-            
-                <div class="research-entry" data-index="2" data-categories="U3VydmV5JTJDSW1wYWN0JTIwRXZhbHVhdGlvbg==" data-listing-date-sort="1751846400000" data-listing-file-modified-sort="1751922788442" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="1">
-                    <div class="body">
-                        <p class="title listing-title">
-                            
-                                Strengthening Standard Knowledge on Women Culinary Food Safety and Its Food Waste Management in Supporting the Domestic Tourism (SCSC_102_2024T)
-                            
-                        </p>
-                        <p class="subtitle listing-subtitle">
-                            APEC
-                        </p>
-                        
-                            
-                            
-                            <p class="research-coauthors">
-                                with
-                                
-                                    
-                                        Biatna Dulbert Tampubolon
-                                    
-                                    
-                                
-                            </p>
-                        
-                        
-                            <div class="item-categories listing-categories">
-                                
-                                <div class="item-category listing-category" onclick="window.quartoListingCategory('Survey'); return false;">
-                                    Survey
-                                </div>
-                                
-                                <div class="item-category listing-category" onclick="window.quartoListingCategory('Impact Evaluation'); return false;">
-                                    Impact Evaluation
-                                </div>
-                                
-                            </div>
-                        
-                        <ul class="research-links">
-                            
-                        </ul>
-                    </div>
+        <div class="research-entry" data-index="1" data-categories="UiUyQ0Jvb2s=" data-listing-date-sort="1704067200000" data-listing-file-modified-sort="1752080187564" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="1">
+            <div class="body">
+                <p class="title listing-title">
                     
+                        Econometrics and Multivariate Methods with R (Code Version)
+                    
+                </p>
+                <p class="subtitle listing-subtitle">
+                    Book-2024
+                </p>
+                
+                    
+                    
+                    <p class="research-coauthors">
+                        with
+                        
+                            
+                                Muhammad Firdaus
+                            
+                            
+                                
+                                    , 
+                                
+                            
+                        
+                            
+                                Hermanto Siregar
+                            
+                            
+                                
+                                    , 
+                                
+                            
+                        
+                            
+                                Tony Irawan
+                            
+                            
+                                
+                                    , 
+                                
+                            
+                        
+                            
+                                Fahmi Salam Ahmad
+                            
+                            
+                                
+                                    , 
+                                
+                            
+                        
+                            
+                                Farit M Afendi
+                            
+                            
+                                
+                                    , and 
+                                
+                            
+                        
+                            
+                                Nafisa Berliana Indah Pratiwi
+                            
+                            
+                                
+                            
+                        
+                    </p>
+                
+                
+                    <div class="item-categories listing-categories">
+                        
+                        <div class="item-category listing-category" onclick="window.quartoListingCategory('R'); return false;">
+                            R
+                        </div>
+                        
+                        <div class="item-category listing-category" onclick="window.quartoListingCategory('Book'); return false;">
+                            Book
+                        </div>
+                        
+                    </div>
+                
+                <ul class="research-links">
+                    
+                        
+                        <li class="research-link">
+                            
+                            <a href="https://derisiswara.art/econometricsbook/">
+                            
+                                <i class="fa-regular fa-book"></i> Econometrics
+                            </a>
+                        </li>
+                        
+                        <li class="research-link">
+                            
+                            <a href="https://derisiswara.art/multivariatebook/">
+                            
+                                <i class="fa-regular fa-book"></i> Multivariate
+                            </a>
+                        </li>
+                        
+                    
+                </ul>
+            </div>
+            
+                <div class="thumbnail">
+                    <img src="../projects/previous/book/cover.png" alt="Econometrics and Multivariate Methods with R (Code Version)" title="Econometrics and Multivariate Methods with R (Code Version)">
                 </div>
             
-                <div class="research-entry" data-index="3" data-categories="U3VydmV5JTJDSW1wYWN0JTIwRXZhbHVhdGlvbg==" data-listing-date-sort="1751846400000" data-listing-file-modified-sort="1751922788442" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="1">
-                    <div class="body">
-                        <p class="title listing-title">
-                            
-                                Monitoring Bantuan Sosial Non Tunai (BSNT) Tahun 2025
-                            
-                        </p>
-                        <p class="subtitle listing-subtitle">
-                            IPB University dan Bank Indonesia
-                        </p>
-                        
-                            
-                            
-                            <p class="research-coauthors">
-                                with
-                                
-                                    
-                                        Tony Irawan
-                                    
-                                    
-                                
-                            </p>
-                        
-                        
-                            <div class="item-categories listing-categories">
-                                
-                                <div class="item-category listing-category" onclick="window.quartoListingCategory('Survey'); return false;">
-                                    Survey
-                                </div>
-                                
-                                <div class="item-category listing-category" onclick="window.quartoListingCategory('Impact Evaluation'); return false;">
-                                    Impact Evaluation
-                                </div>
-                                
-                            </div>
-                        
-                        <ul class="research-links">
-                            
-                                
-                                <li class="research-link">
-                                    
-                                    <a href="https://derisiswara.art/juknissurveybansos/">
-                                    
-                                        <i class="fa-solid fa-globe"></i> Survey Website
-                                    </a>
-                                </li>
-                                
-                            
-                        </ul>
-                    </div>
+        </div>
+    
+        <div class="research-entry" data-index="2" data-categories="VGltZSUyMFNlcmllcyUyMEFuYWx5c2lzJTJDTkFSREw=" data-listing-date-sort="1677628800000" data-listing-file-modified-sort="1752080187565" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="1">
+            <div class="body">
+                <p class="title listing-title">
                     
+                        Food Price Analysis | Price Transmission Mechanism of 10 Selected Commodities
+                    
+                </p>
+                <p class="subtitle listing-subtitle">
+                    This study uses monthly price data of 10 commodities from PIHPS, applying price transmission analysis using exploratory methods and NARDL.
+                </p>
+                
+                    
+                    
+                    <p class="research-coauthors">
+                        with
+                        
+                            
+                                Commission for the Supervision of Business Competition (Komisi Pengawas Persaingan Usaha) (KPPU), Indonesia.
+                            
+                            
+                        
+                    </p>
+                
+                
+                    <div class="item-categories listing-categories">
+                        
+                        <div class="item-category listing-category" onclick="window.quartoListingCategory('Time Series Analysis'); return false;">
+                            Time Series Analysis
+                        </div>
+                        
+                        <div class="item-category listing-category" onclick="window.quartoListingCategory('NARDL'); return false;">
+                            NARDL
+                        </div>
+                        
+                    </div>
+                
+                <ul class="research-links">
+                    
+                        
+                        <li class="research-link">
+                            
+                            <a href="https://derisiswara.art/kppu/report.pdf">
+                            
+                                <i class="fa-solid fa-globe"></i> Report (Bahasa)
+                            </a>
+                        </li>
+                        
+                        <li class="research-link">
+                            
+                            <a href="https://derisiswara.art/kppu/slides.pdf">
+                            
+                                <i class="fa-solid fa-chalkboard-user"></i> Slides (Bahasa)
+                            </a>
+                        </li>
+                        
+                    
+                </ul>
+            </div>
+            
+                <div class="thumbnail">
+                    <img src="../projects/previous/kppu/cover.png" alt="Food Price Analysis | Price Transmission Mechanism of 10 Selected Commodities" title="Food Price Analysis | Price Transmission Mechanism of 10 Selected Commodities">
                 </div>
             
-                <div class="research-entry" data-index="4" data-categories="U1RBVEElMkNJbnN0cnVtZW50YWwlMjBWYXJpYWJsZSUyQ01pY3JvZGF0YSUyMEFuYWx5c2lz" data-listing-date-sort="1751846400000" data-listing-file-modified-sort="1751922788447" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="1">
-                    <div class="body">
-                        <p class="title listing-title">
-                            
-                                Microdata Analysis Assessment of the Impact of Climate Change on Farmer Household Income and Labor Mobility in Indonesia
-                            
-                        </p>
-                        <p class="subtitle listing-subtitle">
-                            Research Assistance
-                        </p>
-                        
-                            
-                            
-                            <p class="research-coauthors">
-                                with
-                                
-                            </p>
-                        
-                        
-                            <div class="item-categories listing-categories">
-                                
-                                <div class="item-category listing-category" onclick="window.quartoListingCategory('STATA'); return false;">
-                                    STATA
-                                </div>
-                                
-                                <div class="item-category listing-category" onclick="window.quartoListingCategory('Instrumental Variable'); return false;">
-                                    Instrumental Variable
-                                </div>
-                                
-                                <div class="item-category listing-category" onclick="window.quartoListingCategory('Microdata Analysis'); return false;">
-                                    Microdata Analysis
-                                </div>
-                                
-                            </div>
-                        
-                        <ul class="research-links">
-                            
-                                
-                                <li class="research-link">
-                                    
-                                    <a href="https://derisiswara.art/climate/">
-                                    
-                                        <i class="fa-solid fa-file"></i> Documentation
-                                    </a>
-                                </li>
-                                
-                            
-                        </ul>
-                    </div>
-                    
-                </div>
-            
-                <div class="research-entry" data-index="5" data-categories="VGltZSUyMFNlcmllcyUyMEFuYWx5c2lz" data-listing-date-sort="1751846400000" data-listing-file-modified-sort="1751922788448" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="1">
-                    <div class="body">
-                        <p class="title listing-title">
-                            
-                                Generating Generalized Impulse Response Functions (GIRFs) Using EViews and R for Measuring the Financial Transmission of Shocks
-                            
-                        </p>
-                        <p class="subtitle listing-subtitle">
-                            Research Assistance
-                        </p>
-                        
-                            
-                            
-                            <p class="research-coauthors">
-                                with
-                                
-                            </p>
-                        
-                        
-                            <div class="item-categories listing-categories">
-                                
-                                <div class="item-category listing-category" onclick="window.quartoListingCategory('Time Series Analysis'); return false;">
-                                    Time Series Analysis
-                                </div>
-                                
-                            </div>
-                        
-                        <ul class="research-links">
-                            
-                                
-                                <li class="research-link">
-                                    
-                                    <a href="https://derisiswara.art/vargirf/">
-                                    
-                                        <i class="fa-solid fa-file"></i> Documentation
-                                    </a>
-                                </li>
-                                
-                            
-                        </ul>
-                    </div>
-                    
-                </div>
-            
-                    
+        </div>
     
 </div>
 <div class="listing-no-matching d-none">No matching items</div>
 </div>
-<p><i class="ai  ai-blank-just-to-add-ai-dependency-to-this-page"></i></p>
+</section>
+<section id="ongoing-projects" class="level2">
+<h2 class="anchored" data-anchor-id="ongoing-projects">ONGOING PROJECTS</h2>
+<div id="listing-ongoing" class="quarto-listing quarto-listing-container-custom">
+<div class="list research">
+    
+        <div class="research-entry" data-index="0" data-categories="U3VydmV5JTJDSW1wYWN0JTIwRXZhbHVhdGlvbg==" data-listing-date-sort="1752019200000" data-listing-file-modified-sort="1752080187558" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="1">
+            <div class="body">
+                <p class="title listing-title">
+                    
+                        Strengthening Standard Knowledge on Women Culinary Food Safety and Its Food Waste Management in Supporting the Domestic Tourism (SCSC_102_2024T)
+                    
+                </p>
+                <p class="subtitle listing-subtitle">
+                    APEC
+                </p>
+                
+                    
+                    
+                    <p class="research-coauthors">
+                        with
+                        
+                            
+                                Biatna Dulbert Tampubolon
+                            
+                            
+                        
+                    </p>
+                
+                
+                    <div class="item-categories listing-categories">
+                        
+                        <div class="item-category listing-category" onclick="window.quartoListingCategory('Survey'); return false;">
+                            Survey
+                        </div>
+                        
+                        <div class="item-category listing-category" onclick="window.quartoListingCategory('Impact Evaluation'); return false;">
+                            Impact Evaluation
+                        </div>
+                        
+                    </div>
+                
+                <ul class="research-links">
+                    
+                </ul>
+            </div>
+            
+        </div>
+    
+        <div class="research-entry" data-index="1" data-categories="U3VydmV5JTJDSW1wYWN0JTIwRXZhbHVhdGlvbg==" data-listing-date-sort="1752019200000" data-listing-file-modified-sort="1752080187558" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="1">
+            <div class="body">
+                <p class="title listing-title">
+                    
+                        Monitoring Bantuan Sosial Non Tunai (BSNT) Tahun 2025
+                    
+                </p>
+                <p class="subtitle listing-subtitle">
+                    IPB University dan Bank Indonesia
+                </p>
+                
+                    
+                    
+                    <p class="research-coauthors">
+                        with
+                        
+                            
+                                Tony Irawan
+                            
+                            
+                        
+                    </p>
+                
+                
+                    <div class="item-categories listing-categories">
+                        
+                        <div class="item-category listing-category" onclick="window.quartoListingCategory('Survey'); return false;">
+                            Survey
+                        </div>
+                        
+                        <div class="item-category listing-category" onclick="window.quartoListingCategory('Impact Evaluation'); return false;">
+                            Impact Evaluation
+                        </div>
+                        
+                    </div>
+                
+                <ul class="research-links">
+                    
+                        
+                        <li class="research-link">
+                            
+                            <a href="https://derisiswara.art/juknissurveybansos/">
+                            
+                                <i class="fa-solid fa-globe"></i> Survey Website
+                            </a>
+                        </li>
+                        
+                    
+                </ul>
+            </div>
+            
+        </div>
+    
+        <div class="research-entry" data-index="2" data-categories="U1RBVEElMkNJbnN0cnVtZW50YWwlMjBWYXJpYWJsZSUyQ01pY3JvZGF0YSUyMEFuYWx5c2lz" data-listing-date-sort="1752019200000" data-listing-file-modified-sort="1752080187558" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="1">
+            <div class="body">
+                <p class="title listing-title">
+                    
+                        Microdata Analysis Assessment of the Impact of Climate Change on Farmer Household Income and Labor Mobility in Indonesia
+                    
+                </p>
+                <p class="subtitle listing-subtitle">
+                    Research Assistance
+                </p>
+                
+                
+                    <div class="item-categories listing-categories">
+                        
+                        <div class="item-category listing-category" onclick="window.quartoListingCategory('STATA'); return false;">
+                            STATA
+                        </div>
+                        
+                        <div class="item-category listing-category" onclick="window.quartoListingCategory('Instrumental Variable'); return false;">
+                            Instrumental Variable
+                        </div>
+                        
+                        <div class="item-category listing-category" onclick="window.quartoListingCategory('Microdata Analysis'); return false;">
+                            Microdata Analysis
+                        </div>
+                        
+                    </div>
+                
+                <ul class="research-links">
+                    
+                        
+                        <li class="research-link">
+                            
+                            <a href="https://derisiswara.art/climate/">
+                            
+                                <i class="fa-solid fa-file"></i> Documentation
+                            </a>
+                        </li>
+                        
+                    
+                </ul>
+            </div>
+            
+        </div>
+    
+        <div class="research-entry" data-index="3" data-categories="VGltZSUyMFNlcmllcyUyMEFuYWx5c2lz" data-listing-date-sort="1752019200000" data-listing-file-modified-sort="1752080187558" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="1">
+            <div class="body">
+                <p class="title listing-title">
+                    
+                        Generating Generalized Impulse Response Functions (GIRFs) Using EViews and R for Measuring the Financial Transmission of Shocks
+                    
+                </p>
+                <p class="subtitle listing-subtitle">
+                    Research Assistance
+                </p>
+                
+                
+                    <div class="item-categories listing-categories">
+                        
+                        <div class="item-category listing-category" onclick="window.quartoListingCategory('Time Series Analysis'); return false;">
+                            Time Series Analysis
+                        </div>
+                        
+                    </div>
+                
+                <ul class="research-links">
+                    
+                        
+                        <li class="research-link">
+                            
+                            <a href="https://derisiswara.art/vargirf/">
+                            
+                                <i class="fa-solid fa-file"></i> Documentation
+                            </a>
+                        </li>
+                        
+                    
+                </ul>
+            </div>
+            
+        </div>
+    
+</div>
+<div class="listing-no-matching d-none">No matching items</div>
+<nav id="ongoing-pagination" class="listing-pagination" aria-label="Page Navigation">
+  <ul class="pagination"></ul>
+</nav>
+</div>
 
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
