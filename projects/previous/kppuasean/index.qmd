@@ -12,7 +12,7 @@ image: cover.png
 pub-info:
   links:
     - name: Report
-      url: https://derisiswara.art/projects/previous/kppuasean/report.pdf
+      url: "report.pdf"
       icon: fa-regular fa-file-pdf
 hide-detail: true
 ---
