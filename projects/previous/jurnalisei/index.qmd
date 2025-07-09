@@ -1,0 +1,22 @@
+---
+title: Interkoneksi Pertumbuhan Ekonomi Antar Provinsi di Indonesia
+subtitle: Paper Competition by Ikatan Sarjana Ekonomi Indonesia (ISEI)
+date: 2023-02-01
+authors:
+  - name: Nafisa Berliana Indah Pratiwi
+  - name: Daffa Aqomal Haq 
+  - name: Deri Siswara
+    url: {{< var website-url >}}
+categories:
+  - Time Series
+  - Spillover
+pub-info:
+  links:
+    - name: Certificate
+      url: https://derisiswara.art/projects/previous/jurnalisei/sertif.pdf
+      icon: fa-regular fa-file-pdf
+    - name: Slides (Bahasa)
+      url: https://derisiswara.art/projects/previous/jurnalisei/slides.pdf
+      icon: fa-solid fa-chalkboard-user      
+hide-detail: true
+---

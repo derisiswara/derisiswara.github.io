@@ -13,10 +13,10 @@ image: cover.png
 pub-info:
   links:
     - name: Report (Bahasa)
-      url: report.pdf
+      url: https://derisiswara.art/projects/previous/kppu/report.pdf
       icon: fa-regular fa-file-pdf
     - name: Slides (Bahasa)
-      url: slides.pdf
+      url: https://derisiswara.art/projects/previous/kppu/slides.pdf
       icon: fa-solid fa-chalkboard-user      
 hide-detail: true
 ---
