@@ -6,6 +6,7 @@ listing:
     contents: talks.yml
     sort: "date desc"
     template: ../static/html/talks/listing.ejs
+    page-size: 6
 title-block-banner: "#fff"
 page-layout: full
 date-format: "MMMM D, YYYY"

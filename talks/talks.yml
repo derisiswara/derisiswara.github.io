@@ -41,3 +41,14 @@
   - name: Slides
     url: http://derisiswara.art/outliers_analysis/
     icon: fa-solid fa-chalkboard-user
+
+- title: "Econometric Analysis of Panel Data"
+  date: 2023-02-06
+  language: Bahasa
+  description: Teaching as an assistant for Muhammad Firdasu PhD in the Econometric Course in Doctoral Business Management at IPB University.
+  location: IPB University
+  feature: /talks/img/baltagi.png 
+  links:
+  - name: Slides
+    url: "slides/Catatan Panel Data Baltagi 2021.pdf"
+    icon: fa-solid fa-chalkboard-user    
