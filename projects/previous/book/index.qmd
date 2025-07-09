@@ -1,0 +1,32 @@
+---
+title: Econometrics and Multivariate Methods with R (Code Version)
+subtitle: Book-2024
+date: 2024-01-01
+authors:
+- name: Muhammad Firdaus
+  affiliation: IPB University
+- name: Hermanto Siregar
+  affiliation: IPB University
+- name: Tony Irawan
+  affiliation: IPB University
+- name: Fahmi Salam Ahmad
+  affiliation: IPB University
+- name: Farit M Afendi
+  affiliation: IPB University  
+- name: Nafisa Berliana Indah Pratiwi
+  affiliation: IPB University
+categories:
+  - R
+  - Book
+image: cover.png
+hide-detail: true
+pub-info:
+  links:
+    - name: Econometrics
+      url: https://derisiswara.art/econometricsbook/
+      icon: fa-regular fa-book
+    - name: Multivariate
+      url: https://derisiswara.art/multivariatebook/
+      icon: fa-regular fa-book
+---
+

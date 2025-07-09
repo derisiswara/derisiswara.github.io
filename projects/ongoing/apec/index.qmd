@@ -1,0 +1,16 @@
+---
+title: Strengthening Standard Knowledge on Women Culinary Food Safety and Its Food Waste Management in Supporting the Domestic Tourism (SCSC_102_2024T)
+subtitle: APEC
+date: today
+authors:
+  - name: Biatna Dulbert Tampubolon
+    affiliation: Badan Riset dan Inovasi Nasional 
+  - name: Deri Siswara
+    url: {{< var website-url >}}
+categories:
+  - Survey
+  - Impact Evaluation
+pub-info:
+  coauthor: Biatna Dulbert Tampubolon
+hide-detail: true
+---

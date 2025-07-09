@@ -1,0 +1,22 @@
+---
+title: Food Price Analysis | Price Transmission Mechanism of 10 Selected Commodities
+subtitle: This study uses monthly price data of 10 commodities from PIHPS, applying price transmission analysis using exploratory methods and NARDL.
+date: 2023-03-01
+authors:
+  - name: Commission for the Supervision of Business Competition (Komisi Pengawas Persaingan Usaha) (KPPU), Indonesia.
+  - name: Deri Siswara
+    url: {{< var website-url >}}
+categories:
+  - Time Series Analysis
+  - NARDL
+image: cover.png
+pub-info:
+  links:
+    - name: Report (Bahasa)
+      url: https://derisiswara.art/kppu/report.pdf
+      icon: fa-solid fa-globe
+    - name: Slides (Bahasa)
+      url: https://derisiswara.art/kppu/slides.pdf
+      icon: fa-solid fa-chalkboard-user      
+hide-detail: true
+---

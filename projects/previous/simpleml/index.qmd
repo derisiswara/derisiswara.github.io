@@ -1,0 +1,19 @@
+---
+title: End To End Machine Learning (R, Python, Quarto, Shiny, GitHub, Posit Connect)
+subtitle: Tutorial on building a machine learning application using R, Python, Quarto, Shiny, GitHub, and Posit Connect
+date: 2025-04-20
+author:
+  - name: Deri Siswara
+    url: {{< var website-url >}}
+categories:
+  - Machine Learning
+  - R
+  - Python
+image: end_to_end.png
+hide-detail: true
+pub-info:
+  links:
+    - name: Documentation
+      url: https://derisiswara.art/simpleml/
+      icon: fa-solid fa-file
+---
