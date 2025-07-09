@@ -14,9 +14,11 @@ pub-info:
   links:
     - name: Certificate
       url: "sertif.pdf"
+      local: true
       icon: fa-regular fa-file-pdf
     - name: Slides (Bahasa)
       url: "slides.pdf"
+      local: true
       icon: fa-solid fa-chalkboard-user      
 hide-detail: true
 ---
