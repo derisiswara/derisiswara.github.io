@@ -15,5 +15,5 @@ pub-info:
   links:
     - name: Documentation
       url: https://derisiswara.art/simpleml/
-      icon: fa-solid fa-file
+      icon: fa-solid fa-globe
 ---

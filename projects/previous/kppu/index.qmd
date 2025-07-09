@@ -7,16 +7,16 @@ authors:
   - name: Deri Siswara
     url: {{< var website-url >}}
 categories:
-  - Time Series Analysis
+  - Time Series
   - NARDL
 image: cover.png
 pub-info:
   links:
     - name: Report (Bahasa)
-      url: https://derisiswara.art/kppu/report.pdf
-      icon: fa-solid fa-globe
+      url: report.pdf
+      icon: fa-regular fa-file-pdf
     - name: Slides (Bahasa)
-      url: https://derisiswara.art/kppu/slides.pdf
+      url: slides.pdf
       icon: fa-solid fa-chalkboard-user      
 hide-detail: true
 ---

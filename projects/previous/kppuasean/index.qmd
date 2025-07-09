@@ -1,0 +1,18 @@
+---
+title: Indonesia Report on the ASEAN Competition Business Perception Index(ACBPI)
+subtitle: I conducted data analysis and visualization for the survey data.
+date: 2024-03-01
+authors:
+  - name: Commission for the Supervision of Business Competition (Komisi Pengawas Persaingan Usaha) (KPPU), Indonesia.
+  - name: Deri Siswara
+    url: {{< var website-url >}}
+categories:
+  - Survey
+image: cover.png
+pub-info:
+  links:
+    - name: Report
+      url: report.pdf
+      icon: fa-regular fa-file-pdf
+hide-detail: true
+---
