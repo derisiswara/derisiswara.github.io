@@ -11,5 +11,9 @@ categories:
   - Survey Data Analysis
 pub-info:
   coauthor: Biatna Dulbert Tampubolon
+  links:
+    - name: Materials
+      url: https://derisiswara.art/apec-2025/
+      icon: fa-solid fa-globe
 hide-detail: true
 ---
