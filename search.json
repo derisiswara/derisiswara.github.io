@@ -35,25 +35,46 @@
     "text": "I take gigs as a research/data analyst. Experienced in survey design, creating dashboards, impact assessment, econometric modeling, and teaching.\nI’m open to collaborations, projects, or new opportunities.\n\nRead More →"
   },
   {
+    "objectID": "blog/2025_07_18_quartomonothemer/index.html",
+    "href": "blog/2025_07_18_quartomonothemer/index.html",
+    "title": "Mengenal paket quartomonothemer untuk ggplot2 dan gt",
+    "section": "",
+    "text": "Dalam membuat presentasi atau laporan interaktif dengan Quarto, konsistensi tampilan sangat penting agar konten terlihat profesional. Paket quartomonothemer hadir untuk menyediakan tema monotone (satu warna dasar dengan aksen) yang mudah digunakan untuk. Paket ini dibuat oleh Kazuya Nagimoto. Paket ini mendukung berbagai jenis output Quarto, seperti:\n\nQuarto Revealjs (slide)\nggplot2 (grafik)\ngt (tabel)\n\nDi artikel ini, kita akan melihat cara instalasi, konfigurasi, dan contoh penggunaan dengan data fiktif provinsi di Indonesia."
+  },
+  {
+    "objectID": "blog/2025_07_18_quartomonothemer/index.html#pendahuluan",
+    "href": "blog/2025_07_18_quartomonothemer/index.html#pendahuluan",
+    "title": "Mengenal paket quartomonothemer untuk ggplot2 dan gt",
+    "section": "",
+    "text": "Dalam membuat presentasi atau laporan interaktif dengan Quarto, konsistensi tampilan sangat penting agar konten terlihat profesional. Paket quartomonothemer hadir untuk menyediakan tema monotone (satu warna dasar dengan aksen) yang mudah digunakan untuk. Paket ini dibuat oleh Kazuya Nagimoto. Paket ini mendukung berbagai jenis output Quarto, seperti:\n\nQuarto Revealjs (slide)\nggplot2 (grafik)\ngt (tabel)\n\nDi artikel ini, kita akan melihat cara instalasi, konfigurasi, dan contoh penggunaan dengan data fiktif provinsi di Indonesia."
+  },
+  {
+    "objectID": "blog/2025_07_18_quartomonothemer/index.html#instalasi",
+    "href": "blog/2025_07_18_quartomonothemer/index.html#instalasi",
+    "title": "Mengenal paket quartomonothemer untuk ggplot2 dan gt",
+    "section": "Instalasi",
+    "text": "Instalasi\nPaket quartomonothemer tersedia di R-universe:``\ninstall.packages(\n  \"quartomonothemer\",\n  repos = \"https://kazuyanagimoto.r-universe.dev\"\n)\nPastikan juga Anda menginstal paket pendukung:\ninstall.packages(c(\"showtext\", \"ggplot2\", \"gt\", \"dplyr\", \"forcats\"))\n\n# Setup\n\nlibrary(dplyr)\nlibrary(ggplot2)\nlibrary(forcats)\nlibrary(gt)\nlibrary(gghighlight)\nlibrary(quartomonothemer)\nlibrary(showtext)\n\nfont_title &lt;- \"Josefin Sans\"\nfont_text &lt;- \"Montserrat\"\nfont_sans &lt;- \"Noto Sans\" \ncolor_base &lt;- \"#009F8C\"\ncolor_base_light &lt;- \"#95DFD6\"\ncolor_accent &lt;- \"#B75C9D\"\ncolor_accent_light &lt;- \"#DBA6CC\"\ngray &lt;- \"#bebebe\"\ndarkgray &lt;- \"#6d6d6d\"\n\nshowtext_auto()\n\nstyle_mono_quarto(\n  font_title = font_title,\n  font_text = font_text,\n  font_sans = font_sans,\n  color_base = color_base,\n  color_accent = color_accent,\n  color_link = color_accent,\n  color_code = color_base,\n  size_base = 30\n)"
+  },
+  {
+    "objectID": "blog/2025_07_18_quartomonothemer/index.html#visualisasi-1",
+    "href": "blog/2025_07_18_quartomonothemer/index.html#visualisasi-1",
+    "title": "Mengenal paket quartomonothemer untuk ggplot2 dan gt",
+    "section": "Visualisasi 1",
+    "text": "Visualisasi 1\n\n# Data fiktif provinsi Indonesia\nprovinsi_data &lt;- data.frame(\n  provinsi = c(\"DKI Jakarta\", \"Jawa Barat\", \"Jawa Tengah\", \n               \"Jawa Timur\", \"Sumatera Utara\", \n               \"Sulawesi Selatan\", \"Kalimantan Timur\", \"Bali\", \n               \"Riau\", \"Sumatera Selatan\"),\n  populasi_juta = c(10.6, 48.3, 34.3, 39.7, 14.8, 8.9, 3.8, 4.3, 6.4, 8.5),\n  pdb_per_kapita = c(275, 85, 65, 70, 95, 55, 180, 120, 150, 80),\n  pulau = c(\"Jawa\", \"Jawa\", \"Jawa\", \"Jawa\", \"Sumatera\", \n            \"Sulawesi\", \"Kalimantan\", \"Bali\", \"Sumatera\", \"Sumatera\"),\n  kategori_ekonomi = c(\"Tinggi\", \"Sedang\", \"Rendah\", \"Sedang\", \"Sedang\",\n                       \"Rendah\", \"Tinggi\", \"Tinggi\", \"Tinggi\", \"Sedang\"),\n  laju_pertumbuhan = c(5.2, 5.8, 5.1, 5.4, 4.9, 6.2, 3.8, 6.8, 4.2, 5.5)\n)\n\nVisualisasi pertama akan menggunakan paket ggplot2 untuk membuat grafik provinsi dengan PDRB per kapita.\n\noptions(repr.plot.width = 10, repr.plot.height = 8)\nprovinsi_data |&gt;\n  arrange(pdb_per_kapita) |&gt;\n  slice_tail(n = 5) |&gt;\n  mutate(lbl = paste0(\"Rp \", pdb_per_kapita)) |&gt;\n  ggplot(aes(pdb_per_kapita, fct_reorder(provinsi, pdb_per_kapita))) +\n  geom_col(fill = color_base) +\n  geom_text(aes(label = lbl),\n            hjust = 0, nudge_x = 8,\n            size = 5, fontface = \"bold\", family = font_text) +\n  scale_x_continuous(expand = expansion(mult = c(0, .2))) +\n  labs(x = NULL, y = NULL, \n       title = \"Top 5 Provinsi dengan PDB Per Kapita Tertinggi\",\n       subtitle = \"Data Fiktif Tahun 2024 (dalam triliun rupiah)\") +\n  theme_quarto() +\n  theme(panel.grid = element_blank(),\n        axis.text.x = element_blank(),\n        axis.ticks = element_blank(),\n        plot.title = element_text(size = 20, margin = margin(b = 5)),\n        plot.subtitle = element_text(size = 18, color = \"gray50\"),\n        plot.margin = margin(20, 40, 20, 20)) +\n  gghighlight(provinsi == \"DKI Jakarta\")"
+  },
+  {
+    "objectID": "blog/2025_07_18_quartomonothemer/index.html#visualisasi-2",
+    "href": "blog/2025_07_18_quartomonothemer/index.html#visualisasi-2",
+    "title": "Mengenal paket quartomonothemer untuk ggplot2 dan gt",
+    "section": "Visualisasi 2",
+    "text": "Visualisasi 2\nVisualisasi kedua akan menggunakan paket gt untuk membuat tabel populasi.\n\n# Install gtExtras jika belum ada\n# install.packages(\"gtExtras\")\n\n# Load library yang diperlukan\nlibrary(gtExtras)\n\n# Tabel populasi dengan visualisasi bar\ngtf &lt;-  provinsi_data |&gt;\n  arrange(desc(populasi_juta)) |&gt;\n  slice_head(n = 6) |&gt;\n  select(provinsi, populasi_juta, pulau) |&gt;\n  mutate(\n    populasi_bar = populasi_juta\n  ) |&gt;\n  gt() |&gt;\n  cols_label(\n    provinsi = \"Provinsi\",\n    populasi_juta = \"Populasi (Juta Jiwa)\",\n    pulau = \"Pulau\",\n    populasi_bar = \"Visualisasi\"\n  ) |&gt;\n  fmt_number(columns = populasi_juta, decimals = 1) |&gt;\n  gt_plt_bar_pct(populasi_bar, fill = color_base, scaled = TRUE) |&gt;\n  tab_header(\n    title = \"Populasi Provinsi Terbesar di Indonesia\",\n    subtitle = \"Data Fiktif Tahun 2024\"\n  ) |&gt;\n  opt_table_font(font = google_font(name = font_text)) |&gt;\n  gt_theme_quarto()\n\ngt:::as.tags.gt_tbl(gtf)\n\n\n\n    \n        \n        \n    \n    \n        \n  \n  \n\n\n\nPopulasi Provinsi Terbesar di Indonesia\n\n\nData Fiktif Tahun 2024\n\n\nProvinsi\nPopulasi (Juta Jiwa)\nPulau\nVisualisasi\n\n\n\n\nJawa Barat\n48.3\nJawa\n\n\n\n\n\n\n\nJawa Timur\n39.7\nJawa\n\n\n\n\n\n\n\nJawa Tengah\n34.3\nJawa\n\n\n\n\n\n\n\nSumatera Utara\n14.8\nSumatera\n\n\n\n\n\n\n\nDKI Jakarta\n10.6\nJawa\n\n\n\n\n\n\n\nSulawesi Selatan\n8.9\nSulawesi"
+  },
+  {
     "objectID": "blog/index.html",
     "href": "blog/index.html",
     "title": "Blog",
     "section": "",
-    "text": "July 18, 2025\n        \n        \n            Regression Analysis in R\n            \n            A blog post about performing regression analysis using R, including model fitting and visualization.\n        \n        \n    \n    \n\nNo matching items"
-  },
-  {
-    "objectID": "blog/regress_r/index.html",
-    "href": "blog/regress_r/index.html",
-    "title": "Regression Analysis in R",
-    "section": "",
-    "text": "This is a blog post about regression analysis in R. Regression analysis is a powerful statistical method used to understand the relationship between variables. In this post, we will explore how to perform regression analysis using R, a popular programming language for statistical computing and graphics.\n\n# Load necessary libraries\nlibrary(ggplot2)\n\n# Create a sample dataset\ndata &lt;- data.frame(\n  x = rnorm(100),\n  y = rnorm(100)\n)\n\n# Fit a linear model\nmodel &lt;- lm(y ~ x, data = data)\n\n# Summarize the model\nsummary(model)\n\n\nCall:\nlm(formula = y ~ x, data = data)\n\nResiduals:\n     Min       1Q   Median       3Q      Max \n-2.26349 -0.58717  0.07264  0.61178  2.23343 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)\n(Intercept) -0.12710    0.09457  -1.344    0.182\nx            0.05059    0.08908   0.568    0.571\n\nResidual standard error: 0.9447 on 98 degrees of freedom\nMultiple R-squared:  0.00328,   Adjusted R-squared:  -0.006891 \nF-statistic: 0.3225 on 1 and 98 DF,  p-value: 0.5714\n\n# Visualize the results\nggplot(data, aes(x = x, y = y)) +\n  geom_point() +\n  geom_smooth(method = \"lm\", se = FALSE) +\n  labs(title = \"Regression Analysis in R\",\n       x = \"Independent Variable (x)\",\n       y = \"Dependent Variable (y)\")"
-  },
-  {
-    "objectID": "blog/regress_r/index.html#introduction",
-    "href": "blog/regress_r/index.html#introduction",
-    "title": "Regression Analysis in R",
-    "section": "",
-    "text": "This is a blog post about regression analysis in R. Regression analysis is a powerful statistical method used to understand the relationship between variables. In this post, we will explore how to perform regression analysis using R, a popular programming language for statistical computing and graphics.\n\n# Load necessary libraries\nlibrary(ggplot2)\n\n# Create a sample dataset\ndata &lt;- data.frame(\n  x = rnorm(100),\n  y = rnorm(100)\n)\n\n# Fit a linear model\nmodel &lt;- lm(y ~ x, data = data)\n\n# Summarize the model\nsummary(model)\n\n\nCall:\nlm(formula = y ~ x, data = data)\n\nResiduals:\n     Min       1Q   Median       3Q      Max \n-2.26349 -0.58717  0.07264  0.61178  2.23343 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)\n(Intercept) -0.12710    0.09457  -1.344    0.182\nx            0.05059    0.08908   0.568    0.571\n\nResidual standard error: 0.9447 on 98 degrees of freedom\nMultiple R-squared:  0.00328,   Adjusted R-squared:  -0.006891 \nF-statistic: 0.3225 on 1 and 98 DF,  p-value: 0.5714\n\n# Visualize the results\nggplot(data, aes(x = x, y = y)) +\n  geom_point() +\n  geom_smooth(method = \"lm\", se = FALSE) +\n  labs(title = \"Regression Analysis in R\",\n       x = \"Independent Variable (x)\",\n       y = \"Dependent Variable (y)\")"
+    "text": "July 18, 2025\n        \n        \n            Mengenal paket `quartomonothemer` untuk `ggplot2` dan `gt`\n            \n            Alternatif tema monotone untuk visualisasi data di R\n        \n        \n    \n    \n\nNo matching items"
   },
   {
     "objectID": "license.html",
