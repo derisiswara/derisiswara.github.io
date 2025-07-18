@@ -1,9 +1,5 @@
 [
   {
-    "listing": "/talks/index.html",
-    "items": []
-  },
-  {
     "listing": "/projects/index.html",
     "items": [
       "/projects/previous/simpleml/index.html",
@@ -22,5 +18,9 @@
     "items": [
       "/blog/2025_07_18_quartomonothemer/index.html"
     ]
+  },
+  {
+    "listing": "/talks/index.html",
+    "items": []
   }
 ]
