@@ -25,6 +25,8 @@ website:
         file: talks/index.qmd
       - text: CV
         href: https://derisiswara.art/cv/cv.pdf
+      - text: Blog
+        file: blog/index.qmd
   page-footer:
     left: |
       <span class="faux-block">{{< fa copyright >}} 2025 Deri Siswara </span>

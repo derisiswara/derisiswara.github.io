@@ -1,0 +1,15 @@
+# Enable banner style title blocks
+title-block-banner: true
+
+# Enable comments
+comments: 
+  giscus: 
+    repo: derisiswara/derisiswara.github.io
+
+execute: 
+  warning: false
+  message: false
+
+format:
+  html:
+    code-tools: true

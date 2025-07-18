@@ -1,0 +1,18 @@
+---
+title: "Blog"
+description: "My writings and thoughts about econometrics, data science, and its technical tools."
+author: ""
+listing:
+  - id: blog
+    contents: "**/index.ipynb"
+    sort: "date desc"
+    template: ../static/html/blog/listing.ejs
+    categories: false
+page-layout: full
+date-format: "MMMM D, YYYY"
+code-tools: false
+comments: false
+---
+
+:::{#blog}
+:::
