@@ -1,5 +1,9 @@
 [
   {
+    "listing": "/talks/index.html",
+    "items": []
+  },
+  {
     "listing": "/projects/index.html",
     "items": [
       "/projects/previous/simpleml/index.html",
@@ -14,7 +18,9 @@
     ]
   },
   {
-    "listing": "/talks/index.html",
-    "items": []
+    "listing": "/blog/index.html",
+    "items": [
+      "/blog/regress_r/index.html"
+    ]
   }
 ]
