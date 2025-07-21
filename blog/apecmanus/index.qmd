@@ -1,0 +1,162 @@
+---
+title: "APEC Manuscript"
+date: 2025-07-23
+author: Deri Siswara
+toc: true
+---
+
+## Slide 1
+
+Good afternoon, everyone…  
+My name is **Deri Siswara** from **IPB University, Indonesia**.  
+Thank you for having me here; I’m very grateful for this opportunity.  
+I’m here to present our study or research on the **implementation of food safety in the APEC region**.  Specifically, we conducted a simple survey to evaluate how food-safety practices are applied in **MSMEs** and **street-food businesses** across the region.
+
+All materials are available on the my website: **derisiswara.art/apec-2025**
+
+Let’s begin with **Why does food safety matter for MSMEs and street-food businesses in the APEC region?**
+
+## Slide 2
+
+**98% of APEC businesses are MSMEs**, and about half operate in the food sector.
+
+Then, MSMEs and street-food businesses are a major part of this region’s economy as local and international **culinary-tourism**. Our food businesses serve as cultural ambassadors, showcasing unique local varieties and traditions that attract tourists.
+
+Lastly, quality and cleanliness concerns: many food MSMEs face challenges—in maintaining proper hygiene standards and food-safety protocols—due to resource constraints.
+
+So, in general, food safety is very important to **ensure public **health and **consumer trust**.
+
+This study evaluates food-safety implementation among MSMEs and street-food businesses in the APEC region, with one big question: could these businesses comply with international food-safety standards like ISO 22000, HACCP, and GMP?
+
+
+## Slide 3
+
+We conducted a **simple survey** based on criteria from the ISO Food Safety Management System, HACCP, and GMP. The elements from these standards were included in our questionnaire.
+
+Our repodents are food business actors and government regulators.
+In total, we surveyed 59 participants across the APEC region:
+
+- 50 MSME and street-food business actors
+    
+- 9 government regulators
+    
+**Note:** This was a simple survey. Non-probability survey using a convenience sampling method—we interviewed whoever was immediately available. While this design cannot represent the entire population, it still provides valuable insights.
+
+## Slide 4
+
+Let’s recap **ISO 22000:2018 Food Safety Management System**, the international **standard** for our study. Just a **short summary**—not the full detail, since I’m not an expert.
+
+This standard establishes a **systematic approach** to food safety through the nested **Plan-Do-Check-Act (PDCA)** cycle, fully incorporating **HACCP** principles and integrating **Good Manufacturing Practices** within its framework.
+
+It gives us an ideal structure to **evaluate existing practices** and **implement improvements**. ISO 22000 has two nested PDCA loops. Overall FSMS (Clauses 4-7, 9-10) and one inside Clause 8 (Operating) for hazard control. 
+
+Notes: Hazard control is any action you take to prevent, eliminate, or reduce food-safety risks (biological, chemical, or physical) to a level that won’t harm consumers.
+ 
+## Slides 5
+
+We tried to correlate our analysis with each clause in ISO 22000. However, it does not fully represent each clause due to resource constraints in the street food business.
+
+Here, we're looking at Clauses 4, 5, and 6 of ISO 22000—parts of the **Plan** phase in the PDCA cycle.
+
+Some questions in our questionnaire represent some clauses. For example, Q1-Q4 for Clause 4 (context) and so on.
+
+* **Context of organization** (red): Questions related to business setting and legal basics that vendors have
+* **Leadership** (green): Questions related to management commitment, responsibility, and food safety policy
+* **Planning** (blue): Questions related to risk assessment and planning of changes
+
+Overall, most respondents (above 60%) meet the basic requirements for context, leadership, and planning. But look at **Q4**—the red bar for "Product distribution permit." Less than half of vendors hold this permit.
+
+## Slide 6
+
+Here's the probable reason why most vendors don't meet the basic requirement for distribution permits.
+
+On this slide, you see a word cloud of the many types of food vendors we surveyed—everything from **food stalls** or street food businesses, as we mentioned before. These businesses have basic characteristics:
+
+* The food is **ready-to-eat** and has a **shelf life under seven days**
+* The operation is **very small**—a single cart or a family kitchen
+* Only **basic processing** steps (washing, cutting, mixing) are used
+
+Small businesses are generally **exempt** from distribution permit requirements. For example, in Indonesia, micro-scale food vendors don't need formal distribution permits.
+
+However, exemption policies vary based on each country's regulations.
+
+## Slide 7
+
+Now let's look at **Clause 7**, the last part of the **Plan** phase in ISO 22000. This clause covers resources, work environment, product controls, employee competence, and documentation.
+
+We aggregated scores for each subclass, where each subclass contains several questions or indicators.
+
+The results show overall good performance, but there's a significant gap in **Documented Information**—only **32 percent** compliance. This means very few vendors keep written records of expiration dates for raw materials, incoming orders, pest control, cleaning schedules, worker health checks, training schedules, or worker leave schedules.
+
+## Slide 8
+
+On this slide, we dive deeper into **Clause 7**. Although overall performance is good, in detail, we can look at some questions where almost 50% of respondents don't meet compliance.
+
+Many vendors lack proper **worker health checks**, **food safety training**, and **hygiene practices**, **increasing contamination risks from foreign objects like jewelry**. Issues like inadequate **pest control** and **poor cleanliness** also persist. Additionally, as we mentioned before, there's a lack of documented information.
+
+## Slide 9
+
+Moving to operations—the **Do** phase in PDCA and the core of daily food safety. As mentioned earlier, there is a nested PDCA cycle in ISO 22000. Clause 8 (Operations) should actually be evaluated with PDCA again. However, since this is a simple survey, we accommodated the basic operations of MSMEs and street-food businesses into a few specific questions.
+
+**Clause 8** focuses on operations where **HACCP** (Hazard Analysis and Critical Control Points) is most important. This involves any action you take to prevent, eliminate, or reduce food-safety risks (biological, chemical, or physical) to a level that won't harm consumers.
+
+Looking at the bars:
+
+Most vendors are aware of how to store materials/ingredients and maintain hygiene for machines/equipment, but they lack proper **food packaging labels**. Since street-food businesses are exempt from distribution permits and given their basic characteristics, it's probably normal that they don't have clear product labeling.
+
+## Slide 10
+
+Lastly, in the final part—the **Check and Act** phase—Clauses 9 and 10 cover how vendors **monitor** their processes and **improve** over time. We didn't have many questions here, so we tried to examine the relationship between **periodic evaluations** and **customer feedback, loyalty, and complaints**.
+
+As you can see, some businesses (24%) do not conduct periodic evaluations.
+
+* First, even without periodic evaluations, businesses still maintain regular customers. We added statistics here for significance testing, and the results are not significant, meaning it's valid that even without periodic evaluations, businesses can still have regular customers.
+
+* Second, you'll notice a significant link between **periodic evaluations** and both **asking for customer feedback** and **customer complaints**. Businesses with no periodic evaluation also do not ask for customer feedback, and interestingly, most of them do not receive customer complaints.
+
+This is probably because they're not asking for any feedback, right?
+
+In the end, we found that their business processes tend to remain the same each day, without regular evaluation or feedback-driven adjustments.
+
+## Slide 11
+
+Here we switch to the **regulators’ poin of view** on legality and permit systems, covering Clauses 4.2 and 4.3. 
+
+Most regulators in the APEC region have established regulations that require business licensing, registration, and reporting mechanisms for street food and MSME businesses. 
+
+However, **one notable difference** is the **cost structure**: about half of the regions impose a fee for obtaining a business license, while the other half provide the licensing service free of charge.
+
+Notes: Malaysia, Japan, and Thailand (Double Claim) ~ With a fee
+Indonesia, China, Newzealand ~ no fee
+
+## Slide 12
+
+Looking at **regulatory control and supervision** related to several clauses in ISO 22000, we found that regulators have established **supervision plans**, **conduct at least annual inspections**, and **perform contaminant testing**. 
+
+However, supervision results are generally not published, **limiting transparency** for businesses and the public. Despite these regulatory efforts, **food poisoning cases remain** common in the street food sector, mainly due to persistent issues with **cleanliness and hygiene among vendors**.
+
+This aligns with our findings on street food actors—many vendors lack proper worker health checks, food safety training, and hygiene practices.
+
+## Slide 13
+
+Finally, we examine how regulators **foster** food safety through training and improvement programs, relating to **Clause 7** of ISO 22000 (Support).
+
+* **100 percent** of regulators report they **provide general training** to MSMEs and street-food vendors (Q18).
+* **71 percent** offer **specific food-safety training** (Q19), and the same percentage provide **dedicated improvement programs** (Q22).
+
+Not all institutions/agencies have dedicated programs to improve food safety, indicating there is room for more proactive initiatives.
+
+
+## Slide 14
+
+Let me wrap up with our main takeaways and quick recommendations:
+
+Most street food vendors and MSMEs meet the general PLAN requirements, but often lack proper product distribution permits and documented information—both of which are commonly exempted in street food regulations. Many vendors also lack proper worker health checks, food safety training, and hygiene practices, increasing the risk of contamination.
+
+In operations, many businesses don't have clear labels for food packaging, likely because many ready-to-eat products are sold without proper packaging.
+
+Regarding performance and improvement, some businesses do not conduct periodic evaluations. Their business processes tend to remain unchanged, without regular evaluation or feedback-driven adjustments—reflecting the typical character of street food businesses that do not aim to expand. This represents room for improvement that probably indicates some business potential to grow.
+
+Most institutions have adequate legal frameworks, though mechanisms vary. Cleanliness remains a critical issue among street vendors. Not all regulators have dedicated food safety programs, indicating there is room for more proactive initiatives.
+
+Lastly, based on literature review in other countries/regions, **across varied low- and middle-income settings**, research typically shows the same pattern: street-food vendors know basic food-safety principles and are knowledgeable enough, but still lack hygiene practices due to lack of resources, highlighting the need for training and stronger regulation.
