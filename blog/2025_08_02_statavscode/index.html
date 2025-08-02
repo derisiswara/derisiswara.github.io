@@ -6,10 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="">
-<meta name="description" content="My writings and thoughts about econometrics, data science, and its technical tools.">
+<meta name="author" content="Deri Siswara">
+<meta name="dcterms.date" content="2025-08-02">
 
-<title>Blog – Deri Siswara</title>
+<title>Cara Baru Menggunakan {Stata} – Deri Siswara</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -25,28 +25,26 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../">
-<link href="../static/img/logods2.webp" rel="icon">
-<script src="../site_libs/quarto-listing/list.min.js"></script>
-<script src="../site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../site_libs/quarto-html/popper.min.js"></script>
-<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7bd51a60a51e5c23b6c3f6a95c3214be.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-73f1c58f6597475e7d4ceeaf4600a098.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
-<link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../static/img/logods2.webp" rel="icon">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7bd51a60a51e5c23b6c3f6a95c3214be.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-73f1c58f6597475e7d4ceeaf4600a098.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -74,69 +72,14 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-blog .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
 
-    const options = {
-      valueNames: ['listing-project','listing-execute','listing-website','listing-format','listing-bibliography','listing-_quarto-vars','listing-language','listing-title-block-banner','listing-comments','listing-title','listing-description','listing-date','listing-author','listing-toc','listing-path','listing-outputHref','listing-date-modified','listing-filename','listing-file-modified','listing-reading-time','listing-word-count',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-date-modified-sort'] },{ data: ['listing-file-modified-sort'] },{ data: ['listing-reading-time-sort'] },{ data: ['listing-word-count-sort'] }],
-      
-      searchColumns: ["listing-project","listing-execute","listing-website","listing-format","listing-bibliography","listing-_quarto-vars","listing-language","listing-title-block-banner","listing-comments","listing-title","listing-description","listing-date","listing-author","listing-toc","listing-path","listing-outputHref","listing-date-modified","listing-filename","listing-file-modified","listing-reading-time","listing-word-count"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-blog'] = new List('listing-blog', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
-
-<meta property="og:title" content="Blog – Deri Siswara">
-<meta property="og:description" content="My writings and thoughts about econometrics, data science, and its technical tools.">
+<meta property="og:title" content="Cara Baru Menggunakan {Stata} – Deri Siswara">
+<meta property="og:description" content="">
+<meta property="og:image" content="https://derisiswara.art/blog/2025_08_02_statavscode/img/ipynb.png">
 <meta property="og:site_name" content="Deri Siswara">
+<meta property="og:image:height" content="1600">
+<meta property="og:image:width" content="1570">
 </head>
 
 <body class="nav-fixed quarto-light">
@@ -146,7 +89,7 @@ window.Quarto = {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="../index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Deri Siswara</span>
     </a>
   </div>
@@ -157,11 +100,11 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../projects/index.html"> 
+    <a class="nav-link" href="../../projects/index.html"> 
 <span class="menu-text">Projects</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../talks/index.html"> 
+    <a class="nav-link" href="../../talks/index.html"> 
 <span class="menu-text">Talks</span></a>
   </li>  
   <li class="nav-item">
@@ -169,7 +112,7 @@ window.Quarto = {
 <span class="menu-text">CV</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="../blog/index.html" aria-current="page"> 
+    <a class="nav-link" href="../../blog/index.html"> 
 <span class="menu-text">Blog</span></a>
   </li>  
 </ul>
@@ -182,93 +125,149 @@ window.Quarto = {
 <!-- content -->
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-page">
-      <h1 class="title">Blog</h1>
-                  <div>
-        <div class="description">
-          My writings and thoughts about econometrics, data science, and its technical tools.
-        </div>
-      </div>
-                </div>
+    <div class="quarto-title column-body">
+      <h1 class="title">Cara Baru Menggunakan {Stata}</h1>
+                      </div>
   </div>
     
   
-  <div class="quarto-title-meta column-page">
+  <div class="quarto-title-meta">
 
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Deri Siswara </p>
+            </div>
+    </div>
       
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">August 2, 2025</p>
+      </div>
+    </div>
     
       
     </div>
     
   
-  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#keluhan-pengguna-stata" id="toc-keluhan-pengguna-stata" class="nav-link active" data-scroll-target="#keluhan-pengguna-stata">Keluhan Pengguna Stata</a></li>
+  <li><a href="#setup-stata-di-vs-code" id="toc-setup-stata-di-vs-code" class="nav-link" data-scroll-target="#setup-stata-di-vs-code">Setup Stata di VS Code</a>
+  <ul class="collapse">
+  <li><a href="#vscode" id="toc-vscode" class="nav-link" data-scroll-target="#vscode">VSCode</a></li>
+  <li><a href="#jupyter-and-quarto" id="toc-jupyter-and-quarto" class="nav-link" data-scroll-target="#jupyter-and-quarto">Jupyter and Quarto</a></li>
+  <li><a href="#stata" id="toc-stata" class="nav-link" data-scroll-target="#stata">Stata</a></li>
+  <li><a href="#direktori-proyek" id="toc-direktori-proyek" class="nav-link" data-scroll-target="#direktori-proyek">Direktori proyek</a></li>
+  </ul></li>
+  <li><a href="#menggunakan-stata-di-jupyter-notebook" id="toc-menggunakan-stata-di-jupyter-notebook" class="nav-link" data-scroll-target="#menggunakan-stata-di-jupyter-notebook">Menggunakan Stata di Jupyter Notebook</a></li>
+  <li><a href="#menjalankan-do-file-stata-langsung-dari-vs-code" id="toc-menjalankan-do-file-stata-langsung-dari-vs-code" class="nav-link" data-scroll-target="#menjalankan-do-file-stata-langsung-dari-vs-code">Menjalankan do-file Stata langsung dari VS Code</a></li>
+  <li><a href="#penutup" id="toc-penutup" class="nav-link" data-scroll-target="#penutup">Penutup</a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
-<main class="content quarto-banner-title-block column-page" id="quarto-document-content">
+<main class="content quarto-banner-title-block" id="quarto-document-content">
 
 
 
 
 
-<div id="listing-blog" class="quarto-listing quarto-listing-container-custom">
-<div class="list blog">
-    
-    <div class="blog-entry" data-index="0" data-listing-date-sort="1754067600000" data-listing-file-modified-sort="1754147762239" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="586">
-        <div class="metadata">          
-            <p class="date listing-date">August 2, 2025</p>
-        </div>
-        <div class="body">
-            <p class="title listing-title"><a href="../blog/2025_08_02_statavscode/index.html">Cara Baru Menggunakan {Stata}</a></p>
-            
-            <p class="description listing-description"><strong>Stata</strong> adalah perangkat lunak analisis statistik yang sangat kuat dan banyak digunakan, tetapi jika dipandang sebagai bahasa pemrograman, fungsinya cukup terbatas. Saya…</p>
-        </div>
-        
-    </div>
-    
-    <div class="blog-entry" data-index="1" data-listing-date-sort="1753981200000" data-listing-file-modified-sort="1754138414761" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="590">
-        <div class="metadata">          
-            <p class="date listing-date">August 1, 2025</p>
-        </div>
-        <div class="body">
-            <p class="title listing-title"><a href="../blog/2025_08_01_pcm/index.html">Price-Cost Margin</a></p>
-            
-            <p class="description listing-description"><em>Price–Cost Margin</em> (PCM), atau yang juga dikenal sebagai <em>Lerner Index</em>, merupakan salah satu indikator utama untuk mengukur kekuatan pasar dan tingkat markup suatu perusahaan…<em></em><em></em></p>
-        </div>
-        
-    </div>
-    
-    <div class="blog-entry" data-index="2" data-listing-date-sort="1752858000000" data-listing-file-modified-sort="1752906842592" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="672">
-        <div class="metadata">          
-            <p class="date listing-date">July 19, 2025</p>
-        </div>
-        <div class="body">
-            <p class="title listing-title"><a href="../blog/2027_07_19_econML/index.html">Mengenal {EconML}: Menggabungkan Ekonometrika &amp; Machine Learning untuk Estimasi Efek Kausal</a></p>
-            
-            <p class="description listing-description">Tutorial singkat memakai Python package {EconML} dengan contoh data e-commerce Indonesia</p>
-        </div>
-        
-    </div>
-    
-    <div class="blog-entry" data-index="3" data-listing-date-sort="1752771600000" data-listing-file-modified-sort="1752846927714" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="117">
-        <div class="metadata">          
-            <p class="date listing-date">July 18, 2025</p>
-        </div>
-        <div class="body">
-            <p class="title listing-title"><a href="../blog/2025_07_18_quartomonothemer/index.html">Mengenal paket `quartomonothemer` untuk `ggplot2` dan `gt`</a></p>
-            
-            <p class="description listing-description">Alternatif tema monotone untuk visualisasi data di R</p>
-        </div>
-        
-    </div>
-    
-</div>
-<div class="listing-no-matching d-none">No matching items</div>
-</div>
+<section id="keluhan-pengguna-stata" class="level2">
+<h2 class="anchored" data-anchor-id="keluhan-pengguna-stata">Keluhan Pengguna Stata</h2>
+<p><strong>Stata</strong> adalah perangkat lunak analisis statistik yang sangat kuat dan banyak digunakan, tetapi jika dipandang sebagai bahasa pemrograman, fungsinya cukup terbatas. Saya pribadi jarang menggunakan Stata dalam riset/pengolahan data karena kurang nyaman dibandingkan R atau Python. Namun, di bidang ekonomi terkadang kita terpaksa menggunakannya. Mahasiswa ekonomi sering kali diajarkan Stata sebagai alat utama untuk analisis data.</p>
+<p>Berikut beberapa keluhan saya terhadap Stata, terutama terkait ketidaknyamanan dalam menggunakan editor bawaan Stata:</p>
+<ol type="1">
+<li>Harus menentukan path relatif dari root proyek</li>
+<li>Tidak memiliki auto-completion yang baik</li>
+<li>Plot/grafik ditampilkan di jendela terpisah</li>
+<li>Penulisan kode dan komentar di do-file terlihat tidak rapi/tidak user-friendly</li>
+</ol>
+<p>Untuk mengatasi masalah-masalah tersebut, saya mengatasinya dengan menggunakan editor lain, yaitu <strong>Visual Studio Code</strong> (VS Code). Tulisan ini menjelaskan bagaimana saya mengintegrasikan Stata dengan VS Code untuk mengatasi masalah-masalah tersebut.</p>
+<p>Setidaknya, ada dua cara untuk menggunakan Stata di VS Code: 1. Menggunakan jupyter notebook 2. Menjalankan do-file Stata langsung dari VS Code</p>
+</section>
+<section id="setup-stata-di-vs-code" class="level2">
+<h2 class="anchored" data-anchor-id="setup-stata-di-vs-code">Setup Stata di VS Code</h2>
+<section id="vscode" class="level3">
+<h3 class="anchored" data-anchor-id="vscode">VSCode</h3>
+<ul>
+<li>Install <a href="https://code.visualstudio.com/">Visual Studio Code</a></li>
+<li>Install VSCode extensions untuk <a href="https://marketplace.visualstudio.com/items?itemName=ms-toolsai.jupyter">Jupyter</a>, <a href="https://marketplace.visualstudio.com/items?itemName=quarto.quarto">Quarto</a>, dan <a href="https://marketplace.visualstudio.com/items?itemName=kylebutts.vscode-stata">Stata</a></li>
+</ul>
+</section>
+<section id="jupyter-and-quarto" class="level3">
+<h3 class="anchored" data-anchor-id="jupyter-and-quarto">Jupyter and Quarto</h3>
+<ul>
+<li>Setup lingkungan Python di Jupyter</li>
+<li>Install <a href="https://pypi.org/project/pystata/">pystata</a> dan <a href="https://hugetim.github.io/nbstata/">nbstata</a></li>
+<li>Install <a href="https://quarto.org">Quarto</a></li>
+</ul>
+</section>
+<section id="stata" class="level3">
+<h3 class="anchored" data-anchor-id="stata">Stata</h3>
+<ul>
+<li>Install <a href="https://www.stata.com/">Stata</a>. Pastikan versi Stata yang digunakan adalah Stata 17 atau lebih baru, karena versi sebelumnya tidak mendukung integrasi dengan Jupyter Notebook. Pastikan juga Stata yang digunakan adalah versi lisensi legal (bukan bajakan/crack).</li>
+</ul>
+</section>
+<section id="direktori-proyek" class="level3">
+<h3 class="anchored" data-anchor-id="direktori-proyek">Direktori proyek</h3>
+<p>Pada tulisan ini, saya membuat direktori/folder untuk memudahkan path proyek dengan struktur sebagai berikut:</p>
+<pre class="plaintext"><code>~/
+├── penguins.ipynb
+├── penguins.do
+└── data/penguins.dta</code></pre>
+</section>
+</section>
+<section id="menggunakan-stata-di-jupyter-notebook" class="level2">
+<h2 class="anchored" data-anchor-id="menggunakan-stata-di-jupyter-notebook">Menggunakan Stata di Jupyter Notebook</h2>
+<p>Syntax Stata pada tulisan ini diperoleh dari <a href="https://github.com/kazuyanagimoto/modern-stata/blob/main/code/penguins.do">kazuyanagimoto</a>. Atau dapat didownload di <a href="https://github.com/derisiswara/stata-vscode">sini</a>.</p>
+<p>Setelah folder proyekl dibuat, tahapan singkat untuk menggunakan Stata di Jupyter Notebook adalah sebagai berikut:</p>
+<ol type="1">
+<li>Buat file Jupyter Notebook dengan ekstensi <code>.ipynb</code> (misalnya <code>penguins.ipynb</code>)</li>
+<li>Pilih kernel Stata(nbstata) pada Jupyter Notebook</li>
+<li>Tulis kode Stata di dalam sel Jupyter Notebook dan jalankan sel tersebut</li>
+</ol>
+<p>Gambar berikut menunjukkan contoh penggunaan Stata di Jupyter Notebook:</p>
+<p><img src="img/ipynb.png" class="img-fluid"></p>
+<p><strong>Kelebihan:</strong></p>
+<ul>
+<li>Tiap sel dapat berisi kode Stata dan outputnya.</li>
+<li>Output grafik Stata ditampilkan langsung di bawah sel yang menjalankan kode tersebut.</li>
+<li>Komentar dapat ditulis di dalam sel yang sama dengan kode Stata atau dapat juga di sel terpisah sebagai <em>markdown</em>.</li>
+<li>Lebih lanjut, fitur-fitur Jupyter Notebook + Quarto dapat digunakan untuk membuat dokumentasi dalam bentuk web, pdf, dll.</li>
+</ul>
+</section>
+<section id="menjalankan-do-file-stata-langsung-dari-vs-code" class="level2">
+<h2 class="anchored" data-anchor-id="menjalankan-do-file-stata-langsung-dari-vs-code">Menjalankan do-file Stata langsung dari VS Code</h2>
+<p>Cara kedua adalah menjalankan do-file Stata langsung dari VS Code. Dengan cara ini, kita dapat menulis kode Stata di dalam file dengan ekstensi <code>.do</code> (misalnya <code>penguins.do</code>) dan menjalankannya langsung dari VS Code. Kelebihan utama dari cara ini yaitu do-file Stata dapat dijalankan di dua editor, yaitu di VS Code dan di Stata itu sendiri. Hal ini memungkinkan kita untuk membagikan ke pengguna Stata lainnya yang tidak menggunakan VS Code.</p>
+<p>Cara kedua ini menggunakan <a href="https://marketplace.visualstudio.com/items?itemName=kylebutts.vscode-stata">ekstensi Stata untuk VS Code</a>.</p>
+<p>Tahapan singkat untuk menjalankan do-file Stata di VS Code adalah sebagai berikut:</p>
+<ol type="1">
+<li>Buat file do-file dengan ekstensi <code>.do</code> (misalnya <code>penguins.do</code>)</li>
+<li>Tulis kode Stata di dalam file tersebut. Perbedaan utama dengan do-file Stata biasa adalah kita perlu menambahkan komentar <code>* %%</code> di awal kode untuk menandai bahwa ini adalah <em>code cells</em> yang akan dijalankan.</li>
+<li>Jalan do-file tersebut dengan cara:
+<ul>
+<li><code>ctrl + shift + d</code> untuk menjalankan seluruh kode di dalam do-file</li>
+<li><code>ctrl + enter</code> untuk menjalankan kode pada baris yang sedang aktif</li>
+</ul></li>
+<li>Hasil output akan ditampilkan di jendela terminal Stata di VS Code.</li>
+</ol>
+<p>Gambar berikut menunjukkan contoh hasil do-file Stata langsung dari VS Code.</p>
+<p><img src="img/do.png" class="img-fluid"></p>
+</section>
+<section id="penutup" class="level2">
+<h2 class="anchored" data-anchor-id="penutup">Penutup</h2>
+<p>Tulisan ini tidak begitu detil karena menjalankan Stata VS Code sebenarnya tidak mudah bagi yang tidak terbiasa menggunakan lingkungan VS Code. Namun, sudah banyak dokumentasi yang tersedia di internet tentang cara menggunakannya. <strong>Keep curious and happy repo-diving!</strong></p>
 
 
-
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -340,6 +339,57 @@ window.Quarto = {
         container: window.document.getElementById('quarto-embedded-source-code-modal')
       });
       clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
@@ -670,6 +720,35 @@ window.Quarto = {
     }
   });
   </script>
+<input type="hidden" id="giscus-base-theme" value="light">
+<input type="hidden" id="giscus-alt-theme" value="dark">
+<script>
+  function loadGiscus() {
+    // Function to get the theme based on body class
+    const getTheme = () => {
+      let baseTheme = document.getElementById('giscus-base-theme').value;
+      let altTheme = document.getElementById('giscus-alt-theme').value;
+      return document.body.classList.contains('quarto-dark') ? altTheme : baseTheme;
+    };
+    const script = document.createElement("script");
+    script.src = "https://giscus.app/client.js";
+    script.async = true;
+    script.dataset.repo = "derisiswara/derisiswara.github.io";
+    script.dataset.repoId = "R_kgDON1umXw";
+    script.dataset.category = "General";
+    script.dataset.categoryId = "DIC_kwDON1umX84CnOpi";
+    script.dataset.mapping = "title";
+    script.dataset.reactionsEnabled = "1";
+    script.dataset.emitMetadata = "0";
+    script.dataset.inputPosition = "top";
+    script.dataset.theme = getTheme();
+    script.dataset.lang = "en";
+    script.crossOrigin = "anonymous";
+    // Append the script to the desired div instead of at the end of the body
+    document.getElementById("quarto-content").appendChild(script);
+  }
+  loadGiscus();
+</script>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
