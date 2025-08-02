@@ -7,14 +7,17 @@ toc: true
 
 ## Slide 1
 
-Good afternoon, everyone…  
-My name is **Deri Siswara** from **IPB University, Indonesia**.  
-Thank you for having me here; I’m very grateful for this opportunity.  
-I’m here to present our study or research on the **implementation of food safety in the APEC region**.  Specifically, we conducted a simple survey to evaluate how food-safety practices are applied in **MSMEs** and **street-food businesses** across the region.
+Hello everyone…  
+
+First of all, thank you for having me here; I’m very grateful for this opportunity.  
+
+My name is **Deri Siswara** from **IPB University**, Indonesia. I'm **currently** an adjunct lecturer at Perbanas Institute, Jakarta, Indonesia, teaching Machine Learning in the Data Science Program. So I'm not an expert in food safety or standards. In Statistic term, I’m just an outlier in this workshop.
+
+However, I’m here to present our study or research on the **implementation of food safety in the APEC economies**.  Specifically, we conducted a simple survey to evaluate how food-safety practices are applied in **MSMEs** and **street-food businesses** across the APEC.
 
 All materials are available on the my website: **derisiswara.art/apec-2025**
 
-Let’s begin with **Why does food safety matter for MSMEs and street-food businesses in the APEC region?**
+Let’s begin with **Why does food safety matter for MSMEs and street-food businesses in the APEC economies?**
 
 ## Slide 2
 
@@ -26,15 +29,14 @@ Lastly, quality and cleanliness concerns: many food MSMEs face challenges—in m
 
 So, in general, food safety is very important to **ensure public **health and **consumer trust**.
 
-This study evaluates food-safety implementation among MSMEs and street-food businesses in the APEC region, with one big question: could these businesses comply with international food-safety standards like ISO 22000, HACCP, and GMP?
-
+This study evaluates food-safety implementation among MSMEs and street-food businesses in the APEC economies, with one big question: could these businesses comply with international food-safety standards like ISO 22000, HACCP, and GMP?
 
 ## Slide 3
 
 We conducted a **simple survey** based on criteria from the ISO Food Safety Management System, HACCP, and GMP. The elements from these standards were included in our questionnaire.
 
 Our repodents are food business actors and government regulators.
-In total, we surveyed 59 participants across the APEC region:
+In total, we surveyed 59 participants across the APEC economies:
 
 - 50 MSME and street-food business actors
     
@@ -122,9 +124,9 @@ In the end, we found that their business processes tend to remain the same each 
 
 Here we switch to the **regulators’ poin of view** on legality and permit systems, covering Clauses 4.2 and 4.3. 
 
-Most regulators in the APEC region have established regulations that require business licensing, registration, and reporting mechanisms for street food and MSME businesses. 
+Most regulators in the APEC economies have established regulations that require business licensing, registration, and reporting mechanisms for street food and MSME businesses. 
 
-However, **one notable difference** is the **cost structure**: about half of the regions impose a fee for obtaining a business license, while the other half provide the licensing service free of charge.
+However, **one notable difference** is the **cost structure**: about half of the economies impose a fee for obtaining a business license, while the other half provide the licensing service free of charge.
 
 Notes: Malaysia, Japan, and Thailand (Double Claim) ~ With a fee
 Indonesia, China, Newzealand ~ no fee
@@ -159,4 +161,4 @@ Regarding performance and improvement, some businesses do not conduct periodic e
 
 Most institutions have adequate legal frameworks, though mechanisms vary. Cleanliness remains a critical issue among street vendors. Not all regulators have dedicated food safety programs, indicating there is room for more proactive initiatives.
 
-Lastly, based on literature review in other countries/regions, **across varied low- and middle-income settings**, research typically shows the same pattern: street-food vendors know basic food-safety principles and are knowledgeable enough, but still lack hygiene practices due to lack of resources, highlighting the need for training and stronger regulation.
+Lastly, based on literature review in other countries/economies, **across varied low- and middle-income settings**, research typically shows the same pattern: street-food vendors know basic food-safety principles and are knowledgeable enough, but still lack hygiene practices due to lack of resources, highlighting the need for training and stronger regulation.

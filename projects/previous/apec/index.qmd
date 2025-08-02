@@ -7,6 +7,7 @@ authors:
     affiliation: Badan Riset dan Inovasi Nasional 
   - name: Deri Siswara
     url: {{< var website-url >}}
+image: cover.jpeg
 categories:
   - Survey Data Analysis
 pub-info:

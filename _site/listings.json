@@ -6,12 +6,12 @@
   {
     "listing": "/projects/index.html",
     "items": [
+      "/projects/previous/apec/index.html",
       "/projects/previous/simpleml/index.html",
       "/projects/previous/kppuasean/index.html",
       "/projects/previous/book/index.html",
       "/projects/previous/kppu/index.html",
       "/projects/previous/jurnalisei/index.html",
-      "/projects/ongoing/apec/index.html",
       "/projects/ongoing/bansos/index.html",
       "/projects/ongoing/climate/index.html",
       "/projects/ongoing/var_eviews/index.html"
@@ -20,6 +20,7 @@
   {
     "listing": "/blog/index.html",
     "items": [
+      "/blog/2025_08_01_pcm/index.html",
       "/blog/2027_07_19_econML/index.html",
       "/blog/2025_07_18_quartomonothemer/index.html"
     ]
