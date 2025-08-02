@@ -1,11 +1,7 @@
 [
   {
-    "listing": "/blog/index.html",
-    "items": [
-      "/blog/2025_08_01_pcm/index.html",
-      "/blog/2027_07_19_econML/index.html",
-      "/blog/2025_07_18_quartomonothemer/index.html"
-    ]
+    "listing": "/talks/index.html",
+    "items": []
   },
   {
     "listing": "/projects/index.html",
@@ -22,7 +18,11 @@
     ]
   },
   {
-    "listing": "/talks/index.html",
-    "items": []
+    "listing": "/blog/index.html",
+    "items": [
+      "/blog/2025_08_01_pcm/index.html",
+      "/blog/2027_07_19_econML/index.html",
+      "/blog/2025_07_18_quartomonothemer/index.html"
+    ]
   }
 ]
