@@ -9,11 +9,8 @@ authors:
 categories:
   - Survey Data Analysis
 image: cover.png
-pub-info:
-  links:
-    - name: Report
-      url: "report.pdf"
-      local: true
-      icon: fa-regular fa-file-pdf
-hide-detail: true
 ---
+
+## {{< fa regular file-pdf >}} Report
+
+{{< pdf report.pdf width=100% height=800 >}}

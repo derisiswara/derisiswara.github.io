@@ -8,16 +8,13 @@ authors:
     url: {{< var website-url >}}
 categories:
   - Econometrics
-image: cover.png
-pub-info:
-  links:
-    - name: Report (Bahasa)
-      url: "report.pdf"
-      local: true
-      icon: fa-regular fa-file-pdf
-    - name: Slides (Bahasa)
-      url: "slides.pdf"
-      local: true
-      icon: fa-solid fa-chalkboard-user      
-hide-detail: true
+image: cover.png   
 ---
+
+## {{< fa regular file-pdf >}} Report (Bahasa)
+
+{{< pdf report.pdf width=100% height=800 >}}
+
+## {{< fa solid chalkboard-user >}} Slides (Bahasa)
+
+{{< pdf slides.pdf width=100% height=500 >}}
