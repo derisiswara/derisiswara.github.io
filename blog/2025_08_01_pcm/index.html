@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.33">
+<meta name="generator" content="quarto-1.7.32">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -74,10 +74,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-b5e6e91045c2d46c856ca0ee22e0be23.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7bd51a60a51e5c23b6c3f6a95c3214be.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-859f5eb757bae9338d76b093f27e6da8.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-73f1c58f6597475e7d4ceeaf4600a098.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
 <link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
@@ -392,7 +392,7 @@ P_t = \frac{\mathrm{PDRB_ADHB}_t}{\mathrm{PDRB_ADHK}_t}.
 <section id="cleaning-data" class="level3">
 <h3 class="anchored" data-anchor-id="cleaning-data">Cleaning Data</h3>
 <p><strong>Contoh data ACEH 2010-2021</strong></p>
-<div id="33e8201b" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-message="false" data-execution_count="39">
+<div id="33e8201b" class="cell" data-message="false" data-execution_count="39">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"pdrbaceh2010-2021.xlsx"</span>)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Kolom 2-14 PDRB Berlaku</span></span>
@@ -426,7 +426,7 @@ P_t = \frac{\mathrm{PDRB_ADHB}_t}{\mathrm{PDRB_ADHK}_t}.
 <span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
 <span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>    <span class="fu">arrange</span>(<span class="fu">match</span>(Sektor, sector_order), Tahun)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="14309850" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="40">
+<div id="14309850" class="cell" data-execution_count="40">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(data)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
@@ -563,7 +563,7 @@ P_t = \frac{\mathrm{PDRB_ADHB}_t}{\mathrm{PDRB_ADHK}_t}.
 </section>
 <section id="hitung-harga-deflator-pdrb" class="level3">
 <h3 class="anchored" data-anchor-id="hitung-harga-deflator-pdrb">Hitung harga deflator PDRB</h3>
-<div id="8f204861" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="41">
+<div id="8f204861" class="cell" data-execution_count="41">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="do">### Hitung harga deflator PDRB</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate price deflator</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
@@ -648,7 +648,7 @@ P_t = \frac{\mathrm{PDRB_ADHB}_t}{\mathrm{PDRB_ADHK}_t}.
 </section>
 <section id="hitung-pertumbuhan-ekonomi-dan-inflasi" class="level3">
 <h3 class="anchored" data-anchor-id="hitung-pertumbuhan-ekonomi-dan-inflasi">Hitung pertumbuhan ekonomi dan inflasi</h3>
-<div id="3f5a762b" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="45">
+<div id="3f5a762b" class="cell" data-execution_count="45">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="do">### Hitung pertumbuhan ekonomi dan inflasi</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(Sektor) <span class="sc">%&gt;%</span></span>
@@ -742,7 +742,7 @@ P_t = \frac{\mathrm{PDRB_ADHB}_t}{\mathrm{PDRB_ADHK}_t}.
 </section>
 <section id="hitung-pcm" class="level3">
 <h3 class="anchored" data-anchor-id="hitung-pcm">Hitung PCM</h3>
-<div id="80be66ac" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="47">
+<div id="80be66ac" class="cell" data-execution_count="47">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>data1 <span class="ot">&lt;-</span> data1 <span class="sc">%&gt;%</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">pcm =</span> <span class="fu">abs</span>(<span class="dv">1</span><span class="sc">/</span>(Pertumbuhan<span class="sc">/</span>Inflasi)))</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(data1,<span class="dv">18</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -960,7 +960,7 @@ P_t = \frac{\mathrm{PDRB_ADHB}_t}{\mathrm{PDRB_ADHK}_t}.
 <section id="hitung-weighted-pcm" class="level3">
 <h3 class="anchored" data-anchor-id="hitung-weighted-pcm">Hitung WEIGHTED PCM</h3>
 <p>WEIGHTED PCM adalah perhitungan PCM yang mempertimbangkan kontribusi sektor terhadap total PDRB.</p>
-<div id="d9b59fe8" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="68">
+<div id="d9b59fe8" class="cell" data-execution_count="68">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the contribution of each sector to total GDP for each year</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>data_weighted <span class="ot">&lt;-</span> data1 <span class="sc">%&gt;%</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(Tahun) <span class="sc">%&gt;%</span></span>
@@ -1469,7 +1469,7 @@ P_t = \frac{\mathrm{PDRB_ADHB}_t}{\mathrm{PDRB_ADHK}_t}.
 </table>
 </div>
 </div>
-<div id="ed997d38" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-message="false" data-execution_count="79">
+<div id="ed997d38" class="cell" data-message="false" data-execution_count="79">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
