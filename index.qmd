@@ -14,15 +14,12 @@ about:
       text: "Email"
       href: mailto:derisiswarads@gmail.com
     - icon: book
-      text: "Goodreads"
-      href: https://www.goodreads.com/user/show/190226365-deri-siswara   
+      text: "Google Scholar"
+      href: https://scholar.google.co.id/citations?user=NNhhI5IAAAAJ&hl=en   
 ---
 
-I take gigs as a research/data analyst.<br>
-Experienced in survey design, creating dashboards, impact assessment, econometric modeling, and teaching. 
+Economist who codes
 
-I'm open to collaborations, projects, or new opportunities.
-
-::: {style="text-align: right"}
-[Read More →](../projects)
+::: {style="text-align: center"}
+[Read More](../projects)
 :::

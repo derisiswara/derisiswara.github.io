@@ -1,3 +1,25 @@
+- title: "Probability and Statistics"
+  date: 2025-11-29
+  language: Bahasa
+  description: Probability and Statistics course materials for Computer Science and Data Science students at Perbanas Institute. The course website is provided below. 
+  location: Perbanas Institute
+  feature: /talks/img/statprob.png 
+  links:
+  - name: Course Website
+    url: https://derisiswara.art/webstatprob/
+    icon: fa-solid fa-chalkboard-user
+
+- title: "Machine Learning for Economics Students"
+  date: 2025-08-29
+  language: Bahasa
+  description: Introduction to Machine Learning for Economics students at IPB University. The slides are provided below. 
+  location: IPB University
+  feature: /talks/img/kuliahml.png 
+  links:
+  - name: Slides
+    url: https://derisiswara.art/kuliah_ml
+    icon: fa-solid fa-chalkboard-user
+
 - title: "Introduction to Quarto"
   date: 2025-05-11
   language: Bahasa
@@ -6,7 +28,7 @@
   feature: /talks/img/quarto.png 
   links:
   - name: Slides
-    url: http://derisiswara.art/belajarR-quarto/
+    url: https://derisiswara.art/belajarR-quarto/
     icon: fa-solid fa-chalkboard-user
 
 - title: "RStudio Workshop 2025"
@@ -28,7 +50,7 @@
   feature: /talks/img/ml.png 
   links:
   - name: Slides and Materials
-    url: http://derisiswara.art/machinelearning-perbanas/
+    url: https://derisiswara.art/machinelearning-perbanas/
     icon: fa-solid fa-chalkboard-user
 
 - title: "Bank Indonesia Data Anomalies Study (Outlier Analysis)"
@@ -39,7 +61,7 @@
   feature: /talks/img/out.png 
   links:
   - name: Slides
-    url: http://derisiswara.art/outliers_analysis/
+    url: https://derisiswara.art/outliers_analysis/
     icon: fa-solid fa-chalkboard-user
 
 - title: "Econometric Analysis of Panel Data"
