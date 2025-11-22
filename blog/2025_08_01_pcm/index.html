@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.8.26">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -60,7 +60,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -70,14 +70,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../static/img/logods2.webp" rel="icon">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7bd51a60a51e5c23b6c3f6a95c3214be.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-b524e5e10053bf5bea4dd5b3071a8bf3.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-73f1c58f6597475e7d4ceeaf4600a098.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-8e1180477146a0c51247e42704f0cb08.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
 <link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
@@ -107,7 +108,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
 
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
@@ -125,7 +126,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -393,7 +394,7 @@ P_t = \frac{\mathrm{PDRB_ADHB}_t}{\mathrm{PDRB_ADHK}_t}.
 <h3 class="anchored" data-anchor-id="cleaning-data">Cleaning Data</h3>
 <p><strong>Contoh data ACEH 2010-2021</strong></p>
 <div id="33e8201b" class="cell" data-message="false" data-execution_count="39">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"pdrbaceh2010-2021.xlsx"</span>)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Kolom 2-14 PDRB Berlaku</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>data_b <span class="ot">&lt;-</span> data[, <span class="dv">2</span><span class="sc">:</span><span class="dv">14</span>]</span>
@@ -424,13 +425,13 @@ P_t = \frac{\mathrm{PDRB_ADHB}_t}{\mathrm{PDRB_ADHK}_t}.
 <span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>original_data <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"pdrbaceh2010-2021.xlsx"</span>)</span>
 <span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>sector_order <span class="ot">&lt;-</span> original_data[[<span class="dv">2</span>]]  <span class="co"># First column with sector names</span></span>
 <span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>    <span class="fu">arrange</span>(<span class="fu">match</span>(Sektor, sector_order), Tahun)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>    <span class="fu">arrange</span>(<span class="fu">match</span>(Sektor, sector_order), Tahun)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="14309850" class="cell" data-execution_count="40">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(data)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(data)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<table class="dataframe caption-top table table-sm table-striped small">
 <caption>A data.frame: 6 × 4</caption>
 <thead>
 <tr class="header">
@@ -450,42 +451,42 @@ P_t = \frac{\mathrm{PDRB_ADHB}_t}{\mathrm{PDRB_ADHK}_t}.
 </thead>
 <tbody>
 <tr class="odd">
-<td data-quarto-table-cell-role="th" scope="row">1</td>
+<th data-quarto-table-cell-role="th" scope="row">1</th>
 <td>Pertanian, Kehutanan dan Perikanan</td>
 <td>2010</td>
 <td>25579575</td>
 <td>25579575</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th" scope="row">2</td>
+<th data-quarto-table-cell-role="th" scope="row">2</th>
 <td>Pertanian, Kehutanan dan Perikanan</td>
 <td>2011</td>
 <td>27553523</td>
 <td>26515484</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th" scope="row">3</td>
+<th data-quarto-table-cell-role="th" scope="row">3</th>
 <td>Pertanian, Kehutanan dan Perikanan</td>
 <td>2012</td>
 <td>29643043</td>
 <td>27685114</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th" scope="row">4</td>
+<th data-quarto-table-cell-role="th" scope="row">4</th>
 <td>Pertanian, Kehutanan dan Perikanan</td>
 <td>2013</td>
 <td>32254068</td>
 <td>28980433</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th" scope="row">5</td>
+<th data-quarto-table-cell-role="th" scope="row">5</th>
 <td>Pertanian, Kehutanan dan Perikanan</td>
 <td>2014</td>
 <td>34376594</td>
 <td>29690562</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th" scope="row">6</td>
+<th data-quarto-table-cell-role="th" scope="row">6</th>
 <td>Pertanian, Kehutanan dan Perikanan</td>
 <td>2015</td>
 <td>37598849</td>
@@ -495,7 +496,7 @@ P_t = \frac{\mathrm{PDRB_ADHB}_t}{\mathrm{PDRB_ADHK}_t}.
 </table>
 </div>
 <div class="cell-output cell-output-display">
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<table class="dataframe caption-top table table-sm table-striped small">
 <caption>A data.frame: 6 × 4</caption>
 <thead>
 <tr class="header">
@@ -515,42 +516,42 @@ P_t = \frac{\mathrm{PDRB_ADHB}_t}{\mathrm{PDRB_ADHK}_t}.
 </thead>
 <tbody>
 <tr class="odd">
-<td data-quarto-table-cell-role="th" scope="row">211</td>
+<th data-quarto-table-cell-role="th" scope="row">211</th>
 <td>PDRB TOTAL (BPS)</td>
 <td>2016</td>
 <td>136843818</td>
 <td>116374300</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th" scope="row">212</td>
+<th data-quarto-table-cell-role="th" scope="row">212</th>
 <td>PDRB TOTAL (BPS)</td>
 <td>2017</td>
 <td>145806923</td>
 <td>121240979</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th" scope="row">213</td>
+<th data-quarto-table-cell-role="th" scope="row">213</th>
 <td>PDRB TOTAL (BPS)</td>
 <td>2018</td>
 <td>155911115</td>
 <td>126824491</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th" scope="row">214</td>
+<th data-quarto-table-cell-role="th" scope="row">214</th>
 <td>PDRB TOTAL (BPS)</td>
 <td>2019</td>
 <td>164162928</td>
 <td>132069571</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th" scope="row">215</td>
+<th data-quarto-table-cell-role="th" scope="row">215</th>
 <td>PDRB TOTAL (BPS)</td>
 <td>2020</td>
 <td>166372321</td>
 <td>131580967</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th" scope="row">216</td>
+<th data-quarto-table-cell-role="th" scope="row">216</th>
 <td>PDRB TOTAL (BPS)</td>
 <td>2021</td>
 <td>184976302</td>
@@ -564,15 +565,15 @@ P_t = \frac{\mathrm{PDRB_ADHB}_t}{\mathrm{PDRB_ADHK}_t}.
 <section id="hitung-harga-deflator-pdrb" class="level3">
 <h3 class="anchored" data-anchor-id="hitung-harga-deflator-pdrb">Hitung harga deflator PDRB</h3>
 <div id="8f204861" class="cell" data-execution_count="41">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="do">### Hitung harga deflator PDRB</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="do">### Hitung harga deflator PDRB</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate price deflator</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">Deflator =</span> PDRB_Berlaku <span class="sc">/</span> PDRB_Konstan)</span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Display sample results</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<table class="dataframe caption-top table table-sm table-striped small">
 <caption>A data.frame: 6 × 5</caption>
 <thead>
 <tr class="header">
@@ -594,7 +595,7 @@ P_t = \frac{\mathrm{PDRB_ADHB}_t}{\mathrm{PDRB_ADHK}_t}.
 </thead>
 <tbody>
 <tr class="odd">
-<td data-quarto-table-cell-role="th" scope="row">1</td>
+<th data-quarto-table-cell-role="th" scope="row">1</th>
 <td>Pertanian, Kehutanan dan Perikanan</td>
 <td>2010</td>
 <td>25579575</td>
@@ -602,7 +603,7 @@ P_t = \frac{\mathrm{PDRB_ADHB}_t}{\mathrm{PDRB_ADHK}_t}.
 <td>1.000000</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th" scope="row">2</td>
+<th data-quarto-table-cell-role="th" scope="row">2</th>
 <td>Pertanian, Kehutanan dan Perikanan</td>
 <td>2011</td>
 <td>27553523</td>
@@ -610,7 +611,7 @@ P_t = \frac{\mathrm{PDRB_ADHB}_t}{\mathrm{PDRB_ADHK}_t}.
 <td>1.039148</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th" scope="row">3</td>
+<th data-quarto-table-cell-role="th" scope="row">3</th>
 <td>Pertanian, Kehutanan dan Perikanan</td>
 <td>2012</td>
 <td>29643043</td>
@@ -618,7 +619,7 @@ P_t = \frac{\mathrm{PDRB_ADHB}_t}{\mathrm{PDRB_ADHK}_t}.
 <td>1.070721</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th" scope="row">4</td>
+<th data-quarto-table-cell-role="th" scope="row">4</th>
 <td>Pertanian, Kehutanan dan Perikanan</td>
 <td>2013</td>
 <td>32254068</td>
@@ -626,7 +627,7 @@ P_t = \frac{\mathrm{PDRB_ADHB}_t}{\mathrm{PDRB_ADHK}_t}.
 <td>1.112960</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th" scope="row">5</td>
+<th data-quarto-table-cell-role="th" scope="row">5</th>
 <td>Pertanian, Kehutanan dan Perikanan</td>
 <td>2014</td>
 <td>34376594</td>
@@ -634,7 +635,7 @@ P_t = \frac{\mathrm{PDRB_ADHB}_t}{\mathrm{PDRB_ADHK}_t}.
 <td>1.157829</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th" scope="row">6</td>
+<th data-quarto-table-cell-role="th" scope="row">6</th>
 <td>Pertanian, Kehutanan dan Perikanan</td>
 <td>2015</td>
 <td>37598849</td>
@@ -649,16 +650,16 @@ P_t = \frac{\mathrm{PDRB_ADHB}_t}{\mathrm{PDRB_ADHK}_t}.
 <section id="hitung-pertumbuhan-ekonomi-dan-inflasi" class="level3">
 <h3 class="anchored" data-anchor-id="hitung-pertumbuhan-ekonomi-dan-inflasi">Hitung pertumbuhan ekonomi dan inflasi</h3>
 <div id="3f5a762b" class="cell" data-execution_count="45">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="do">### Hitung pertumbuhan ekonomi dan inflasi</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="do">### Hitung pertumbuhan ekonomi dan inflasi</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(Sektor) <span class="sc">%&gt;%</span></span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">arrange</span>(Tahun) <span class="sc">%&gt;%</span></span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">Pertumbuhan =</span> (PDRB_Konstan <span class="sc">/</span> <span class="fu">lag</span>(PDRB_Konstan) <span class="sc">-</span> <span class="dv">1</span>),</span>
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>           <span class="at">Inflasi =</span> (Deflator <span class="sc">/</span> <span class="fu">lag</span>(Deflator) <span class="sc">-</span> <span class="dv">1</span>))</span>
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>data1 <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(data)</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(data1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(data1)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<table class="dataframe caption-top table table-sm table-striped small">
 <caption>A grouped_df: 6 × 7</caption>
 <thead>
 <tr class="header">
@@ -743,11 +744,11 @@ P_t = \frac{\mathrm{PDRB_ADHB}_t}{\mathrm{PDRB_ADHK}_t}.
 <section id="hitung-pcm" class="level3">
 <h3 class="anchored" data-anchor-id="hitung-pcm">Hitung PCM</h3>
 <div id="80be66ac" class="cell" data-execution_count="47">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>data1 <span class="ot">&lt;-</span> data1 <span class="sc">%&gt;%</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>data1 <span class="ot">&lt;-</span> data1 <span class="sc">%&gt;%</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">pcm =</span> <span class="fu">abs</span>(<span class="dv">1</span><span class="sc">/</span>(Pertumbuhan<span class="sc">/</span>Inflasi)))</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(data1,<span class="dv">18</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(data1,<span class="dv">18</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<table class="dataframe caption-top table table-sm table-striped small">
 <caption>A grouped_df: 18 × 8</caption>
 <thead>
 <tr class="header">
@@ -961,7 +962,7 @@ P_t = \frac{\mathrm{PDRB_ADHB}_t}{\mathrm{PDRB_ADHK}_t}.
 <h3 class="anchored" data-anchor-id="hitung-weighted-pcm">Hitung WEIGHTED PCM</h3>
 <p>WEIGHTED PCM adalah perhitungan PCM yang mempertimbangkan kontribusi sektor terhadap total PDRB.</p>
 <div id="d9b59fe8" class="cell" data-execution_count="68">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the contribution of each sector to total GDP for each year</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the contribution of each sector to total GDP for each year</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>data_weighted <span class="ot">&lt;-</span> data1 <span class="sc">%&gt;%</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(Tahun) <span class="sc">%&gt;%</span></span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(      <span class="at">Weight =</span> PDRB_Berlaku <span class="sc">/</span> PDRB_Berlaku[<span class="dv">18</span>],</span>
@@ -969,9 +970,9 @@ P_t = \frac{\mathrm{PDRB_ADHB}_t}{\mathrm{PDRB_ADHK}_t}.
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the results</span></span>
 <span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(data_weighted,<span class="dv">18</span>)</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(data_weighted,<span class="dv">18</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(data_weighted,<span class="dv">18</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<table class="dataframe caption-top table table-sm table-striped small">
 <caption>A grouped_df: 18 × 10</caption>
 <thead>
 <tr class="header">
@@ -1220,7 +1221,7 @@ P_t = \frac{\mathrm{PDRB_ADHB}_t}{\mathrm{PDRB_ADHK}_t}.
 </table>
 </div>
 <div class="cell-output cell-output-display">
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<table class="dataframe caption-top table table-sm table-striped small">
 <caption>A grouped_df: 18 × 10</caption>
 <thead>
 <tr class="header">
@@ -1535,13 +1536,14 @@ P_t = \frac{\mathrm{PDRB_ADHB}_t}{\mathrm{PDRB_ADHK}_t}.
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
