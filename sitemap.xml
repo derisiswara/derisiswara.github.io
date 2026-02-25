@@ -1,87 +1,115 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://derisiswara.art/talks/index.html</loc>
-    <lastmod>2025-10-13T02:47:30.642Z</lastmod>
+    <loc>https://derisiswara.art/tutorial/stata/index.html</loc>
+    <lastmod>2026-02-25T06:55:23.250Z</lastmod>
   </url>
   <url>
-    <loc>https://derisiswara.art/projects/previous/kppuasean/index.html</loc>
-    <lastmod>2025-10-13T02:47:30.600Z</lastmod>
+    <loc>https://derisiswara.art/tutorial/r/index.html</loc>
+    <lastmod>2026-02-25T06:55:23.250Z</lastmod>
   </url>
   <url>
-    <loc>https://derisiswara.art/projects/previous/jurnalisei/index.html</loc>
-    <lastmod>2025-10-13T02:47:30.549Z</lastmod>
+    <loc>https://derisiswara.art/tutorial/python/index.html</loc>
+    <lastmod>2026-02-25T06:55:23.250Z</lastmod>
   </url>
   <url>
-    <loc>https://derisiswara.art/projects/previous/book/index.html</loc>
-    <lastmod>2025-10-13T02:47:30.537Z</lastmod>
+    <loc>https://derisiswara.art/tutorial/index.html</loc>
+    <lastmod>2026-02-25T06:55:20.672Z</lastmod>
   </url>
   <url>
-    <loc>https://derisiswara.art/projects/previous/apec/index.html</loc>
-    <lastmod>2025-11-24T07:25:17.028Z</lastmod>
+    <loc>https://derisiswara.art/projects/simpleml/index.html</loc>
+    <lastmod>2026-02-25T06:49:40.936Z</lastmod>
   </url>
   <url>
-    <loc>https://derisiswara.art/license.html</loc>
-    <lastmod>2025-10-13T02:47:30.515Z</lastmod>
-  </url>
-  <url>
-    <loc>https://derisiswara.art/blog/index.html</loc>
-    <lastmod>2025-10-13T02:47:30.513Z</lastmod>
-  </url>
-  <url>
-    <loc>https://derisiswara.art/blog/2027_07_19_econML/index.html</loc>
-    <lastmod>2025-10-13T02:47:30.512Z</lastmod>
-  </url>
-  <url>
-    <loc>https://derisiswara.art/blog/2025_08_08_data_pendapatan/index.html</loc>
-    <lastmod>2025-10-13T02:47:30.464Z</lastmod>
-  </url>
-  <url>
-    <loc>https://derisiswara.art/blog/2025_08_02_statavscode/index.html</loc>
-    <lastmod>2025-10-13T02:47:30.435Z</lastmod>
-  </url>
-  <url>
-    <loc>https://derisiswara.art/blog/2025_07_18_quartomonothemer/index.html</loc>
-    <lastmod>2025-10-13T02:47:30.425Z</lastmod>
-  </url>
-  <url>
-    <loc>https://derisiswara.art/blog/2025_08_01_pcm/index.html</loc>
-    <lastmod>2025-11-24T07:22:16.248Z</lastmod>
-  </url>
-  <url>
-    <loc>https://derisiswara.art/blog/2025_08_06_review_positron/index.html</loc>
-    <lastmod>2025-10-13T02:47:30.462Z</lastmod>
-  </url>
-  <url>
-    <loc>https://derisiswara.art/blog/2025_08_08_stata_h2o/index.html</loc>
-    <lastmod>2025-10-13T02:47:30.476Z</lastmod>
-  </url>
-  <url>
-    <loc>https://derisiswara.art/blog/apecmanus/index.html</loc>
-    <lastmod>2025-10-13T02:47:30.513Z</lastmod>
-  </url>
-  <url>
-    <loc>https://derisiswara.art/index.html</loc>
-    <lastmod>2025-12-02T08:13:10.419Z</lastmod>
+    <loc>https://derisiswara.art/projects/kppu/index.html</loc>
+    <lastmod>2026-02-25T06:49:40.936Z</lastmod>
   </url>
   <url>
     <loc>https://derisiswara.art/projects/index.html</loc>
-    <lastmod>2025-10-13T02:47:30.516Z</lastmod>
+    <lastmod>2026-02-25T14:58:42.717Z</lastmod>
   </url>
   <url>
-    <loc>https://derisiswara.art/projects/previous/bansos/index.html</loc>
-    <lastmod>2025-11-24T07:26:10.398Z</lastmod>
+    <loc>https://derisiswara.art/projects/bansos/index.html</loc>
+    <lastmod>2026-02-25T14:58:24.211Z</lastmod>
   </url>
   <url>
-    <loc>https://derisiswara.art/projects/previous/climate/index.html</loc>
-    <lastmod>2025-11-24T07:25:38.933Z</lastmod>
+    <loc>https://derisiswara.art/materi/index.html</loc>
+    <lastmod>2026-02-25T07:33:42.322Z</lastmod>
   </url>
   <url>
-    <loc>https://derisiswara.art/projects/previous/kppu/index.html</loc>
-    <lastmod>2025-10-13T02:47:30.559Z</lastmod>
+    <loc>https://derisiswara.art/layanan/index.html</loc>
+    <lastmod>2026-02-25T14:54:04.669Z</lastmod>
   </url>
   <url>
-    <loc>https://derisiswara.art/projects/previous/simpleml/index.html</loc>
-    <lastmod>2025-10-13T02:47:30.610Z</lastmod>
+    <loc>https://derisiswara.art/blog/apecmanus/index.html</loc>
+    <lastmod>2026-02-25T07:14:21.068Z</lastmod>
+  </url>
+  <url>
+    <loc>https://derisiswara.art/blog/2025_08_08_data_pendapatan/index.html</loc>
+    <lastmod>2026-02-25T07:13:10.371Z</lastmod>
+  </url>
+  <url>
+    <loc>https://derisiswara.art/blog/2025_08_02_statavscode/index.html</loc>
+    <lastmod>2026-02-25T07:16:11.962Z</lastmod>
+  </url>
+  <url>
+    <loc>https://derisiswara.art/blog/2025_07_19_econML/index.html</loc>
+    <lastmod>2026-02-25T07:13:10.377Z</lastmod>
+  </url>
+  <url>
+    <loc>https://derisiswara.art/blog/2025_07_18_quartomonothemer/index.html</loc>
+    <lastmod>2026-02-25T07:16:02.478Z</lastmod>
+  </url>
+  <url>
+    <loc>https://derisiswara.art/blog/2025_08_01_pcm/index.html</loc>
+    <lastmod>2026-02-25T07:15:56.587Z</lastmod>
+  </url>
+  <url>
+    <loc>https://derisiswara.art/blog/2025_08_06_review_positron/index.html</loc>
+    <lastmod>2026-02-25T07:13:10.371Z</lastmod>
+  </url>
+  <url>
+    <loc>https://derisiswara.art/blog/2025_08_08_stata_h2o/index.html</loc>
+    <lastmod>2026-02-25T07:13:10.373Z</lastmod>
+  </url>
+  <url>
+    <loc>https://derisiswara.art/index.html</loc>
+    <lastmod>2026-02-25T14:49:17.079Z</lastmod>
+  </url>
+  <url>
+    <loc>https://derisiswara.art/license.html</loc>
+    <lastmod>2026-02-25T06:21:58.632Z</lastmod>
+  </url>
+  <url>
+    <loc>https://derisiswara.art/projects/apec/index.html</loc>
+    <lastmod>2026-02-25T06:49:40.939Z</lastmod>
+  </url>
+  <url>
+    <loc>https://derisiswara.art/projects/book/index.html</loc>
+    <lastmod>2025-07-09T18:43:52.978Z</lastmod>
+  </url>
+  <url>
+    <loc>https://derisiswara.art/projects/jurnalisei/index.html</loc>
+    <lastmod>2026-02-25T06:49:40.939Z</lastmod>
+  </url>
+  <url>
+    <loc>https://derisiswara.art/projects/kppuasean/index.html</loc>
+    <lastmod>2026-02-25T06:49:40.936Z</lastmod>
+  </url>
+  <url>
+    <loc>https://derisiswara.art/tulisan/index.html</loc>
+    <lastmod>2026-02-25T14:56:39.479Z</lastmod>
+  </url>
+  <url>
+    <loc>https://derisiswara.art/tutorial/python/2026_02_25_dml_causal/index.html</loc>
+    <lastmod>2026-02-25T07:44:08.777Z</lastmod>
+  </url>
+  <url>
+    <loc>https://derisiswara.art/tutorial/r/2026_02_25_regresi_linear/index.html</loc>
+    <lastmod>2026-02-25T07:44:08.777Z</lastmod>
+  </url>
+  <url>
+    <loc>https://derisiswara.art/tutorial/stata/2026_02_25_panel_data/index.html</loc>
+    <lastmod>2026-02-25T07:44:08.777Z</lastmod>
   </url>
 </urlset>

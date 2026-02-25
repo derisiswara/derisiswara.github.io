@@ -1,31 +1,49 @@
 [
   {
-    "listing": "/talks/index.html",
+    "listing": "/tutorial/stata/index.html",
+    "items": [
+      "/tutorial/stata/2026_02_25_panel_data/index.html"
+    ]
+  },
+  {
+    "listing": "/tutorial/r/index.html",
+    "items": [
+      "/tutorial/r/2026_02_25_regresi_linear/index.html"
+    ]
+  },
+  {
+    "listing": "/tutorial/python/index.html",
+    "items": [
+      "/tutorial/python/2026_02_25_dml_causal/index.html"
+    ]
+  },
+  {
+    "listing": "/projects/index.html",
+    "items": [
+      "/projects/apec/index.html",
+      "/projects/bansos/index.html",
+      "/projects/simpleml/index.html",
+      "/projects/kppuasean/index.html",
+      "/projects/book/index.html",
+      "/projects/kppu/index.html",
+      "/projects/jurnalisei/index.html"
+    ]
+  },
+  {
+    "listing": "/materi/index.html",
     "items": []
   },
   {
-    "listing": "/blog/index.html",
+    "listing": "/tulisan/index.html",
     "items": [
       "/blog/2025_08_08_data_pendapatan/index.html",
       "/blog/2025_08_08_stata_h2o/index.html",
       "/blog/2025_08_06_review_positron/index.html",
       "/blog/2025_08_02_statavscode/index.html",
       "/blog/2025_08_01_pcm/index.html",
-      "/blog/2027_07_19_econML/index.html",
+      "/blog/apecmanus/index.html",
+      "/blog/2025_07_19_econML/index.html",
       "/blog/2025_07_18_quartomonothemer/index.html"
-    ]
-  },
-  {
-    "listing": "/projects/index.html",
-    "items": [
-      "/projects/previous/bansos/index.html",
-      "/projects/previous/apec/index.html",
-      "/projects/previous/simpleml/index.html",
-      "/projects/previous/climate/index.html",
-      "/projects/previous/kppuasean/index.html",
-      "/projects/previous/book/index.html",
-      "/projects/previous/kppu/index.html",
-      "/projects/previous/jurnalisei/index.html"
     ]
   }
 ]
