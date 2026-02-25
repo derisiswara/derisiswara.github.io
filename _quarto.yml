@@ -11,6 +11,8 @@ execute:
   freeze: auto
   warning: false
 
+lang: id
+
 website:
   title: "Deri Siswara"
   favicon: static/img/logods2.webp
@@ -18,27 +20,54 @@ website:
   repo-url: https://github.com/derisiswara/derisiswara.github.io
   open-graph: true
   navbar:
+    left:
+      - text: About
+        file: index.qmd
+      - text: Layanan Data
+        file: layanan/index.qmd
     right:
-      - text: Projects
-        file: projects/index.qmd
-      - text: Talks
-        file: talks/index.qmd
+      - text: Blog & Proyek
+        menu:
+          - text: Blog
+            icon: journal-text
+            file: tulisan/index.qmd
+          - text: Proyek
+            icon: clipboard-data
+            file: projects/index.qmd
+      - text: Tutorial
+        menu:
+          - text: R
+            icon: r-circle
+            file: tutorial/r/index.qmd
+          - text: Python
+            icon: filetype-py
+            file: tutorial/python/index.qmd
+          - text: STATA
+            icon: database
+            file: tutorial/stata/index.qmd
+      - text: Presentasi & Kuliah
+        file: materi/index.qmd
       - text: CV
         href: https://derisiswara.art/cv/cv.pdf
-      - text: Blog
-        file: blog/index.qmd
   page-footer:
     left: |
-      <span class="faux-block">{{< fa copyright >}} 2025 Deri Siswara </span>
+      <span class="faux-block">{{< fa copyright >}} 2025–2026 Deri Siswara</span>
     center: |
-      [License](license.html)
+      [{{< fa brands github >}} GitHub](https://github.com/derisiswara) · 
+      [{{< fa brands linkedin >}} LinkedIn](https://www.linkedin.com/in/derisiswara/) · 
+      [{{< ai google-scholar >}} Scholar](https://scholar.google.co.id/citations?user=NNhhI5IAAAAJ&hl=en) · 
+      [{{< fa envelope >}} Email](mailto:derisiswarads@gmail.com)
     right: |
-      <span class="faux-block">Made with {{< fa brands r-project >}} and [Quarto](https://quarto.org/) | Source [{{< fa brands github >}} GitHub]({{< var repo-url >}})</span>
+      <span class="faux-block">Dibuat dengan [Quarto](https://quarto.org/) | [{{< fa brands github >}} Source]({{< var repo-url >}})</span>
       
 format:
   html:
     theme: 
-      - static/html/custom.scss
+      light: 
+        - static/html/custom.scss
+      dark:
+        - static/html/custom.scss
+        - static/html/dark.scss
 
 bibliography: references.bib
 

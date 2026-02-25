@@ -1,0 +1,75 @@
+---
+title: "Layanan Konsultasi dan Olah Data"
+description: "Jasa konsultasi data, analisis statistik, dan olah data untuk riset, skripsi, tesis, disertasi, dan kebutuhan profesional."
+page-layout: full
+toc: true
+toc-location: right
+toc-title: Daftar Isi
+css: ../static/html/layanan.css
+comments: false
+---
+
+```{=html}
+<div class="layanan-hero">
+  <div class="layanan-hero-icon"><i class="fa-solid fa-headset"></i></div>
+  <p class="layanan-hero-desc">
+    Saya menyediakan layanan <strong>konsultasi dan olah data</strong> untuk kebutuhan riset, tugas akhir (skripsi/tesis/disertasi), maupun analisis data profesional. Metode yang tersedia meliputi ekonometrika, statistika, analisis spasial, machine learning, dan lainnya.
+  </p>
+  <div class="layanan-contact-row">
+    <a href="https://wa.me/6281384548488" class="layanan-btn-wa">
+      <i class="fa-brands fa-whatsapp"></i> 0813-8454-8488
+    </a>
+    <a href="mailto:derisiswarads@gmail.com" class="layanan-btn-email">
+      <i class="fa-solid fa-envelope"></i> derisiswarads@gmail.com
+    </a>
+  </div>
+</div>
+```
+
+## Layanan yang Tersedia
+
+| Kategori | Metode |
+|----------|--------|
+| **Ekonometrika** | Regresi (OLS, Panel, Logit/Probit), Difference-in-Differences, Instrumental Variables, VAR/VECM, ARDL, dll. |
+| **Statistika** | Uji hipotesis, ANOVA, SEM/PLS, analisis faktor, survival analysis, dll. |
+| **Machine Learning** | Random Forest, XGBoost, Neural Networks, Causal ML (DML, Meta-Learners), dll. |
+| **Analisis Spasial** | GWR, spatial econometrics (SAR/SEM/SDM), LISA, dll. |
+| **Tools** | R, Python, STATA, EViews, SPSS |
+
+## Alur Kerja
+
+1. **Konsultasi Awal** — Diskusi kebutuhan via WhatsApp/email (gratis)
+2. **Proposal & Estimasi** — Lingkup pekerjaan dan estimasi biaya
+3. **Pengerjaan** — Analisis data + dokumentasi kode
+4. **Revisi & Deliverables** — Hasil akhir + penjelasan interpretasi
+
+## Portfolio
+
+```{=html}
+<div class="portfolio-section">
+  <p class="portfolio-placeholder"><em>Portfolio proyek konsultasi akan ditampilkan di sini.</em></p>
+  
+  <!-- 
+  Template portfolio item — copy-paste dan isi untuk setiap proyek:
+  
+  <div class="portfolio-grid">
+    <div class="portfolio-card">
+      <div class="portfolio-card-label">Ekonometrika</div>
+      <div class="portfolio-card-title">Judul Proyek</div>
+      <div class="portfolio-card-desc">Deskripsi singkat proyek, metode yang digunakan, dan hasil utama.</div>
+      <div class="portfolio-card-meta">
+        <span><i class="fa-solid fa-calendar"></i> 2026</span>
+        <span><i class="fa-solid fa-code"></i> R / Python / STATA</span>
+      </div>
+    </div>
+  </div>
+  -->
+</div>
+```
+
+## Kontak
+
+Hubungi saya untuk konsultasi lebih lanjut:
+
+- {{< fa brands whatsapp >}} **WhatsApp:** [0813-8454-8488](https://wa.me/6281384548488)
+- {{< fa envelope >}} **Email:** [derisiswarads@gmail.com](mailto:derisiswarads@gmail.com)

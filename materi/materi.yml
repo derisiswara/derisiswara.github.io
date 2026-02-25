@@ -1,0 +1,76 @@
+- title: "Probabilitas dan Statistika"
+  date: 2025-11-29
+  language: Bahasa Indonesia
+  description: Materi kuliah Probabilitas dan Statistika untuk mahasiswa Ilmu Komputer dan Data Science di Perbanas Institute. Website kuliah tersedia di bawah.
+  location: Perbanas Institute
+  feature: /materi/img/statprob.png 
+  links:
+  - name: Website Kuliah
+    url: https://derisiswara.art/webstatprob/
+    icon: fa-solid fa-chalkboard-user
+
+- title: "Machine Learning untuk Mahasiswa Ekonomi"
+  date: 2025-08-29
+  language: Bahasa Indonesia
+  description: Pengantar Machine Learning untuk mahasiswa Ekonomi di IPB University. Slides tersedia di bawah.
+  location: IPB University
+  feature: /materi/img/kuliahml.png 
+  links:
+  - name: Slides
+    url: https://derisiswara.art/kuliah_ml
+    icon: fa-solid fa-chalkboard-user
+
+- title: "Pengantar Quarto"
+  date: 2025-05-11
+  language: Bahasa Indonesia
+  description: Berbagi tentang framework Quarto di komunitas BelajaR. Slides dan latihan kode tersedia di bawah.
+  location: Online
+  feature: /materi/img/quarto.png 
+  links:
+  - name: Slides
+    url: https://derisiswara.art/belajarR-quarto/
+    icon: fa-solid fa-chalkboard-user
+
+- title: "Workshop RStudio 2025"
+  date: 2025-05-06
+  language: Bahasa Indonesia
+  description: Peningkatan Research Quality dengan RStudio.
+  location: Jambi, Indonesia
+  feature: /materi/img/workshop.png 
+  links:
+  - name: Materi
+    url: https://derisiswara.art/2025-rstudio-workshop-jambi/
+    icon: fa-solid fa-chalkboard-user
+
+- title: "Machine Learning"
+  date: 2025-02-14
+  language: Bahasa Indonesia
+  description: Slides dan materi untuk mata kuliah Machine Learning.
+  location: Perbanas Institute
+  feature: /materi/img/ml.png 
+  links:
+  - name: Slides dan Materi
+    url: https://derisiswara.art/machinelearning-perbanas/
+    icon: fa-solid fa-chalkboard-user
+
+- title: "Studi Anomali Data Bank Indonesia (Analisis Outlier)"
+  date: 2025-02-06
+  language: Bahasa Indonesia
+  description: Slides dan latihan kode untuk studi deteksi anomali pada data Bank Indonesia menggunakan pendekatan statistik.
+  location: Bank Indonesia
+  feature: /materi/img/out.png 
+  links:
+  - name: Slides
+    url: https://derisiswara.art/outliers_analysis/
+    icon: fa-solid fa-chalkboard-user
+
+- title: "Analisis Ekonometrika Data Panel"
+  date: 2023-02-06
+  language: Bahasa Indonesia
+  description: Mengajar sebagai asisten dosen Muhammad Firdaus PhD di mata kuliah Ekonometrika pada program Doktoral Manajemen Bisnis IPB University.
+  location: IPB University
+  feature: /materi/img/baltagi.png 
+  links:
+  - name: Slides
+    url: "/materi/slides/Catatan Panel Data Baltagi 2021.pdf"
+    icon: fa-solid fa-chalkboard-user

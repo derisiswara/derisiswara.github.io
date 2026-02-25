@@ -1,0 +1,23 @@
+---
+title: "Tutorial R"
+description: "Kumpulan tutorial R — dari dasar pemrograman hingga ekonometrika, analisis spasial, dan visualisasi data."
+author: ""
+listing:
+  - id: tutorial-r
+    contents: 
+      - "**/index.ipynb"
+      - "**/index.qmd"
+      - "!index.qmd"
+    sort: "date desc"
+    template: ../../static/html/blog/listing.ejs
+    categories: true
+    page-size: 10
+page-layout: full
+date-format: "D MMMM YYYY"
+toc: false
+code-tools: false
+comments: false
+---
+
+:::{#tutorial-r}
+:::

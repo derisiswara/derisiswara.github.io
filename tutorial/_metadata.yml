@@ -1,0 +1,14 @@
+# Metadata default untuk semua tutorial
+title-block-banner: true
+
+comments: 
+  giscus: 
+    repo: derisiswara/derisiswara.github.io
+
+execute: 
+  warning: false
+  message: false
+
+format:
+  html:
+    code-tools: true

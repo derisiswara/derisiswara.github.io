@@ -1,0 +1,23 @@
+---
+title: "Tutorial Python"
+description: "Kumpulan tutorial Python — dari dasar pemrograman hingga machine learning, causal inference, dan data science."
+author: ""
+listing:
+  - id: tutorial-python
+    contents: 
+      - "**/index.ipynb"
+      - "**/index.qmd"
+      - "!index.qmd"
+    sort: "date desc"
+    template: ../../static/html/blog/listing.ejs
+    categories: true
+    page-size: 10
+page-layout: full
+date-format: "D MMMM YYYY"
+toc: false
+code-tools: false
+comments: false
+---
+
+:::{#tutorial-python}
+:::

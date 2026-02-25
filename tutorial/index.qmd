@@ -1,0 +1,15 @@
+---
+title: "Tutorial"
+description: "Kumpulan tutorial pemrograman R, Python, dan Stata untuk analisis data, ekonometrika, dan data science."
+author: ""
+page-layout: full
+toc: false
+code-tools: false
+comments: false
+---
+
+Pilih bahasa pemrograman:
+
+- [{{< fa brands r-project >}} **R**](r/index.qmd) — Ekonometrika, analisis spasial, visualisasi data
+- [{{< fa brands python >}} **Python**](python/index.qmd) — Machine learning, causal inference, data science
+- [**Stata**](stata/index.qmd) — Ekonometrika, analisis data panel, machine learning

@@ -1,0 +1,326 @@
+/*-- scss:defaults --*/
+
+// Dark theme overrides — Deep Navy palette inverted
+
+$body-bg: #111827 !default;
+$body-color: #d1d5db !default;
+
+$navy-900:  #0B1D3A !default;
+$navy-800:  #0F2A52 !default;
+$navy-700:  #14376A !default;
+$navy-600:  #1B4D8F !default;
+$gold-500:  #C8973E !default;
+$gold-400:  #D4A94E !default;
+$gold-300:  #E0C068 !default;
+
+$link-color: #6ba3d6 !default;
+$link-hover-color: $gold-400 !default;
+
+$code-bg: #1e293b !default;
+$code-color: #e2e8f0 !default;
+
+$card-bg: #1e293b !default;
+
+/*-- scss:rules --*/
+
+// Dark mode specific overrides
+
+.hero-section {
+  .hero-name {
+    color: #f1f5f9;
+  }
+  .hero-tagline {
+    color: #9ca3af;
+  }
+}
+
+.hero-pill {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #e2e8f0;
+}
+
+.hero-cta {
+  .btn-primary-custom {
+    background-color: #2563AA;
+    border-color: #2563AA;
+    color: #fff;
+    
+    &:hover {
+      background-color: #1B4D8F;
+      border-color: #1B4D8F;
+    }
+  }
+  
+  .btn-outline-custom {
+    color: #6ba3d6;
+    border-color: #6ba3d6;
+    
+    &:hover {
+      background-color: #6ba3d6;
+      color: #111827;
+    }
+  }
+}
+
+.about-section {
+  border-top-color: #374151;
+  
+  h2 { color: #f1f5f9; }
+  p { color: #d1d5db; }
+}
+
+.featured-section {
+  border-top-color: #374151;
+  h2 { color: #f1f5f9; }
+}
+
+.featured-card {
+  background: #1e293b;
+  border-color: #374151;
+  
+  &:hover {
+    border-color: $gold-400;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+  }
+  
+  .card-title { color: #f1f5f9; }
+  .card-desc { color: #9ca3af; }
+  .card-link { color: #6ba3d6; }
+}
+
+.services-section {
+  background-color: #1e293b;
+  border-top-color: #374151;
+  
+  h2 { color: #f1f5f9; }
+  p { color: #d1d5db; }
+  
+  .services-btn.services-btn-outline {
+    color: #6ba3d6;
+    border-color: #6ba3d6;
+    
+    &:hover {
+      background-color: #6ba3d6;
+      color: #111827;
+    }
+  }
+}
+
+.social-links a {
+  color: #6b7280;
+  &:hover { color: #d1d5db; }
+}
+
+// Navbar dark
+.navbar {
+  background-color: #111827 !important;
+  border-bottom-color: #374151;
+  
+  .navbar-brand { color: #f1f5f9 !important; }
+  
+  .navbar-nav .nav-link {
+    color: #d1d5db !important;
+    &:hover, &.active {
+      color: #f1f5f9 !important;
+      background-color: rgba(255,255,255,0.08);
+    }
+  }
+  
+  // Hamburger toggle icon
+  .navbar-toggler {
+    border-color: rgba(255,255,255,0.2);
+  }
+  .navbar-toggler-icon {
+    filter: invert(1);
+  }
+  
+  // Dropdown menu dark
+  .dropdown-menu {
+    background-color: #1e293b;
+    border-color: #374151;
+    
+    .dropdown-item {
+      color: #d1d5db;
+      &:hover, &:focus {
+        background-color: #374151;
+        color: #f1f5f9;
+      }
+    }
+  }
+}
+
+// Dark mode toggle icon fix
+.quarto-color-scheme-toggle .bi {
+  color: #d1d5db;
+}
+
+// Search icon dark
+.navbar .quarto-navbar-tools .nav-link {
+  color: #d1d5db !important;
+  &:hover { color: #f1f5f9 !important; }
+}
+
+// Title block dark
+#title-block-header .quarto-title-banner {
+  .title { color: #f1f5f9; }
+  .description { color: #9ca3af; }
+}
+
+// Blog entries dark
+.blog .blog-entry {
+  .title { color: #f1f5f9; }
+  .description { color: #9ca3af; }
+  .date { color: #6b7280; }
+  .post-categories .post-category {
+    color: #9ca3af;
+    border-color: #4b5563;
+  }
+}
+
+// Research entries dark
+.research .research-entry {
+  .title { color: #f1f5f9; }
+  .subtitle { color: #d1d5db; }
+  .description { color: #9ca3af; }
+  .research-coauthors { color: #6b7280; }
+  .item-categories .item-category {
+    color: #9ca3af;
+    border-color: #4b5563;
+  }
+}
+
+// Talks dark
+.talks .talk-entry {
+  .talk-title { color: #f1f5f9; }
+  .talk-details { color: #6b7280; }
+  .talk-description { color: #d1d5db; }
+}
+
+// Footer stays dark in both modes (already dark navy)
+
+// Title block banner — adaptive for dark mode
+#title-block-header.quarto-title-block {
+  background-color: $body-bg !important;
+  
+  &.quarto-title-banner {
+    background-color: $body-bg !important;
+  }
+}
+
+.quarto-title-banner {
+  background-color: $body-bg !important;
+}
+
+// Category sidebar dark
+#quarto-margin-sidebar {
+  .quarto-listing-category-title {
+    color: #d1d5db;
+  }
+  .quarto-listing-category {
+    border-left-color: #374151;
+    
+    .category {
+      color: #9ca3af;
+      &:hover { color: #f1f5f9; }
+      &.active { color: $gold-400; }
+    }
+    .quarto-category-count {
+      color: #6b7280;
+    }
+  }
+}
+
+// TOC dark
+.sidebar nav[role="doc-toc"] {
+  .active { color: $gold-400 !important; }
+  a { color: #9ca3af; &:hover { color: #f1f5f9; } }
+}
+
+// Listing pagination dark
+.listing-pagination {
+  .page-link {
+    background-color: #1e293b;
+    border-color: #374151;
+    color: #d1d5db;
+    
+    &:hover {
+      background-color: #374151;
+      color: #f1f5f9;
+    }
+  }
+  .active .page-link {
+    background-color: $gold-500;
+    border-color: $gold-500;
+    color: #111827;
+  }
+}
+
+// Quarto search dark
+.aa-DetachedFormContainer, .aa-Panel {
+  background-color: #1e293b !important;
+  color: #d1d5db;
+}
+
+// General page content headings
+.quarto-title .title {
+  color: #f1f5f9 !important;
+}
+
+.quarto-title .description {
+  color: #9ca3af !important;
+}
+
+// Horizontal rules and borders
+hr, .border-bottom {
+  border-color: #374151 !important;
+}
+
+// Section headers in listing pages
+h2, h3 {
+  color: #f1f5f9;
+}
+
+// Project link badges
+.quarto-title-block .project-link {
+  border-color: #4b5563;
+  color: #6ba3d6;
+  
+  &:hover {
+    background-color: #6ba3d6;
+    color: #111827;
+  }
+  
+  a { color: inherit; }
+}
+
+// Blog post category badges in dark mode
+.blog-post .quarto-title .quarto-categories .quarto-category {
+  background-color: #2563AA;
+  border-color: #1B4D8F;
+  color: #fff;
+}
+
+// Materi grid dark mode
+.materi-card {
+  background: #1e293b;
+  border-color: #374151;
+  
+  &:hover {
+    border-color: $gold-400;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+  }
+  
+  .materi-card-title a { color: #f1f5f9; &:hover { color: #6ba3d6; } }
+  .materi-card-meta { color: #6b7280; }
+  .materi-card-desc { color: #9ca3af; }
+  
+  .materi-card-link {
+    color: #6ba3d6;
+    border-color: #4b5563;
+    
+    &:hover {
+      background-color: #6ba3d6;
+      color: #111827;
+    }
+  }
+}

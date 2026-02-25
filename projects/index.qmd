@@ -1,33 +1,16 @@
 ---
-title: Projects
-description: This section contains my previous and ongoing projects.
-home: true
+title: Proyek
+description: "Kumpulan proyek riset di bidang ekonomi regional, analisis spasial, dan evaluasi kebijakan."
 listing:
-  - id: previous
-    contents: "/previous/*/index.qmd"
+  - id: projects
+    contents: "*/index.qmd"
     sort: "date desc"
     template: ../static/html/projects/listing.ejs
     categories: true
-    page-size: 3
-  - id: ongoing
-    contents: "/ongoing/*/index.qmd"
-    sort: "date desc"
-    template: ../static/html/projects/listing.ejs
-    categories: true
-    page-size: 3
-title-block-banner: "#fff"
+    page-size: 12
 page-layout: full
-toc: true 
-toc-location: right
-toc-title: Contents
+toc: false
 ---
 
-## PREVIOUS PROJECTS
-
-:::{#previous}
-:::
-
-## ONGOING PROJECTS
-
-:::{#ongoing}
+:::{#projects}
 :::

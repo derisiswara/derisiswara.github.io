@@ -1,0 +1,39 @@
+```{=html}
+<div class="materi-grid">
+    <% for (const talk of items) { %>
+    <div class="materi-card">
+        <% if (talk.feature) { %>
+        <div class="materi-card-img">
+            <% if (talk.links && talk.links.length > 0) { %>
+            <a href="<%- talk.links[0].url %>"><img src="<%= talk.feature %>" alt="<%= talk.title %>" /></a>
+            <% } else { %>
+            <img src="<%= talk.feature %>" alt="<%= talk.title %>" />
+            <% } %>
+        </div>
+        <% } %>
+        <div class="materi-card-body">
+            <p class="materi-card-title">
+                <% if (talk.links && talk.links.length > 0) { %>
+                <a href="<%- talk.links[0].url %>"><%= talk.title %></a>
+                <% } else { %>
+                <%= talk.title %>
+                <% } %>
+            </p>
+            <p class="materi-card-meta">
+                <span><%= talk.date %></span> · <span><%= talk.location %></span>
+            </p>
+            <p class="materi-card-desc"><%= talk.description %></p>
+            <% if (talk.links && talk.links.length > 0) { %>
+            <div class="materi-card-links">
+                <% for (const link of talk.links) { %>
+                <a href="<%- link.url %>" class="materi-card-link">
+                    <i class="<%- link.icon %>"></i> <%= link.name %>
+                </a>
+                <% } %>
+            </div>
+            <% } %>
+        </div>
+    </div>
+    <% } %>
+</div>
+```

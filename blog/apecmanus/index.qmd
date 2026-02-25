@@ -3,6 +3,8 @@ title: "APEC Manuscript"
 date: 2025-07-23
 author: Deri Siswara
 toc: true
+categories:
+  - Riset
 ---
 
 ## Slide 1

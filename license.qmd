@@ -1,13 +1,13 @@
 ---
-title: "License"
+title: "Lisensi"
 comments: false
 ---
 
-©2025 Deri Siswara. License adapted from [Jadey Ryan](https://jadeyryan.com/license).  
-Website template adapted from [Kazuya Nagimoto](https://kazuyanagimoto.com). 
+©2025–2026 Deri Siswara. Lisensi diadaptasi dari [Jadey Ryan](https://jadeyryan.com/license).  
+Template website diadaptasi dari [Kazuya Nagimoto](https://kazuyanagimoto.com). 
 
-The opinions expressed are entirely my own and do not represent the views of my employer or any other affiliated organization.
+Pendapat yang disampaikan sepenuhnya milik saya dan tidak mewakili pandangan pemberi kerja atau organisasi afiliasi lainnya.
 
-My content is released under the [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA) license](https://creativecommons.org/licenses/by-nc-sa/4.0/).
+Konten saya dirilis di bawah lisensi [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA)](https://creativecommons.org/licenses/by-nc-sa/4.0/).
 
-You may share and adapt this content with appropriate attribution and indication of changes. You may not use this material for commercial purposes.
+Anda dapat membagikan dan mengadaptasi konten ini dengan atribusi yang tepat dan indikasi perubahan. Anda tidak boleh menggunakan materi ini untuk tujuan komersial.

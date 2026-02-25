@@ -1,0 +1,36 @@
+/* Homepage-specific layout overrides */
+
+/* Remove any Quarto sidebar/column offset */
+.page-layout-full .page-columns {
+  display: block !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  grid-template-columns: 1fr !important;
+}
+
+.hero-section {
+  max-width: 800px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  text-align: center;
+  box-sizing: border-box;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.about-section {
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.featured-section {
+  max-width: 960px;
+  margin: 0 auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}

@@ -1,0 +1,15 @@
+---
+title: "Presentasi & Kuliah"
+description: "Materi presentasi, kuliah, seminar, dan workshop."
+listing:
+  - id: materi
+    contents: materi.yml
+    sort: "date desc"
+    template: ../static/html/materi/listing.ejs
+    page-size: 12
+page-layout: full
+date-format: "D MMMM YYYY"
+---
+
+:::{#materi}
+:::
