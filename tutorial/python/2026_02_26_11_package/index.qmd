@@ -1,0 +1,195 @@
+---
+title: "Part 11 — Package & Library"
+description: "Install, import, dan mengelola package di Python: pip, conda, virtual environments, dan requirements.txt."
+date: "2026-02-26"
+categories: [Fundamental, Package]
+series: "Fundamental Programming"
+order: 11
+---
+
+## Fundamental Series — Part 11 of 20
+
+Python punya ekosistem package yang sangat besar di PyPI. Memahami cara install, import, dan mengelola dependencies adalah skill fundamental.
+
+---
+
+## Install Package
+
+```bash
+# pip — package manager utama
+pip install pandas
+pip install numpy scipy matplotlib
+
+# Versi tertentu
+pip install pandas==2.2.0
+pip install "pandas>=2.0,<3.0"
+
+# Upgrade
+pip install --upgrade pandas
+```
+
+---
+
+## Import Package
+
+```python
+# Import seluruh package
+import numpy
+numpy.array([1, 2, 3])
+
+# Import dengan alias (konvensi umum)
+import numpy as np
+import pandas as pd
+import polars as pl
+import matplotlib.pyplot as plt
+
+# Import fungsi tertentu
+from datetime import date, timedelta
+from pathlib import Path
+
+# Import semua (tidak direkomendasikan)
+from math import *
+```
+
+::: {.callout-tip}
+## Konvensi Alias
+Beberapa alias sudah menjadi standar komunitas: `np`, `pd`, `pl`, `plt`, `sns`. Gunakan alias ini agar kode lebih konsisten.
+:::
+
+---
+
+## Cek Package Terinstall
+
+```python
+# Cek versi
+import pandas as pd
+pd.__version__
+
+# Cek apakah terinstall
+try:
+    import seaborn
+except ImportError:
+    pass  # handle missing package
+
+# List semua package (di terminal)
+# pip list
+# pip show pandas
+```
+
+---
+
+## Virtual Environments
+
+```bash
+# Buat virtual environment
+python -m venv .venv
+
+# Aktivasi (Windows)
+.venv\Scripts\activate
+
+# Aktivasi (Mac/Linux)
+source .venv/bin/activate
+
+# Deactivate
+deactivate
+```
+
+::: {.callout-note}
+## Kenapa Virtual Environment?
+Setiap project bisa punya **versi package berbeda**. Virtual environment mengisolasi dependencies per project, menghindari konflik.
+:::
+
+---
+
+## `requirements.txt`
+
+```bash
+# Simpan dependencies
+pip freeze > requirements.txt
+
+# Install dari requirements.txt
+pip install -r requirements.txt
+```
+
+Contoh isi `requirements.txt`:
+
+```
+numpy==1.26.4
+pandas==2.2.1
+polars==0.20.10
+matplotlib==3.8.3
+```
+
+---
+
+## Alternatif: `uv` dan `conda`
+
+### uv (cepat, modern)
+
+```bash
+# Install uv
+pip install uv
+
+# Install package dengan uv
+uv pip install pandas numpy
+
+# Sync dari requirements
+uv pip sync requirements.txt
+```
+
+### conda (Anaconda/Miniconda)
+
+```bash
+conda install pandas numpy
+conda create -n myenv python=3.11
+conda activate myenv
+```
+
+---
+
+## Package Populer untuk Data Science
+
+| Package | Fungsi |
+|---------|--------|
+| `numpy` | Array & numerik |
+| `pandas` | DataFrame (mutable) |
+| `polars` | DataFrame (immutable, cepat) |
+| `matplotlib` | Visualisasi dasar |
+| `seaborn` | Visualisasi statistik |
+| `plotnine` | ggplot di Python |
+| `scikit-learn` | Machine learning |
+| `scipy` | Statistik & optimisasi |
+| `statsmodels` | Model statistik |
+| `great_tables` | Tabel yang bagus |
+
+---
+
+## Latihan
+
+::: {.callout-caution}
+## Latihan 11.1
+```python
+# 1. Cek versi numpy, pandas, dan polars
+# 2. Import hanya fungsi date dari datetime
+# 3. Import Path dari pathlib, buat objek Path dari "data/input.csv"
+```
+:::
+
+---
+
+## Ringkasan
+
+| Fitur | Keterangan |
+|-------|-----------|
+| `pip install` | Install package |
+| `import x as y` | Import dengan alias |
+| `from x import y` | Import spesifik |
+| `x.__version__` | Cek versi |
+| `venv` | Virtual environment |
+| `requirements.txt` | Lock dependencies |
+| `uv` / `conda` | Alternatif package manager |
+
+---
+
+*Sebelumnya: [Part 10 — Missing Values](../2026_02_26_10_missing/index.qmd)*
+*Selanjutnya: [Part 12 — Import & Export Data](../2026_02_26_12_import_export/index.qmd)*

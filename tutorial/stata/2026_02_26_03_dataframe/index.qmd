@@ -1,0 +1,332 @@
+---
+title: "Part 3 — Struktur Data II: Dataset sebagai DataFrame"
+description: "Memahami dataset Stata sebagai tabel data — describe, list, browse, input, dan operasi dasar."
+date: "2026-02-26"
+categories: [Fundamental, Struktur Data]
+series: "Fundamental Programming"
+order: 3
+---
+
+## Fundamental Series — Part 3 of 20
+
+Di Stata, **dataset itu sendiri adalah DataFrame**. Tidak perlu membuat objek terpisah — data langsung hidup di memori sebagai satu tabel. Part ini membahas cara membuat, memeriksa, dan memanipulasi dataset di Stata.
+
+---
+
+## Membuat Dataset: `input`
+
+```stata
+clear
+input str15 kota populasi str10 pulau
+"Jakarta"   10.56 "Jawa"
+"Bandung"    2.44 "Jawa"
+"Surabaya"   2.87 "Jawa"
+"Medan"      2.12 "Sumatera"
+"Makassar"   1.42 "Sulawesi"
+end
+```
+
+::: {.callout-note}
+## Hanya Satu Dataset
+Stata hanya bekerja dengan **satu dataset aktif** di memori. Untuk bekerja dengan beberapa dataset sekaligus, kamu perlu `save`, `clear`, `use`, atau gunakan fitur `frame` (Stata 16+).
+:::
+
+### Cara Lain Membuat Data
+
+```stata
+* Dari nol
+clear
+set obs 100
+generate id = _n
+generate x = rnormal()     // random normal
+
+* Load dataset bawaan
+sysuse auto, clear         // data mobil
+webuse nlswork, clear      // data longitudinal
+
+* Load file .dta
+use "data/survey.dta", clear
+```
+
+---
+
+## Memeriksa Struktur
+
+### `describe` — Struktur Dataset
+
+```stata
+sysuse auto, clear
+describe
+```
+
+```
+Contains data from .../auto.dta
+ Observations:            74
+    Variables:            12
+──────────────────────────────────────────
+Variable      Storage   Display    Value
+name          type      format     label
+──────────────────────────────────────────
+make          str18     %-18s
+price         int       %8.0gc
+mpg           int       %8.0g
+...
+```
+
+### `list` — Tampilkan Data
+
+```stata
+list in 1/5                    // 5 observasi pertama
+list kota populasi             // kolom tertentu
+list if populasi > 2.5         // filter
+list kota populasi in 1/3      // kombinasi
+```
+
+### `browse` — Buka Data Editor
+
+```stata
+browse                         // buka data editor (read-only)
+edit                           // buka data editor (bisa edit)
+```
+
+### Dimensi & Info
+
+```stata
+describe                       // info lengkap
+count                          // jumlah observasi
+describe, short                // ringkas: obs & var saja
+
+* Jumlah variabel
+display c(k)                   // jumlah variabel
+display _N                     // jumlah observasi
+```
+
+---
+
+## Mengakses Kolom (Variabel)
+
+Di Stata, kamu langsung sebut nama variabel dalam perintah:
+
+```stata
+* Lihat satu variabel
+list kota
+
+* Statistik satu variabel
+summarize populasi
+
+* Beberapa variabel
+summarize populasi luas
+list kota populasi pulau
+```
+
+### Wildcard & Shortcut
+
+```stata
+* Semua variabel yang diawali "pop"
+describe pop*
+
+* Variabel ke-2 sampai ke-4
+describe kota-pulau
+
+* Semua variabel numerik
+summarize _all
+ds, has(type numeric)
+```
+
+---
+
+## Mengakses Baris (Observasi)
+
+```stata
+* Baris tertentu (subscript)
+display kota[1]            // "Jakarta"
+display populasi[3]        // 2.87
+
+* Range observasi
+list in 1/3                // baris 1-3
+list in -3/l               // 3 baris terakhir (l = last)
+
+* Filter dengan if
+list if pulau == "Jawa"
+list if populasi > 2.5
+list if pulau == "Jawa" & populasi > 3
+```
+
+::: {.callout-important}
+## `in` vs `if`
+- `in 1/5` → berdasarkan **posisi** (baris 1 sampai 5)
+- `if x > 10` → berdasarkan **kondisi** (lebih umum digunakan)
+
+`in` lebih cepat tapi bergantung urutan data. `if` lebih aman dan fleksibel.
+:::
+
+---
+
+## Menambah & Mengubah Variabel
+
+```stata
+* Tambah variabel baru
+generate luas = .
+replace luas = 661.5 in 1
+replace luas = 167.7 in 2
+replace luas = 350.5 in 3
+replace luas = 265.1 in 4
+replace luas = 175.8 in 5
+
+* Buat variabel dari perhitungan
+generate kepadatan = populasi / luas * 1e6
+
+* Ubah variabel yang ada
+replace populasi = populasi * 1e6
+```
+
+---
+
+## Menghapus Variabel & Observasi
+
+```stata
+* Hapus variabel
+drop kepadatan
+
+* Hapus beberapa variabel
+drop luas kepadatan
+
+* Simpan hanya variabel tertentu
+keep kota populasi pulau
+
+* Hapus observasi
+drop if populasi < 2
+
+* Simpan hanya observasi tertentu
+keep if pulau == "Jawa"
+```
+
+::: {.callout-warning}
+## drop & keep Bersifat Permanen!
+`drop` dan `keep` langsung mengubah dataset di memori. Tidak ada undo. Selalu **save dulu** sebelum menghapus, atau gunakan `preserve` / `restore`.
+
+```stata
+preserve           // simpan snapshot
+drop if x < 0     // hapus
+... analisis ...
+restore            // kembalikan ke snapshot
+```
+:::
+
+---
+
+## Menambah Observasi
+
+```stata
+* Tambah 1 observasi
+set obs 6
+replace kota = "Semarang" in 6
+replace populasi = 1.65 in 6
+replace pulau = "Jawa" in 6
+```
+
+---
+
+## Mengurutkan Data
+
+```stata
+* Urutkan ascending
+sort populasi
+
+* Urutkan descending
+gsort -populasi
+
+* Urutkan by beberapa variabel
+sort pulau populasi
+```
+
+---
+
+## Label: Dokumentasi Data
+
+Fitur unik Stata — memberi **label** pada variabel dan nilai:
+
+```stata
+* Label variabel (deskripsi kolom)
+label variable populasi "Populasi (juta jiwa)"
+label variable kota "Nama kota"
+
+* Label nilai (untuk variabel kategorikal)
+generate kode_pulau = 1 if pulau == "Jawa"
+replace kode_pulau = 2 if pulau == "Sumatera"
+replace kode_pulau = 3 if pulau == "Sulawesi"
+
+label define pulau_lbl 1 "Jawa" 2 "Sumatera" 3 "Sulawesi"
+label values kode_pulau pulau_lbl
+
+tabulate kode_pulau      // tampil label, bukan angka
+```
+
+---
+
+## Latihan
+
+::: {.callout-caution}
+## Latihan 3.1 — Buat Dataset
+```stata
+* Buat dataset "provinsi" dengan 5 observasi:
+* - nama: 5 nama provinsi
+* - ibukota: 5 nama ibukota
+* - populasi: 5 angka populasi (juta jiwa)
+* - pulau: 5 nama pulau
+
+* 1. Jalankan describe
+* 2. Tampilkan 3 observasi pertama (list in 1/3)
+* 3. Tampilkan hanya kolom nama dan populasi
+```
+:::
+
+::: {.callout-caution}
+## Latihan 3.2 — Akses & Filter
+```stata
+sysuse auto, clear
+
+* 1. Berapa jumlah observasi dan variabel? (describe, short)
+* 2. Tampilkan 5 observasi pertama
+* 3. Tampilkan hanya make, mpg, dan price
+* 4. Filter: mobil dengan mpg > 25
+* 5. Filter: foreign == 1 DAN price < 5000
+```
+:::
+
+::: {.callout-caution}
+## Latihan 3.3 — Modifikasi
+```stata
+sysuse auto, clear
+
+* 1. Buat variabel kpl = mpg * 0.425 (km per liter)
+* 2. Buat variabel kategori: "irit" jika kpl > 10, "boros" jika tidak
+*    (hint: generate kategori = cond(kpl > 10, "irit", "boros"))
+* 3. Tabulate kategori — berapa mobil irit vs boros?
+* 4. Beri label: label variable kpl "Konsumsi BBM (km/liter)"
+```
+:::
+
+---
+
+## Ringkasan
+
+| Konsep | Keterangan |
+|--------|-----------|
+| `input ... end` | Buat dataset manual |
+| `sysuse` / `use` | Load dataset bawaan / file |
+| `describe` | Struktur dataset |
+| `list` | Tampilkan data |
+| `browse` | Buka data editor |
+| `count` / `_N` | Jumlah observasi |
+| `generate` | Buat variabel baru |
+| `replace` | Ubah nilai variabel |
+| `drop` / `keep` | Hapus / pertahankan variabel/observasi |
+| `sort` / `gsort` | Urutkan data |
+| `label` | Dokumentasi variabel & nilai |
+| `preserve` / `restore` | Snapshot & rollback dataset |
+
+---
+
+*Sebelumnya: [Part 2 — Variabel, Macro & Scalar](../2026_02_26_02_vektor_list/index.qmd)*
+*Selanjutnya: [Part 4 — Operator & Ekspresi](../2026_02_26_04_operator/index.qmd)*

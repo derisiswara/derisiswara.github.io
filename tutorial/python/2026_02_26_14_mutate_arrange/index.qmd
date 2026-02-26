@@ -1,0 +1,175 @@
+---
+title: "Part 14 — Manipulasi Data II: Mutate & Arrange"
+description: "Membuat kolom baru dan mengurutkan data di Python: assign, apply, np.where, sort_values dengan pandas dan polars."
+date: "2026-02-26"
+categories: [Fundamental, DataManipulation]
+series: "Fundamental Programming"
+order: 14
+---
+
+## Fundamental Series — Part 14 of 20
+
+Setelah filter dan select, operasi berikutnya yang paling sering: **membuat kolom baru** dan **mengurutkan data**.
+
+---
+
+## Setup Data
+
+```python
+import pandas as pd
+import polars as pl
+import numpy as np
+
+data = {
+    "nama": ["Andi", "Budi", "Citra", "Dina", "Eko"],
+    "kota": ["Jakarta", "Bandung", "Jakarta", "Surabaya", "Bandung"],
+    "umur": [25, 30, 28, 35, 22],
+    "gaji": [5000, 7000, 6000, 8000, 4500]
+}
+
+df_pd = pd.DataFrame(data)
+df_pl = pl.DataFrame(data)
+```
+
+---
+
+## Tambah Kolom — Pandas
+
+```python
+# Direct assignment
+df_pd["gaji_ribu"] = df_pd["gaji"] * 1000
+
+# assign() — chainable
+(df_pd
+    .assign(
+        gaji_ribu=lambda x: x["gaji"] * 1000,
+        umur_next=lambda x: x["umur"] + 1
+    )
+)
+```
+
+---
+
+## Tambah Kolom — Polars
+
+```python
+df_pl.with_columns(
+    (pl.col("gaji") * 1000).alias("gaji_ribu"),
+    (pl.col("umur") + 1).alias("umur_next")
+)
+
+# Mengubah kolom yang ada
+df_pl.with_columns(
+    (pl.col("gaji") * 1000).alias("gaji")
+)
+```
+
+---
+
+## Conditional Column
+
+### Pandas — `np.where` dan `np.select`
+
+```python
+# 2 kondisi
+df_pd["senior"] = np.where(df_pd["umur"] >= 30, "Ya", "Tidak")
+
+# Multiple kondisi
+conditions = [
+    df_pd["umur"] < 25,
+    df_pd["umur"] < 30,
+    df_pd["umur"] < 35
+]
+choices = ["Muda", "Dewasa Awal", "Dewasa"]
+df_pd["kategori"] = np.select(conditions, choices, default="Senior")
+```
+
+### Polars — `when/then/otherwise`
+
+```python
+df_pl.with_columns(
+    pl.when(pl.col("umur") < 25).then(pl.lit("Muda"))
+      .when(pl.col("umur") < 30).then(pl.lit("Dewasa Awal"))
+      .when(pl.col("umur") < 35).then(pl.lit("Dewasa"))
+      .otherwise(pl.lit("Senior"))
+      .alias("kategori")
+)
+```
+
+---
+
+## Sort — Pandas
+
+```python
+# Ascending
+df_pd.sort_values("gaji")
+
+# Descending
+df_pd.sort_values("gaji", ascending=False)
+
+# Multiple kolom
+df_pd.sort_values(["kota", "gaji"], ascending=[True, False])
+```
+
+---
+
+## Sort — Polars
+
+```python
+df_pl.sort("gaji")
+df_pl.sort("gaji", descending=True)
+df_pl.sort(["kota", "gaji"], descending=[False, True])
+```
+
+---
+
+## Ranking
+
+```python
+# Pandas
+df_pd["rank_gaji"] = df_pd["gaji"].rank(ascending=False)
+
+# Polars
+df_pl.with_columns(
+    pl.col("gaji").rank(descending=True).alias("rank_gaji")
+)
+```
+
+---
+
+## Latihan
+
+::: {.callout-caution}
+## Latihan 14.1
+```python
+# 1. Tambah kolom gaji_juta = gaji / 1000
+# 2. Tambah kolom kategori: "tinggi" jika gaji > 6000, else "rendah"
+# 3. Urutkan dari gaji tertinggi ke terendah
+# Kerjakan dengan pandas DAN polars
+```
+:::
+
+::: {.callout-caution}
+## Latihan 14.2
+```python
+# 1. Tambah kolom z_gaji = (gaji - mean) / std
+# 2. Ranking gaji (tertinggi = 1)
+# 3. Pilih hanya nama, gaji, z_gaji, rank
+```
+:::
+
+---
+
+## Ringkasan
+
+| Operasi | Pandas | Polars |
+|---------|--------|--------|
+| Tambah kolom | `.assign()` / `df["col"]=` | `.with_columns()` |
+| Conditional | `np.where()` / `np.select()` | `pl.when().then()` |
+| Sort | `.sort_values()` | `.sort()` |
+| Rank | `.rank()` | `pl.col().rank()` |
+
+---
+
+*Sebelumnya: [Part 13 — Filter & Select](../2026_02_26_13_filter_select/index.qmd)*
+*Selanjutnya: [Part 15 — Manipulasi Data III: Group & Summarise](../2026_02_26_15_group_summarise/index.qmd)*

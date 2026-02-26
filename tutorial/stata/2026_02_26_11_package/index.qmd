@@ -1,0 +1,162 @@
+---
+title: "Part 11 — Package & Library"
+description: "Install dan mengelola package di Stata: ssc, net install, ado files, dan community packages."
+date: "2026-02-26"
+categories: [Fundamental, Package]
+series: "Fundamental Programming"
+order: 11
+---
+
+## Fundamental Series — Part 11 of 20
+
+Stata punya ekosistem community packages yang kaya, terutama melalui **SSC (Statistical Software Components)**. Banyak perintah populer Stata sebenarnya adalah package buatan komunitas.
+
+---
+
+## Install dari SSC
+
+```stata
+* Install satu package
+ssc install estout
+
+* Install dan replace jika sudah ada
+ssc install outreg2, replace
+
+* Cari package
+ssc describe estout
+
+* Cari berdasarkan keyword
+search panel data, net
+findit panel data
+```
+
+---
+
+## Install dari Net
+
+```stata
+* Install dari URL tertentu
+net install gtools, from("https://raw.githubusercontent.com/mcaceresb/stata-gtools/master/build/")
+
+* Install dari Stata journal
+net from http://www.stata-journal.com/software/sj20-1/
+
+* Lihat package yang terinstall
+ado
+ado dir
+```
+
+---
+
+## Package Populer
+
+| Package | Fungsi | Install |
+|---------|--------|---------|
+| `estout` / `esttab` | Export tabel regresi | `ssc install estout` |
+| `outreg2` | Export regresi ke Word/Excel | `ssc install outreg2` |
+| `coefplot` | Plot koefisien | `ssc install coefplot` |
+| `gtools` | Operasi by-group super cepat | dari GitHub |
+| `ftools` | Fast tools untuk panel data | `ssc install ftools` |
+| `reghdfe` | Regresi FE multi-dimensi | `ssc install reghdfe` |
+| `ivreg2` | IV regression | `ssc install ivreg2` |
+| `mdesc` | Ringkasan missing data | `ssc install mdesc` |
+| `tabout` | Tabel publikasi | `ssc install tabout` |
+| `labutil` | Utilitas label | `ssc install labutil` |
+
+---
+
+## Update Package
+
+```stata
+* Update semua SSC packages
+adoupdate, update
+
+* Update package tertentu
+adoupdate estout, update
+
+* Uninstall
+ssc uninstall estout
+```
+
+---
+
+## Menulis .ado File Sendiri
+
+File `.ado` = program Stata yang bisa dipanggil sebagai perintah. Simpan di folder ado personal:
+
+```stata
+* Lihat folder ado
+sysdir
+
+* Folder PERSONAL — tempat menyimpan .ado buatan sendiri
+* Biasanya: C:/ado/personal/  (Windows)
+```
+
+Contoh file `halo.ado`:
+
+```stata
+* File: halo.ado
+* Simpan di folder PERSONAL
+
+capture program drop halo
+program define halo
+    syntax, Nama(string)
+    display "Halo, `nama'!"
+end
+```
+
+Setelah disimpan, bisa langsung dipanggil:
+
+```stata
+halo, nama("Budi")    // Halo, Budi!
+```
+
+---
+
+## Profiles — `profile.do`
+
+Stata menjalankan `profile.do` setiap startup — bagus untuk setup otomatis:
+
+```stata
+* File: profile.do (simpan di folder PERSONAL)
+
+set more off, permanently
+set matsize 11000
+set maxvar 32767
+
+* Load packages favorit
+* capture ssc install estout
+```
+
+---
+
+## Latihan
+
+::: {.callout-caution}
+## Latihan 11.1
+```stata
+* 1. Install package "mdesc" dari SSC
+* 2. Buka sysuse auto, clear
+* 3. Jalankan mdesc untuk melihat ringkasan missing values
+* 4. Cek versi Stata: display c(stata_version)
+```
+:::
+
+---
+
+## Ringkasan
+
+| Perintah | Keterangan |
+|----------|-----------|
+| `ssc install` | Install dari SSC |
+| `net install` | Install dari URL |
+| `findit` / `search` | Cari package |
+| `ado` / `ado dir` | List package terinstall |
+| `adoupdate` | Update packages |
+| `.ado` file | Program Stata reusable |
+| `profile.do` | Script auto-run saat startup |
+
+---
+
+*Sebelumnya: [Part 10 — Missing Values](../2026_02_26_10_missing/index.qmd)*
+*Selanjutnya: [Part 12 — Import & Export Data](../2026_02_26_12_import_export/index.qmd)*

@@ -1,0 +1,223 @@
+---
+title: "Part 5 — Kontrol Alur: Conditional"
+description: "if/else dalam do-file, cond(), recode, dan generate bersyarat di Stata."
+date: "2026-02-26"
+categories: [Fundamental, Kontrol Alur]
+series: "Fundamental Programming"
+order: 5
+---
+
+## Fundamental Series — Part 5 of 20
+
+Conditional memungkinkan kode **mengambil keputusan**. Di Stata, percabangan terjadi di dua konteks: **do-file programming** (macro/program) dan **variabel dataset** (per observasi).
+
+---
+
+## `if` di Perintah Stata (Qualifier)
+
+Penggunaan `if` paling umum di Stata adalah sebagai **qualifier** — filter observasi:
+
+```stata
+sysuse auto, clear
+
+* if sebagai qualifier (bukan programming if)
+summarize price if foreign == 1
+list make mpg if mpg > 30
+tabulate rep78 if price < 5000
+```
+
+Ini **bukan** if/else programming — ini adalah filter yang berjalan per observasi.
+
+---
+
+## `if/else` di Do-file (Programming)
+
+Untuk logika programming (di do-file, program, atau ado-file):
+
+```stata
+local x = 15
+
+if `x' > 10 {
+    display "lebih dari 10"
+}
+else {
+    display "10 atau kurang"
+}
+```
+
+### `if / else if / else`
+
+```stata
+local nilai = 75
+
+if `nilai' >= 85 {
+    local grade = "A"
+}
+else if `nilai' >= 70 {
+    local grade = "B"
+}
+else if `nilai' >= 55 {
+    local grade = "C"
+}
+else {
+    local grade = "D"
+}
+display "`grade'"    // B
+```
+
+::: {.callout-warning}
+## Kurung Kurawal: Posisi Penting!
+Di Stata, `{` **harus di baris yang sama** dengan `if`, dan `}` harus di baris sendiri. `else` harus di baris yang sama dengan `}`:
+
+```stata
+* ✅ Benar
+if `x' > 10 {
+    display "besar"
+}
+else {
+    display "kecil"
+}
+
+* ❌ Salah — else di baris terpisah dari }
+if `x' > 10 {
+    display "besar"
+}
+else {
+    display "kecil"
+}
+```
+:::
+
+---
+
+## Membuat Variabel Bersyarat
+
+Ini yang paling sering digunakan — membuat atau mengubah variabel berdasarkan kondisi:
+
+### `generate` + `replace` dengan `if`
+
+```stata
+sysuse auto, clear
+
+* Cara klasik
+generate efisiensi = "boros"
+replace efisiensi = "sedang" if mpg >= 15
+replace efisiensi = "irit" if mpg >= 25
+
+tabulate efisiensi
+```
+
+::: {.callout-important}
+## Urutan Penting!
+Perintah `replace` dieksekusi **berurutan**. Urutan di atas benar: set default dulu, lalu timpa ke atas. Jika dibalik, hasilnya salah.
+:::
+
+### `cond()` — Satu Baris
+
+```stata
+* Untuk 2 kondisi (if/else)
+generate kategori = cond(mpg > 25, "irit", "boros")
+
+* Nested cond (kurang readable)
+generate grade = cond(mpg >= 25, "A", cond(mpg >= 15, "B", "C"))
+```
+
+### `recode` — Untuk Re-koding Nilai
+
+```stata
+* Recode numerik
+recode mpg (min/15 = 1 "Boros") (16/25 = 2 "Sedang") ///
+           (26/max = 3 "Irit"), generate(mpg_kat)
+
+tabulate mpg_kat
+```
+
+### `egen, cut` — Buat Kategori dari Interval
+
+```stata
+* Buat kategori berdasarkan interval
+egen mpg_group = cut(mpg), at(0, 15, 25, 50) label
+tabulate mpg_group
+```
+
+---
+
+## `capture` — Error Handling Sederhana
+
+```stata
+* capture: lanjutkan meskipun error
+capture drop variabel_tidak_ada    // tidak error
+
+* capture + _rc: cek apakah error terjadi
+capture confirm file "data.dta"
+if _rc != 0 {
+    display "File tidak ditemukan!"
+}
+else {
+    use "data.dta", clear
+}
+```
+
+---
+
+## Latihan
+
+::: {.callout-caution}
+## Latihan 5.1 — Programming if/else
+```stata
+* Buat do-file yang:
+* 1. Set local suhu = 28
+* 2. Tampilkan "dingin" (<20), "normal" (20-30), "panas" (>30)
+* 3. Coba ubah nilai suhu dan jalankan ulang
+```
+:::
+
+::: {.callout-caution}
+## Latihan 5.2 — Variabel Bersyarat
+```stata
+sysuse auto, clear
+
+* 1. Buat variabel "harga_kat":
+*    price < 5000 → "murah"
+*    5000 <= price < 10000 → "sedang"
+*    price >= 10000 → "mahal"
+*    (gunakan generate + replace)
+
+* 2. Buat ulang dengan cond() — bandingkan hasilnya
+
+* 3. Tabulate harga_kat — berapa mobil di setiap kategori?
+```
+:::
+
+::: {.callout-caution}
+## Latihan 5.3 — recode
+```stata
+sysuse auto, clear
+
+* Recode rep78 (repair record):
+* 1-2 → "buruk"
+* 3   → "cukup"
+* 4-5 → "baik"
+* Gunakan recode
+
+* Hitung frekuensi masing-masing
+```
+:::
+
+---
+
+## Ringkasan
+
+| Metode | Konteks | Contoh |
+|--------|---------|--------|
+| `if` qualifier | Filter observasi | `list if mpg > 25` |
+| `if { } else { }` | Do-file programming | `if `x' > 0 { ... }` |
+| `generate` + `replace if` | Buat variabel bersyarat | `replace y = 1 if x > 0` |
+| `cond()` | If/else satu baris | `cond(x>0, "pos", "neg")` |
+| `recode` | Re-koding nilai | `recode x (1/3=1) (4/5=2)` |
+| `capture` | Error handling | `capture drop x` |
+
+---
+
+*Sebelumnya: [Part 4 — Operator & Ekspresi](../2026_02_26_04_operator/index.qmd)*
+*Selanjutnya: [Part 6 — Kontrol Alur: Loop](../2026_02_26_06_loop/index.qmd)*

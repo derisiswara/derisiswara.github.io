@@ -1,0 +1,179 @@
+---
+title: "Part 16 — Reshape & Merge"
+description: "Mengubah bentuk data dan menggabungkan tabel di Python: melt, pivot, merge, dan concat dengan pandas dan polars."
+date: "2026-02-26"
+categories: [Fundamental, Reshape]
+series: "Fundamental Programming"
+order: 16
+---
+
+## Fundamental Series — Part 16 of 20
+
+Dua operasi penting: **reshape** (wide ↔ long) dan **merge** (gabung tabel).
+
+---
+
+## Wide → Long
+
+### Pandas — `melt()`
+
+```python
+import pandas as pd
+
+df_wide = pd.DataFrame({
+    "nama": ["Andi", "Budi"],
+    "math": [80, 90],
+    "sains": [75, 85],
+    "bahasa": [88, 92]
+})
+
+df_long = df_wide.melt(
+    id_vars="nama",
+    var_name="mata_pelajaran",
+    value_name="nilai"
+)
+```
+
+### Polars — `unpivot()`
+
+```python
+import polars as pl
+
+df_wide_pl = pl.DataFrame({
+    "nama": ["Andi", "Budi"],
+    "math": [80, 90],
+    "sains": [75, 85],
+    "bahasa": [88, 92]
+})
+
+df_long_pl = df_wide_pl.unpivot(
+    index="nama",
+    variable_name="mata_pelajaran",
+    value_name="nilai"
+)
+```
+
+---
+
+## Long → Wide
+
+### Pandas — `pivot()`
+
+```python
+df_long.pivot(
+    index="nama",
+    columns="mata_pelajaran",
+    values="nilai"
+).reset_index()
+```
+
+### Polars — `pivot()`
+
+```python
+df_long_pl.pivot(
+    on="mata_pelajaran",
+    index="nama",
+    values="nilai"
+)
+```
+
+---
+
+## Merge / Join
+
+```python
+siswa = pd.DataFrame({"id": [1,2,3,4], "nama": ["Andi","Budi","Citra","Dina"]})
+nilai = pd.DataFrame({"id": [1,2,3,5], "skor": [80,90,75,85]})
+```
+
+### Pandas
+
+```python
+# Left join
+siswa.merge(nilai, on="id", how="left")
+
+# Inner join
+siswa.merge(nilai, on="id", how="inner")
+
+# Full / outer join
+siswa.merge(nilai, on="id", how="outer")
+
+# Kolom berbeda nama
+siswa.merge(nilai, left_on="id", right_on="id")
+```
+
+### Polars
+
+```python
+siswa_pl = pl.DataFrame({"id": [1,2,3,4], "nama": ["Andi","Budi","Citra","Dina"]})
+nilai_pl = pl.DataFrame({"id": [1,2,3,5], "skor": [80,90,75,85]})
+
+siswa_pl.join(nilai_pl, on="id", how="left")
+siswa_pl.join(nilai_pl, on="id", how="inner")
+siswa_pl.join(nilai_pl, on="id", how="full")
+siswa_pl.join(nilai_pl, on="id", how="anti")    # tidak match
+```
+
+---
+
+## Concat — Tumpuk Data
+
+```python
+# Pandas
+df1 = pd.DataFrame({"nama": ["A","B"], "x": [1,2]})
+df2 = pd.DataFrame({"nama": ["C","D"], "x": [3,4]})
+pd.concat([df1, df2], ignore_index=True)
+
+# Polars
+df1_pl = pl.DataFrame({"nama": ["A","B"], "x": [1,2]})
+df2_pl = pl.DataFrame({"nama": ["C","D"], "x": [3,4]})
+pl.concat([df1_pl, df2_pl])
+```
+
+---
+
+## Latihan
+
+::: {.callout-caution}
+## Latihan 16.1 — Reshape
+```python
+gdp = pd.DataFrame({
+    "negara": ["Indonesia", "Malaysia", "Thailand"],
+    "2020": [1060, 337, 500],
+    "2021": [1186, 373, 506],
+    "2022": [1319, 407, 536]
+})
+
+# 1. Melt ke long (kolom: negara, tahun, gdp)
+# 2. Pivot kembali ke wide
+# Kerjakan dengan pandas DAN polars
+```
+:::
+
+::: {.callout-caution}
+## Latihan 16.2 — Join
+```python
+produk = pd.DataFrame({"id": [1,2,3], "nama": ["A","B","C"]})
+penjualan = pd.DataFrame({"id": [1,1,2,4], "jumlah": [10,20,15,5]})
+
+# 1. Left join
+# 2. Hanya produk tanpa penjualan (anti join)
+# 3. Inner join
+```
+:::
+
+---
+
+## Ringkasan
+
+| Operasi | Pandas | Polars |
+|---------|--------|--------|
+| Wide → Long | `.melt()` | `.unpivot()` |
+| Long → Wide | `.pivot()` | `.pivot()` |
+| Join | `.merge()` | `.join()` |
+| Concat | `pd.concat()` | `pl.concat()` |
+
+---
+
+*Sebelumnya: [Part 15 — Group & Summarise](../2026_02_26_15_group_summarise/index.qmd)*
+*Selanjutnya: [Part 17 — Apply & Vectorisasi](../2026_02_26_17_apply/index.qmd)*

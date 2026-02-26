@@ -1,0 +1,206 @@
+---
+title: "Part 5 — Kontrol Alur: Conditional"
+description: "if/elif/else, ternary operator, match-case, dan np.where() di Python."
+date: "2026-02-26"
+categories: [Fundamental, Kontrol Alur]
+series: "Fundamental Programming"
+order: 5
+---
+
+## Fundamental Series — Part 5 of 20
+
+Conditional memungkinkan kode **mengambil keputusan** — menjalankan blok kode berbeda tergantung kondisi.
+
+---
+
+## `if / elif / else`
+
+```python
+x = 15
+
+if x > 10:
+    hasil = "lebih dari 10"
+else:
+    hasil = "10 atau kurang"
+
+hasil   # 'lebih dari 10'
+```
+
+### `if / elif / else`
+
+```python
+nilai = 75
+
+if nilai >= 85:
+    grade = "A"
+elif nilai >= 70:
+    grade = "B"
+elif nilai >= 55:
+    grade = "C"
+else:
+    grade = "D"
+
+grade   # 'B'
+```
+
+::: {.callout-important}
+## Indentasi Wajib!
+Python menggunakan **indentasi** (4 spasi) untuk menandai blok kode, bukan kurung kurawal `{}` seperti R. Indentasi yang salah → `IndentationError`.
+:::
+
+---
+
+## Ternary Operator — If Satu Baris
+
+```python
+x = 15
+hasil = "besar" if x > 10 else "kecil"
+# 'besar'
+
+# Bisa di-chain (tapi kurang readable)
+nilai = 75
+grade = "A" if nilai >= 85 else "B" if nilai >= 70 else "C" if nilai >= 55 else "D"
+```
+
+---
+
+## `match / case` — Pattern Matching (Python 3.10+)
+
+```python
+hari = "Senin"
+
+match hari:
+    case "Senin" | "Selasa" | "Rabu" | "Kamis" | "Jumat":
+        tipe = "Kerja"
+    case "Sabtu" | "Minggu":
+        tipe = "Libur"
+    case _:
+        tipe = "Tidak dikenal"
+
+tipe   # 'Kerja'
+```
+
+---
+
+## Conditional pada Array: `np.where()`
+
+Untuk operasi **elemen per elemen** pada array/DataFrame:
+
+```python
+import numpy as np
+
+x = np.array([5, 15, 25, 8, 30])
+
+np.where(x > 10, "besar", "kecil")
+# array(['kecil', 'besar', 'besar', 'kecil', 'besar'])
+```
+
+### Nested np.where (untuk > 2 kondisi)
+
+```python
+nilai = np.array([90, 72, 55, 40, 85])
+
+np.where(nilai >= 85, "A",
+    np.where(nilai >= 70, "B",
+        np.where(nilai >= 55, "C", "D")))
+# array(['A', 'B', 'C', 'D', 'A'])
+```
+
+### `np.select()` — Lebih Bersih untuk Banyak Kondisi
+
+```python
+conditions = [
+    nilai >= 85,
+    nilai >= 70,
+    nilai >= 55
+]
+choices = ["A", "B", "C"]
+
+np.select(conditions, choices, default="D")
+# array(['A', 'B', 'C', 'D', 'A'])
+```
+
+---
+
+## Conditional dalam pandas
+
+```python
+import pandas as pd
+
+df = pd.DataFrame({"mpg": [32, 18, 25, 12, 28]})
+
+# np.where
+df["efisiensi"] = np.where(df["mpg"] >= 25, "irit", "boros")
+
+# .apply() dengan fungsi
+def kategorikan(mpg):
+    if mpg >= 25:
+        return "irit"
+    elif mpg >= 15:
+        return "sedang"
+    else:
+        return "boros"
+
+df["kategori"] = df["mpg"].apply(kategorikan)
+```
+
+---
+
+## Latihan
+
+::: {.callout-caution}
+## Latihan 5.1 — if/elif/else
+```python
+# Input: suhu (satu angka)
+# Output: "dingin" (<20), "normal" (20-30), "panas" (>30)
+
+suhu = 28
+# Tulis if/elif/else
+```
+:::
+
+::: {.callout-caution}
+## Latihan 5.2 — np.where pada array
+```python
+import numpy as np
+pendapatan = np.array([2.5, 8.0, 3.2, 15.0, 4.1, 1.8])
+
+# 1. Buat array "miskin"/"kaya" dengan threshold 5 juta
+# 2. Buat array "rendah"/"sedang"/"tinggi":
+#    < 3 = rendah, 3-10 = sedang, > 10 = tinggi
+#    (gunakan np.select)
+```
+:::
+
+::: {.callout-caution}
+## Latihan 5.3 — Conditional di DataFrame
+```python
+import seaborn as sns
+tips = sns.load_dataset("tips")
+
+# Buat kolom "tip_level":
+# tip < 2 → "low"
+# 2 <= tip < 5 → "medium"
+# tip >= 5 → "high"
+
+# Hitung frekuensi masing-masing (value_counts)
+```
+:::
+
+---
+
+## Ringkasan
+
+| Fungsi | Untuk | Contoh |
+|--------|-------|--------|
+| `if/elif/else` | Skalar | `if x > 0: ...` |
+| Ternary | Satu baris | `"pos" if x > 0 else "neg"` |
+| `match/case` | Pattern matching | `match x: case 1: ...` |
+| `np.where()` | Array/DataFrame | `np.where(x > 0, "pos", "neg")` |
+| `np.select()` | Banyak kondisi | `np.select(conds, choices)` |
+| `.apply()` | Fungsi kustom per baris | `df["col"].apply(func)` |
+
+---
+
+*Sebelumnya: [Part 4 — Operator & Ekspresi](../2026_02_26_04_operator/index.qmd)*
+*Selanjutnya: [Part 6 — Kontrol Alur: Loop](../2026_02_26_06_loop/index.qmd)*

@@ -1,0 +1,150 @@
+---
+title: "Part 11 — Package & Library"
+description: "Install, load, dan mengelola package di R: CRAN, install.packages, library, renv, dan conflicts."
+date: "2026-02-26"
+categories: [Fundamental, Package]
+series: "Fundamental Programming"
+order: 11
+---
+
+## Fundamental Series — Part 11 of 20
+
+R punya ekosistem package yang sangat kaya. Memahami cara install, load, dan mengelola package adalah skill dasar yang penting.
+
+---
+
+## Install Package
+
+```r
+# Dari CRAN (repository resmi)
+install.packages("dplyr")
+install.packages(c("ggplot2", "tidyr", "readr"))
+
+# Dari GitHub
+# install.packages("remotes")
+remotes::install_github("tidyverse/dplyr")
+```
+
+---
+
+## Load Package
+
+```r
+# library() — error jika belum install
+library(dplyr)
+
+# require() — return FALSE jika gagal (untuk conditional)
+if (!require(dplyr)) install.packages("dplyr")
+
+# Panggil fungsi tanpa load
+dplyr::filter(df, x > 5)
+```
+
+::: {.callout-note}
+## `library()` vs `require()`
+Gunakan `library()` di script — gagal keras jika package tidak ada. Gunakan `require()` hanya di dalam fungsi/conditional.
+:::
+
+---
+
+## Cek Package Terinstall
+
+```r
+# Daftar semua package
+installed.packages()[, "Package"]
+
+# Cek satu package
+"dplyr" %in% rownames(installed.packages())
+
+# Info versi
+packageVersion("dplyr")
+
+# Update package
+update.packages(ask = FALSE)
+```
+
+---
+
+## Namespace & Conflicts
+
+```r
+library(dplyr)
+# Warning: filter masks stats::filter
+
+# Masalah: fungsi dplyr::filter vs stats::filter
+# Solusi 1: panggil eksplisit
+dplyr::filter(df, x > 5)
+stats::filter(ts_data, rep(1/3, 3))
+
+# Solusi 2: paket conflicted
+library(conflicted)
+conflict_prefer("filter", "dplyr")
+```
+
+---
+
+## Package Populer untuk Data Science
+
+| Package | Fungsi |
+|---------|--------|
+| `dplyr` | Manipulasi data |
+| `ggplot2` | Visualisasi |
+| `tidyr` | Reshape data |
+| `readr` | Import CSV/TSV |
+| `readxl` | Import Excel |
+| `haven` | Import SPSS/Stata/SAS |
+| `stringr` | Manipulasi string |
+| `lubridate` | Tanggal & waktu |
+| `purrr` | Functional programming |
+| `forcats` | Manipulasi factor |
+
+---
+
+## Reproducibility dengan `renv`
+
+```r
+# Inisialisasi renv di project
+renv::init()
+
+# Snapshot dependencies saat ini
+renv::snapshot()
+
+# Restore dependencies dari lockfile
+renv::restore()
+```
+
+::: {.callout-tip}
+## Kenapa `renv`?
+`renv` mencatat **versi exact** setiap package yang digunakan project. Jadi orang lain bisa mereproduksi environment yang sama persis.
+:::
+
+---
+
+## Latihan
+
+::: {.callout-caution}
+## Latihan 11.1
+```r
+# 1. Install dan load package "janitor"
+# 2. Cek versinya
+# 3. Lihat fungsi apa saja yang tersedia: ls("package:janitor")
+```
+:::
+
+---
+
+## Ringkasan
+
+| Fungsi | Keterangan |
+|--------|-----------|
+| `install.packages()` | Install dari CRAN |
+| `library()` | Load package |
+| `pkg::fungsi()` | Panggil tanpa load |
+| `packageVersion()` | Cek versi |
+| `conflicted` | Handle namespace conflicts |
+| `renv` | Reproducible environments |
+
+---
+
+*Sebelumnya: [Part 10 — Missing Values](../2026_02_26_10_missing/index.qmd)*
+*Selanjutnya: [Part 12 — Import & Export Data](../2026_02_26_12_import_export/index.qmd)*

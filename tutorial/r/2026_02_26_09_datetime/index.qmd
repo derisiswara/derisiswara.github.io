@@ -1,0 +1,156 @@
+---
+title: "Part 9 — Date & Time"
+description: "Bekerja dengan tanggal dan waktu di R: as.Date, lubridate, difftime, dan formatting."
+date: "2026-02-26"
+categories: [Fundamental, DateTime]
+series: "Fundamental Programming"
+order: 9
+---
+
+## Fundamental Series — Part 9 of 20
+
+Data tanggal dan waktu sering muncul di data ekonomi, survei, dan time series. R punya beberapa cara menangani dates — base R dan paket `lubridate`.
+
+---
+
+## Base R — `as.Date()`
+
+```r
+# String ke Date
+d <- as.Date("2026-02-26")
+class(d)    # "Date"
+
+# Format berbeda
+as.Date("26/02/2026", format = "%d/%m/%Y")
+as.Date("Feb 26, 2026", format = "%b %d, %Y")
+```
+
+### Format Codes
+
+| Code | Arti | Contoh |
+|------|------|--------|
+| `%Y` | Tahun 4-digit | 2026 |
+| `%y` | Tahun 2-digit | 26 |
+| `%m` | Bulan (01-12) | 02 |
+| `%b` | Bulan singkat | Feb |
+| `%B` | Bulan penuh | February |
+| `%d` | Tanggal (01-31) | 26 |
+
+---
+
+## Lubridate — Cara Modern
+
+```r
+library(lubridate)
+
+# Parsing otomatis
+ymd("2026-02-26")      # 2026-02-26
+dmy("26-02-2026")      # 2026-02-26
+mdy("02/26/2026")      # 2026-02-26
+ymd_hms("2026-02-26 14:30:00")
+```
+
+### Mengekstrak Komponen
+
+```r
+d <- ymd("2026-02-26")
+
+year(d)     # 2026
+month(d)    # 2
+day(d)      # 26
+wday(d)     # 5 (Thursday — default Sunday=1)
+wday(d, label = TRUE)   # Thu
+
+quarter(d)  # 1
+yday(d)     # 57 (hari ke-57 dalam tahun)
+```
+
+---
+
+## Aritmetika Tanggal
+
+```r
+d <- ymd("2026-02-26")
+
+# Tambah/kurang hari
+d + 10           # 2026-03-08
+d - 30           # 2026-01-27
+
+# Tambah bulan/tahun
+d + months(3)    # 2026-05-26
+d + years(1)     # 2027-02-26
+
+# Selisih antar tanggal
+d2 <- ymd("2026-12-31")
+d2 - d           # 308 days
+
+# Interval
+interval(d, d2) / months(1)    # ~10.16 bulan
+```
+
+---
+
+## Sequences
+
+```r
+seq(ymd("2026-01-01"), ymd("2026-12-01"), by = "month")
+# 12 tanggal: 2026-01-01, 2026-02-01, ..., 2026-12-01
+
+seq(ymd("2026-01-01"), ymd("2026-01-31"), by = "week")
+# 5 tanggal mingguan
+```
+
+---
+
+## Format Output
+
+```r
+d <- ymd("2026-02-26")
+
+format(d, "%d %B %Y")          # "26 February 2026"
+format(d, "%A, %d %b %Y")     # "Thursday, 26 Feb 2026"
+```
+
+---
+
+## Latihan
+
+::: {.callout-caution}
+## Latihan 9.1 — Parsing
+```r
+tanggal <- c("26-02-2026", "15/03/2025", "2024-12-31", "01 Jan 2023")
+
+# 1. Parse semua ke objek Date
+# 2. Urutkan dari terlama ke terbaru
+# 3. Hitung selisih hari antara tanggal pertama dan terakhir
+```
+:::
+
+::: {.callout-caution}
+## Latihan 9.2 — Komponen & Aritmetika
+```r
+d <- ymd("2026-02-26")
+
+# 1. Tanggal berapa 100 hari dari sekarang?
+# 2. Bulan dan hari apa?
+# 3. Berapa hari lagi sampai akhir tahun?
+```
+:::
+
+---
+
+## Ringkasan
+
+| Fungsi | Keterangan |
+|--------|-----------|
+| `as.Date()` | Parse string ke Date (base R) |
+| `ymd()` / `dmy()` | Parse otomatis (lubridate) |
+| `year()` / `month()` / `day()` | Ekstrak komponen |
+| `d + days(n)` | Aritmetika tanggal |
+| `interval()` | Selisih antar tanggal |
+| `format()` | Format tanggal ke string |
+
+---
+
+*Sebelumnya: [Part 8 — String & Teks](../2026_02_26_08_string/index.qmd)*
+*Selanjutnya: [Part 10 — Missing Values](../2026_02_26_10_missing/index.qmd)*

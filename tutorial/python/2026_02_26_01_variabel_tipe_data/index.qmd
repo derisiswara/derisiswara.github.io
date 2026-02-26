@@ -1,0 +1,273 @@
+---
+title: "Part 1 — Variabel & Tipe Data"
+description: "Assignment, tipe data (int, float, str, bool), pengecekan & konversi tipe di Python."
+date: "2026-02-26"
+categories: [Fundamental, Tipe Data]
+series: "Fundamental Programming"
+order: 1
+---
+
+## Fundamental Series — Part 1 of 20
+
+Semua pemrograman dimulai dari **menyimpan nilai** dan memahami **jenis nilai** yang bisa disimpan. Part ini membahas cara membuat variabel dan mengenal tipe data dasar di Python.
+
+---
+
+## Assignment: Menyimpan Nilai
+
+Di Python, kita menyimpan nilai ke variabel menggunakan operator `=`:
+
+```python
+x = 42
+nama = "Budi"
+lulus = True
+```
+
+Python bersifat **dynamically typed** — kamu tidak perlu mendeklarasikan tipe data. Python mendeteksinya otomatis.
+
+```python
+x         # 42
+nama      # 'Budi'
+lulus     # True
+```
+
+### Aturan Penamaan Variabel
+
+```python
+# ✅ Boleh
+umur = 25
+total_pendapatan = 5000
+dataKota2 = "Jakarta"
+
+# ❌ Tidak boleh
+2data = 10         # tidak boleh diawali angka
+total-biaya = 5    # tanda minus dianggap operasi
+if = 3             # 'if' adalah reserved word
+class = "A"        # 'class' juga reserved word
+```
+
+::: {.callout-tip}
+## Konvensi Python
+Gunakan **snake_case** untuk nama variabel dan fungsi: `total_biaya`, `hitung_rata_rata`. Ini standar PEP 8 (style guide Python).
+:::
+
+---
+
+## Tipe Data Dasar
+
+| Tipe | Contoh | Keterangan |
+|------|--------|-----------|
+| `int` | `42`, `-7` | Bilangan bulat |
+| `float` | `3.14`, `-0.5` | Bilangan desimal |
+| `str` | `"hello"`, `'world'` | Teks / string |
+| `bool` | `True`, `False` | Boolean (benar/salah) |
+
+### int & float
+
+```python
+jumlah = 100       # int
+harga = 25000.50   # float
+
+type(jumlah)    # <class 'int'>
+type(harga)     # <class 'float'>
+```
+
+::: {.callout-note}
+## Python Otomatis Membedakan int & float
+Berbeda dengan R (semua angka = numeric), Python membedakan `int` dan `float` secara otomatis. `42` adalah int, `42.0` adalah float.
+
+```python
+type(42)     # int
+type(42.0)   # float
+```
+:::
+
+### str
+
+```python
+kota = "Bandung"
+kode = '35'          # angka dalam tanda kutip = string!
+kalimat = """Ini string
+yang bisa multi-baris"""
+
+type(kota)      # <class 'str'>
+type(kode)      # <class 'str'>
+```
+
+::: {.callout-warning}
+## Angka vs String
+`35` (tanpa kutip) adalah int. `"35"` (dengan kutip) adalah str. Operasi matematika pada string akan error: `"35" + 1` → `TypeError`.
+:::
+
+### bool
+
+```python
+lulus = True
+gagal = False
+
+type(lulus)    # <class 'bool'>
+
+# Hasil dari perbandingan adalah bool
+10 > 5         # True
+3 == 7         # False
+```
+
+::: {.callout-warning}
+## Case Sensitive!
+Python menggunakan `True` dan `False` (huruf kapital). `true` dan `false` (huruf kecil) akan error.
+:::
+
+---
+
+## Mengecek Tipe Data
+
+```python
+x = 3.14
+type(x)             # <class 'float'>
+isinstance(x, float)  # True
+isinstance(x, int)    # False
+```
+
+`type()` mengembalikan tipe objek. `isinstance()` mengecek apakah objek merupakan instance dari tipe tertentu.
+
+---
+
+## Konversi Tipe Data
+
+```python
+# String → Integer/Float
+int("42")           # 42
+float("3.14")       # 3.14
+int("hello")        # ValueError!
+
+# Angka → String
+str(3.14)           # '3.14'
+str(True)           # 'True'
+
+# Angka → Bool
+bool(0)             # False
+bool(1)             # True
+bool(99)            # True (semua non-zero = True)
+bool("")            # False (string kosong = False)
+bool("hello")       # True (string non-kosong = True)
+
+# Bool → Angka
+int(True)           # 1
+int(False)          # 0
+```
+
+::: {.callout-tip}
+## Truthiness di Python
+Python menganggap beberapa nilai sebagai "falsy" (dianggap `False`):
+`0`, `0.0`, `""`, `[]`, `{}`, `None`, `False`
+
+Semua nilai lain dianggap "truthy" (dianggap `True`).
+:::
+
+---
+
+## Nilai Spesial
+
+```python
+None            # Tidak ada nilai / kosong
+
+import math
+math.inf        # Infinity
+-math.inf       # Negative infinity
+math.nan        # Not a Number
+float('inf')    # Cara lain membuat infinity
+float('nan')    # Cara lain membuat NaN
+```
+
+```python
+1 / 0           # ZeroDivisionError! (Python tidak otomatis Inf)
+```
+
+::: {.callout-note}
+## Python vs R
+Di R, `1/0` menghasilkan `Inf`. Di Python, `1/0` menghasilkan **error**. Kamu harus gunakan `math.inf` secara eksplisit.
+:::
+
+---
+
+## Multiple Assignment
+
+Python mendukung assignment beberapa variabel sekaligus:
+
+```python
+# Assign satu per satu
+a = 1
+b = 2
+c = 3
+
+# Atau sekaligus
+a, b, c = 1, 2, 3
+
+# Swap nilai — sangat Pythonic!
+a, b = b, a
+```
+
+---
+
+## Latihan
+
+::: {.callout-caution}
+## Latihan 1.1 — Identifikasi Tipe
+Tanpa menjalankan kode, tebak tipe data masing-masing. Lalu verifikasi dengan `type()`:
+
+```python
+a = 100
+b = "100"
+c = True
+d = 3.14
+e = None
+f = 100.0
+```
+:::
+
+::: {.callout-caution}
+## Latihan 1.2 — Konversi
+Prediksi hasil konversi berikut sebelum menjalankan:
+
+```python
+int(True)
+float("3.14")
+int("abc")
+str(False)
+bool(0)
+bool("False")     # hati-hati!
+```
+:::
+
+::: {.callout-caution}
+## Latihan 1.3 — Debugging
+Kode berikut menghasilkan error. Perbaiki!
+
+```python
+umur = "25"
+tahun_lahir = 2026 - umur
+```
+
+*Hint: cek tipe data `umur` dengan `type()`.*
+:::
+
+---
+
+## Ringkasan
+
+| Konsep | Keterangan |
+|--------|-----------|
+| `=` | Assignment — simpan nilai ke variabel |
+| `int` | Bilangan bulat |
+| `float` | Bilangan desimal |
+| `str` | Teks / string (dalam tanda kutip) |
+| `bool` | `True` / `False` |
+| `type()` | Cek tipe data |
+| `isinstance()` | Cek apakah suatu tipe |
+| `int()`, `str()`, `float()` | Konversi tipe data |
+| `None` | Nilai kosong / tidak ada |
+
+---
+
+*Sebelumnya: [Part 0 — Setup & Environment](../2026_02_26_00_setup/index.qmd)*
+*Selanjutnya: [Part 2 — Struktur Data I: List & Dictionary](../2026_02_26_02_vektor_list/index.qmd)*

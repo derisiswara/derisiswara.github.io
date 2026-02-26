@@ -1,0 +1,178 @@
+---
+title: "Part 10 — Missing Values"
+description: "Memahami dan menangani missing values di Stata: system missing, extended missing, deteksi, dan imputasi."
+date: "2026-02-26"
+categories: [Fundamental, MissingValues]
+series: "Fundamental Programming"
+order: 10
+---
+
+## Fundamental Series — Part 10 of 20
+
+Stata punya sistem missing value yang unik. Missing value numerik adalah **`.`** (titik) dan dianggap sebagai **bilangan sangat besar** — bisa menyebabkan error halus jika tidak hati-hati.
+
+---
+
+## Missing Value di Stata
+
+```stata
+* Numerik missing
+display .          // .
+display . + 1      // . (menular)
+display . > 100    // 1 (TRUE — karena . = +infinity!)
+
+* String missing
+display ""         // kosong
+```
+
+::: {.callout-important}
+## `.` Dianggap Lebih Besar dari Angka Apapun!
+```stata
+display (. > 1000000)    // 1 (TRUE!)
+```
+Ini artinya `if x > 100` juga menangkap observasi missing. Selalu gunakan `if !missing(x) & x > 100`.
+:::
+
+---
+
+## Extended Missing Values
+
+Stata punya 27 jenis missing: `.`, `.a`, `.b`, ..., `.z`:
+
+```stata
+clear
+set obs 3
+generate x = .
+replace x = .a in 2
+replace x = .b in 3
+
+list
+* 1. .
+* 2. .a
+* 3. .b
+
+* Berguna untuk membedakan alasan missing:
+* .a = tidak menjawab
+* .b = tidak berlaku
+* .c = data hilang
+```
+
+---
+
+## Deteksi Missing
+
+```stata
+sysuse auto, clear
+
+* Cek missing di satu variabel
+count if missing(rep78)
+count if rep78 == .
+
+* Cek missing di semua variabel
+misstable summarize
+
+* Pattern missing
+misstable patterns
+
+* Tabel missing per variabel
+mdesc    // perlu install: ssc install mdesc
+```
+
+---
+
+## Filter Berdasarkan Missing
+
+```stata
+sysuse auto, clear
+
+* Hanya observasi non-missing
+list make price if !missing(rep78)
+
+* Buang observasi missing
+drop if missing(rep78)
+
+* Atau keep non-missing
+keep if !missing(rep78)
+```
+
+---
+
+## Mengisi Missing
+
+```stata
+sysuse auto, clear
+
+* Isi dengan nilai tetap
+replace rep78 = 0 if missing(rep78)
+
+* Isi dengan mean
+quietly summarize rep78
+replace rep78 = r(mean) if missing(rep78)
+
+* Isi dengan mean per grup
+bysort foreign: egen mean_rep = mean(rep78)
+replace rep78 = mean_rep if missing(rep78)
+```
+
+---
+
+## Best Practices
+
+```stata
+* SALAH — menangkap missing juga!
+count if price > 10000
+
+* BENAR
+count if price > 10000 & !missing(price)
+
+* Atau gunakan inrange()
+count if inrange(price, 10001, .)
+
+* Cek dulu sebelum analisis
+misstable summarize
+```
+
+---
+
+## Latihan
+
+::: {.callout-caution}
+## Latihan 10.1 — Deteksi & Hitung
+```stata
+sysuse auto, clear
+
+* 1. Berapa observasi yang punya missing di rep78?
+* 2. Berapa persen?
+* 3. Tampilkan misstable summarize
+```
+:::
+
+::: {.callout-caution}
+## Latihan 10.2 — Handle Missing
+```stata
+sysuse auto, clear
+
+* 1. Hitung mean rep78 (hanya non-missing)
+* 2. Isi missing rep78 dengan mean
+* 3. Bandingkan distribusi sebelum dan sesudah
+```
+:::
+
+---
+
+## Ringkasan
+
+| Konsep | Keterangan |
+|--------|-----------|
+| `.` | Missing value numerik |
+| `""` | Missing value string |
+| `.a` – `.z` | Extended missing values |
+| `missing(x)` | Cek apakah missing |
+| `misstable` | Ringkasan missing |
+| `. > angka` → `TRUE` | Missing dianggap sangat besar! |
+| `!missing(x) & x > n` | Cara aman filter |
+
+---
+
+*Sebelumnya: [Part 9 — Date & Time](../2026_02_26_09_datetime/index.qmd)*
+*Selanjutnya: [Part 11 — Package & Library](../2026_02_26_11_package/index.qmd)*

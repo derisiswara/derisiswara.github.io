@@ -1,0 +1,169 @@
+---
+title: "Part 19 — Reproducible Workflow"
+description: "Workflow reproducible di R: project structure, renv, here, Quarto, seed, dan best practices."
+date: "2026-02-26"
+categories: [Fundamental, Workflow]
+series: "Fundamental Programming"
+order: 19
+---
+
+## Fundamental Series — Part 19 of 20
+
+Analisis yang baik harus bisa **direproduksi** — oleh orang lain, atau oleh diri sendiri 6 bulan kemudian. Part ini membahas praktik-praktik yang membuat workflow R reproducible.
+
+---
+
+## Struktur Folder Project
+
+```
+my_project/
+├── my_project.Rproj      # RStudio/Positron project file
+├── R/                     # Script R
+│   ├── 01_import.R
+│   ├── 02_clean.R
+│   └── 03_analisis.R
+├── data/
+│   ├── raw/               # Data mentah (JANGAN diubah)
+│   └── processed/         # Data bersih
+├── output/
+│   ├── figures/
+│   └── tables/
+├── renv.lock              # Package versions
+└── README.md
+```
+
+---
+
+## `.Rproj` — Gunakan R Project
+
+Selalu bekerja dalam **R Project**:
+
+- Working directory otomatis = folder project
+- Tidak perlu `setwd()` (jangan pernah pakai!)
+
+---
+
+## `here` — Path yang Portable
+
+```r
+library(here)
+
+# Relatif dari root project
+here("data", "raw", "input.csv")
+# "C:/Users/.../my_project/data/raw/input.csv"
+
+df <- readr::read_csv(here("data", "raw", "input.csv"))
+```
+
+::: {.callout-important}
+## Jangan Pakai `setwd()` atau Path Absolut
+```r
+# SALAH
+setwd("C:/Users/Budi/Documents/project")
+read.csv("C:/Users/Budi/data.csv")
+
+# BENAR
+library(here)
+read.csv(here("data", "input.csv"))
+```
+:::
+
+---
+
+## `renv` — Lock Package Versions
+
+```r
+# Inisialisasi (sekali di awal project)
+renv::init()
+
+# Install packages seperti biasa
+install.packages("dplyr")
+
+# Snapshot — catat versi semua package
+renv::snapshot()
+
+# Orang lain clone project, lalu:
+renv::restore()   # install versi yang sama persis
+```
+
+---
+
+## `set.seed()` — Reproducible Randomness
+
+```r
+set.seed(42)
+sample(1:100, 5)    # 49 65 25 74 18
+
+set.seed(42)
+sample(1:100, 5)    # 49 65 25 74 18 (sama!)
+```
+
+---
+
+## Quarto / R Markdown — Literate Programming
+
+Gabungkan kode + narasi + output dalam satu dokumen:
+
+````markdown
+---
+title: "Analisis Data"
+format: html
+---
+
+## Import Data
+
+```{{r}}
+library(readr)
+df <- read_csv(here::here("data", "input.csv"))
+```
+
+## Hasil
+...
+````
+
+---
+
+## Best Practices
+
+1. **Jangan simpan workspace** — Matikan "Save .RData on exit"
+2. **Restart R sering** — Ctrl+Shift+F10 (fresh environment)
+3. **Script harus runnable dari atas ke bawah**
+4. **Data mentah read-only** — jangan edit, simpan hasil di folder terpisah
+5. **Gunakan relative paths** (via `here`)
+6. **Comment secukupnya** — kode yang baik bisa dibaca tanpa banyak comment
+7. **Version control** — gunakan Git
+
+---
+
+## Latihan
+
+::: {.callout-caution}
+## Latihan 19.1
+```r
+# 1. Buat folder structure project baru:
+#    - data/raw/, data/processed/, output/figures/, R/
+# 2. Gunakan here() untuk reference semua path
+# 3. Buat script 01_import.R yang:
+#    - Load library
+#    - Import data dengan here()
+#    - Simpan ke data/processed/ sebagai .rds
+```
+:::
+
+---
+
+## Ringkasan
+
+| Praktik | Tool |
+|---------|------|
+| Project-based workflow | `.Rproj` |
+| Portable paths | `here` |
+| Package management | `renv` |
+| Reproducible random | `set.seed()` |
+| Literate programming | Quarto / R Markdown |
+| Version control | Git |
+
+---
+
+*Sebelumnya: [Part 18 — Debugging & Error Handling](../2026_02_26_18_debugging/index.qmd)*
+*Selanjutnya: [Part 20 — Mini Project](../2026_02_26_20_mini_project/index.qmd)*

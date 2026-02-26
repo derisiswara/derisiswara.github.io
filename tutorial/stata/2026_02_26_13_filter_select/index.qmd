@@ -1,0 +1,176 @@
+---
+title: "Part 13 — Manipulasi Data I: Filter & Select"
+description: "Memilih baris dan kolom di Stata: keep, drop, if, in, dan kombinasinya."
+date: "2026-02-26"
+categories: [Fundamental, DataManipulation]
+series: "Fundamental Programming"
+order: 13
+---
+
+## Fundamental Series — Part 13 of 20
+
+Manipulasi data dimulai dari memilih **baris** (observasi) dan **kolom** (variabel) yang relevan.
+
+---
+
+## Setup Data
+
+```stata
+clear
+input str10 nama str10 kota umur gaji str10 status
+"Andi"     "Jakarta"  25 5000 "aktif"
+"Budi"     "Bandung"  30 7000 "aktif"
+"Citra"    "Jakarta"  28 6000 "nonaktif"
+"Dina"     "Surabaya" 35 8000 "aktif"
+"Eko"      "Bandung"  22 4500 "nonaktif"
+end
+```
+
+---
+
+## Filter Baris — `if` dan `in`
+
+```stata
+* Lihat baris tertentu (tidak mengubah data)
+list if kota == "Jakarta"
+list if kota == "Jakarta" & umur > 25
+
+* OR
+list if kota == "Jakarta" | kota == "Bandung"
+
+* inlist — lebih praktis
+list if inlist(kota, "Jakarta", "Bandung")
+
+* Berdasarkan posisi
+list in 1/3       // baris 1-3
+list in -3/-1     // 3 baris terakhir
+```
+
+---
+
+## Filter Baris — `keep` dan `drop`
+
+::: {.callout-important}
+## `keep` dan `drop` Mengubah Data!
+Berbeda dari `list if`, perintah `keep` dan `drop` **menghapus observasi** secara permanen dari memori.
+:::
+
+```stata
+* Keep hanya yang memenuhi kondisi
+keep if status == "aktif"
+
+* Drop yang tidak diinginkan
+drop if gaji < 5000
+
+* Berdasarkan posisi
+keep in 1/3
+```
+
+---
+
+## Select Kolom — `keep` dan `drop`
+
+```stata
+* Pilih variabel tertentu
+keep nama kota gaji
+
+* Buang variabel tertentu
+drop status umur
+
+* Rename variabel
+rename gaji salary
+rename kota city
+```
+
+---
+
+## `describe` dan `codebook`
+
+```stata
+* Lihat struktur data
+describe
+
+* Info detail per variabel
+codebook kota
+codebook gaji
+```
+
+---
+
+## Kombinasi
+
+```stata
+* Filter baris DAN pilih kolom
+keep if status == "aktif" & inlist(kota, "Jakarta", "Bandung")
+keep nama kota gaji
+```
+
+Atau tanpa mengubah data — pakai `list`:
+
+```stata
+list nama kota gaji if status == "aktif" & inlist(kota, "Jakarta", "Bandung")
+```
+
+---
+
+## `preserve` dan `restore`
+
+```stata
+* Simpan state data sebelum modifikasi
+preserve
+
+keep if gaji > 5000
+keep nama gaji
+list
+
+* Kembalikan data asli
+restore
+```
+
+::: {.callout-tip}
+## `preserve` / `restore`
+Sangat berguna saat eksplorasi data. Kamu bisa filter/drop tanpa takut kehilangan data asli.
+:::
+
+---
+
+## Latihan
+
+::: {.callout-caution}
+## Latihan 13.1
+```stata
+* Dari dataset di atas:
+* 1. List karyawan aktif di Jakarta atau Bandung
+* 2. Tampilkan hanya kolom nama, kota, gaji
+* 3. Siapa yang punya gaji tertinggi?
+```
+:::
+
+::: {.callout-caution}
+## Latihan 13.2
+```stata
+* 1. Hitung rata-rata gaji
+* 2. List karyawan dengan gaji di atas rata-rata
+*    (Hint: summarize dulu, lalu pakai r(mean))
+```
+:::
+
+---
+
+## Ringkasan
+
+| Perintah | Keterangan |
+|----------|-----------|
+| `list if` | Tampilkan baris (tanpa ubah data) |
+| `keep if` | Simpan baris yang memenuhi kondisi |
+| `drop if` | Hapus baris |
+| `keep varlist` | Pilih kolom |
+| `drop varlist` | Buang kolom |
+| `rename` | Ganti nama variabel |
+| `inlist()` | Cek membership |
+| `preserve`/`restore` | Simpan & kembalikan state |
+
+---
+
+*Sebelumnya: [Part 12 — Import & Export](../2026_02_26_12_import_export/index.qmd)*
+*Selanjutnya: [Part 14 — Manipulasi Data II: Mutate & Arrange](../2026_02_26_14_mutate_arrange/index.qmd)*

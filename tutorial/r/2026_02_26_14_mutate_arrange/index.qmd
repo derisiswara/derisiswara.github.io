@@ -1,0 +1,162 @@
+---
+title: "Part 14 — Manipulasi Data II: Mutate & Arrange"
+description: "Membuat kolom baru dan mengurutkan data di R: mutate, transmute, arrange, case_when, dan across."
+date: "2026-02-26"
+categories: [Fundamental, DataManipulation]
+series: "Fundamental Programming"
+order: 14
+---
+
+## Fundamental Series — Part 14 of 20
+
+Setelah filter dan select, operasi berikutnya yang paling sering digunakan adalah **membuat kolom baru** (mutate) dan **mengurutkan data** (arrange).
+
+---
+
+## Setup Data
+
+```r
+library(dplyr)
+
+df <- tibble(
+  nama   = c("Andi", "Budi", "Citra", "Dina", "Eko"),
+  kota   = c("Jakarta", "Bandung", "Jakarta", "Surabaya", "Bandung"),
+  umur   = c(25, 30, 28, 35, 22),
+  gaji   = c(5000, 7000, 6000, 8000, 4500)
+)
+```
+
+---
+
+## `mutate()` — Tambah / Ubah Kolom
+
+```r
+df |> mutate(
+  gaji_bulanan = gaji * 1000,
+  umur_tahun_depan = umur + 1
+)
+
+# Mengubah kolom yang sudah ada
+df |> mutate(gaji = gaji * 1000)
+
+# Referensi kolom yang baru dibuat
+df |> mutate(
+  gaji_ribu = gaji * 1000,
+  pajak = gaji_ribu * 0.1
+)
+```
+
+---
+
+## `transmute()` — Mutate + Select
+
+```r
+# Hanya simpan kolom baru
+df |> transmute(
+  nama,
+  gaji_ribu = gaji * 1000
+)
+```
+
+---
+
+## Conditional — `case_when()`
+
+```r
+df |> mutate(
+  kategori_umur = case_when(
+    umur < 25 ~ "Muda",
+    umur < 30 ~ "Dewasa Awal",
+    umur < 35 ~ "Dewasa",
+    TRUE ~ "Senior"
+  )
+)
+
+# if_else — untuk 2 kondisi saja
+df |> mutate(
+  senior = if_else(umur >= 30, "Ya", "Tidak")
+)
+```
+
+---
+
+## `arrange()` — Mengurutkan
+
+```r
+# Ascending (default)
+df |> arrange(gaji)
+
+# Descending
+df |> arrange(desc(gaji))
+
+# Multiple kolom
+df |> arrange(kota, desc(gaji))
+```
+
+---
+
+## `across()` — Operasi pada Banyak Kolom
+
+```r
+# Mutate semua kolom numerik
+df |> mutate(across(where(is.numeric), ~ . * 2))
+
+# Log transform kolom tertentu
+df |> mutate(across(c(umur, gaji), log))
+
+# Round semua numeric
+df |> mutate(across(where(is.numeric), ~ round(., 1)))
+```
+
+---
+
+## Ranking
+
+```r
+df |> mutate(
+  rank_gaji = rank(desc(gaji)),
+  rank_dense = dense_rank(desc(gaji)),
+  persen_rank = percent_rank(gaji)
+)
+```
+
+---
+
+## Latihan
+
+::: {.callout-caution}
+## Latihan 14.1
+```r
+# 1. Tambah kolom gaji_juta = gaji / 1000
+# 2. Tambah kolom kategori: "tinggi" jika gaji > 6000, else "rendah"
+# 3. Urutkan dari gaji tertinggi ke terendah
+```
+:::
+
+::: {.callout-caution}
+## Latihan 14.2
+```r
+# 1. Tambah kolom z_gaji = (gaji - mean) / sd
+# 2. Ranking gaji dari tertinggi (1) ke terendah
+# 3. Tampilkan hanya nama, gaji, z_gaji, rank
+```
+:::
+
+---
+
+## Ringkasan
+
+| Fungsi | Keterangan |
+|--------|-----------|
+| `mutate()` | Tambah / ubah kolom |
+| `transmute()` | Mutate + hanya simpan kolom baru |
+| `case_when()` | Conditional (banyak kondisi) |
+| `if_else()` | Conditional (2 kondisi) |
+| `arrange()` / `desc()` | Urutkan baris |
+| `across()` | Operasi pada banyak kolom sekaligus |
+| `rank()` / `dense_rank()` | Ranking |
+
+---
+
+*Sebelumnya: [Part 13 — Filter & Select](../2026_02_26_13_filter_select/index.qmd)*
+*Selanjutnya: [Part 15 — Manipulasi Data III: Group & Summarise](../2026_02_26_15_group_summarise/index.qmd)*

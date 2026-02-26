@@ -1,0 +1,195 @@
+---
+title: "Part 5 — Kontrol Alur: Conditional"
+description: "if/else, ifelse(), case_when(), dan switch() untuk percabangan logika di R."
+date: "2026-02-26"
+categories: [Fundamental, Kontrol Alur]
+series: "Fundamental Programming"
+order: 5
+---
+
+## Fundamental Series — Part 5 of 20
+
+Conditional memungkinkan kode **mengambil keputusan** — menjalankan blok kode berbeda tergantung kondisi. Part ini membahas `if/else`, `ifelse()`, dan `case_when()`.
+
+---
+
+## `if / else` — Untuk Satu Nilai
+
+```r
+x <- 15
+
+if (x > 10) {
+  "lebih dari 10"
+} else {
+  "10 atau kurang"
+}
+# "lebih dari 10"
+```
+
+### `if / else if / else`
+
+```r
+nilai <- 75
+
+if (nilai >= 85) {
+  grade <- "A"
+} else if (nilai >= 70) {
+  grade <- "B"
+} else if (nilai >= 55) {
+  grade <- "C"
+} else {
+  grade <- "D"
+}
+grade   # "B"
+```
+
+::: {.callout-warning}
+## if/else Hanya untuk SATU Nilai
+`if/else` di R hanya mengecek **satu kondisi** (skalar). Untuk vektor, gunakan `ifelse()` atau `case_when()`.
+
+```r
+x <- c(5, 15, 25)
+if (x > 10) { ... }    # Warning! Hanya elemen pertama yang dicek
+```
+:::
+
+---
+
+## `ifelse()` — Untuk Vektor
+
+`ifelse(kondisi, nilai_jika_true, nilai_jika_false)` bekerja **elemen per elemen**:
+
+```r
+x <- c(5, 15, 25, 8, 30)
+
+ifelse(x > 10, "besar", "kecil")
+# "kecil" "besar" "besar" "kecil" "besar"
+```
+
+### Nested ifelse
+
+```r
+nilai <- c(90, 72, 55, 40, 85)
+
+ifelse(nilai >= 85, "A",
+  ifelse(nilai >= 70, "B",
+    ifelse(nilai >= 55, "C", "D")))
+# "A" "B" "C" "D" "A"
+```
+
+::: {.callout-tip}
+## Nested ifelse Sulit Dibaca
+Untuk kondisi > 2, gunakan `case_when()` dari dplyr — jauh lebih bersih.
+:::
+
+---
+
+## `case_when()` — Conditional Elegan (dplyr)
+
+```r
+library(dplyr)
+
+nilai <- c(90, 72, 55, 40, 85)
+
+case_when(
+  nilai >= 85 ~ "A",
+  nilai >= 70 ~ "B",
+  nilai >= 55 ~ "C",
+  TRUE        ~ "D"     # default (else)
+)
+# "A" "B" "C" "D" "A"
+```
+
+### Dalam Data Frame
+
+```r
+library(dplyr)
+data(mtcars)
+
+mtcars |>
+  mutate(
+    efisiensi = case_when(
+      mpg >= 25 ~ "irit",
+      mpg >= 15 ~ "sedang",
+      TRUE      ~ "boros"
+    )
+  ) |>
+  head()
+```
+
+---
+
+## `switch()` — Untuk Nilai Diskrit
+
+```r
+hari <- "Senin"
+
+switch(hari,
+  "Senin"  = "Kerja",
+  "Selasa" = "Kerja",
+  "Sabtu"  = "Libur",
+  "Minggu" = "Libur",
+  "Kerja"  # default
+)
+# "Kerja"
+```
+
+`switch()` berguna ketika kamu mencocokkan **nilai eksak** (bukan range).
+
+---
+
+## Latihan
+
+::: {.callout-caution}
+## Latihan 5.1 — if/else
+```r
+# Buat fungsi sederhana:
+# Input: suhu (satu angka)
+# Output: "dingin" (<20), "normal" (20-30), "panas" (>30)
+
+suhu <- 28
+# Tulis if/else if/else untuk menentukan kategori
+```
+:::
+
+::: {.callout-caution}
+## Latihan 5.2 — ifelse pada vektor
+```r
+pendapatan <- c(2.5, 8.0, 3.2, 15.0, 4.1, 1.8)
+
+# 1. Buat vektor "miskin"/"kaya" dengan threshold 5 juta
+# 2. Buat vektor "rendah"/"sedang"/"tinggi" dengan nested ifelse:
+#    < 3 = rendah, 3-10 = sedang, > 10 = tinggi
+```
+:::
+
+::: {.callout-caution}
+## Latihan 5.3 — case_when
+```r
+library(dplyr)
+data(mtcars)
+
+# Buat kolom baru "ukuran_mesin":
+# cyl == 4 → "kecil"
+# cyl == 6 → "sedang"
+# cyl == 8 → "besar"
+
+# Hitung frekuensi masing-masing kategori dengan table()
+```
+:::
+
+---
+
+## Ringkasan
+
+| Fungsi | Untuk | Contoh |
+|--------|-------|--------|
+| `if/else` | Satu nilai (skalar) | `if (x > 0) "positif"` |
+| `ifelse()` | Vektor | `ifelse(x > 0, "pos", "neg")` |
+| `case_when()` | Vektor, banyak kondisi | `case_when(x > 10 ~ "A", ...)` |
+| `switch()` | Nilai diskrit eksak | `switch(x, "a" = 1, "b" = 2)` |
+
+---
+
+*Sebelumnya: [Part 4 — Operator & Ekspresi](../2026_02_26_04_operator/index.qmd)*
+*Selanjutnya: [Part 6 — Kontrol Alur: Loop](../2026_02_26_06_loop/index.qmd)*

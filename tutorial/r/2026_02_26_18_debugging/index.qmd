@@ -1,0 +1,183 @@
+---
+title: "Part 18 — Debugging & Error Handling"
+description: "Menangani error dan debugging di R: tryCatch, stop, warning, browser, traceback, dan defensive programming."
+date: "2026-02-26"
+categories: [Fundamental, Debugging]
+series: "Fundamental Programming"
+order: 18
+---
+
+## Fundamental Series — Part 18 of 20
+
+Error pasti terjadi. Memahami cara membaca pesan error, menangkap error, dan debugging secara sistematis adalah skill yang membedakan pemula dan intermediate.
+
+---
+
+## Membaca Pesan Error
+
+```r
+# Error umum
+mean("abc")
+# Error in mean.default("abc") : argument is not numeric or logical
+
+log(-1)
+# Warning: NaNs produced
+
+df$kolom_tidak_ada
+# NULL (bukan error — berbahaya!)
+```
+
+::: {.callout-note}
+## Error vs Warning vs Message
+- **Error** — kode berhenti
+- **Warning** — kode jalan, tapi ada masalah
+- **Message** — informasi saja
+:::
+
+---
+
+## `tryCatch()` — Menangkap Error
+
+```r
+# Tangkap error, lanjut jalan
+result <- tryCatch(
+  log("abc"),
+  error = function(e) {
+    NA    # return NA jika error
+  }
+)
+
+result   # NA
+
+# Tangkap warning juga
+result <- tryCatch(
+  log(-1),
+  warning = function(w) {
+    NA
+  }
+)
+```
+
+---
+
+## `try()` — Versi Sederhana
+
+```r
+result <- try(log("abc"), silent = TRUE)
+if (inherits(result, "try-error")) {
+  result <- NA
+}
+```
+
+---
+
+## `stop()`, `warning()`, `message()`
+
+```r
+# Di dalam fungsi sendiri
+hitung_bmi <- function(berat, tinggi) {
+  if (tinggi <= 0) stop("Tinggi harus positif!")
+  if (berat <= 0) stop("Berat harus positif!")
+  if (tinggi > 3) warning("Tinggi > 3m — yakin dalam meter?")
+  
+  berat / tinggi^2
+}
+
+hitung_bmi(70, 1.75)    # 22.86
+hitung_bmi(70, 0)       # Error: Tinggi harus positif!
+hitung_bmi(70, 175)     # Warning + result
+```
+
+---
+
+## Debugging Tools
+
+### `traceback()`
+
+```r
+# Setelah error, lihat call stack
+f <- function(x) g(x)
+g <- function(x) log(x)
+
+f("abc")    # Error
+traceback()
+# 2: g(x) at #1
+# 1: f("abc")
+```
+
+### `browser()` — Interactive Debugger
+
+```r
+my_func <- function(x) {
+  browser()          # pause di sini
+  y <- x * 2
+  z <- y + 10
+  z
+}
+
+# Saat berhenti di browser:
+# n = next line
+# c = continue
+# Q = quit
+# ls() = lihat variabel lokal
+```
+
+### `debug()` dan `undebug()`
+
+```r
+debug(my_func)      # aktifkan debugging
+my_func(5)          # otomatis masuk browser
+undebug(my_func)    # matikan
+```
+
+---
+
+## Defensive Programming
+
+```r
+# Cek input di awal fungsi
+analisis <- function(df, kolom) {
+  stopifnot(is.data.frame(df))
+  stopifnot(kolom %in% names(df))
+  stopifnot(is.numeric(df[[kolom]]))
+  
+  mean(df[[kolom]], na.rm = TRUE)
+}
+```
+
+---
+
+## Latihan
+
+::: {.callout-caution}
+## Latihan 18.1
+```r
+# 1. Buat fungsi safe_divide(a, b) yang:
+#    - Return a/b jika b != 0
+#    - Return NA dan warning jika b == 0
+# 2. Buat fungsi safe_log(x) yang:
+#    - Return log(x) jika x > 0
+#    - Return NA jika x <= 0 (pakai tryCatch atau if)
+# 3. Apply safe_log ke vector c(10, -5, 0, 100, NA)
+```
+:::
+
+---
+
+## Ringkasan
+
+| Fungsi | Keterangan |
+|--------|-----------|
+| `tryCatch()` | Tangkap error/warning |
+| `try()` | Tangkap error (sederhana) |
+| `stop()` | Raise error |
+| `warning()` | Raise warning |
+| `stopifnot()` | Assert kondisi |
+| `traceback()` | Lihat call stack |
+| `browser()` | Interactive debugger |
+| `debug()` | Auto-debug fungsi |
+
+---
+
+*Sebelumnya: [Part 17 — Apply & Vectorisasi](../2026_02_26_17_apply/index.qmd)*
+*Selanjutnya: [Part 19 — Reproducible Workflow](../2026_02_26_19_workflow/index.qmd)*

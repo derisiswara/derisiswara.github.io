@@ -1,0 +1,140 @@
+---
+title: "Part 17 — Vectorisasi & Efisiensi"
+description: "Operasi vectorized di Stata: generate vs loop, egen, gtools, dan tips performa."
+date: "2026-02-26"
+categories: [Fundamental, Apply]
+series: "Fundamental Programming"
+order: 17
+---
+
+## Fundamental Series — Part 17 of 20
+
+Stata secara default **vectorized** — perintah seperti `generate` dan `replace` sudah beroperasi pada seluruh observasi sekaligus. Part ini membahas kapan perlu loop dan tips efisiensi.
+
+---
+
+## Stata Sudah Vectorized
+
+```stata
+sysuse auto, clear
+
+* Ini sudah vectorized — operasi pada semua observasi
+generate log_price = ln(price)
+generate price_k = price / 1000
+generate mahal = cond(price > 6000, 1, 0)
+
+* Tidak perlu loop!
+```
+
+---
+
+## Kapan Perlu Loop?
+
+```stata
+* Loop diperlukan jika:
+* 1. Operasi antar variabel (bukan antar observasi)
+* 2. File processing
+* 3. Multiple regresi
+
+* Contoh: standarisasi banyak variabel
+foreach var of varlist price mpg weight {
+    quietly summarize `var'
+    generate `var'_z = (`var' - r(mean)) / r(sd)
+}
+```
+
+---
+
+## `egen` — Vectorized Aggregation
+
+```stata
+sysuse auto, clear
+
+* Operasi agregat (tanpa collapse)
+egen mean_price = mean(price)
+egen sd_price = sd(price)
+egen median_price = median(price)
+
+* Per grup
+bysort foreign: egen mean_price_grp = mean(price)
+
+* Row-wise operations
+egen total = rowtotal(price mpg weight)
+egen row_mean = rowmean(price mpg weight)
+egen row_min = rowmin(price mpg weight)
+```
+
+---
+
+## `gtools` — Versi Cepat
+
+```stata
+* Install gtools (lebih cepat dari egen untuk data besar)
+* ssc install gtools
+
+* gegen = egen versi cepat
+gegen mean_price = mean(price), by(foreign)
+
+* gcollapse = collapse versi cepat
+preserve
+gcollapse (mean) price mpg, by(foreign)
+list
+restore
+```
+
+---
+
+## Tips Performa
+
+```stata
+* 1. Hindari loop jika bisa pakai generate/replace
+* LAMBAT:
+forvalues i = 1/`=_N' {
+    replace x = x^2 in `i'
+}
+
+* CEPAT:
+replace x = x^2
+
+* 2. Gunakan compress untuk hemat memori
+compress
+
+* 3. Gunakan in jika hanya perlu subset
+summarize price in 1/100
+
+* 4. Matikan output untuk kecepatan
+quietly summarize price
+```
+
+---
+
+## Latihan
+
+::: {.callout-caution}
+## Latihan 17.1
+```stata
+sysuse auto, clear
+
+* 1. Standarisasi price, mpg, weight (pakai loop + generate)
+* 2. Buat row mean dari ketiga variabel asli (pakai egen rowmean)
+* 3. Ranking berdasarkan price (ascending) — pakai egen rank
+```
+:::
+
+---
+
+## Ringkasan
+
+| Metode | Keterangan |
+|--------|-----------|
+| `generate` / `replace` | Sudah vectorized |
+| `egen` | Aggregasi vectorized |
+| `foreach`/`forvalues` | Loop jika terpaksa |
+| `gtools` | Versi cepat untuk data besar |
+| `quietly` | Suppress output untuk speed |
+| `compress` | Hemat memori |
+
+---
+
+*Sebelumnya: [Part 16 — Reshape & Merge](../2026_02_26_16_reshape_merge/index.qmd)*
+*Selanjutnya: [Part 18 — Debugging & Error Handling](../2026_02_26_18_debugging/index.qmd)*

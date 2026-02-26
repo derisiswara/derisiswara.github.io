@@ -1,0 +1,173 @@
+---
+title: "Part 12 — Import & Export Data"
+description: "Membaca dan menyimpan data di Stata: import delimited, use, save, export, dan format lainnya."
+date: "2026-02-26"
+categories: [Fundamental, ImportExport]
+series: "Fundamental Programming"
+order: 12
+---
+
+## Fundamental Series — Part 12 of 20
+
+Stata punya beragam perintah import/export bawaan. Memahami cara membaca data dari berbagai sumber adalah langkah pertama analisis.
+
+---
+
+## CSV / Delimited
+
+```stata
+* Import CSV
+import delimited using "data/input.csv", clear
+
+* Dengan opsi
+import delimited using "data/input.csv", ///
+    delimiter(",") ///
+    varnames(1) ///        // baris pertama = nama variabel
+    encoding("utf-8") ///
+    clear
+
+* Export CSV
+export delimited using "data/output.csv", replace
+export delimited using "data/output.csv", delimiter(";") replace
+```
+
+---
+
+## Stata Format (.dta)
+
+```stata
+* Baca file Stata
+use "data/input.dta", clear
+
+* Baca variabel tertentu saja
+use price mpg foreign using "data/input.dta", clear
+
+* Baca dengan kondisi
+use "data/input.dta" if foreign == 1, clear
+
+* Simpan
+save "data/output.dta", replace
+```
+
+::: {.callout-note}
+## `clear` dan `replace`
+- `clear` = hapus data di memori sebelum load data baru
+- `replace` = timpa file jika sudah ada
+:::
+
+---
+
+## Excel
+
+```stata
+* Import
+import excel using "data/input.xlsx", ///
+    sheet("Sheet1") ///
+    firstrow ///            // baris pertama = nama variabel
+    clear
+
+* Lihat sheet yang tersedia
+import excel using "data/input.xlsx", describe
+
+* Export
+export excel using "data/output.xlsx", firstrow(variables) replace
+```
+
+---
+
+## Fixed-Width Format
+
+```stata
+* Import fixed-width (common di data pemerintah)
+infix str nama 1-20 umur 21-23 nilai 24-28 using "data/input.txt", clear
+```
+
+---
+
+## SAS & SPSS
+
+```stata
+* SAS
+import sas using "data/input.sas7bdat", clear
+
+* SPSS
+import spss using "data/input.sav", clear
+```
+
+---
+
+## Dataset Bawaan Stata
+
+```stata
+* Buka dataset bawaan
+sysuse auto, clear
+sysuse census, clear
+
+* Lihat semua dataset bawaan
+sysuse dir
+
+* Dataset dari web Stata
+webuse nlswork, clear
+```
+
+---
+
+## Append & Merge Files
+
+```stata
+* Append (tumpuk vertikal)
+use "data/part1.dta", clear
+append using "data/part2.dta"
+
+* Import banyak CSV sekaligus (pakai loop)
+clear
+local files : dir "data/" files "*.csv"
+local first = 1
+foreach f of local files {
+    if `first' {
+        import delimited using "data/`f'", clear
+        local first = 0
+    }
+    else {
+        preserve
+        import delimited using "data/`f'", clear
+        tempfile temp
+        save `temp'
+        restore
+        append using `temp'
+    }
+}
+```
+
+---
+
+## Latihan
+
+::: {.callout-caution}
+## Latihan 12.1
+```stata
+* 1. Buka sysuse auto, clear
+* 2. Simpan hanya variabel make price mpg ke file baru
+* 3. Export sebagai CSV
+* 4. Import kembali CSV tersebut
+* 5. Bandingkan jumlah observasi dan variabel
+```
+:::
+
+---
+
+## Ringkasan
+
+| Format | Import | Export |
+|--------|--------|--------|
+| CSV | `import delimited` | `export delimited` |
+| Stata | `use` | `save` |
+| Excel | `import excel` | `export excel` |
+| SAS | `import sas` | — |
+| SPSS | `import spss` | — |
+| Fixed-width | `infix` | — |
+
+---
+
+*Sebelumnya: [Part 11 — Package & Library](../2026_02_26_11_package/index.qmd)*
+*Selanjutnya: [Part 13 — Manipulasi Data I: Filter & Select](../2026_02_26_13_filter_select/index.qmd)*

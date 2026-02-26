@@ -1,0 +1,204 @@
+---
+title: "Part 12 — Import & Export Data"
+description: "Membaca dan menyimpan data di Python: CSV, Excel, Stata, Parquet, dan format lainnya dengan pandas dan polars."
+date: "2026-02-26"
+categories: [Fundamental, ImportExport]
+series: "Fundamental Programming"
+order: 12
+---
+
+## Fundamental Series — Part 12 of 20
+
+Sebelum analisis, data harus di-load. Python punya banyak cara membaca berbagai format file menggunakan pandas, polars, dan library lainnya.
+
+---
+
+## CSV — Pandas
+
+```python
+import pandas as pd
+
+# Import
+df = pd.read_csv("data/input.csv")
+
+# Import dengan opsi
+df = pd.read_csv("data/input.csv",
+    sep=";",               # delimiter
+    encoding="utf-8",
+    skiprows=1,            # skip baris pertama
+    na_values=["", ".", "NA"],
+    dtype={"id": int}
+)
+
+# Export
+df.to_csv("data/output.csv", index=False)
+```
+
+---
+
+## CSV — Polars
+
+```python
+import polars as pl
+
+# Import
+df = pl.read_csv("data/input.csv")
+
+# Import dengan opsi
+df = pl.read_csv("data/input.csv",
+    separator=";",
+    null_values=["", ".", "NA"],
+    dtypes={"id": pl.Int64}
+)
+
+# Export
+df.write_csv("data/output.csv")
+```
+
+::: {.callout-tip}
+## Polars Lebih Cepat
+Untuk file besar, `polars` bisa **10x lebih cepat** dari pandas karena menggunakan Rust di belakang layar.
+:::
+
+---
+
+## Excel
+
+```python
+# Pandas
+df = pd.read_excel("data/input.xlsx")
+df = pd.read_excel("data/input.xlsx", sheet_name="Sheet2")
+
+# Export
+df.to_excel("data/output.xlsx", index=False)
+
+# Polars
+df = pl.read_excel("data/input.xlsx")
+```
+
+---
+
+## Stata, SPSS, SAS
+
+```python
+# Stata
+df = pd.read_stata("data/input.dta")
+df.to_stata("data/output.dta")
+
+# SPSS (perlu pyreadstat)
+df = pd.read_spss("data/input.sav")
+
+# Polars: convert via pandas
+df_pd = pd.read_stata("data/input.dta")
+df_pl = pl.from_pandas(df_pd)
+```
+
+---
+
+## Parquet — Format Modern
+
+```python
+# Pandas
+df = pd.read_parquet("data/input.parquet")
+df.to_parquet("data/output.parquet")
+
+# Polars
+df = pl.read_parquet("data/input.parquet")
+df.write_parquet("data/output.parquet")
+```
+
+::: {.callout-note}
+## Kenapa Parquet?
+Parquet adalah format **columnar** yang sangat efisien — file kecil, baca cepat, dan menyimpan tipe data. Ideal untuk data intermediate.
+:::
+
+---
+
+## JSON
+
+```python
+import json
+
+# Standard library
+with open("data/input.json") as f:
+    data = json.load(f)
+
+# Pandas
+df = pd.read_json("data/input.json")
+df.to_json("data/output.json", orient="records")
+
+# Polars
+df = pl.read_json("data/input.json")
+```
+
+---
+
+## Pickle (Python native)
+
+```python
+import pickle
+
+# Simpan objek Python apapun
+with open("data/model.pkl", "wb") as f:
+    pickle.dump(obj, f)
+
+# Baca kembali
+with open("data/model.pkl", "rb") as f:
+    obj = pickle.load(f)
+
+# Pandas shortcut
+df.to_pickle("data/df.pkl")
+df = pd.read_pickle("data/df.pkl")
+```
+
+---
+
+## Clipboard & URL
+
+```python
+# Dari clipboard
+df = pd.read_clipboard()
+
+# Dari URL
+df = pd.read_csv("https://example.com/data.csv")
+df = pl.read_csv("https://example.com/data.csv")
+```
+
+---
+
+## Latihan
+
+::: {.callout-caution}
+## Latihan 12.1
+```python
+import pandas as pd
+
+# 1. Buat DataFrame:
+df = pd.DataFrame({
+    "nama": ["Andi", "Budi", "Citra"],
+    "nilai": [85, 90, 78],
+    "lulus": [True, True, False]
+})
+
+# 2. Simpan sebagai CSV, baca kembali. Cek dtypes
+# 3. Simpan sebagai Parquet, baca kembali. Cek dtypes
+# 4. Bandingkan — apakah tipe kolom "lulus" sama?
+```
+:::
+
+---
+
+## Ringkasan
+
+| Format | Pandas | Polars |
+|--------|--------|--------|
+| CSV | `read_csv()` / `to_csv()` | `read_csv()` / `write_csv()` |
+| Excel | `read_excel()` / `to_excel()` | `read_excel()` |
+| Stata | `read_stata()` / `to_stata()` | via pandas |
+| Parquet | `read_parquet()` / `to_parquet()` | `read_parquet()` / `write_parquet()` |
+| JSON | `read_json()` / `to_json()` | `read_json()` |
+
+---
+
+*Sebelumnya: [Part 11 — Package & Library](../2026_02_26_11_package/index.qmd)*
+*Selanjutnya: [Part 13 — Manipulasi Data I: Filter & Select](../2026_02_26_13_filter_select/index.qmd)*

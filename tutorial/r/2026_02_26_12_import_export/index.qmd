@@ -1,0 +1,163 @@
+---
+title: "Part 12 — Import & Export Data"
+description: "Membaca dan menyimpan data di R: CSV, Excel, Stata, SPSS, RDS, dan format lainnya."
+date: "2026-02-26"
+categories: [Fundamental, ImportExport]
+series: "Fundamental Programming"
+order: 12
+---
+
+## Fundamental Series — Part 12 of 20
+
+Sebelum analisis, data harus di-load ke R. Part ini membahas cara import berbagai format file dan export hasilnya.
+
+---
+
+## CSV
+
+```r
+library(readr)
+
+# Import
+df <- read_csv("data/input.csv")
+
+# Import dengan opsi
+df <- read_csv("data/input.csv",
+  col_types = cols(id = col_integer(), nilai = col_double()),
+  skip = 1,           # skip baris pertama
+  na = c("", "NA", ".") # nilai yang dianggap NA
+)
+
+# Export
+write_csv(df, "data/output.csv")
+```
+
+::: {.callout-tip}
+## `readr` vs `base`
+`read_csv()` (readr) lebih cepat dan otomatis mendeteksi tipe kolom. `read.csv()` (base R) juga bisa, tapi default-nya berbeda (misal: string jadi factor).
+:::
+
+---
+
+## Excel
+
+```r
+library(readxl)
+
+# Import
+df <- read_excel("data/input.xlsx")
+df <- read_excel("data/input.xlsx", sheet = "Sheet2")
+df <- read_excel("data/input.xlsx", range = "A1:D100")
+
+# Lihat nama sheet
+excel_sheets("data/input.xlsx")
+
+# Export (perlu package writexl atau openxlsx)
+library(writexl)
+write_xlsx(df, "data/output.xlsx")
+```
+
+---
+
+## Stata, SPSS, SAS — `haven`
+
+```r
+library(haven)
+
+# Stata
+df <- read_dta("data/input.dta")
+write_dta(df, "data/output.dta")
+
+# SPSS
+df <- read_sav("data/input.sav")
+write_sav(df, "data/output.sav")
+
+# SAS
+df <- read_sas("data/input.sas7bdat")
+```
+
+---
+
+## RDS & RData — Format Native R
+
+```r
+# RDS — simpan satu objek
+saveRDS(df, "data/output.rds")
+df <- readRDS("data/output.rds")
+
+# RData — simpan beberapa objek sekaligus
+save(df1, df2, model, file = "data/workspace.RData")
+load("data/workspace.RData")
+```
+
+::: {.callout-note}
+## Kapan Pakai RDS?
+`RDS` menyimpan tipe data R secara sempurna (factor, list, dll). Ideal untuk **intermediate data** — sudah dibersihkan, siap analisis.
+:::
+
+---
+
+## JSON & Parquet
+
+```r
+# JSON
+library(jsonlite)
+data <- fromJSON("data/input.json")
+write_json(data, "data/output.json")
+
+# Parquet (format columnar, sangat efisien)
+library(arrow)
+df <- read_parquet("data/input.parquet")
+write_parquet(df, "data/output.parquet")
+```
+
+---
+
+## Clipboard & URL
+
+```r
+# Dari clipboard (copy-paste dari Excel)
+df <- read.delim("clipboard")
+
+# Dari URL
+df <- read_csv("https://example.com/data.csv")
+```
+
+---
+
+## Latihan
+
+::: {.callout-caution}
+## Latihan 12.1
+```r
+# 1. Buat dataframe:
+df <- data.frame(
+  nama = c("Andi", "Budi", "Citra"),
+  nilai = c(85, 90, 78),
+  lulus = c(TRUE, TRUE, FALSE)
+)
+
+# 2. Simpan sebagai CSV, lalu baca kembali
+# 3. Simpan sebagai RDS, lalu baca kembali
+# 4. Bandingkan class() kolom "lulus" dari CSV vs RDS
+```
+:::
+
+---
+
+## Ringkasan
+
+| Format | Import | Export |
+|--------|--------|--------|
+| CSV | `readr::read_csv()` | `readr::write_csv()` |
+| Excel | `readxl::read_excel()` | `writexl::write_xlsx()` |
+| Stata | `haven::read_dta()` | `haven::write_dta()` |
+| SPSS | `haven::read_sav()` | `haven::write_sav()` |
+| RDS | `readRDS()` | `saveRDS()` |
+| JSON | `jsonlite::fromJSON()` | `jsonlite::write_json()` |
+| Parquet | `arrow::read_parquet()` | `arrow::write_parquet()` |
+
+---
+
+*Sebelumnya: [Part 11 — Package & Library](../2026_02_26_11_package/index.qmd)*
+*Selanjutnya: [Part 13 — Manipulasi Data I: Filter & Select](../2026_02_26_13_filter_select/index.qmd)*

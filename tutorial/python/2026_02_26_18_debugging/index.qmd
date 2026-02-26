@@ -1,0 +1,178 @@
+---
+title: "Part 18 — Debugging & Error Handling"
+description: "Menangani error dan debugging di Python: try/except, raise, assert, pdb, dan traceback."
+date: "2026-02-26"
+categories: [Fundamental, Debugging]
+series: "Fundamental Programming"
+order: 18
+---
+
+## Fundamental Series — Part 18 of 20
+
+Error pasti terjadi. Memahami cara membaca traceback, menangkap exception, dan debugging secara sistematis adalah skill esensial.
+
+---
+
+## Membaca Traceback
+
+```python
+def f(x):
+    return g(x)
+
+def g(x):
+    return x / 0
+
+f(5)
+# Traceback (most recent call last):
+#   File "<stdin>", line 1, in <module>
+#   File "<stdin>", line 2, in f
+#   File "<stdin>", line 2, in g
+# ZeroDivisionError: division by zero
+```
+
+::: {.callout-tip}
+## Baca Traceback dari Bawah ke Atas
+Baris **terakhir** adalah error. Baris di atasnya menunjukkan **urutan pemanggilan fungsi** (call stack).
+:::
+
+---
+
+## `try` / `except` — Menangkap Error
+
+```python
+# Tangkap error, lanjut jalan
+try:
+    result = 10 / 0
+except ZeroDivisionError:
+    result = None
+
+# Tangkap multiple exception
+try:
+    result = int("abc")
+except (ValueError, TypeError) as e:
+    result = None
+
+# finally — selalu dijalankan
+try:
+    f = open("data.csv")
+except FileNotFoundError:
+    f = None
+finally:
+    pass  # cleanup code
+```
+
+---
+
+## Exception Types Umum
+
+| Exception | Penyebab |
+|-----------|----------|
+| `ValueError` | Nilai tidak valid |
+| `TypeError` | Tipe tidak sesuai |
+| `KeyError` | Key tidak ada di dict |
+| `IndexError` | Index di luar range |
+| `FileNotFoundError` | File tidak ditemukan |
+| `ZeroDivisionError` | Bagi dengan nol |
+| `AttributeError` | Atribut tidak ada |
+| `ImportError` | Modul tidak ditemukan |
+
+---
+
+## `raise` — Membuat Error Sendiri
+
+```python
+def hitung_bmi(berat, tinggi):
+    if tinggi <= 0:
+        raise ValueError("Tinggi harus positif!")
+    if berat <= 0:
+        raise ValueError("Berat harus positif!")
+    return berat / tinggi ** 2
+
+hitung_bmi(70, 0)   # ValueError: Tinggi harus positif!
+```
+
+---
+
+## `assert` — Cek Kondisi
+
+```python
+def analisis(df, kolom):
+    assert kolom in df.columns, f"Kolom '{kolom}' tidak ada!"
+    assert df[kolom].dtype in ["int64", "float64"], "Kolom harus numerik!"
+    return df[kolom].mean()
+```
+
+::: {.callout-important}
+## `assert` Bisa Dimatikan
+`assert` bisa di-disable dengan `python -O`. Jangan pakai untuk validasi input di production — gunakan `raise` + `if`.
+:::
+
+---
+
+## Debugging dengan `breakpoint()`
+
+```python
+def my_func(x):
+    breakpoint()      # pause di sini (Python 3.7+)
+    y = x * 2
+    z = y + 10
+    return z
+
+# Saat berhenti di debugger (pdb):
+# n = next line
+# c = continue
+# q = quit
+# p variable = print variabel
+# l = list kode sekitar
+```
+
+---
+
+## Logging vs Print
+
+```python
+import logging
+
+logging.basicConfig(level=logging.INFO)
+
+def proses_data(df):
+    logging.info(f"Memproses {len(df)} baris")
+    logging.warning("Ada missing values!")
+    logging.error("Kolom X tidak ditemukan")
+```
+
+---
+
+## Latihan
+
+::: {.callout-caution}
+## Latihan 18.1
+```python
+# 1. Buat fungsi safe_divide(a, b):
+#    - Return a/b jika b != 0
+#    - Return None jika b == 0 (pakai try/except)
+# 2. Buat fungsi safe_convert(s):
+#    - Coba konversi string ke float
+#    - Return None jika gagal
+# 3. Apply safe_convert ke ["3.14", "abc", "100", "xyz", "0.5"]
+```
+:::
+
+---
+
+## Ringkasan
+
+| Fitur | Keterangan |
+|-------|-----------|
+| `try/except` | Tangkap exception |
+| `raise` | Buat exception |
+| `assert` | Cek kondisi (development) |
+| `finally` | Selalu dijalankan |
+| `breakpoint()` | Interactive debugger |
+| `logging` | Logging terstruktur |
+| Traceback | Baca dari bawah ke atas |
+
+---
+
+*Sebelumnya: [Part 17 — Apply & Vectorisasi](../2026_02_26_17_apply/index.qmd)*
+*Selanjutnya: [Part 19 — Reproducible Workflow](../2026_02_26_19_workflow/index.qmd)*

@@ -1,0 +1,279 @@
+---
+title: "Part 3 — Struktur Data II: DataFrame"
+description: "Membuat DataFrame dengan pandas, akses kolom & baris, dimensi, struktur, dan operasi dasar di Python."
+date: "2026-02-26"
+categories: [Fundamental, Struktur Data]
+series: "Fundamental Programming"
+order: 3
+---
+
+## Fundamental Series — Part 3 of 20
+
+DataFrame adalah **struktur data paling penting** untuk analisis data di Python. Bayangkan spreadsheet: baris = observasi, kolom = variabel. Part ini membahas DataFrame dari library **pandas**.
+
+---
+
+## Membuat DataFrame
+
+```python
+import pandas as pd
+
+df = pd.DataFrame({
+    "kota": ["Jakarta", "Bandung", "Surabaya", "Medan", "Makassar"],
+    "populasi": [10.56, 2.44, 2.87, 2.12, 1.42],
+    "pulau": ["Jawa", "Jawa", "Jawa", "Sumatera", "Sulawesi"]
+})
+
+df
+```
+
+```
+       kota  populasi     pulau
+0   Jakarta     10.56      Jawa
+1   Bandung      2.44      Jawa
+2  Surabaya      2.87      Jawa
+3     Medan      2.12  Sumatera
+4  Makassar      1.42  Sulawesi
+```
+
+::: {.callout-note}
+## pandas vs polars
+Tutorial ini menggunakan **pandas** (library paling populer). Alternatif modern: **polars** — lebih cepat dan memori-efisien. Sintaksnya sedikit berbeda, akan dibahas di part manipulasi data.
+:::
+
+---
+
+## Memeriksa Struktur
+
+```python
+# Dimensi
+df.shape       # (5, 3) — 5 baris, 3 kolom
+len(df)        # 5 (jumlah baris)
+
+# Info lengkap — tipe data, non-null count
+df.info()
+
+# Tipe data setiap kolom
+df.dtypes
+
+# Nama kolom
+df.columns     # Index(['kota', 'populasi', 'pulau'])
+
+# Beberapa baris pertama / terakhir
+df.head(3)
+df.tail(2)
+```
+
+Output `df.info()`:
+
+```
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 5 entries, 0 to 4
+Data columns (total 3 columns):
+ #   Column    Non-Null Count  Dtype
+---  ------    --------------  -----
+ 0   kota      5 non-null      object
+ 1   populasi  5 non-null      float64
+ 2   pulau     5 non-null      object
+dtypes: float64(1), object(2)
+```
+
+`df.info()` sangat berguna — langsung terlihat jumlah baris, kolom, tipe data, dan missing values.
+
+---
+
+## Mengakses Kolom
+
+```python
+# Dengan titik (dot notation)
+df.kota              # Series
+
+# Dengan bracket (lebih aman — selalu berhasil)
+df["kota"]           # Series
+df[["kota"]]         # DataFrame (1 kolom)
+df[["kota", "populasi"]]  # DataFrame (beberapa kolom)
+```
+
+::: {.callout-important}
+## `df["x"]` vs `df[["x"]]`
+| Sintaks | Return | Tipe |
+|---------|--------|------|
+| `df["kota"]` | Series | Seperti vektor |
+| `df[["kota"]]` | DataFrame | Tabel 1 kolom |
+| `df.kota` | Series | Shortcut (tidak bisa kalau nama kolom ada spasi) |
+:::
+
+---
+
+## Mengakses Baris & Sel
+
+### `iloc` — Index-based (posisi angka)
+
+```python
+df.iloc[0]           # baris pertama (Series)
+df.iloc[0:3]         # baris 0, 1, 2 (DataFrame)
+df.iloc[0, 1]        # sel: baris 0, kolom 1 → 10.56
+df.iloc[:, 0:2]      # semua baris, kolom 0 dan 1
+```
+
+### `loc` — Label-based (nama)
+
+```python
+df.loc[0]                    # baris dengan index 0
+df.loc[0:2]                  # baris index 0 sampai 2 (inklusif!)
+df.loc[0, "populasi"]        # sel: index 0, kolom "populasi"
+df.loc[:, ["kota", "pulau"]] # semua baris, kolom tertentu
+```
+
+::: {.callout-warning}
+## iloc vs loc
+- `iloc` → **posisi** (integer). Slicing eksklusif: `[0:3]` = index 0,1,2
+- `loc` → **label**. Slicing inklusif: `[0:2]` = index 0,1,2
+
+Perbedaan ini sering membingungkan pemula!
+:::
+
+### Filter Baris dengan Kondisi
+
+```python
+# Kota di Pulau Jawa
+df[df["pulau"] == "Jawa"]
+
+# Populasi > 2.5 juta
+df[df["populasi"] > 2.5]
+
+# Kombinasi kondisi (pakai & dan |, bukan and/or)
+df[(df["pulau"] == "Jawa") & (df["populasi"] > 3)]
+```
+
+---
+
+## Menambah & Mengubah Kolom
+
+```python
+# Tambah kolom baru
+df["luas"] = [661.5, 167.7, 350.5, 265.1, 175.8]
+
+# Buat kolom dari perhitungan
+df["kepadatan"] = df["populasi"] / df["luas"] * 1e6
+
+# Ubah kolom yang ada
+df["populasi"] = df["populasi"] * 1e6
+```
+
+---
+
+## Menghapus Kolom
+
+```python
+# drop — tidak mengubah df asli (kecuali inplace=True)
+df.drop(columns=["kepadatan"])
+
+# Atau langsung ubah
+df = df.drop(columns=["kepadatan"])
+```
+
+---
+
+## Menambah Baris
+
+```python
+baris_baru = pd.DataFrame({
+    "kota": ["Semarang"],
+    "populasi": [1.65],
+    "pulau": ["Jawa"]
+})
+
+df = pd.concat([df, baris_baru], ignore_index=True)
+```
+
+---
+
+## Statistik Cepat
+
+```python
+# Statistik deskriptif semua kolom numerik
+df.describe()
+
+# Per kolom
+df["populasi"].mean()
+df["populasi"].median()
+df["populasi"].std()
+df["populasi"].min()
+df["populasi"].max()
+
+# Hitung frekuensi
+df["pulau"].value_counts()
+```
+
+---
+
+## Latihan
+
+::: {.callout-caution}
+## Latihan 3.1 — Buat DataFrame
+```python
+import pandas as pd
+
+# Buat DataFrame "provinsi" dengan kolom:
+# - nama: 5 nama provinsi
+# - ibukota: 5 nama ibukota
+# - populasi: 5 angka populasi (juta jiwa)
+# - pulau: 5 nama pulau
+
+# 1. Tampilkan info DataFrame (df.info())
+# 2. Berapa dimensinya? (shape)
+# 3. Tampilkan hanya kolom nama dan populasi
+```
+:::
+
+::: {.callout-caution}
+## Latihan 3.2 — Akses & Filter
+```python
+# Gunakan dataset berikut:
+import seaborn as sns
+tips = sns.load_dataset("tips")
+
+# 1. Berapa jumlah baris dan kolom?
+# 2. Tampilkan 5 baris pertama
+# 3. Tampilkan kolom total_bill dan tip saja
+# 4. Filter: baris dengan total_bill > 40
+# 5. Filter: day == "Sun" DAN tip > 5
+```
+:::
+
+::: {.callout-caution}
+## Latihan 3.3 — Modifikasi
+```python
+import seaborn as sns
+tips = sns.load_dataset("tips")
+
+# 1. Tambahkan kolom tip_pct = (tip / total_bill) * 100
+# 2. Berapa rata-rata tip_pct?
+# 3. Tambahkan kolom kategori = "generous" jika tip_pct > 18, "normal" jika tidak
+#    (hint: np.where())
+# 4. Hitung frekuensi generous vs normal (value_counts())
+```
+:::
+
+---
+
+## Ringkasan
+
+| Konsep | Keterangan |
+|--------|-----------|
+| `pd.DataFrame({...})` | Buat DataFrame |
+| `df.info()` | Info struktur (tipe, missing) |
+| `df.shape` | Dimensi (baris, kolom) |
+| `df["col"]` | Akses kolom → Series |
+| `df[["col"]]` | Akses kolom → DataFrame |
+| `df.iloc[i, j]` | Akses by posisi |
+| `df.loc[i, "col"]` | Akses by label |
+| `df[kondisi]` | Filter baris |
+| `df["baru"] = ...` | Tambah / ubah kolom |
+| `df.describe()` | Statistik deskriptif |
+
+---
+
+*Sebelumnya: [Part 2 — List & Dictionary](../2026_02_26_02_vektor_list/index.qmd)*
+*Selanjutnya: [Part 4 — Operator & Ekspresi](../2026_02_26_04_operator/index.qmd)*

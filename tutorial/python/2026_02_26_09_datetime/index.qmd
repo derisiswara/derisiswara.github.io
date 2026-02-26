@@ -1,0 +1,180 @@
+---
+title: "Part 9 — Date & Time"
+description: "Bekerja dengan tanggal dan waktu di Python: datetime, timedelta, pandas Timestamp, dan formatting."
+date: "2026-02-26"
+categories: [Fundamental, DateTime]
+series: "Fundamental Programming"
+order: 9
+---
+
+## Fundamental Series — Part 9 of 20
+
+Data tanggal dan waktu sangat umum di data ekonomi dan survei. Python punya modul `datetime` bawaan dan integrasi kuat dengan pandas untuk time series.
+
+---
+
+## Module `datetime`
+
+```python
+from datetime import date, datetime, timedelta
+
+# Tanggal hari ini
+today = date.today()
+
+# Buat tanggal manual
+d = date(2026, 2, 26)
+
+# Datetime (tanggal + waktu)
+dt = datetime(2026, 2, 26, 14, 30, 0)
+```
+
+---
+
+## Parsing String ke Date
+
+```python
+from datetime import datetime
+
+# strptime — string ke datetime
+d = datetime.strptime("2026-02-26", "%Y-%m-%d")
+d = datetime.strptime("26/02/2026", "%d/%m/%Y")
+d = datetime.strptime("Feb 26, 2026", "%b %d, %Y")
+```
+
+### Format Codes
+
+| Code | Arti | Contoh |
+|------|------|--------|
+| `%Y` | Tahun 4-digit | 2026 |
+| `%m` | Bulan (01-12) | 02 |
+| `%b` | Bulan singkat | Feb |
+| `%B` | Bulan penuh | February |
+| `%d` | Tanggal (01-31) | 26 |
+| `%A` | Nama hari | Thursday |
+
+---
+
+## Mengekstrak Komponen
+
+```python
+d = date(2026, 2, 26)
+
+d.year      # 2026
+d.month     # 2
+d.day       # 26
+d.weekday() # 3 (Thursday — Monday=0)
+d.isoformat()  # '2026-02-26'
+```
+
+---
+
+## Aritmetika Tanggal
+
+```python
+from datetime import date, timedelta
+
+d = date(2026, 2, 26)
+
+# Tambah/kurang hari
+d + timedelta(days=10)     # 2026-03-08
+d - timedelta(days=30)     # 2026-01-27
+
+# Selisih antar tanggal
+d2 = date(2026, 12, 31)
+delta = d2 - d
+delta.days    # 308
+```
+
+---
+
+## Pandas Timestamps
+
+```python
+import pandas as pd
+
+# Parsing otomatis
+ts = pd.Timestamp("2026-02-26")
+ts = pd.to_datetime("26/02/2026", dayfirst=True)
+
+# Series of dates
+dates = pd.to_datetime(["2026-01-01", "2026-02-15", "2026-03-30"])
+
+# Akses komponen via .dt accessor
+df = pd.DataFrame({"tanggal": dates})
+df["tanggal"].dt.year
+df["tanggal"].dt.month
+df["tanggal"].dt.day_name()
+```
+
+### Date Ranges
+
+```python
+pd.date_range("2026-01-01", "2026-12-01", freq="MS")
+# 12 tanggal: awal setiap bulan
+
+pd.date_range("2026-01-01", periods=52, freq="W")
+# 52 tanggal mingguan
+```
+
+---
+
+## Format Output
+
+```python
+d = date(2026, 2, 26)
+
+d.strftime("%d %B %Y")         # '26 February 2026'
+d.strftime("%A, %d %b %Y")    # 'Thursday, 26 Feb 2026'
+
+f"Tanggal: {d:%d-%m-%Y}"      # 'Tanggal: 26-02-2026'
+```
+
+---
+
+## Latihan
+
+::: {.callout-caution}
+## Latihan 9.1 — Parsing
+```python
+tanggal = ["26-02-2026", "15/03/2025", "2024-12-31", "01 Jan 2023"]
+
+# 1. Parse semua ke datetime objects
+# 2. Urutkan dari terlama ke terbaru
+# 3. Hitung selisih hari antara pertama dan terakhir
+```
+:::
+
+::: {.callout-caution}
+## Latihan 9.2 — Pandas Date
+```python
+import pandas as pd
+
+# Buat DataFrame dengan kolom tanggal string
+df = pd.DataFrame({
+    "tanggal": ["2026-01-15", "2026-03-20", "2026-07-04", "2026-12-25"]
+})
+
+# 1. Convert ke datetime
+# 2. Tambah kolom: tahun, bulan, hari
+# 3. Hitung selisih hari dari tanggal pertama
+```
+:::
+
+---
+
+## Ringkasan
+
+| Fitur | Keterangan |
+|-------|-----------|
+| `date(y, m, d)` | Buat objek tanggal |
+| `datetime.strptime()` | Parse string ke datetime |
+| `timedelta(days=n)` | Aritmetika tanggal |
+| `pd.to_datetime()` | Pandas parsing otomatis |
+| `pd.date_range()` | Buat sequence tanggal |
+| `.strftime()` | Format ke string |
+| `.dt` accessor | Akses komponen di pandas |
+
+---
+
+*Sebelumnya: [Part 8 — String & Teks](../2026_02_26_08_string/index.qmd)*
+*Selanjutnya: [Part 10 — Missing Values](../2026_02_26_10_missing/index.qmd)*

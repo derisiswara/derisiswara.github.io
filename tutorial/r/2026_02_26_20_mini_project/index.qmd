@@ -1,0 +1,197 @@
+---
+title: "Part 20 — Mini Project: Analisis Data Lengkap"
+description: "Menggabungkan semua skill di R: import, clean, manipulasi, visualisasi, dan export dalam satu analisis end-to-end."
+date: "2026-02-26"
+categories: [Fundamental, MiniProject]
+series: "Fundamental Programming"
+order: 20
+---
+
+## Fundamental Series — Part 20 of 20 🎉
+
+Selamat! Ini adalah part terakhir. Kita akan menggabungkan semua skill dari Part 0–19 dalam satu mini project analisis data **end-to-end**.
+
+---
+
+## Skenario
+
+> Kamu mendapat dataset penjualan toko. Tugasmu: import, bersihkan, analisis, dan buat laporan sederhana.
+
+---
+
+## Step 1 — Setup & Import
+
+```r
+library(dplyr)
+library(tidyr)
+library(readr)
+library(stringr)
+library(lubridate)
+library(ggplot2)
+
+# Buat data simulasi (biasanya import dari CSV)
+set.seed(42)
+
+penjualan <- tibble(
+  id = 1:200,
+  tanggal = sample(seq(ymd("2025-01-01"), ymd("2025-12-31"), by = "day"), 200, replace = TRUE),
+  produk = sample(c("Laptop", "Mouse", "Keyboard", "Monitor", "Headset"), 200, replace = TRUE),
+  kategori = sample(c("Elektronik", "Aksesoris"), 200, replace = TRUE),
+  kota = sample(c("Jakarta", "Bandung", "Surabaya", "Semarang", "Medan"), 200, replace = TRUE),
+  jumlah = sample(1:10, 200, replace = TRUE),
+  harga = sample(c(100, 50, 75, 300, 80), 200, replace = TRUE),
+  diskon = sample(c(0, 0.05, 0.1, NA), 200, replace = TRUE)
+)
+```
+
+---
+
+## Step 2 — Eksplorasi Awal
+
+```r
+# Struktur data
+glimpse(penjualan)
+
+# Missing values
+colSums(is.na(penjualan))
+
+# Ringkasan
+penjualan |> count(produk, sort = TRUE)
+penjualan |> count(kota, sort = TRUE)
+```
+
+---
+
+## Step 3 — Cleaning
+
+```r
+penjualan_clean <- penjualan |>
+  # Isi diskon NA dengan 0
+
+  mutate(diskon = replace_na(diskon, 0)) |>
+  # Hitung total
+  mutate(
+    total = jumlah * harga * (1 - diskon),
+    bulan = month(tanggal, label = TRUE),
+    kuartal = quarter(tanggal)
+  ) |>
+  # Filter: hanya transaksi valid
+
+  filter(total > 0)
+```
+
+---
+
+## Step 4 — Analisis
+
+```r
+# Revenue per kota
+revenue_kota <- penjualan_clean |>
+  summarise(
+    total_revenue = sum(total),
+    n_transaksi = n(),
+    avg_transaksi = mean(total),
+    .by = kota
+  ) |>
+  arrange(desc(total_revenue))
+
+# Revenue per bulan
+revenue_bulan <- penjualan_clean |>
+  summarise(
+    total_revenue = sum(total),
+    .by = bulan
+  )
+
+# Produk terlaris
+produk_terlaris <- penjualan_clean |>
+  summarise(
+    total_terjual = sum(jumlah),
+    total_revenue = sum(total),
+    .by = produk
+  ) |>
+  arrange(desc(total_terjual))
+```
+
+---
+
+## Step 5 — Visualisasi
+
+```r
+# Revenue per kota
+ggplot(revenue_kota, aes(x = reorder(kota, total_revenue), y = total_revenue)) +
+  geom_col(fill = "steelblue") +
+  coord_flip() +
+  labs(title = "Total Revenue per Kota", x = NULL, y = "Revenue")
+
+# Trend bulanan
+ggplot(revenue_bulan, aes(x = bulan, y = total_revenue, group = 1)) +
+  geom_line(linewidth = 1) +
+  geom_point(size = 3) +
+  labs(title = "Revenue Trend Bulanan", x = "Bulan", y = "Revenue")
+```
+
+---
+
+## Step 6 — Export
+
+```r
+# Simpan data bersih
+write_csv(penjualan_clean, here::here("output", "penjualan_clean.csv"))
+saveRDS(penjualan_clean, here::here("output", "penjualan_clean.rds"))
+
+# Simpan hasil analisis
+write_csv(revenue_kota, here::here("output", "revenue_kota.csv"))
+```
+
+---
+
+## Checklist Skills yang Digunakan
+
+| Part | Skill | ✓ |
+|------|-------|---|
+| 1 | Variabel & tipe data | ✓ |
+| 2 | Vektor & list | ✓ |
+| 3 | DataFrame | ✓ |
+| 4 | Operator | ✓ |
+| 5 | Conditional (case_when) | ✓ |
+| 7 | Fungsi | ✓ |
+| 8 | String | ✓ |
+| 9 | Date & time | ✓ |
+| 10 | Missing values | ✓ |
+| 11 | Packages | ✓ |
+| 12 | Import & export | ✓ |
+| 13 | Filter & select | ✓ |
+| 14 | Mutate & arrange | ✓ |
+| 15 | Group & summarise | ✓ |
+
+---
+
+## Tantangan Tambahan
+
+::: {.callout-caution}
+## Extend the Project
+1. Tambahkan analisis **diskon** — produk mana yang paling sering didiskon?
+2. Buat **cross-tabulation** kota × produk
+3. Identifikasi **bulan terbaik** per kota
+4. Buat fungsi `ringkasan_kota(df, kota_nama)` yang return summary lengkap
+5. Export visualisasi ke PNG: `ggsave()`
+:::
+
+---
+
+## Penutup
+
+Selamat menyelesaikan **Fundamental Programming Series**! 🎉
+
+Kamu sekarang punya fondasi kuat untuk:
+
+- Mengimpor dan membersihkan data
+- Memanipulasi dan menganalisis data
+- Menulis kode yang terstruktur dan reproducible
+
+**Langkah selanjutnya:** Lanjut ke tutorial topik spesifik — regresi, visualisasi lanjutan, atau machine learning.
+
+---
+
+*Sebelumnya: [Part 19 — Reproducible Workflow](../2026_02_26_19_workflow/index.qmd)*
+*Kembali ke: [Index Tutorial R](../index.qmd)*

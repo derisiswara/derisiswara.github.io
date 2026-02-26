@@ -1,0 +1,218 @@
+---
+title: "Part 8 — String & Teks"
+description: "Manipulasi string di Stata: string functions, regex, split, trim, dan format."
+date: "2026-02-26"
+categories: [Fundamental, String]
+series: "Fundamental Programming"
+order: 8
+---
+
+## Fundamental Series — Part 8 of 20
+
+Data teks sangat umum: nama, alamat, kode wilayah, label variabel. Part ini membahas fungsi-fungsi string bawaan Stata.
+
+---
+
+## String di Macro
+
+```stata
+local s "Halo Dunia"
+display "`s'"
+display strlen("`s'")    // 10
+```
+
+---
+
+## Fungsi String Dasar
+
+### Panjang
+
+```stata
+display strlen("Indonesia")    // 9
+```
+
+### Uppercase / Lowercase
+
+```stata
+display strupper("halo")       // HALO
+display strlower("HALO")       // halo
+display strproper("halo dunia") // Halo Dunia
+```
+
+### Trim Spasi
+
+```stata
+display strtrim("  halo  ")    // "halo"
+display stritrim("halo   dunia") // "halo dunia"
+display strltrim("  halo")     // "halo"
+display strrtrim("halo  ")     // "halo"
+```
+
+---
+
+## Substring & Posisi
+
+```stata
+display substr("Indonesia", 1, 4)    // Indo
+display substr("Indonesia", -5, 5)   // nesia
+
+display strpos("Indonesia", "nesia") // 5
+display strrpos("banana", "a")       // 6
+```
+
+---
+
+## Menggabung & Memisah
+
+### Concatenation
+
+```stata
+local nama "Budi"
+local umur "25"
+display "`nama' berumur `umur' tahun"
+
+* Dalam data:
+clear
+input str20 first str20 last
+"Budi" "Santoso"
+"Ani" "Wijaya"
+end
+
+generate fullname = first + " " + last
+```
+
+### Split
+
+```stata
+clear
+input str30 tanggal
+"2026-02-26"
+"2025-12-31"
+end
+
+split tanggal, parse("-") generate(part)
+* Membuat variabel: part1, part2, part3
+```
+
+---
+
+## Find & Replace dalam Data
+
+```stata
+sysuse auto, clear
+
+* Cari string
+generate has_buick = strpos(make, "Buick") > 0
+
+* Replace string
+generate make_clean = subinstr(make, ".", "", .)
+
+* Regex
+generate has_digit = regexm(make, "[0-9]")
+generate extracted = regexs(0) if regexm(make, "[A-Z][a-z]+")
+```
+
+---
+
+## Regex di Stata
+
+| Fungsi | Keterangan |
+|--------|-----------|
+| `regexm(s, pattern)` | Return 1 jika match |
+| `regexs(n)` | Return capture group ke-n (setelah `regexm`) |
+| `regexr(s, pattern, replace)` | Replace pertama match |
+
+```stata
+* Contoh: extract angka dari string
+clear
+input str30 harga
+"Rp 50000"
+"Rp 10000"
+"Rp 40000"
+end
+
+generate has_num = regexm(harga, "([0-9]+)")
+generate angka_str = regexs(1) if has_num
+destring angka_str, generate(angka)
+```
+
+::: {.callout-note}
+## Regex Stata Terbatas
+Stata menggunakan regex POSIX (bukan PCRE). Beberapa fitur regex modern (lookahead, lookbehind) tidak didukung.
+:::
+
+---
+
+## Encode & Decode
+
+```stata
+* ASCII code
+display char(65)       // A
+display char(97)       // a
+
+* String ke numerik
+display real("123.45") // 123.45
+
+* Numerik ke string
+display string(123.45, "%9.2f")  // 123.45
+```
+
+---
+
+## Latihan
+
+::: {.callout-caution}
+## Latihan 8.1 — Manipulasi Dasar
+```stata
+* Buat dataset:
+clear
+input str30 kota
+"  jakarta  "
+" BANDUNG"
+"surabaya "
+"SEMARANG"
+end
+
+* 1. Trim spasi
+* 2. Ubah ke Proper Case
+* 3. Buat variabel dummy: punya_a = 1 jika mengandung "a" (case-insensitive)
+```
+:::
+
+::: {.callout-caution}
+## Latihan 8.2 — Split & Extract
+```stata
+* Buat dataset:
+clear
+input str50 info
+"Jakarta;DKI;10560"
+"Bandung;Jawa Barat;40115"
+"Surabaya;Jawa Timur;60271"
+end
+
+* 1. Split berdasarkan ";"
+* 2. Extract kode pos (angka 5 digit) pakai regex
+* 3. Destring kode pos jadi numerik
+```
+:::
+
+---
+
+## Ringkasan
+
+| Fungsi | Keterangan |
+|--------|-----------|
+| `strlen()` | Panjang string |
+| `strupper()` / `strlower()` | Ubah case |
+| `strtrim()` | Trim spasi |
+| `substr()` | Ambil substring |
+| `strpos()` | Cari posisi |
+| `subinstr()` | Replace substring |
+| `regexm()` / `regexs()` | Regex match & extract |
+| `regexr()` | Regex replace |
+| `split` | Pecah string jadi variabel |
+
+---
+
+*Sebelumnya: [Part 7 — Fungsi](../2026_02_26_07_fungsi/index.qmd)*
+*Selanjutnya: [Part 9 — Date & Time](../2026_02_26_09_datetime/index.qmd)*

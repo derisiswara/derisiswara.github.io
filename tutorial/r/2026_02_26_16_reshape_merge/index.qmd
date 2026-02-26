@@ -1,0 +1,145 @@
+---
+title: "Part 16 — Reshape & Merge"
+description: "Mengubah bentuk data dan menggabungkan tabel di R: pivot_longer, pivot_wider, left_join, dan bind_rows."
+date: "2026-02-26"
+categories: [Fundamental, Reshape]
+series: "Fundamental Programming"
+order: 16
+---
+
+## Fundamental Series — Part 16 of 20
+
+Dua operasi penting: **reshape** (mengubah bentuk wide ↔ long) dan **merge** (menggabungkan tabel).
+
+---
+
+## Wide → Long — `pivot_longer()`
+
+```r
+library(tidyr)
+library(dplyr)
+
+df_wide <- tibble(
+  nama = c("Andi", "Budi"),
+  math = c(80, 90),
+  sains = c(75, 85),
+  bahasa = c(88, 92)
+)
+
+df_long <- df_wide |>
+  pivot_longer(
+    cols = math:bahasa,
+    names_to = "mata_pelajaran",
+    values_to = "nilai"
+  )
+```
+
+---
+
+## Long → Wide — `pivot_wider()`
+
+```r
+df_long |>
+  pivot_wider(
+    names_from = mata_pelajaran,
+    values_from = nilai
+  )
+```
+
+---
+
+## Join / Merge
+
+```r
+siswa <- tibble(
+  id = 1:4,
+  nama = c("Andi", "Budi", "Citra", "Dina")
+)
+
+nilai <- tibble(
+  id = c(1, 2, 3, 5),
+  skor = c(80, 90, 75, 85)
+)
+```
+
+### Jenis Join
+
+```r
+# Left join — semua dari kiri, match dari kanan
+siswa |> left_join(nilai, join_by(id))
+
+# Inner join — hanya yang match
+siswa |> inner_join(nilai, join_by(id))
+
+# Full join — semua dari kedua tabel
+siswa |> full_join(nilai, join_by(id))
+
+# Anti join — di kiri tapi TIDAK di kanan
+siswa |> anti_join(nilai, join_by(id))
+```
+
+---
+
+## `bind_rows()` dan `bind_cols()`
+
+```r
+df1 <- tibble(nama = c("A", "B"), x = 1:2)
+df2 <- tibble(nama = c("C", "D"), x = 3:4)
+
+# Tumpuk vertikal
+bind_rows(df1, df2)
+
+# Gabung horizontal (harus jumlah baris sama)
+bind_cols(df1, df2)
+```
+
+---
+
+## Latihan
+
+::: {.callout-caution}
+## Latihan 16.1 — Reshape
+```r
+# Data GDP per tahun (wide)
+gdp <- tibble(
+  negara = c("Indonesia", "Malaysia", "Thailand"),
+  `2020` = c(1060, 337, 500),
+  `2021` = c(1186, 373, 506),
+  `2022` = c(1319, 407, 536)
+)
+
+# 1. Pivot ke long (kolom: negara, tahun, gdp)
+# 2. Pivot kembali ke wide
+```
+:::
+
+::: {.callout-caution}
+## Latihan 16.2 — Join
+```r
+produk <- tibble(id = 1:3, nama = c("A", "B", "C"))
+penjualan <- tibble(id = c(1, 1, 2, 4), jumlah = c(10, 20, 15, 5))
+
+# 1. Left join — semua produk + penjualan
+# 2. Anti join — produk yang tidak punya penjualan
+# 3. Inner join — hanya yang match
+```
+:::
+
+---
+
+## Ringkasan
+
+| Fungsi | Keterangan |
+|--------|-----------|
+| `pivot_longer()` | Wide → Long |
+| `pivot_wider()` | Long → Wide |
+| `left_join()` | Join: semua kiri |
+| `inner_join()` | Join: hanya match |
+| `full_join()` | Join: semua |
+| `anti_join()` | Baris yang tidak match |
+| `bind_rows()` | Tumpuk vertikal |
+
+---
+
+*Sebelumnya: [Part 15 — Group & Summarise](../2026_02_26_15_group_summarise/index.qmd)*
+*Selanjutnya: [Part 17 — Apply & Vectorisasi](../2026_02_26_17_apply/index.qmd)*

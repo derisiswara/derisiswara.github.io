@@ -1,0 +1,190 @@
+---
+title: "Part 7 — Fungsi"
+description: "Menulis fungsi sendiri, parameter, return, default argument, *args/**kwargs, dan lambda di Python."
+date: "2026-02-26"
+categories: [Fundamental, Fungsi]
+series: "Fundamental Programming"
+order: 7
+---
+
+## Fundamental Series — Part 7 of 20
+
+Fungsi adalah blok kode yang bisa **dipanggil berulang**. Di Python, fungsi didefinisikan dengan kata kunci `def`.
+
+---
+
+## Anatomi Fungsi
+
+```python
+def nama_fungsi(parameter1, parameter2):
+    """Docstring — deskripsi fungsi."""
+    hasil = parameter1 + parameter2
+    return hasil
+```
+
+### Contoh Sederhana
+
+```python
+def hitung_luas(panjang, lebar):
+    """Hitung luas persegi panjang."""
+    return panjang * lebar
+
+hitung_luas(5, 3)      # 15
+hitung_luas(10, 7)     # 70
+```
+
+::: {.callout-note}
+## Docstring
+String di baris pertama fungsi (dalam triple quotes) adalah **docstring** — dokumentasi fungsi. Akses dengan `help(hitung_luas)` atau `hitung_luas.__doc__`.
+:::
+
+---
+
+## Default Arguments
+
+```python
+def sapa(nama, sapaan="Halo"):
+    return f"{sapaan} {nama}"
+
+sapa("Budi")                    # 'Halo Budi'
+sapa("Budi", "Selamat pagi")   # 'Selamat pagi Budi'
+sapa(nama="Budi", sapaan="Hi") # keyword argument
+```
+
+---
+
+## Multiple Return Values
+
+Python bisa return **tuple**:
+
+```python
+def statistik(x):
+    import numpy as np
+    return np.mean(x), np.std(x), len(x)
+
+mean, sd, n = statistik([10, 20, 30, 40, 50])
+mean   # 30.0
+sd     # 14.14
+```
+
+Atau return **dictionary**:
+
+```python
+def statistik(x):
+    import numpy as np
+    return {
+        "mean": np.mean(x),
+        "sd": np.std(x, ddof=1),
+        "n": len(x)
+    }
+
+hasil = statistik([10, 20, 30, 40, 50])
+hasil["mean"]   # 30.0
+```
+
+---
+
+## `*args` dan `**kwargs`
+
+```python
+# *args — menerima argumen posisional tak terbatas
+def total(*angka):
+    return sum(angka)
+
+total(1, 2, 3)       # 6
+total(10, 20, 30, 40) # 100
+
+# **kwargs — menerima keyword argument tak terbatas
+def info(**data):
+    return data
+
+info(nama="Budi", umur=25)
+# {'nama': 'Budi', 'umur': 25}
+```
+
+---
+
+## Scope: Local vs Global
+
+```python
+x = 100    # variabel global
+
+def ubah_x():
+    x = 999    # x lokal — TIDAK mengubah x global
+    return x
+
+ubah_x()    # 999
+x           # 100 (tidak berubah!)
+```
+
+---
+
+## Lambda — Fungsi Anonim
+
+```python
+# Fungsi satu baris tanpa nama
+kuadrat = lambda x: x**2
+kuadrat(5)    # 25
+
+# Sering digunakan dalam sort, map, filter
+data = [("Jakarta", 10), ("Bandung", 2), ("Surabaya", 3)]
+sorted(data, key=lambda x: x[1])
+# [('Bandung', 2), ('Surabaya', 3), ('Jakarta', 10)]
+```
+
+---
+
+## Latihan
+
+::: {.callout-caution}
+## Latihan 7.1 — Fungsi Dasar
+```python
+# 1. Buat fungsi celsius_ke_fahrenheit(c) → (c * 9/5) + 32
+# 2. Buat fungsi bmi(berat_kg, tinggi_m) → berat / tinggi**2
+# 3. Buat fungsi is_genap(x) → True jika genap, False jika ganjil
+```
+:::
+
+::: {.callout-caution}
+## Latihan 7.2 — Fungsi dengan Default
+```python
+# Buat fungsi standarisasi(x, method="zscore"):
+# - "zscore": (x - mean) / std
+# - "minmax": (x - min) / (max - min)
+# Test dengan x = [10, 20, 30, 40, 50]
+```
+:::
+
+::: {.callout-caution}
+## Latihan 7.3 — Lambda
+```python
+# Diberikan list of dicts:
+mahasiswa = [
+    {"nama": "Andi", "ipk": 3.5},
+    {"nama": "Budi", "ipk": 3.9},
+    {"nama": "Citra", "ipk": 3.2}
+]
+
+# 1. Urutkan berdasarkan ipk (ascending) pakai sorted + lambda
+# 2. Urutkan berdasarkan nama (ascending)
+```
+:::
+
+---
+
+## Ringkasan
+
+| Konsep | Keterangan |
+|--------|-----------|
+| `def f(x):` | Membuat fungsi |
+| `return` | Mengembalikan nilai |
+| Default argument | `def f(x, y=10):` |
+| Multiple return | `return a, b` (tuple) |
+| `*args` / `**kwargs` | Variadic arguments |
+| Scope | Variabel di fungsi bersifat lokal |
+| `lambda` | Fungsi anonim satu baris |
+
+---
+
+*Sebelumnya: [Part 6 — Loop](../2026_02_26_06_loop/index.qmd)*
+*Selanjutnya: [Part 8 — String & Teks](../2026_02_26_08_string/index.qmd)*

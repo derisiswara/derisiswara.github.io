@@ -1,0 +1,159 @@
+---
+title: "Part 7 — Fungsi (Program)"
+description: "Menulis program/ado, arguments, return values, dan tempfile di Stata."
+date: "2026-02-26"
+categories: [Fundamental, Fungsi]
+series: "Fundamental Programming"
+order: 7
+---
+
+## Fundamental Series — Part 7 of 20
+
+Di Stata, "fungsi" disebut **program**. Kamu bisa menulis program sendiri yang dipanggil seperti perintah Stata bawaan.
+
+---
+
+## Membuat Program
+
+```stata
+capture program drop sapa
+program define sapa
+    display "Halo dari program Stata!"
+end
+
+sapa    // Halo dari program Stata!
+```
+
+::: {.callout-note}
+## `capture program drop`
+Jika program sudah ada dan kamu ingin mendefinisikan ulang, harus di-`drop` dulu. `capture` memastikan tidak error jika belum ada.
+:::
+
+---
+
+## Program dengan Arguments
+
+Argumen diakses melalui **syntax** atau posisi (`` `1' ``, `` `2' ``, ...):
+
+### Positional Arguments
+
+```stata
+capture program drop hitung_luas
+program define hitung_luas
+    local panjang = `1'
+    local lebar = `2'
+    display `panjang' * `lebar'
+end
+
+hitung_luas 5 3      // 15
+hitung_luas 10 7     // 70
+```
+
+### Dengan `syntax`
+
+```stata
+capture program drop ringkas
+program define ringkas
+    syntax varlist [if] [in]
+    summarize `varlist' `if' `in'
+end
+
+sysuse auto, clear
+ringkas price mpg
+ringkas price mpg if foreign == 1
+```
+
+`syntax` mem-parsing argumen secara otomatis — sangat powerful.
+
+---
+
+## Return Values
+
+Program bisa menyimpan hasil di `r()`:
+
+```stata
+capture program drop statistik
+program define statistik, rclass
+    syntax varname
+    
+    quietly summarize `varlist'
+    
+    return scalar mean = r(mean)
+    return scalar sd = r(sd)
+    return scalar n = r(N)
+end
+
+sysuse auto, clear
+statistik price
+display r(mean)
+display r(sd)
+return list
+```
+
+---
+
+## Program dengan Options
+
+```stata
+capture program drop celsius2f
+program define celsius2f
+    syntax, Celsius(real)
+    local fahrenheit = (`celsius' * 9/5) + 32
+    display `celsius' "°C = " `fahrenheit' "°F"
+end
+
+celsius2f, celsius(100)    // 100°C = 212°F
+celsius2f, celsius(0)      // 0°C = 32°F
+```
+
+---
+
+## Latihan
+
+::: {.callout-caution}
+## Latihan 7.1 — Program Dasar
+```stata
+* 1. Buat program bmi yang menerima berat (kg) dan tinggi (m)
+*    dan menampilkan BMI = berat / tinggi^2
+* 2. Test: bmi 70 1.75
+```
+:::
+
+::: {.callout-caution}
+## Latihan 7.2 — Program rclass
+```stata
+* Buat program zscore, rclass yang:
+* - Menerima varname
+* - Menghitung mean dan sd
+* - Return scalar mean dan sd
+* - Buat variabel baru varname_z = (var - mean) / sd
+```
+:::
+
+::: {.callout-caution}
+## Latihan 7.3 — Program dengan syntax
+```stata
+* Buat program ringkas_lengkap yang:
+* - Menerima varlist dan opsional if
+* - Untuk setiap variabel, tampilkan mean, sd, min, max
+* - Test: ringkas_lengkap price mpg weight if foreign == 1
+```
+:::
+
+---
+
+## Ringkasan
+
+| Konsep | Keterangan |
+|--------|-----------|
+| `program define` | Membuat program |
+| `` `1' `2' `` | Positional arguments |
+| `syntax` | Parsing argumen otomatis |
+| `rclass` | Program yang return values ke `r()` |
+| `return scalar` | Simpan return value |
+| `capture program drop` | Hapus program (untuk redefinisi) |
+
+---
+
+*Sebelumnya: [Part 6 — Loop](../2026_02_26_06_loop/index.qmd)*
+*Selanjutnya: [Part 8 — String & Teks](../2026_02_26_08_string/index.qmd)*

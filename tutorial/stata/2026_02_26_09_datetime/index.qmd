@@ -1,0 +1,204 @@
+---
+title: "Part 9 — Date & Time"
+description: "Bekerja dengan tanggal dan waktu di Stata: date functions, %td format, clock time, dan aritmetika tanggal."
+date: "2026-02-26"
+categories: [Fundamental, DateTime]
+series: "Fundamental Programming"
+order: 9
+---
+
+## Fundamental Series — Part 9 of 20
+
+Stata menyimpan tanggal sebagai **angka integer** (jumlah hari sejak 1 Januari 1960). Memahami sistem ini penting untuk manipulasi data time series.
+
+---
+
+## Sistem Tanggal Stata
+
+```stata
+display date("26feb2026", "DMY")    // 24163
+display %td date("26feb2026", "DMY") // 26feb2026
+
+* Epoch: 1 Jan 1960 = 0
+display date("01jan1960", "DMY")    // 0
+display date("01jan1961", "DMY")    // 366
+```
+
+::: {.callout-important}
+## Tanggal = Angka
+Di Stata, tanggal hanyalah angka. `26feb2026` disimpan sebagai `24163`. Format `%td` menampilkannya sebagai tanggal yang bisa dibaca.
+:::
+
+---
+
+## Parsing String ke Date
+
+```stata
+* Fungsi date() / daily()
+display date("2026-02-26", "YMD")       // 24163
+display date("26/02/2026", "DMY")       // 24163
+display date("February 26, 2026", "MDY") // 24163
+
+* daily() — lebih fleksibel
+display daily("26feb2026")               // 24163
+```
+
+### Format Patterns
+
+| Pattern | Arti | Contoh |
+|---------|------|--------|
+| `D` | Tanggal | 26 |
+| `M` | Bulan | 02, Feb, February |
+| `Y` | Tahun 4-digit | 2026 |
+| `#` | Separator opsional | - / spasi |
+
+---
+
+## Mengekstrak Komponen
+
+```stata
+local d = date("26feb2026", "DMY")
+
+display year(`d')       // 2026
+display month(`d')      // 2
+display day(`d')        // 26
+display dow(`d')        // 4 (Thursday — Sunday=0)
+display doy(`d')        // 57 (hari ke-57)
+display quarter(dofq(qofd(`d')))  // Q1
+```
+
+---
+
+## Format Tanggal
+
+```stata
+clear
+set obs 1
+generate mydate = date("26feb2026", "DMY")
+
+* Tanpa format — tampil sebagai angka
+list mydate
+
+* Dengan format
+format mydate %td
+list mydate     // 26feb2026
+
+format mydate %tdDD-Mon-CCYY
+list mydate     // 26-Feb-2026
+
+format mydate %tdDayname,_DD_Month_CCYY
+list mydate     // Thursday, 26 February 2026
+```
+
+---
+
+## Aritmetika Tanggal
+
+```stata
+local d = date("26feb2026", "DMY")
+
+* Tambah/kurang hari
+display %td `d' + 10       // 08mar2026
+display %td `d' - 30       // 27jan2026
+
+* Selisih antar tanggal
+local d2 = date("31dec2026", "DMY")
+display `d2' - `d'          // 308 hari
+
+* Tambah bulan (perlu hati-hati)
+display %td mofd(mdy(month(`d') + 3, day(`d'), year(`d')))
+```
+
+---
+
+## Datetime (Clock Time)
+
+```stata
+* Stata datetime = milidetik sejak 1 Jan 1960
+display clock("26feb2026 14:30:00", "DMYhms")
+display %tc clock("26feb2026 14:30:00", "DMYhms")
+
+* Konversi datetime ke date
+display %td dofc(clock("26feb2026 14:30:00", "DMYhms"))
+```
+
+---
+
+## Dalam Dataset
+
+```stata
+sysuse auto, clear
+
+* Misalkan ada variabel string tanggal
+clear
+input str20 tgl_str
+"2026-01-15"
+"2026-03-20"
+"2026-07-04"
+"2026-12-25"
+end
+
+* Parse ke numerik date
+generate tgl = date(tgl_str, "YMD")
+format tgl %td
+
+* Ekstrak komponen
+generate tahun = year(tgl)
+generate bulan = month(tgl)
+generate hari = day(tgl)
+generate hari_minggu = dow(tgl)
+
+list
+```
+
+---
+
+## Latihan
+
+::: {.callout-caution}
+## Latihan 9.1 — Parsing
+```stata
+* Buat dataset:
+clear
+input str20 tanggal
+"26-02-2026"
+"15/03/2025"
+"31-12-2024"
+"01-01-2023"
+end
+
+* 1. Parse ke variabel date numerik
+* 2. Format sebagai %td
+* 3. Urutkan dari terlama ke terbaru
+* 4. Hitung selisih hari antara pertama dan terakhir
+```
+:::
+
+::: {.callout-caution}
+## Latihan 9.2 — Komponen & Aritmetika
+```stata
+* d = 26feb2026
+* 1. Tanggal berapa 100 hari dari d?
+* 2. Berapa hari lagi sampai akhir tahun?
+* 3. Hari apa (nama) 100 hari dari d?
+```
+:::
+
+---
+
+## Ringkasan
+
+| Fungsi | Keterangan |
+|--------|-----------|
+| `date(s, "DMY")` | Parse string ke date integer |
+| `daily(s)` | Parse fleksibel |
+| `year()` / `month()` / `day()` | Ekstrak komponen |
+| `dow()` | Hari dalam minggu |
+| `format %td` | Tampilkan sebagai tanggal |
+| `clock()` / `%tc` | Datetime (dengan waktu) |
+| `d + n` | Tambah n hari |
+
+---
+
+*Sebelumnya: [Part 8 — String & Teks](../2026_02_26_08_string/index.qmd)*
+*Selanjutnya: [Part 10 — Missing Values](../2026_02_26_10_missing/index.qmd)*

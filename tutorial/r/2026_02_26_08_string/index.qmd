@@ -1,0 +1,204 @@
+---
+title: "Part 8 — String & Teks"
+description: "Manipulasi string di R: paste, sprintf, stringr, regex dasar, dan formatting."
+date: "2026-02-26"
+categories: [Fundamental, String]
+series: "Fundamental Programming"
+order: 8
+---
+
+## Fundamental Series — Part 8 of 20
+
+Banyak data riil berupa teks: nama, alamat, kategori, label. Part ini membahas cara membuat, menggabung, mencari, dan memanipulasi string di R.
+
+---
+
+## Membuat String
+
+```r
+s1 <- "Halo dunia"
+s2 <- 'Bisa pakai single quote'
+s3 <- "String bisa\npunya baris baru"
+```
+
+---
+
+## Menggabung String — `paste()`
+
+```r
+paste("Halo", "Dunia")              # "Halo Dunia"
+paste("Halo", "Dunia", sep = "-")   # "Halo-Dunia"
+paste0("ID", 1:3)                   # "ID1" "ID2" "ID3"
+paste0("x", 1:3, collapse = ", ")   # "x1, x2, x3"
+```
+
+---
+
+## Format String — `sprintf()` dan `glue`
+
+```r
+# sprintf (gaya C)
+sprintf("Nilai: %.2f", 3.14159)    # "Nilai: 3.14"
+sprintf("Total: %d unit", 100)     # "Total: 100 unit"
+
+# glue (lebih modern)
+library(glue)
+nama <- "Budi"
+umur <- 25
+glue("{nama} berumur {umur} tahun")
+# "Budi berumur 25 tahun"
+```
+
+---
+
+## Paket `stringr`
+
+```r
+library(stringr)
+```
+
+### Panjang String
+
+```r
+str_length("Indonesia")    # 9
+nchar("Indonesia")         # 9
+```
+
+### Uppercase / Lowercase
+
+```r
+str_to_upper("halo")      # "HALO"
+str_to_lower("HALO")      # "halo"
+str_to_title("halo dunia") # "Halo Dunia"
+```
+
+### Trim Spasi
+
+```r
+str_trim("  halo  ")           # "halo"
+str_trim("  halo  ", side = "left")  # "halo  "
+str_squish("  halo   dunia  ") # "halo dunia"
+```
+
+### Substring
+
+```r
+str_sub("Indonesia", 1, 4)    # "Indo"
+str_sub("Indonesia", -5)      # "nesia"
+```
+
+### Split
+
+```r
+str_split("a,b,c", ",")
+# list: [["a", "b", "c"]]
+
+str_split_fixed("a,b,c", ",", n = 2)
+# matrix: "a" "b,c"
+```
+
+---
+
+## Detect, Replace, Extract
+
+### Mencari Pola
+
+```r
+x <- c("Jakarta", "Bandung", "Surabaya", "Semarang")
+
+str_detect(x, "ar")
+# TRUE FALSE TRUE TRUE
+
+str_which(x, "ar")
+# 1 3 4
+
+str_count("banana", "a")
+# 3
+```
+
+### Mengganti
+
+```r
+str_replace("Halo Dunia", "Dunia", "Indonesia")
+# "Halo Indonesia"
+
+str_replace_all("aabaa", "a", "x")
+# "xxbxx"
+```
+
+### Mengekstrak
+
+```r
+str_extract("Harga: Rp 50000", "\\d+")
+# "50000"
+
+str_extract_all("a1b2c3", "\\d+")
+# list: [["1", "2", "3"]]
+```
+
+---
+
+## Regex Dasar
+
+| Pattern | Arti |
+|---------|------|
+| `\\d` | Digit (0-9) |
+| `\\w` | Word character (huruf, digit, _) |
+| `\\s` | Whitespace |
+| `.` | Karakter apa saja |
+| `^` | Awal string |
+| `$` | Akhir string |
+| `+` | Satu atau lebih |
+| `*` | Nol atau lebih |
+| `{n}` | Tepat n kali |
+
+::: {.callout-tip}
+## R Membutuhkan Double Backslash
+Di R, regex `\d` harus ditulis `\\d` karena backslash pertama untuk escape R string.
+:::
+
+---
+
+## Latihan
+
+::: {.callout-caution}
+## Latihan 8.1 — Manipulasi Dasar
+```r
+kota <- c("  jakarta  ", " BANDUNG", "surabaya ", "SEMARANG")
+
+# 1. Trim spasi
+# 2. Ubah ke Title Case
+# 3. Deteksi kota yang mengandung huruf "a" (case-insensitive)
+```
+:::
+
+::: {.callout-caution}
+## Latihan 8.2 — Extract & Replace
+```r
+teks <- c("Harga: Rp 50000", "Diskon: Rp 10000", "Total: Rp 40000")
+
+# 1. Extract semua angka
+# 2. Replace "Rp" dengan "IDR"
+# 3. Buat kolom numerik dari angka yang diekstrak
+```
+:::
+
+---
+
+## Ringkasan
+
+| Fungsi | Keterangan |
+|--------|-----------|
+| `paste()` / `paste0()` | Menggabung string |
+| `sprintf()` / `glue()` | Format string |
+| `str_length()` | Panjang string |
+| `str_to_upper/lower/title()` | Ubah case |
+| `str_trim()` / `str_squish()` | Hilangkan spasi |
+| `str_detect()` | Cek apakah pola ada |
+| `str_replace()` | Ganti pola |
+| `str_extract()` | Ambil pola |
+
+---
+
+*Sebelumnya: [Part 7 — Fungsi](../2026_02_26_07_fungsi/index.qmd)*
+*Selanjutnya: [Part 9 — Date & Time](../2026_02_26_09_datetime/index.qmd)*

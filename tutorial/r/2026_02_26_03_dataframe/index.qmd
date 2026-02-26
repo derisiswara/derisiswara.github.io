@@ -1,0 +1,273 @@
+---
+title: "Part 3 — Struktur Data II: Data Frame"
+description: "Membuat data frame, akses kolom & baris, dimensi, struktur, dan operasi dasar di R."
+date: "2026-02-26"
+categories: [Fundamental, Struktur Data]
+series: "Fundamental Programming"
+order: 3
+---
+
+## Fundamental Series — Part 3 of 20
+
+Data frame adalah **struktur data paling penting** untuk analisis data di R. Bayangkan spreadsheet: baris = observasi, kolom = variabel. Part ini membahas cara membuat, mengakses, dan memanipulasi data frame.
+
+---
+
+## Membuat Data Frame
+
+```r
+df <- data.frame(
+  kota = c("Jakarta", "Bandung", "Surabaya", "Medan", "Makassar"),
+  populasi = c(10.56, 2.44, 2.87, 2.12, 1.42),
+  pulau = c("Jawa", "Jawa", "Jawa", "Sumatera", "Sulawesi")
+)
+
+df
+```
+
+```
+      kota populasi    pulau
+1  Jakarta    10.56     Jawa
+2  Bandung     2.44     Jawa
+3 Surabaya     2.87     Jawa
+4    Medan     2.12 Sumatera
+5 Makassar     1.42 Sulawesi
+```
+
+::: {.callout-note}
+## data.frame vs tibble
+`tibble` (dari tidyverse) adalah versi modern data frame — tampilan lebih rapi, tidak otomatis konversi string ke factor. Kamu akan sering bertemu keduanya:
+
+```r
+library(tibble)
+df <- tibble(
+  kota = c("Jakarta", "Bandung"),
+  populasi = c(10.56, 2.44)
+)
+```
+:::
+
+---
+
+## Memeriksa Struktur
+
+```r
+# Dimensi
+nrow(df)       # 5 (jumlah baris)
+ncol(df)       # 3 (jumlah kolom)
+dim(df)        # 5 3
+
+# Struktur — tipe data setiap kolom
+str(df)
+
+# Nama kolom
+names(df)      # "kota" "populasi" "pulau"
+colnames(df)   # sama
+
+# Beberapa baris pertama / terakhir
+head(df, 3)
+tail(df, 2)
+```
+
+Output `str()`:
+
+```
+'data.frame':	5 obs. of  3 variables:
+ $ kota    : chr  "Jakarta" "Bandung" "Surabaya" "Medan" ...
+ $ populasi: num  10.56 2.44 2.87 2.12 1.42
+ $ pulau   : chr  "Jawa" "Jawa" "Jawa" "Sumatera" ...
+```
+
+`str()` sangat berguna — langsung terlihat jumlah observasi, variabel, tipe data, dan contoh isinya.
+
+---
+
+## Mengakses Kolom
+
+```r
+# Dengan $
+df$kota           # vektor character
+df$populasi       # vektor numeric
+
+# Dengan [[ ]]
+df[["kota"]]      # sama dengan df$kota
+
+# Dengan [ ] — mengembalikan data frame (1 kolom)
+df["kota"]        # data frame, bukan vektor!
+```
+
+::: {.callout-important}
+## `$` vs `[[ ]]` vs `[ ]`
+| Sintaks | Return | Tipe |
+|---------|--------|------|
+| `df$kota` | Vektor | Isi kolom |
+| `df[["kota"]]` | Vektor | Isi kolom |
+| `df["kota"]` | Data frame | Sub-tabel 1 kolom |
+:::
+
+---
+
+## Mengakses Baris & Sel
+
+```r
+# [baris, kolom]
+df[1, ]          # baris pertama (semua kolom)
+df[, 2]          # kolom kedua (semua baris)
+df[1, 2]         # sel: baris 1, kolom 2 → 10.56
+
+# Beberapa baris
+df[1:3, ]        # baris 1 sampai 3
+df[c(1, 4), ]    # baris 1 dan 4
+
+# Kombinasi
+df[1:3, c("kota", "populasi")]
+```
+
+### Filter Baris dengan Kondisi
+
+```r
+# Kota di Pulau Jawa
+df[df$pulau == "Jawa", ]
+
+# Populasi > 2.5 juta
+df[df$populasi > 2.5, ]
+
+# Kombinasi kondisi
+df[df$pulau == "Jawa" & df$populasi > 3, ]
+```
+
+---
+
+## Menambah & Mengubah Kolom
+
+```r
+# Tambah kolom baru
+df$luas <- c(661.5, 167.7, 350.5, 265.1, 175.8)
+
+# Buat kolom dari perhitungan
+df$kepadatan <- df$populasi / df$luas * 1e6
+
+# Ubah kolom yang ada
+df$populasi <- df$populasi * 1e6   # konversi ke satuan jiwa
+```
+
+---
+
+## Menghapus Kolom
+
+```r
+# Set ke NULL
+df$kepadatan <- NULL
+
+# Atau select kolom yang diinginkan
+df <- df[, c("kota", "populasi", "pulau")]
+```
+
+---
+
+## Menambah Baris
+
+```r
+baris_baru <- data.frame(
+  kota = "Semarang",
+  populasi = 1.65,
+  pulau = "Jawa"
+)
+
+df <- rbind(df, baris_baru)
+```
+
+---
+
+## Dataset Bawaan R
+
+R menyediakan banyak dataset bawaan untuk belajar:
+
+```r
+# Lihat daftar dataset tersedia
+data()
+
+# Load dataset
+data(mtcars)
+data(iris)
+
+# Langsung pakai
+head(mtcars)
+str(iris)
+```
+
+::: {.callout-tip}
+## Dataset Populer untuk Belajar
+| Dataset | Isi | Paket |
+|---------|-----|-------|
+| `mtcars` | Spesifikasi 32 mobil | base R |
+| `iris` | Ukuran bunga 3 spesies | base R |
+| `economics` | Data ekonomi AS | ggplot2 |
+| `gapminder` | GDP & harapan hidup negara | gapminder |
+:::
+
+---
+
+## Latihan
+
+::: {.callout-caution}
+## Latihan 3.1 — Buat Data Frame
+```r
+# Buat data frame "provinsi" dengan kolom:
+# - nama: 5 nama provinsi
+# - ibukota: 5 nama ibukota
+# - populasi: 5 angka populasi (juta jiwa)
+# - pulau: 5 nama pulau
+
+# 1. Tampilkan struktur data frame (str)
+# 2. Berapa dimensinya?
+# 3. Tampilkan hanya kolom nama dan populasi
+```
+:::
+
+::: {.callout-caution}
+## Latihan 3.2 — Akses & Filter
+```r
+data(mtcars)
+
+# 1. Berapa jumlah baris dan kolom?
+# 2. Tampilkan 5 baris pertama
+# 3. Tampilkan kolom mpg dan hp saja
+# 4. Filter: mobil dengan mpg > 25
+# 5. Filter: mobil dengan cyl == 4 DAN hp > 90
+```
+:::
+
+::: {.callout-caution}
+## Latihan 3.3 — Modifikasi
+```r
+data(mtcars)
+
+# 1. Tambahkan kolom kpl = mpg * 0.425 (konversi ke km/liter)
+# 2. Tambahkan kolom kategori = "irit" jika kpl > 10, "boros" jika tidak
+#    (hint: ifelse())
+# 3. Berapa jumlah mobil irit vs boros?
+#    (hint: table())
+```
+:::
+
+---
+
+## Ringkasan
+
+| Konsep | Keterangan |
+|--------|-----------|
+| `data.frame()` | Buat data frame |
+| `str()` | Lihat struktur (tipe, contoh data) |
+| `dim()`, `nrow()`, `ncol()` | Dimensi |
+| `df$kolom` | Akses kolom → vektor |
+| `df[baris, kolom]` | Akses sel / subset |
+| `df[kondisi, ]` | Filter baris |
+| `df$baru <- ...` | Tambah / ubah kolom |
+| `rbind()` | Tambah baris |
+| `head()`, `tail()` | Lihat awal / akhir |
+
+---
+
+*Sebelumnya: [Part 2 — Vektor & List](../2026_02_26_02_vektor_list/index.qmd)*
+*Selanjutnya: [Part 4 — Operator & Ekspresi](../2026_02_26_04_operator/index.qmd)*

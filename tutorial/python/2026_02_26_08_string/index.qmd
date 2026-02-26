@@ -1,0 +1,209 @@
+---
+title: "Part 8 — String & Teks"
+description: "Manipulasi string di Python: f-string, method string, slicing, regex, dan formatting."
+date: "2026-02-26"
+categories: [Fundamental, String]
+series: "Fundamental Programming"
+order: 8
+---
+
+## Fundamental Series — Part 8 of 20
+
+String adalah salah satu tipe data paling sering digunakan. Part ini membahas cara membuat, menggabung, mencari, dan memanipulasi string di Python.
+
+---
+
+## Membuat String
+
+```python
+s1 = "Halo dunia"
+s2 = 'Bisa pakai single quote'
+s3 = """String multi-baris
+bisa pakai triple quotes"""
+```
+
+---
+
+## Concatenation & f-string
+
+```python
+# Concatenation
+"Halo" + " " + "Dunia"    # 'Halo Dunia'
+
+# f-string (Python 3.6+) — REKOMENDASI
+nama = "Budi"
+umur = 25
+f"{nama} berumur {umur} tahun"
+# 'Budi berumur 25 tahun'
+
+# Formatting angka
+f"Nilai: {3.14159:.2f}"    # 'Nilai: 3.14'
+f"Total: {1000000:,}"      # 'Total: 1,000,000'
+```
+
+---
+
+## Method String Bawaan
+
+### Panjang & Case
+
+```python
+s = "Halo Dunia"
+len(s)             # 10
+s.upper()          # 'HALO DUNIA'
+s.lower()          # 'halo dunia'
+s.title()          # 'Halo Dunia'
+s.capitalize()     # 'Halo dunia'
+```
+
+### Strip (Trim Spasi)
+
+```python
+"  halo  ".strip()     # 'halo'
+"  halo  ".lstrip()    # 'halo  '
+"  halo  ".rstrip()    # '  halo'
+```
+
+### Split & Join
+
+```python
+"a,b,c".split(",")          # ['a', 'b', 'c']
+" ".join(["Halo", "Dunia"]) # 'Halo Dunia'
+"-".join(["2026", "02", "26"])  # '2026-02-26'
+```
+
+### Slicing
+
+```python
+s = "Indonesia"
+s[0]       # 'I'
+s[:4]      # 'Indo'
+s[-5:]     # 'nesia'
+s[::2]     # 'Idnsa' (setiap 2 karakter)
+```
+
+::: {.callout-note}
+## String Immutable
+String di Python **tidak bisa diubah di tempat**. Setiap operasi menghasilkan string baru:
+
+```python
+s = "Halo"
+# s[0] = "X"   # ERROR!
+s = "X" + s[1:]  # 'Xalo' — buat string baru
+```
+:::
+
+---
+
+## Find, Replace, Check
+
+```python
+s = "Halo Dunia"
+
+# Mencari
+s.find("Dunia")        # 5 (index)
+s.find("xyz")          # -1 (tidak ditemukan)
+"Dunia" in s           # True
+
+# Mengganti
+s.replace("Dunia", "Indonesia")  # 'Halo Indonesia'
+
+# Cek awalan/akhiran
+s.startswith("Halo")   # True
+s.endswith("Dunia")    # True
+
+# Cek isi
+"123".isdigit()        # True
+"abc".isalpha()        # True
+"abc123".isalnum()     # True
+```
+
+---
+
+## Regex — `re` Module
+
+```python
+import re
+
+teks = "Harga: Rp 50000, Diskon: Rp 10000"
+
+# Mencari semua angka
+re.findall(r"\d+", teks)
+# ['50000', '10000']
+
+# Mengganti
+re.sub(r"Rp", "IDR", teks)
+# 'Harga: IDR 50000, Diskon: IDR 10000'
+
+# Cek match
+bool(re.search(r"\d{5}", teks))    # True
+```
+
+### Regex Dasar
+
+| Pattern | Arti |
+|---------|------|
+| `\d` | Digit (0-9) |
+| `\w` | Word character |
+| `\s` | Whitespace |
+| `.` | Karakter apa saja |
+| `^` | Awal string |
+| `$` | Akhir string |
+| `+` | Satu atau lebih |
+| `*` | Nol atau lebih |
+
+::: {.callout-tip}
+## Raw String `r"..."`
+Gunakan **raw string** `r"..."` untuk regex agar backslash tidak di-escape Python.
+:::
+
+---
+
+## Latihan
+
+::: {.callout-caution}
+## Latihan 8.1 — Manipulasi Dasar
+```python
+kota = ["  jakarta  ", " BANDUNG", "surabaya ", "SEMARANG"]
+
+# 1. Strip spasi dari semua elemen
+# 2. Ubah ke Title Case
+# 3. Filter kota yang mengandung huruf "a" (case-insensitive)
+```
+:::
+
+::: {.callout-caution}
+## Latihan 8.2 — f-string dan Regex
+```python
+data = [
+    "Harga: Rp 50000",
+    "Diskon: Rp 10000",
+    "Total: Rp 40000"
+]
+
+# 1. Extract semua angka jadi list of int
+# 2. Replace "Rp" dengan "IDR"
+# 3. Buat summary string: "Rata-rata: Rp {mean:.0f}"
+```
+:::
+
+---
+
+## Ringkasan
+
+| Method/Fitur | Keterangan |
+|-------------|-----------|
+| `f"...{var}..."` | f-string formatting |
+| `.upper()` / `.lower()` | Ubah case |
+| `.strip()` | Trim spasi |
+| `.split()` / `.join()` | Split dan gabung |
+| `s[start:end]` | Slicing |
+| `.find()` / `in` | Mencari substring |
+| `.replace()` | Mengganti |
+| `re.findall()` | Regex: cari semua match |
+| `re.sub()` | Regex: replace |
+
+---
+
+*Sebelumnya: [Part 7 — Fungsi](../2026_02_26_07_fungsi/index.qmd)*
+*Selanjutnya: [Part 9 — Date & Time](../2026_02_26_09_datetime/index.qmd)*

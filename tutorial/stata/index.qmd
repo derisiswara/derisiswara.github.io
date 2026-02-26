@@ -5,13 +5,12 @@ author: ""
 listing:
   - id: tutorial-stata
     contents: 
-      - "**/index.ipynb"
-      - "**/index.qmd"
-      - "!index.qmd"
-    sort: "date desc"
+      - "2*/index.qmd"
+    sort: "order"
     template: ../../static/html/blog/listing.ejs
     categories: true
-    page-size: 10
+    page-size: 5
+    fields: [title, description, date, categories, order]
 page-layout: full
 date-format: "D MMMM YYYY"
 toc: false

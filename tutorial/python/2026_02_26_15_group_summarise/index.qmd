@@ -1,0 +1,155 @@
+---
+title: "Part 15 — Manipulasi Data III: Group & Summarise"
+description: "Agregasi data per grup di Python: groupby, agg, transform, value_counts dengan pandas dan polars."
+date: "2026-02-26"
+categories: [Fundamental, DataManipulation]
+series: "Fundamental Programming"
+order: 15
+---
+
+## Fundamental Series — Part 15 of 20
+
+**Split-Apply-Combine** — pisahkan data per grup, hitung sesuatu, gabungkan hasilnya. Ini adalah operasi paling fundamental di data analysis.
+
+---
+
+## Setup Data
+
+```python
+import pandas as pd
+import polars as pl
+
+data = {
+    "nama": ["Andi","Budi","Citra","Dina","Eko","Fani","Gita","Hadi"],
+    "kota": ["Jakarta","Bandung","Jakarta","Surabaya","Bandung","Jakarta","Surabaya","Bandung"],
+    "dept": ["IT","IT","HR","HR","IT","HR","IT","HR"],
+    "gaji": [5000,7000,6000,8000,4500,5500,7500,6500]
+}
+
+df_pd = pd.DataFrame(data)
+df_pl = pl.DataFrame(data)
+```
+
+---
+
+## GroupBy + Agg — Pandas
+
+```python
+# Satu kolom, satu fungsi
+df_pd.groupby("kota")["gaji"].mean()
+
+# Multiple fungsi
+df_pd.groupby("kota")["gaji"].agg(["mean", "std", "count"])
+
+# Multiple kolom dan fungsi
+(df_pd
+    .groupby("kota")
+    .agg(
+        mean_gaji=("gaji", "mean"),
+        n=("nama", "count")
+    )
+    .reset_index()
+)
+
+# Multiple grouping
+df_pd.groupby(["kota", "dept"])["gaji"].mean().reset_index()
+```
+
+---
+
+## GroupBy + Agg — Polars
+
+```python
+df_pl.group_by("kota").agg(
+    pl.col("gaji").mean().alias("mean_gaji"),
+    pl.col("gaji").std().alias("sd_gaji"),
+    pl.col("nama").count().alias("n")
+)
+
+# Multiple grouping
+df_pl.group_by(["kota", "dept"]).agg(
+    pl.col("gaji").mean().alias("mean_gaji")
+)
+```
+
+---
+
+## Count / Value Counts
+
+```python
+# Pandas
+df_pd["kota"].value_counts()
+df_pd.groupby("kota").size().reset_index(name="n")
+
+# Polars
+df_pl.group_by("kota").len()
+df_pl["kota"].value_counts()
+```
+
+---
+
+## Transform (Window per Grup)
+
+```python
+# Pandas — tambah kolom berdasarkan grup (tanpa collapse)
+df_pd["mean_gaji_kota"] = df_pd.groupby("kota")["gaji"].transform("mean")
+df_pd["persen"] = df_pd["gaji"] / df_pd.groupby("kota")["gaji"].transform("sum") * 100
+
+# Polars — over()
+df_pl.with_columns(
+    pl.col("gaji").mean().over("kota").alias("mean_gaji_kota"),
+    (pl.col("gaji") / pl.col("gaji").sum().over("kota") * 100).alias("persen")
+)
+```
+
+---
+
+## Fungsi Agregasi Umum
+
+| Pandas | Polars | Keterangan |
+|--------|--------|-----------|
+| `"mean"` | `.mean()` | Rata-rata |
+| `"median"` | `.median()` | Median |
+| `"std"` | `.std()` | Standar deviasi |
+| `"sum"` | `.sum()` | Total |
+| `"min"` / `"max"` | `.min()` / `.max()` | Min / Max |
+| `"count"` | `.count()` | Jumlah non-null |
+| `"nunique"` | `.n_unique()` | Jumlah unik |
+| `"first"` / `"last"` | `.first()` / `.last()` | Pertama / terakhir |
+
+---
+
+## Latihan
+
+::: {.callout-caution}
+## Latihan 15.1
+```python
+# 1. Hitung mean gaji per departemen (pandas + polars)
+# 2. Hitung mean gaji per kota + dept
+# 3. Kota mana total gajinya tertinggi?
+```
+:::
+
+::: {.callout-caution}
+## Latihan 15.2
+```python
+# 1. Tambah kolom: gaji sebagai persen total gaji per dept
+# 2. Ranking gaji per dept (tertinggi = 1)
+# 3. Filter rank == 1 di setiap dept
+```
+:::
+
+---
+
+## Ringkasan
+
+| Operasi | Pandas | Polars |
+|---------|--------|--------|
+| Group + Agg | `.groupby().agg()` | `.group_by().agg()` |
+| Count | `.value_counts()` | `.value_counts()` |
+| Window/Transform | `.groupby().transform()` | `.over()` |
+
+---
+
+*Sebelumnya: [Part 14 — Mutate & Arrange](../2026_02_26_14_mutate_arrange/index.qmd)*
+*Selanjutnya: [Part 16 — Reshape & Merge](../2026_02_26_16_reshape_merge/index.qmd)*

@@ -1,0 +1,240 @@
+---
+title: "Part 0 — Setup & Environment"
+description: "Instalasi Python, mengenal Jupyter/IDE, working directory, dan menjalankan script pertama."
+date: "2026-02-26"
+categories: [Fundamental, Setup]
+series: "Fundamental Programming"
+order: 0
+---
+
+## Fundamental Series — Part 0 of 20
+
+Sebelum menulis kode apapun, kita perlu menyiapkan **tools**. Tutorial ini memandu instalasi Python, mengenal IDE, dan menjalankan perintah pertama.
+
+::: {.callout-tip}
+## Prasyarat
+Koneksi internet untuk download. Tidak perlu pengalaman coding sebelumnya.
+:::
+
+---
+
+## Apa itu Python?
+
+Python adalah bahasa pemrograman **general-purpose** yang sangat populer untuk data science, machine learning, web development, dan automasi.
+
+- Gratis & open-source
+- Sintaks yang bersih dan mudah dibaca
+- Ekosistem data science yang kuat: NumPy, pandas, scikit-learn, dll.
+
+---
+
+## Instalasi Python
+
+Ada beberapa cara menginstal Python:
+
+### Opsi 1: Anaconda (Direkomendasikan untuk Pemula)
+
+1. Buka [anaconda.com/download](https://www.anaconda.com/download)
+2. Download dan instal Anaconda Distribution
+3. Anaconda sudah menyertakan Python + 250 paket data science + Jupyter Notebook
+
+### Opsi 2: Python Resmi + pip
+
+1. Buka [python.org/downloads](https://www.python.org/downloads/)
+2. Download Python ≥ 3.10
+3. Saat instal, **centang "Add Python to PATH"**
+4. Instal paket manual via `pip install numpy pandas matplotlib`
+
+::: {.callout-note}
+## Versi
+Pastikan menggunakan **Python ≥ 3.10**. Cek versi di terminal: `python --version`
+:::
+
+---
+
+## Pilih IDE
+
+| IDE | Keterangan |
+|-----|-----------|
+| **Jupyter Notebook** | Interaktif, cocok untuk eksplorasi data. Sudah termasuk di Anaconda |
+| **Positron** | IDE baru dari Posit, mendukung Python & R. Download di [positron.posit.co](https://positron.posit.co/) |
+| **VS Code** | Editor populer + ekstensi Python. Sangat fleksibel |
+| **PyCharm** | IDE khusus Python, versi Community gratis |
+
+Untuk data science, **Jupyter Notebook** atau **Positron** sangat direkomendasikan.
+
+---
+
+## Menjalankan Python
+
+### Di Terminal / Command Prompt
+
+```bash
+python
+```
+
+Ini membuka **interactive interpreter** — kamu bisa langsung ketik perintah Python.
+
+### Di Jupyter Notebook
+
+```bash
+jupyter notebook
+```
+
+Browser akan terbuka. Klik **New → Python 3** untuk membuat notebook baru.
+
+### Di VS Code / Positron
+
+Buat file `.py`, tulis kode, jalankan dengan `Ctrl + Enter` (baris) atau tombol Run.
+
+---
+
+## Working Directory
+
+Working directory adalah folder tempat Python mencari dan menyimpan file.
+
+```python
+import os
+
+# Cek working directory saat ini
+os.getcwd()
+
+# Ubah working directory
+os.chdir("C:/Users/nama/Documents/project-saya")
+```
+
+::: {.callout-important}
+## Best Practice
+Selalu bekerja di folder proyek yang terorganisir. Buat folder khusus, misalnya `belajar-python/`, dan buka folder itu di IDE kamu.
+:::
+
+---
+
+## Script Pertama
+
+Buat file `latihan_00.py` dan ketik:
+
+```python
+# Ini adalah komentar — Python mengabaikan baris ini
+# Komentar berguna untuk memberi catatan pada kode
+
+# Operasi aritmatika sederhana
+2 + 3
+10 / 3
+5**2
+
+# Menyimpan nilai ke variabel
+x = 10
+y = 3
+x + y
+
+# Teks (string)
+nama = "Deri"
+nama
+```
+
+### Membaca Output
+
+Di **Jupyter Notebook** atau **console interaktif**, mengetik ekspresi langsung akan menampilkan hasilnya:
+
+```python
+>>> 2 + 3
+5
+>>> nama
+'Deri'
+```
+
+- `>>>` adalah prompt Python — menandakan Python siap menerima perintah
+- `5` dan `'Deri'` adalah output — Python menampilkan hasil ekspresi terakhir
+
+Di **file `.py`**, ekspresi tanpa `print()` **tidak menghasilkan output**. Ini perbedaan penting antara script vs interactive mode.
+
+::: {.callout-note}
+## Script vs Interactive
+- **Interactive** (Jupyter/console): baris terakhir otomatis ditampilkan
+- **Script** (`.py`): harus pakai `print()` untuk melihat output
+:::
+
+---
+
+## Assignment: `=` vs `==`
+
+```python
+# Assignment — menyimpan nilai
+x = 10       # x sekarang bernilai 10
+
+# Perbandingan — mengecek kesamaan
+x == 10      # True
+x == 5       # False
+```
+
+Jangan tertukar! `=` untuk menyimpan, `==` untuk membandingkan.
+
+---
+
+## Meminta Bantuan
+
+```python
+# Membuka dokumentasi fungsi
+help(len)
+
+# Di Jupyter: ketik fungsi lalu Shift+Tab
+# Atau tambahkan ? di belakang
+# len?
+```
+
+---
+
+## Latihan
+
+::: {.callout-caution}
+## Latihan 0.1
+1. Instal Python (via Anaconda atau python.org)
+2. Buka Jupyter Notebook atau IDE pilihan kamu
+3. Jalankan kode berikut:
+
+```python
+# Hitung luas lingkaran dengan jari-jari 7
+import math
+r = 7
+luas = math.pi * r**2
+luas
+
+# Cek tipe data
+type(r)
+type("hello")
+type(True)
+```
+
+4. Perhatikan output dari setiap baris. Apa hasil `type()` untuk masing-masing?
+:::
+
+::: {.callout-caution}
+## Latihan 0.2
+Gunakan `help()` untuk membaca dokumentasi fungsi `round()`. Lalu hitung:
+
+```python
+# Bulatkan 3.14159 ke 2 desimal
+# Bulatkan -2.5 — apa hasilnya? (banker's rounding)
+```
+:::
+
+---
+
+## Ringkasan
+
+| Konsep | Keterangan |
+|--------|-----------|
+| Python | Bahasa general-purpose, populer untuk data science |
+| Anaconda | Distribusi Python + paket data science |
+| Jupyter Notebook | Lingkungan interaktif untuk eksplorasi data |
+| `=` | Operator assignment (simpan nilai) |
+| `==` | Operator perbandingan (cek kesamaan) |
+| `#` | Komentar — diabaikan oleh Python |
+| `>>>` | Prompt di interactive mode |
+| `type()` | Cek tipe data objek |
+| `help()` | Buka dokumentasi |
+
+---
+
+*Selanjutnya: [Part 1 — Variabel & Tipe Data](../2026_02_26_01_variabel_tipe_data/index.qmd)*

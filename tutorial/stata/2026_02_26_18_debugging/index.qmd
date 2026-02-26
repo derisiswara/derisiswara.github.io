@@ -1,0 +1,181 @@
+---
+title: "Part 18 — Debugging & Error Handling"
+description: "Menangani error dan debugging di Stata: capture, error codes, assert, trace, dan log files."
+date: "2026-02-26"
+categories: [Fundamental, Debugging]
+series: "Fundamental Programming"
+order: 18
+---
+
+## Fundamental Series — Part 18 of 20
+
+Error di Stata ditandai dengan **return code** (rc). Memahami cara membaca error messages, menangkap error, dan debugging do-files adalah skill penting.
+
+---
+
+## Membaca Error Messages
+
+```stata
+* Error umum
+use "file_tidak_ada.dta"
+* file file_tidak_ada.dta not found
+* r(601);    ← return code 601
+
+generate x = y
+* variable y not found
+* r(111);    ← return code 111
+```
+
+### Return Codes Umum
+
+| rc | Arti |
+|----|------|
+| 1 | Perintah tidak dikenali |
+| 100 | Syntax error |
+| 111 | Variabel tidak ditemukan |
+| 198 | Opsi tidak valid |
+| 601 | File tidak ditemukan |
+| 602 | File sudah ada |
+| 2000 | Observasi tidak ada |
+| 2001 | Tidak cukup observasi |
+
+---
+
+## `capture` — Tangkap Error
+
+```stata
+* Tanpa capture — do-file berhenti
+use "file_tidak_ada.dta"    // ERROR — berhenti
+
+* Dengan capture — lanjut jalan
+capture use "file_tidak_ada.dta"
+if _rc != 0 {
+    display "File tidak ditemukan, pakai data default"
+    sysuse auto, clear
+}
+```
+
+### `capture noisily`
+
+```stata
+* capture noisily — tangkap tapi tetap tampilkan output
+capture noisily regress price mpg foreign
+if _rc != 0 {
+    display "Regresi gagal!"
+}
+```
+
+---
+
+## `assert` — Validasi Data
+
+```stata
+sysuse auto, clear
+
+* Cek kondisi — error jika tidak terpenuhi
+assert price > 0           // OK
+assert _N == 74            // OK
+assert !missing(price)     // OK
+
+* Ini akan error:
+* assert price > 10000    // assertion is false
+*                         // r(9);
+```
+
+---
+
+## `confirm` — Cek Keberadaan
+
+```stata
+* Cek variabel ada
+capture confirm variable price
+if _rc == 0 display "price ada"
+
+* Cek file ada
+capture confirm file "data/input.dta"
+if _rc == 0 display "File ada"
+
+* Cek numerik
+capture confirm numeric variable make
+if _rc != 0 display "make bukan numerik"
+```
+
+---
+
+## Debugging Do-files
+
+### `set trace on`
+
+```stata
+* Tampilkan setiap baris yang dieksekusi
+set trace on
+  generate x = price * 2
+  summarize x
+set trace off
+```
+
+### `pause`
+
+```stata
+set pause on
+
+program myprogram
+    display "Step 1"
+    pause    // berhenti di sini — tekan Enter untuk lanjut
+    display "Step 2"
+end
+```
+
+---
+
+## Log Files
+
+```stata
+* Simpan semua output ke file
+log using "output/analisis.log", replace
+
+sysuse auto, clear
+describe
+summarize
+
+log close
+
+* Format SMCL (default) atau text
+log using "output/analisis.txt", replace text
+```
+
+---
+
+## Latihan
+
+::: {.callout-caution}
+## Latihan 18.1
+```stata
+* 1. Buat program safe_use yang:
+*    - Coba use file
+*    - Jika gagal, display pesan error dan gunakan sysuse auto
+* 2. Buat program check_var yang:
+*    - Cek apakah variabel ada (confirm)
+*    - Cek apakah numerik
+*    - Display hasilnya
+```
+:::
+
+---
+
+## Ringkasan
+
+| Perintah | Keterangan |
+|----------|-----------|
+| `capture` | Tangkap error, lanjut jalan |
+| `_rc` | Return code terakhir (0 = sukses) |
+| `assert` | Validasi kondisi |
+| `confirm` | Cek keberadaan (variabel/file) |
+| `set trace on` | Debug: tampilkan eksekusi |
+| `pause` | Debug: pause interaktif |
+| `log using` | Simpan output ke file |
+
+---
+
+*Sebelumnya: [Part 17 — Apply & Vectorisasi](../2026_02_26_17_apply/index.qmd)*
+*Selanjutnya: [Part 19 — Reproducible Workflow](../2026_02_26_19_workflow/index.qmd)*

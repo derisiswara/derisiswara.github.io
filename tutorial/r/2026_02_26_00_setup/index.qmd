@@ -1,0 +1,197 @@
+---
+title: "Part 0 — Setup & Environment"
+description: "Instalasi R & RStudio, mengenal antarmuka, working directory, dan menjalankan script pertama."
+date: "2026-02-26"
+categories: [Fundamental, Setup]
+series: "Fundamental Programming"
+order: 0
+---
+
+## Fundamental Series — Part 0 of 20
+
+Sebelum menulis kode apapun, kita perlu menyiapkan **tools**. Tutorial ini memandu instalasi R, mengenal antarmuka RStudio, dan menjalankan perintah pertama.
+
+::: {.callout-tip}
+## Prasyarat
+Koneksi internet untuk download. Tidak perlu pengalaman coding sebelumnya.
+:::
+
+---
+
+## Apa itu R?
+
+R adalah bahasa pemrograman open-source yang dirancang khusus untuk **statistik dan analisis data**. Digunakan secara luas di akademisi, bank sentral, dan industri riset.
+
+- Gratis & open-source
+- Ekosistem paket yang sangat kaya (20.000+ di CRAN)
+- Komunitas besar, terutama di bidang statistik & ekonometrika
+
+---
+
+## Instalasi R
+
+1. Buka [https://cran.r-project.org](https://cran.r-project.org)
+2. Pilih sistem operasi (Windows / macOS / Linux)
+3. Download versi terbaru dan instal dengan pengaturan default
+
+::: {.callout-note}
+## Versi
+Pastikan menggunakan **R ≥ 4.3**. Cek versi dengan mengetik `R.version.string` di console.
+:::
+
+---
+
+## Instalasi IDE
+
+R bisa dijalankan langsung dari terminal, tapi jauh lebih nyaman menggunakan IDE:
+
+| IDE | Keterangan |
+|-----|-----------|
+| **RStudio** | IDE paling populer untuk R. Download di [posit.co/downloads](https://posit.co/download/rstudio-desktop/) |
+| **Positron** | IDE baru dari Posit, mendukung R & Python. Download di [positron.posit.co](https://positron.posit.co/) |
+| **VS Code** | Editor umum + ekstensi R. Cocok jika sudah terbiasa dengan VS Code |
+
+Untuk pemula, **RStudio** atau **Positron** sangat direkomendasikan.
+
+---
+
+## Mengenal Antarmuka RStudio
+
+RStudio memiliki 4 panel utama:
+
+| Panel | Fungsi |
+|-------|--------|
+| **Source** (kiri atas) | Menulis & menyimpan script `.R` |
+| **Console** (kiri bawah) | Menjalankan perintah langsung, melihat output |
+| **Environment** (kanan atas) | Melihat variabel & objek yang tersimpan di memori |
+| **Files/Plots/Help** (kanan bawah) | Navigasi file, melihat grafik, membaca dokumentasi |
+
+::: {.callout-tip}
+## Shortcut Penting
+- `Ctrl + Enter` → jalankan baris kode saat ini
+- `Ctrl + Shift + Enter` → jalankan seluruh script
+- `Ctrl + L` → bersihkan console
+:::
+
+---
+
+## Working Directory
+
+Working directory adalah **folder referensi** tempat R mencari dan menyimpan file.
+
+```r
+# Cek working directory saat ini
+getwd()
+
+# Ubah working directory
+setwd("C:/Users/nama/Documents/project-saya")
+```
+
+::: {.callout-important}
+## Best Practice
+Gunakan **RStudio Project** (file `.Rproj`) agar working directory otomatis ter-set ke folder proyek. Klik **File → New Project** untuk membuatnya.
+:::
+
+---
+
+## Script Pertama
+
+Buat file baru: **File → New File → R Script**. Ketik kode berikut, lalu jalankan baris per baris dengan `Ctrl + Enter`:
+
+```r
+# Ini adalah komentar — R mengabaikan baris ini
+# Komentar berguna untuk memberi catatan pada kode
+
+# Operasi aritmatika sederhana
+2 + 3
+10 / 3
+5^2
+
+# Menyimpan nilai ke variabel
+x <- 10
+y <- 3
+x + y
+
+# Teks (string)
+nama <- "Deri"
+nama
+```
+
+### Membaca Output
+
+Ketika kamu menjalankan `2 + 3`, R mencetak:
+
+```
+[1] 5
+```
+
+- `[1]` artinya ini adalah elemen **pertama** dari output. Untuk output panjang, R menandai posisi elemen di awal setiap baris.
+- `5` adalah hasilnya.
+
+Ketika kamu menjalankan `x <- 10`, **tidak ada output**. Ini normal — assignment (`<-`) menyimpan nilai tanpa menampilkannya. Ketik `x` dan tekan Enter untuk melihat isinya.
+
+---
+
+## Meminta Bantuan
+
+```r
+# Membuka dokumentasi fungsi
+?mean
+help(mean)
+
+# Mencari fungsi berdasarkan kata kunci
+??regression
+```
+
+---
+
+## Latihan
+
+::: {.callout-caution}
+## Latihan 0.1
+1. Instal R dan RStudio (atau Positron)
+2. Buat R Project baru di folder `belajar-r`
+3. Buat script `latihan_00.R` dan jalankan kode berikut:
+
+```r
+# Hitung luas lingkaran dengan jari-jari 7
+r <- 7
+luas <- pi * r^2
+luas
+
+# Cek tipe data
+class(r)
+class("hello")
+class(TRUE)
+```
+
+4. Perhatikan output dari setiap baris. Apa hasil `class()` untuk masing-masing?
+:::
+
+::: {.callout-caution}
+## Latihan 0.2
+Gunakan `?` untuk membaca dokumentasi fungsi `sqrt()`. Lalu hitung:
+
+```r
+# Akar kuadrat dari 144
+# Akar kuadrat dari -1 (apa yang terjadi?)
+```
+:::
+
+---
+
+## Ringkasan
+
+| Konsep | Keterangan |
+|--------|-----------|
+| R | Bahasa pemrograman untuk statistik & data |
+| RStudio/Positron | IDE untuk menulis & menjalankan kode R |
+| Working directory | Folder referensi untuk baca/tulis file |
+| `<-` | Operator assignment (simpan nilai ke variabel) |
+| `#` | Komentar — diabaikan oleh R |
+| `[1]` | Penanda posisi elemen di output |
+| `?fungsi` | Buka dokumentasi |
+
+---
+
+*Selanjutnya: [Part 1 — Variabel & Tipe Data](../2026_02_26_01_variabel_tipe_data/index.qmd)*

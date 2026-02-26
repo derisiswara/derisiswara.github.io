@@ -1,0 +1,249 @@
+---
+title: "Part 6 — Kontrol Alur: Loop"
+description: "forvalues, foreach, while, dan loop idiomatik di Stata."
+date: "2026-02-26"
+categories: [Fundamental, Kontrol Alur]
+series: "Fundamental Programming"
+order: 6
+---
+
+## Fundamental Series — Part 6 of 20
+
+Loop di Stata digunakan di **do-file dan program**. Stata memiliki tiga jenis loop: `forvalues`, `foreach`, dan `while`.
+
+---
+
+## `forvalues` — Loop Angka
+
+```stata
+forvalues i = 1/5 {
+    display `i'
+}
+// 1 2 3 4 5
+```
+
+### Variasi Syntax
+
+```stata
+* Increment
+forvalues i = 0(10)50 {
+    display `i'
+}
+// 0 10 20 30 40 50
+
+* Countdown
+forvalues i = 5(-1)1 {
+    display `i'
+}
+// 5 4 3 2 1
+```
+
+---
+
+## `foreach` — Loop Over List
+
+### List Item
+
+```stata
+foreach kota in Jakarta Bandung Surabaya {
+    display "`kota'"
+}
+```
+
+### Variable List
+
+```stata
+sysuse auto, clear
+
+foreach var of varlist price mpg weight {
+    summarize `var'
+}
+```
+
+### Macro List
+
+```stata
+local negara "Indonesia Malaysia Thailand Vietnam"
+
+foreach n of local negara {
+    display "`n'"
+}
+```
+
+### Numlist
+
+```stata
+foreach x of numlist 1 3 5 7 9 {
+    display `x'^2
+}
+// 1 9 25 49 81
+```
+
+::: {.callout-note}
+## `forvalues` vs `foreach`
+| | `forvalues` | `foreach` |
+|---|---|---|
+| Untuk | Range angka reguler | List item, variabel, atau angka |
+| Syntax | `forvalues i = 1/10 { }` | `foreach x in a b c { }` |
+| Lebih cepat? | Ya, untuk range sederhana | Lebih fleksibel |
+:::
+
+---
+
+## `while` Loop
+
+```stata
+local x = 1
+while `x' <= 5 {
+    display `x'
+    local x = `x' + 1
+}
+```
+
+### Contoh Praktis
+
+```stata
+* Cari threshold: berapa obs yang mpg > threshold?
+sysuse auto, clear
+
+local threshold = 15
+local n = _N
+
+while `n' > 30 {
+    local threshold = `threshold' + 1
+    count if mpg > `threshold'
+    local n = r(N)
+}
+display "Threshold: `threshold', N = `n'"
+```
+
+---
+
+## `continue` dan `break`
+
+Stata menggunakan `continue` (lewati) dan `continue, break` (hentikan):
+
+```stata
+forvalues i = 1/10 {
+    if `i' == 5 {
+        continue, break       // hentikan loop
+    }
+    display `i'
+}
+// 1 2 3 4
+
+forvalues i = 1/10 {
+    if mod(`i', 2) == 0 {
+        continue              // lewati genap
+    }
+    display `i'
+}
+// 1 3 5 7 9
+```
+
+---
+
+## Contoh Praktis: Loop Analisis
+
+### Loop untuk Summary per Variabel
+
+```stata
+sysuse auto, clear
+
+foreach var of varlist price mpg weight length {
+    display _newline "=== `var' ==="
+    summarize `var'
+}
+```
+
+### Loop untuk Membuat Variabel
+
+```stata
+sysuse auto, clear
+
+foreach var of varlist price mpg weight {
+    summarize `var'
+    generate `var'_std = (`var' - r(mean)) / r(sd)
+}
+```
+
+### Loop untuk Baca Banyak File
+
+```stata
+local files "survey2020 survey2021 survey2022 survey2023"
+
+foreach f of local files {
+    use "data/`f'.dta", clear
+    * ... proses ...
+    save "output/`f'_clean.dta", replace
+}
+```
+
+---
+
+## Kapan Pakai Loop di Stata?
+
+Di Stata, **loop lebih sering dibutuhkan** dibanding R/Python karena:
+
+- Stata tidak punya vektorisasi general-purpose
+- Banyak task repetitif (summary banyak variabel, baca banyak file)
+- Simulasi dan bootstrap
+
+---
+
+## Latihan
+
+::: {.callout-caution}
+## Latihan 6.1 — forvalues
+```stata
+* 1. Tampilkan bilangan 1-20 yang habis dibagi 3
+* 2. Hitung jumlah bilangan 1-100 menggunakan loop
+*    Verifikasi: display 100*101/2
+```
+:::
+
+::: {.callout-caution}
+## Latihan 6.2 — foreach
+```stata
+sysuse auto, clear
+
+* 1. Jalankan summarize untuk setiap variabel numerik:
+*    price mpg rep78 headroom trunk weight length turn displacement gear_ratio
+* 2. Untuk setiap variabel di atas, buat versi standarnya
+*    (namavar_z = (var - mean) / sd)
+```
+:::
+
+::: {.callout-caution}
+## Latihan 6.3 — while
+```stata
+* Simulasi random walk:
+* Mulai dari posisi = 0
+* Setiap step, posisi + 1 atau - 1 (random)
+* Hentikan ketika posisi = 10 atau = -10
+* Berapa step yang diperlukan?
+
+set seed 42
+local posisi = 0
+local step = 0
+* ... tulis while loop ...
+```
+:::
+
+---
+
+## Ringkasan
+
+| Konsep | Sintaks | Keterangan |
+|--------|---------|-----------|
+| `forvalues` | `forvalues i = 1/n { }` | Loop angka |
+| `foreach` | `foreach x in a b c { }` | Loop over list |
+| `foreach of varlist` | `foreach v of varlist x y { }` | Loop variabel |
+| `while` | `while `x' > 0 { }` | Loop sampai FALSE |
+| `continue` | `continue` | Lewati iterasi |
+| `continue, break` | `continue, break` | Hentikan loop |
+
+---
+
+*Sebelumnya: [Part 5 — Conditional](../2026_02_26_05_conditional/index.qmd)*
+*Selanjutnya: [Part 7 — Fungsi](../2026_02_26_07_fungsi/index.qmd)*

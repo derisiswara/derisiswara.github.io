@@ -1,0 +1,230 @@
+---
+title: "Part 6 — Kontrol Alur: Loop"
+description: "for, while, break/continue, list comprehension, dan kapan menggunakan loop vs vektorisasi di Python."
+date: "2026-02-26"
+categories: [Fundamental, Kontrol Alur]
+series: "Fundamental Programming"
+order: 6
+---
+
+## Fundamental Series — Part 6 of 20
+
+Loop menjalankan blok kode **berulang kali**. Python memiliki `for` dan `while`, plus **list comprehension** sebagai cara yang lebih Pythonic.
+
+---
+
+## `for` Loop
+
+```python
+for i in range(5):
+    i
+# 0 1 2 3 4 (range mulai dari 0!)
+```
+
+### Loop Over Collection
+
+```python
+kota = ["Jakarta", "Bandung", "Surabaya"]
+
+for k in kota:
+    k
+```
+
+### `enumerate` — Index + Value
+
+```python
+for i, k in enumerate(kota):
+    f"{i}: {k}"
+# '0: Jakarta'  '1: Bandung'  '2: Surabaya'
+```
+
+### `zip` — Loop Paralel
+
+```python
+nama = ["Jakarta", "Bandung"]
+populasi = [10.56, 2.44]
+
+for n, p in zip(nama, populasi):
+    f"{n}: {p} juta"
+```
+
+---
+
+## `while` Loop
+
+```python
+x = 1
+while x <= 5:
+    x
+    x += 1
+```
+
+::: {.callout-warning}
+## Hati-hati Infinite Loop!
+Pastikan variabel kondisi berubah di dalam loop. Tekan `Ctrl+C` atau interrupt kernel untuk menghentikan.
+:::
+
+---
+
+## `break` dan `continue`
+
+```python
+# break — hentikan loop
+for i in range(10):
+    if i == 5:
+        break
+    i
+# 0 1 2 3 4
+
+# continue — lewati iterasi saat ini
+for i in range(10):
+    if i % 2 == 0:
+        continue    # lewati genap
+    i
+# 1 3 5 7 9
+```
+
+---
+
+## List Comprehension
+
+Cara **Pythonic** untuk membuat list dari loop:
+
+```python
+# Loop biasa
+kuadrat = []
+for x in range(1, 6):
+    kuadrat.append(x**2)
+
+# List comprehension — satu baris!
+kuadrat = [x**2 for x in range(1, 6)]
+# [1, 4, 9, 16, 25]
+```
+
+### Dengan Kondisi
+
+```python
+# Hanya bilangan genap
+genap = [x for x in range(20) if x % 2 == 0]
+# [0, 2, 4, 6, 8, 10, 12, 14, 16, 18]
+
+# Dengan transformasi kondisional
+label = ["genap" if x % 2 == 0 else "ganjil" for x in range(5)]
+# ['genap', 'ganjil', 'genap', 'ganjil', 'genap']
+```
+
+### Dict & Set Comprehension
+
+```python
+# Dict comprehension
+kuadrat_dict = {x: x**2 for x in range(1, 6)}
+# {1: 1, 2: 4, 3: 9, 4: 16, 5: 25}
+
+# Set comprehension
+unik = {x % 3 for x in range(10)}
+# {0, 1, 2}
+```
+
+---
+
+## Loop vs Vektorisasi
+
+Untuk data numerik, **NumPy/pandas jauh lebih cepat**:
+
+```python
+import numpy as np
+
+x = np.arange(1_000_000)
+
+# ❌ Loop — lambat
+hasil = []
+for val in x:
+    hasil.append(val ** 2)
+
+# ✅ Vektorisasi — cepat
+hasil = x ** 2
+```
+
+### Kapan Pakai Loop?
+
+- Logika kompleks yang sulit divektorisasi
+- Side effects (baca/tulis file, API calls)
+- Iterasi dengan dependensi antar-step
+
+---
+
+## Loop Over DataFrame
+
+```python
+import pandas as pd
+
+df = pd.DataFrame({"a": [1, 2, 3], "b": [4, 5, 6]})
+
+# Loop per kolom
+for col in df.columns:
+    df[col].mean()
+
+# Loop per baris (gunakan sparingly — lambat!)
+for idx, row in df.iterrows():
+    row["a"] + row["b"]
+```
+
+::: {.callout-warning}
+## Hindari `.iterrows()` untuk Data Besar
+`iterrows()` sangat lambat. Gunakan vektorisasi: `df["c"] = df["a"] + df["b"]`.
+:::
+
+---
+
+## Latihan
+
+::: {.callout-caution}
+## Latihan 6.1 — For Loop
+```python
+# 1. Cetak bilangan 1-20 yang habis dibagi 3
+# 2. Hitung jumlah (sum) bilangan 1-100 menggunakan loop
+#    Verifikasi dengan sum(range(1, 101))
+```
+:::
+
+::: {.callout-caution}
+## Latihan 6.2 — List Comprehension
+```python
+# 1. Buat list berisi kuadrat bilangan 1-10
+# 2. Buat list berisi bilangan ganjil dari 1-50
+# 3. Buat dict: {nama_kota: len(nama_kota)} untuk 5 kota
+```
+:::
+
+::: {.callout-caution}
+## Latihan 6.3 — While Loop
+```python
+import random
+random.seed(42)
+
+# Simulasi: mulai dengan saldo = 1000
+# Setiap iterasi, saldo dikali random.uniform(0.8, 1.2)
+# Hentikan ketika saldo < 500 atau > 2000
+# Berapa iterasi yang diperlukan?
+```
+:::
+
+---
+
+## Ringkasan
+
+| Konsep | Sintaks | Keterangan |
+|--------|---------|-----------|
+| `for` | `for x in iterable:` | Loop over collection |
+| `range()` | `range(start, stop, step)` | Generator angka |
+| `enumerate()` | `for i, x in enumerate(lst):` | Index + value |
+| `zip()` | `for a, b in zip(x, y):` | Loop paralel |
+| `while` | `while cond:` | Loop sampai False |
+| `break` / `continue` | | Hentikan / lewati |
+| List comprehension | `[expr for x in lst]` | Loop Pythonic |
+| Vektorisasi | `np.array * 2` | Cepat untuk numerik |
+
+---
+
+*Sebelumnya: [Part 5 — Conditional](../2026_02_26_05_conditional/index.qmd)*
+*Selanjutnya: [Part 7 — Fungsi](../2026_02_26_07_fungsi/index.qmd)*

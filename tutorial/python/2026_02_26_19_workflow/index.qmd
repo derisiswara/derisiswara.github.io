@@ -1,0 +1,194 @@
+---
+title: "Part 19 — Reproducible Workflow"
+description: "Workflow reproducible di Python: project structure, venv, pathlib, Quarto, seed, dan best practices."
+date: "2026-02-26"
+categories: [Fundamental, Workflow]
+series: "Fundamental Programming"
+order: 19
+---
+
+## Fundamental Series — Part 19 of 20
+
+Analisis yang baik harus bisa **direproduksi**. Part ini membahas praktik-praktik yang membuat workflow Python reproducible dan terstruktur.
+
+---
+
+## Struktur Folder Project
+
+```
+my_project/
+├── .venv/                 # Virtual environment
+├── src/                   # Kode utama
+│   ├── import_data.py
+│   ├── clean.py
+│   └── analisis.py
+├── data/
+│   ├── raw/               # Data mentah (JANGAN diubah)
+│   └── processed/
+├── output/
+│   ├── figures/
+│   └── tables/
+├── notebooks/             # Jupyter/Quarto notebooks
+├── requirements.txt       # Package versions
+├── pyproject.toml         # Project metadata
+└── README.md
+```
+
+---
+
+## `pathlib` — Path yang Portable
+
+```python
+from pathlib import Path
+
+# Definisikan root project
+PROJECT_ROOT = Path(__file__).parent
+DATA_DIR = PROJECT_ROOT / "data" / "raw"
+OUTPUT_DIR = PROJECT_ROOT / "output"
+
+# Baca file
+import polars as pl
+df = pl.read_csv(DATA_DIR / "input.csv")
+
+# Simpan file
+df.write_csv(OUTPUT_DIR / "result.csv")
+```
+
+::: {.callout-important}
+## Jangan Pakai Path Absolut
+```python
+# SALAH
+df = pl.read_csv("C:/Users/Budi/project/data.csv")
+
+# BENAR
+from pathlib import Path
+df = pl.read_csv(Path("data") / "input.csv")
+```
+:::
+
+---
+
+## Virtual Environment
+
+```bash
+# Buat virtual environment
+python -m venv .venv
+
+# Aktivasi
+.venv\Scripts\activate      # Windows
+source .venv/bin/activate   # Mac/Linux
+
+# Install packages
+pip install pandas polars numpy
+
+# Lock versions
+pip freeze > requirements.txt
+
+# Orang lain:
+pip install -r requirements.txt
+```
+
+---
+
+## Random Seed
+
+```python
+import numpy as np
+import random
+
+# Set seed untuk reproducibility
+np.random.seed(42)
+random.seed(42)
+
+np.random.choice(range(100), 5)    # [51, 92, 14, 71, 60]
+
+np.random.seed(42)
+np.random.choice(range(100), 5)    # [51, 92, 14, 71, 60] (sama!)
+```
+
+---
+
+## Quarto — Literate Programming
+
+````markdown
+---
+title: "Analisis Data"
+format: html
+---
+
+## Import Data
+
+```{{python}}
+import polars as pl
+from pathlib import Path
+
+df = pl.read_csv(Path("data") / "input.csv")
+df.head()
+```
+
+## Hasil
+...
+````
+
+---
+
+## `__name__ == "__main__"` Pattern
+
+```python
+# src/analisis.py
+
+def proses_data(filepath):
+    import polars as pl
+    df = pl.read_csv(filepath)
+    return df.filter(pl.col("x") > 0)
+
+if __name__ == "__main__":
+    # Hanya dijalankan jika file ini dieksekusi langsung
+    result = proses_data("data/input.csv")
+```
+
+---
+
+## Best Practices
+
+1. **Virtual environment per project**
+2. **Path relative** (via `pathlib`)
+3. **Data mentah read-only**
+4. **Script harus runnable dari atas ke bawah**
+5. **Set seed** untuk operasi random
+6. **requirements.txt** atau `pyproject.toml`
+7. **Version control** — gunakan Git
+8. **Pisahkan kode** — import, cleaning, analisis, visualisasi
+
+---
+
+## Latihan
+
+::: {.callout-caution}
+## Latihan 19.1
+```python
+# 1. Buat struktur folder project:
+#    data/raw/, data/processed/, output/figures/, src/
+# 2. Buat src/config.py dengan:
+#    PROJECT_ROOT, DATA_DIR, OUTPUT_DIR pakai pathlib
+# 3. Buat src/analisis.py yang import config dan baca data
+```
+:::
+
+---
+
+## Ringkasan
+
+| Praktik | Tool |
+|---------|------|
+| Portable paths | `pathlib` |
+| Package management | `venv` + `requirements.txt` |
+| Reproducible random | `np.random.seed()` |
+| Literate programming | Quarto / Jupyter |
+| Script entrypoint | `if __name__ == "__main__"` |
+| Version control | Git |
+
+---
+
+*Sebelumnya: [Part 18 — Debugging & Error Handling](../2026_02_26_18_debugging/index.qmd)*
+*Selanjutnya: [Part 20 — Mini Project](../2026_02_26_20_mini_project/index.qmd)*

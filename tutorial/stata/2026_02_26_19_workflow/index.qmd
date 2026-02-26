@@ -1,0 +1,194 @@
+---
+title: "Part 19 — Reproducible Workflow"
+description: "Workflow reproducible di Stata: do-files, project structure, log files, version, dan best practices."
+date: "2026-02-26"
+categories: [Fundamental, Workflow]
+series: "Fundamental Programming"
+order: 19
+---
+
+## Fundamental Series — Part 19 of 20
+
+Analisis yang baik harus bisa **direproduksi**. Part ini membahas praktik-praktik membuat do-file Stata yang terstruktur dan reproducible.
+
+---
+
+## Struktur Folder Project
+
+```
+my_project/
+├── do/                    # Do-files
+│   ├── 00_master.do       # Master do-file
+│   ├── 01_import.do
+│   ├── 02_clean.do
+│   └── 03_analisis.do
+├── data/
+│   ├── raw/               # Data mentah (JANGAN diubah)
+│   └── processed/
+├── output/
+│   ├── figures/
+│   ├── tables/
+│   └── logs/
+└── README.md
+```
+
+---
+
+## Master Do-file
+
+```stata
+* 00_master.do — jalankan semua dari sini
+
+clear all
+set more off
+set maxvar 32767
+
+* Definisi path (ubah sekali di sini)
+global project "C:/Users/Budi/my_project"
+global dodir   "$project/do"
+global rawdata "$project/data/raw"
+global data    "$project/data/processed"
+global output  "$project/output"
+
+* Jalankan do-files berurutan
+do "$dodir/01_import.do"
+do "$dodir/02_clean.do"
+do "$dodir/03_analisis.do"
+```
+
+::: {.callout-tip}
+## Global Macro untuk Path
+Definisikan semua path di master do-file sebagai `global`. Do-file lain tinggal pakai `$rawdata`, `$output`, dll.
+:::
+
+---
+
+## Template Do-file
+
+```stata
+* ============================================
+* 01_import.do
+* Deskripsi: Import data mentah
+* Author: Nama
+* Date: 2026-02-26
+* ============================================
+
+* Import
+import delimited using "$rawdata/survey.csv", clear
+
+* Basic checks
+describe
+codebook, compact
+misstable summarize
+
+* Save
+save "$data/survey_raw.dta", replace
+```
+
+---
+
+## Log Files
+
+```stata
+* Di setiap do-file atau master:
+log using "$output/logs/01_import.log", replace
+
+* ... kode ...
+
+log close
+
+* Atau otomatis di master:
+capture log close
+log using "$output/logs/master_`c(current_date)'.log", replace
+```
+
+---
+
+## `version` — Lock Stata Version
+
+```stata
+* Di awal do-file — pastikan kompatibel
+version 17
+
+* Kode ini akan jalan sama di Stata 17+
+* (backward compatible)
+```
+
+---
+
+## `set seed` — Reproducible Randomness
+
+```stata
+set seed 42
+sample 50     // ambil 50% random sample
+
+set seed 42
+sample 50     // hasil sama!
+```
+
+---
+
+## Best Practices
+
+1. **Jangan pakai menu** — semua lewat do-file
+2. **Master do-file** — satu file untuk jalankan semua
+3. **Path global** — definisikan sekali, pakai di mana saja
+4. **Data mentah read-only** — simpan hasil di folder terpisah
+5. **Log everything** — simpan output ke log file
+6. **`set more off`** — di awal setiap do-file
+7. **Comment** — jelaskan KENAPA, bukan APA
+8. **Version control** — Git (gitignore: *.dta, *.log)
+
+---
+
+## `.gitignore` untuk Stata Project
+
+```
+# Data files (biasanya besar)
+*.dta
+*.csv
+
+# Log files
+*.log
+*.smcl
+
+# Temporary files
+*.tmp
+```
+
+---
+
+## Latihan
+
+::: {.callout-caution}
+## Latihan 19.1
+```stata
+* 1. Buat struktur folder project:
+*    do/, data/raw/, data/processed/, output/logs/
+* 2. Buat master.do dengan global paths
+* 3. Buat 01_import.do yang:
+*    - Pakai global paths
+*    - Import sysuse auto
+*    - Log output
+*    - Save ke data/processed/
+```
+:::
+
+---
+
+## Ringkasan
+
+| Praktik | Tool/Cara |
+|---------|-----------|
+| Project structure | Folder: do/, data/, output/ |
+| Portable paths | `global` macros |
+| Reproducible random | `set seed` |
+| Logging | `log using` |
+| Version lock | `version 17` |
+| Automation | Master do-file |
+| Version control | Git |
+
+---
+
+*Sebelumnya: [Part 18 — Debugging & Error Handling](../2026_02_26_18_debugging/index.qmd)*
+*Selanjutnya: [Part 20 — Mini Project](../2026_02_26_20_mini_project/index.qmd)*

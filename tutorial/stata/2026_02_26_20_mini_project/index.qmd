@@ -1,0 +1,221 @@
+---
+title: "Part 20 — Mini Project: Analisis Data Lengkap"
+description: "Menggabungkan semua skill di Stata: import, clean, manipulasi, visualisasi, dan export dalam satu analisis end-to-end."
+date: "2026-02-26"
+categories: [Fundamental, MiniProject]
+series: "Fundamental Programming"
+order: 20
+---
+
+## Fundamental Series — Part 20 of 20 🎉
+
+Selamat! Ini part terakhir. Kita menggabungkan semua skill dari Part 0–19 dalam satu do-file analisis **end-to-end**.
+
+---
+
+## Skenario
+
+> Kamu mendapat dataset penjualan toko. Tugasmu: import, bersihkan, analisis, dan buat laporan sederhana — semuanya dalam satu do-file terstruktur.
+
+---
+
+## Master Do-file
+
+```stata
+* ============================================
+* mini_project.do
+* Analisis Data Penjualan — End-to-End
+* ============================================
+
+clear all
+set more off
+version 17
+
+* Log
+capture log close
+log using "output/mini_project.log", replace
+```
+
+---
+
+## Step 1 — Import / Buat Data
+
+```stata
+* Buat data simulasi
+clear
+set seed 42
+set obs 200
+
+generate id = _n
+generate tanggal = date("01jan2025", "DMY") + int(runiform() * 365)
+format tanggal %td
+
+generate produk = ""
+replace produk = "Laptop" if runiform() < 0.2
+replace produk = "Mouse" if produk == "" & runiform() < 0.25
+replace produk = "Keyboard" if produk == "" & runiform() < 0.33
+replace produk = "Monitor" if produk == "" & runiform() < 0.5
+replace produk = "Headset" if produk == ""
+
+generate kota = ""
+replace kota = "Jakarta" if runiform() < 0.2
+replace kota = "Bandung" if kota == "" & runiform() < 0.25
+replace kota = "Surabaya" if kota == "" & runiform() < 0.33
+replace kota = "Semarang" if kota == "" & runiform() < 0.5
+replace kota = "Medan" if kota == ""
+
+generate jumlah = int(runiform() * 10) + 1
+generate harga = cond(runiform() < 0.3, 300, cond(runiform() < 0.5, 100, 75))
+generate diskon = cond(runiform() < 0.25, ., cond(runiform() < 0.5, 0.05, 0))
+```
+
+---
+
+## Step 2 — Eksplorasi
+
+```stata
+describe
+codebook, compact
+misstable summarize
+tabulate produk
+tabulate kota
+```
+
+---
+
+## Step 3 — Cleaning
+
+```stata
+* Isi missing diskon dengan 0
+replace diskon = 0 if missing(diskon)
+
+* Hitung total
+generate total = jumlah * harga * (1 - diskon)
+
+* Ekstrak komponen tanggal
+generate bulan = month(tanggal)
+generate kuartal = quarter(tanggal)
+
+* Filter valid
+drop if total <= 0
+```
+
+---
+
+## Step 4 — Analisis
+
+```stata
+* Revenue per kota
+preserve
+collapse (sum) total_revenue=total (count) n=id (mean) avg=total, by(kota)
+gsort -total_revenue
+list
+restore
+
+* Revenue per bulan
+preserve
+collapse (sum) total_revenue=total, by(bulan)
+sort bulan
+list
+restore
+
+* Produk terlaris
+preserve
+collapse (sum) total_terjual=jumlah total_revenue=total, by(produk)
+gsort -total_terjual
+list
+restore
+```
+
+---
+
+## Step 5 — Visualisasi
+
+```stata
+* Bar chart revenue per kota
+preserve
+collapse (sum) total=total, by(kota)
+graph bar total, over(kota, sort(1) descending) ///
+    title("Total Revenue per Kota") ///
+    ytitle("Revenue") ///
+    bar(1, color(navy))
+graph export "output/revenue_kota.png", replace
+restore
+
+* Line chart trend bulanan
+preserve
+collapse (sum) total=total, by(bulan)
+twoway line total bulan, ///
+    title("Revenue Trend Bulanan") ///
+    xtitle("Bulan") ytitle("Revenue") ///
+    lwidth(thick) lcolor(navy)
+graph export "output/revenue_bulan.png", replace
+restore
+```
+
+---
+
+## Step 6 — Export
+
+```stata
+* Simpan data bersih
+save "output/penjualan_clean.dta", replace
+
+* Export ke CSV
+export delimited using "output/penjualan_clean.csv", replace
+
+* Tutup log
+log close
+```
+
+---
+
+## Checklist Skills yang Digunakan
+
+| Part | Skill | ✓ |
+|------|-------|---|
+| 1 | Variabel & tipe data | ✓ |
+| 2 | Macro & scalar | ✓ |
+| 3 | Dataset | ✓ |
+| 4 | Operator | ✓ |
+| 5 | Conditional (cond/replace if) | ✓ |
+| 9 | Date & time | ✓ |
+| 10 | Missing values | ✓ |
+| 12 | Import & export | ✓ |
+| 13 | keep/drop/if | ✓ |
+| 14 | generate/replace/sort | ✓ |
+| 15 | collapse/bysort | ✓ |
+| 18 | Log files | ✓ |
+| 19 | Project structure | ✓ |
+
+---
+
+## Tantangan Tambahan
+
+::: {.callout-caution}
+## Extend the Project
+1. Analisis **diskon** — produk mana yang paling sering didiskon?
+2. Buat **cross-tabulation** `table kota produk, statistic(sum total)`
+3. Identifikasi **bulan terbaik** per kota (pakai bysort + egen)
+4. Buat **program** `ringkasan_kota` yang menerima nama kota dan tampilkan summary
+5. Export tabel ke Excel: `putexcel`
+:::
+
+---
+
+## Penutup
+
+Selamat menyelesaikan **Fundamental Programming Series**! 🎉
+
+Kamu sekarang punya fondasi kuat untuk:
+
+- Mengimpor dan membersihkan data
+- Memanipulasi dan menganalisis data
+- Menulis do-file yang terstruktur dan reproducible
+
+**Langkah selanjutnya:** Lanjut ke tutorial topik spesifik — regresi, panel data, atau IV estimation.
+
+---
+
+*Sebelumnya: [Part 19 — Reproducible Workflow](../2026_02_26_19_workflow/index.qmd)*
+*Kembali ke: [Index Tutorial Stata](../index.qmd)*

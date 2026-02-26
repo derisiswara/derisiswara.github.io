@@ -1,0 +1,213 @@
+---
+title: "Part 20 — Mini Project: Analisis Data Lengkap"
+description: "Menggabungkan semua skill di Python: import, clean, manipulasi, visualisasi, dan export dalam satu analisis end-to-end."
+date: "2026-02-26"
+categories: [Fundamental, MiniProject]
+series: "Fundamental Programming"
+order: 20
+---
+
+## Fundamental Series — Part 20 of 20 🎉
+
+Selamat! Ini part terakhir. Kita akan menggabungkan semua skill dari Part 0–19 dalam satu mini project **end-to-end**.
+
+---
+
+## Skenario
+
+> Kamu mendapat dataset penjualan toko. Tugasmu: import, bersihkan, analisis, dan buat laporan sederhana.
+
+---
+
+## Step 1 — Setup & Import
+
+```python
+import polars as pl
+import numpy as np
+from datetime import date, timedelta
+from pathlib import Path
+
+# Buat data simulasi
+np.random.seed(42)
+n = 200
+
+start = date(2025, 1, 1)
+dates = [start + timedelta(days=int(d)) for d in np.random.randint(0, 365, n)]
+
+penjualan = pl.DataFrame({
+    "id": range(1, n + 1),
+    "tanggal": dates,
+    "produk": np.random.choice(["Laptop", "Mouse", "Keyboard", "Monitor", "Headset"], n),
+    "kategori": np.random.choice(["Elektronik", "Aksesoris"], n),
+    "kota": np.random.choice(["Jakarta", "Bandung", "Surabaya", "Semarang", "Medan"], n),
+    "jumlah": np.random.randint(1, 11, n),
+    "harga": np.random.choice([100, 50, 75, 300, 80], n),
+    "diskon": np.random.choice([0, 0.05, 0.1, None], n)
+})
+```
+
+---
+
+## Step 2 — Eksplorasi Awal
+
+```python
+# Struktur
+penjualan.schema
+penjualan.shape
+
+# Missing
+penjualan.null_count()
+
+# Frekuensi
+penjualan["produk"].value_counts()
+penjualan["kota"].value_counts()
+```
+
+---
+
+## Step 3 — Cleaning
+
+```python
+penjualan_clean = (
+    penjualan
+    # Isi diskon null dengan 0
+    .with_columns(pl.col("diskon").fill_null(0))
+    # Hitung total
+    .with_columns(
+        (pl.col("jumlah") * pl.col("harga") * (1 - pl.col("diskon"))).alias("total"),
+        pl.col("tanggal").dt.month().alias("bulan"),
+        pl.col("tanggal").dt.quarter().alias("kuartal")
+    )
+    # Filter transaksi valid
+    .filter(pl.col("total") > 0)
+)
+```
+
+---
+
+## Step 4 — Analisis
+
+```python
+# Revenue per kota
+revenue_kota = (
+    penjualan_clean
+    .group_by("kota")
+    .agg(
+        pl.col("total").sum().alias("total_revenue"),
+        pl.col("id").count().alias("n_transaksi"),
+        pl.col("total").mean().alias("avg_transaksi")
+    )
+    .sort("total_revenue", descending=True)
+)
+
+# Revenue per bulan
+revenue_bulan = (
+    penjualan_clean
+    .group_by("bulan")
+    .agg(pl.col("total").sum().alias("total_revenue"))
+    .sort("bulan")
+)
+
+# Produk terlaris
+produk_terlaris = (
+    penjualan_clean
+    .group_by("produk")
+    .agg(
+        pl.col("jumlah").sum().alias("total_terjual"),
+        pl.col("total").sum().alias("total_revenue")
+    )
+    .sort("total_terjual", descending=True)
+)
+```
+
+---
+
+## Step 5 — Visualisasi
+
+```python
+from plotnine import ggplot, aes, geom_col, geom_line, geom_point, labs, coord_flip, theme_minimal
+
+# Revenue per kota
+(
+    ggplot(revenue_kota, aes(x="kota", y="total_revenue"))
+    + geom_col(fill="steelblue")
+    + coord_flip()
+    + labs(title="Total Revenue per Kota", x="", y="Revenue")
+)
+```
+
+```python
+# Trend bulanan
+(
+    ggplot(revenue_bulan, aes(x="bulan", y="total_revenue"))
+    + geom_line(size=1)
+    + geom_point(size=3)
+    + labs(title="Revenue Trend Bulanan", x="Bulan", y="Revenue")
+)
+```
+
+---
+
+## Step 6 — Export
+
+```python
+output_dir = Path("output")
+output_dir.mkdir(exist_ok=True)
+
+penjualan_clean.write_csv(output_dir / "penjualan_clean.csv")
+penjualan_clean.write_parquet(output_dir / "penjualan_clean.parquet")
+revenue_kota.write_csv(output_dir / "revenue_kota.csv")
+```
+
+---
+
+## Checklist Skills yang Digunakan
+
+| Part | Skill | ✓ |
+|------|-------|---|
+| 1 | Variabel & tipe data | ✓ |
+| 2 | List & dict | ✓ |
+| 3 | DataFrame (Polars) | ✓ |
+| 4 | Operator | ✓ |
+| 5 | Conditional (when/then) | ✓ |
+| 8 | String | ✓ |
+| 9 | Date & time | ✓ |
+| 10 | Missing values | ✓ |
+| 11 | Packages | ✓ |
+| 12 | Import & export | ✓ |
+| 13 | Filter & select | ✓ |
+| 14 | Mutate & sort | ✓ |
+| 15 | Group & agg | ✓ |
+| 19 | pathlib, seed | ✓ |
+
+---
+
+## Tantangan Tambahan
+
+::: {.callout-caution}
+## Extend the Project
+1. Analisis **diskon** — produk mana yang paling sering didiskon?
+2. Buat **cross-tabulation** kota × produk
+3. Identifikasi **bulan terbaik** per kota
+4. Buat fungsi `ringkasan_kota(df, kota_nama)` yang return summary
+5. Simpan plot sebagai PNG
+:::
+
+---
+
+## Penutup
+
+Selamat menyelesaikan **Fundamental Programming Series**! 🎉
+
+Kamu sekarang punya fondasi kuat untuk:
+
+- Mengimpor dan membersihkan data
+- Memanipulasi dan menganalisis data
+- Menulis kode yang terstruktur dan reproducible
+
+**Langkah selanjutnya:** Lanjut ke tutorial topik spesifik — regresi, machine learning, atau causal inference.
+
+---
+
+*Sebelumnya: [Part 19 — Reproducible Workflow](../2026_02_26_19_workflow/index.qmd)*
+*Kembali ke: [Index Tutorial Python](../index.qmd)*

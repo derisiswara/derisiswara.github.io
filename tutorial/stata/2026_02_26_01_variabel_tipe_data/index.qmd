@@ -1,0 +1,310 @@
+---
+title: "Part 1 — Variabel & Tipe Data"
+description: "Variabel di dataset, tipe data (numeric, string, date), generate, dan konversi tipe di Stata."
+date: "2026-02-26"
+categories: [Fundamental, Tipe Data]
+series: "Fundamental Programming"
+order: 1
+---
+
+## Fundamental Series — Part 1 of 20
+
+Di Stata, "variabel" berarti **kolom di dataset** — berbeda dari R/Python di mana variabel bisa berisi apa saja. Part ini membahas cara membuat variabel, mengenal tipe data, dan melakukan konversi.
+
+---
+
+## Konsep Kunci: Dataset = Spreadsheet
+
+Stata bekerja dengan **satu dataset aktif** pada satu waktu. Dataset berbentuk tabel:
+
+- **Observasi** (baris) = unit pengamatan (individu, negara, tahun, dll.)
+- **Variabel** (kolom) = karakteristik yang diukur (umur, pendapatan, dll.)
+
+```stata
+* Buat dataset kosong dengan 5 observasi
+clear
+set obs 5
+```
+
+---
+
+## Membuat Variabel
+
+### `generate` — Buat Variabel Baru
+
+```stata
+clear
+set obs 5
+
+* Variabel numerik
+generate id = _n                  // _n = nomor observasi (1,2,3,4,5)
+generate umur = 25 + _n * 2      // 27, 29, 31, 33, 35
+
+* Variabel string
+generate nama = "Responden " + string(_n)
+
+* Lihat hasilnya
+list
+```
+
+Output:
+
+```
+     +----------------------------+
+     | id   umur            nama  |
+     |----------------------------|
+  1. |  1     27   Responden 1    |
+  2. |  2     29   Responden 2    |
+  3. |  3     31   Responden 3    |
+  4. |  4     33   Responden 4    |
+  5. |  5     35   Responden 5    |
+     +----------------------------+
+```
+
+### `replace` — Ubah Nilai yang Sudah Ada
+
+```stata
+* Ubah nilai tertentu
+replace umur = 40 if id == 3
+
+* Ubah semua nilai
+replace umur = umur + 1
+```
+
+::: {.callout-warning}
+## generate vs replace
+- `generate` hanya untuk membuat variabel **baru**. Jika variabel sudah ada → error.
+- `replace` hanya untuk mengubah variabel yang **sudah ada**. Jika belum ada → error.
+:::
+
+---
+
+## Tipe Data di Stata
+
+Stata membedakan dua tipe utama:
+
+### 1. Numeric
+
+| Tipe | Ukuran | Range |
+|------|--------|-------|
+| `byte` | 1 byte | -127 to 100 |
+| `int` | 2 bytes | -32.767 to 32.740 |
+| `long` | 4 bytes | -2.1 miliar to 2.1 miliar |
+| `float` | 4 bytes | desimal (presisi ~7 digit) |
+| `double` | 8 bytes | desimal (presisi ~16 digit) |
+
+```stata
+generate x = 3.14
+describe x              // float (default untuk desimal)
+
+generate n = 100
+describe n              // float juga (default)
+
+* Memaksa tipe spesifik
+generate byte status = 1
+generate long populasi = 270000000
+generate double pi_presisi = 3.141592653589793
+```
+
+### 2. String
+
+```stata
+generate str20 kota = "Jakarta"
+describe kota           // str20 (string maks 20 karakter)
+
+* Stata otomatis menentukan panjang string jika tidak dispesifikasikan
+generate provinsi = "Jawa Barat"
+describe provinsi       // str10
+```
+
+::: {.callout-note}
+## `str#` vs `strL`
+- `str1` sampai `str2045` → string pendek, fixed-length
+- `strL` → string sangat panjang (sampai 2 miliar karakter), untuk teks/catatan
+:::
+
+---
+
+## Mengecek Tipe Data
+
+```stata
+* describe — tampilkan info semua variabel
+describe
+
+* describe satu variabel
+describe umur
+
+* codebook — info lebih detail
+codebook umur
+```
+
+Output `describe`:
+
+```
+variable name   storage   display    value
+    name         type     format     label
+──────────────────────────────────────────
+id              float     %9.0g
+umur            float     %9.0g
+nama            str13     %13s
+```
+
+- **storage type** = tipe penyimpanan (`float`, `str13`, dll.)
+- **display format** = cara menampilkan (`%9.0g` = angka umum, `%13s` = string 13 char)
+
+---
+
+## Konversi Tipe Data
+
+### String → Numeric
+
+```stata
+* Jika string berisi angka murni
+generate str kode_str = "42"
+destring kode_str, generate(kode_num)
+
+* Atau langsung replace
+destring kode_str, replace
+
+* real() — konversi dalam ekspresi
+generate angka = real("3.14")
+```
+
+### Numeric → String
+
+```stata
+generate umur_str = string(umur)
+
+* Dengan format
+generate umur_fmt = string(umur, "%4.1f")
+```
+
+### `encode` & `decode` — Kategori ↔ Angka
+
+```stata
+* String kategori → numeric berlabel
+encode kota, generate(kota_num)
+
+* Numeric berlabel → string
+decode kota_num, generate(kota_str)
+```
+
+::: {.callout-tip}
+## Kapan Pakai Apa?
+- `destring` / `tostring` → konversi angka ↔ teks
+- `encode` / `decode` → konversi kategori ↔ angka berlabel
+:::
+
+---
+
+## Missing Values
+
+```stata
+* Missing value numeric di Stata adalah titik (.)
+generate pendapatan = .
+
+* Cek missing
+count if missing(pendapatan)
+list if !missing(umur)
+
+* Stata juga punya extended missing: .a, .b, ..., .z
+replace pendapatan = .a if umur < 30    // .a = "tidak mau jawab"
+replace pendapatan = .b if umur >= 30   // .b = "tidak tahu"
+```
+
+::: {.callout-warning}
+## Missing = Sangat Besar
+Di Stata, missing value (`.`) dianggap **lebih besar dari semua angka**. Jadi `umur < 100` secara otomatis mengecualikan missing. Tapi `umur > 50` akan **menyertakan** missing! Selalu tambahkan `& !missing(umur)`.
+:::
+
+---
+
+## `_n` dan `_N` — Variabel Sistem
+
+```stata
+* _n = nomor observasi saat ini (1, 2, 3, ...)
+* _N = total observasi
+
+generate baris = _n
+generate total = _N
+list
+```
+
+---
+
+## Latihan
+
+::: {.callout-caution}
+## Latihan 1.1 — Buat Dataset
+Buat dataset dengan 6 observasi dan variabel berikut:
+
+```stata
+* id: 1 sampai 6
+* nama: "Kota A", "Kota B", ..., "Kota F"
+* populasi: 500000, 1200000, 800000, 2500000, 350000, 900000
+* provinsi: string bebas
+
+* Lalu jalankan:
+describe
+list
+```
+
+Perhatikan storage type yang dipilih Stata untuk setiap variabel.
+:::
+
+::: {.callout-caution}
+## Latihan 1.2 — Konversi Tipe
+```stata
+* Buat variabel string berisi angka
+clear
+set obs 3
+generate str pendapatan_str = "5000000"
+replace pendapatan_str = "7500000" in 2
+replace pendapatan_str = "tidak tahu" in 3
+
+* Coba: destring pendapatan_str, replace
+* Apa yang terjadi? Bagaimana mengatasinya?
+```
+
+*Hint: lihat opsi `force` di `help destring`.*
+:::
+
+::: {.callout-caution}
+## Latihan 1.3 — Missing Values
+```stata
+* Buat data
+clear
+input umur pendapatan
+25 5000
+30 .
+35 8000
+. 6000
+40 .
+end
+
+* Hitung: berapa observasi yang missing di pendapatan?
+* Hitung: berapa observasi yang umur > 30? (hati-hati missing!)
+* Tampilkan hanya observasi yang lengkap (tidak ada missing di kedua variabel)
+```
+:::
+
+---
+
+## Ringkasan
+
+| Konsep | Keterangan |
+|--------|-----------|
+| `generate` | Buat variabel baru |
+| `replace` | Ubah nilai variabel yang sudah ada |
+| `describe` | Lihat tipe data & info variabel |
+| `byte/int/long/float/double` | Tipe numerik |
+| `str#` / `strL` | Tipe string |
+| `destring` / `tostring` | Konversi angka ↔ teks |
+| `encode` / `decode` | Konversi kategori ↔ angka berlabel |
+| `.` | Missing value |
+| `_n` / `_N` | Nomor observasi / total observasi |
+
+---
+
+*Sebelumnya: [Part 0 — Setup & Environment](../2026_02_26_00_setup/index.qmd)*
+*Selanjutnya: [Part 2 — Struktur Data I: Vektor & List](../2026_02_26_02_vektor_list/index.qmd)*

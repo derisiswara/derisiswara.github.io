@@ -1,0 +1,237 @@
+---
+title: "Part 4 — Operator & Ekspresi"
+description: "Operator aritmatika, perbandingan, logika, dan precedence di R."
+date: "2026-02-26"
+categories: [Fundamental, Operator]
+series: "Fundamental Programming"
+order: 4
+---
+
+## Fundamental Series — Part 4 of 20
+
+Operator adalah **simbol yang melakukan operasi** pada nilai. Part ini membahas operator aritmatika, perbandingan, dan logika — bahan dasar untuk setiap perhitungan dan filter data.
+
+---
+
+## Operator Aritmatika
+
+```r
+10 + 3     # 13  — penjumlahan
+10 - 3     # 7   — pengurangan
+10 * 3     # 30  — perkalian
+10 / 3     # 3.333... — pembagian
+10 %/% 3   # 3   — pembagian bulat (floor division)
+10 %% 3    # 1   — sisa bagi (modulo)
+2^3        # 8   — pangkat
+```
+
+### Pada Vektor (Vektorisasi)
+
+```r
+x <- c(10, 20, 30)
+x + 5      # 15 25 35
+x * 2      # 20 40 60
+x^2        # 100 400 900
+```
+
+### Fungsi Matematika
+
+```r
+abs(-5)         # 5
+sqrt(16)        # 4
+log(100)        # 4.605 (natural log)
+log10(100)      # 2 (log base 10)
+exp(1)          # 2.718 (e^1)
+round(3.14159, 2)  # 3.14
+ceiling(3.2)    # 4 (bulatkan ke atas)
+floor(3.8)      # 3 (bulatkan ke bawah)
+```
+
+---
+
+## Operator Perbandingan
+
+Menghasilkan `TRUE` atau `FALSE`:
+
+```r
+5 == 5     # TRUE  — sama dengan
+5 != 3     # TRUE  — tidak sama dengan
+5 > 3      # TRUE  — lebih besar
+5 < 3      # FALSE — lebih kecil
+5 >= 5     # TRUE  — lebih besar atau sama
+5 <= 3     # FALSE — lebih kecil atau sama
+```
+
+### Pada Vektor
+
+```r
+x <- c(10, 20, 30, 40, 50)
+
+x > 25         # FALSE FALSE  TRUE  TRUE  TRUE
+x == 30        # FALSE FALSE  TRUE FALSE FALSE
+x != 10        #  FALSE  TRUE  TRUE  TRUE  TRUE
+```
+
+::: {.callout-warning}
+## `==` untuk Perbandingan, `<-` untuk Assignment
+```r
+x == 5    # Apakah x sama dengan 5? (TRUE/FALSE)
+x <- 5    # Simpan 5 ke x
+```
+Jangan tertukar!
+:::
+
+---
+
+## Operator Logika
+
+Menggabungkan beberapa kondisi:
+
+```r
+# AND — keduanya harus TRUE
+TRUE & TRUE     # TRUE
+TRUE & FALSE    # FALSE
+
+# OR — salah satu cukup TRUE
+TRUE | FALSE    # TRUE
+FALSE | FALSE   # FALSE
+
+# NOT — membalik
+!TRUE           # FALSE
+!FALSE          # TRUE
+```
+
+### Pada Vektor
+
+```r
+x <- c(10, 20, 30, 40, 50)
+
+# Kombinasi kondisi
+x > 15 & x < 45     # FALSE  TRUE  TRUE  TRUE FALSE
+x < 20 | x > 40     #  TRUE FALSE FALSE FALSE  TRUE
+!(x == 30)           #  TRUE  TRUE FALSE  TRUE  TRUE
+```
+
+### Contoh Praktis: Filter Data
+
+```r
+df <- data.frame(
+  kota = c("Jakarta", "Bandung", "Surabaya", "Medan"),
+  populasi = c(10.5, 2.4, 2.9, 2.1),
+  pulau = c("Jawa", "Jawa", "Jawa", "Sumatera")
+)
+
+# Kota di Jawa dengan populasi > 3 juta
+df[df$pulau == "Jawa" & df$populasi > 3, ]
+
+# Kota di Sumatera ATAU populasi < 2.5
+df[df$pulau == "Sumatera" | df$populasi < 2.5, ]
+```
+
+---
+
+## Operator `%in%`
+
+Mengecek apakah nilai ada dalam sebuah vektor:
+
+```r
+5 %in% c(1, 3, 5, 7)     # TRUE
+4 %in% c(1, 3, 5, 7)     # FALSE
+
+kota <- c("Jakarta", "Bandung", "Medan")
+kota %in% c("Jakarta", "Surabaya")  # TRUE FALSE FALSE
+```
+
+Sangat berguna untuk filter:
+
+```r
+df[df$kota %in% c("Jakarta", "Surabaya"), ]
+```
+
+---
+
+## Operator Precedence (Urutan Eksekusi)
+
+R mengeksekusi operator sesuai prioritas (dari tinggi ke rendah):
+
+| Prioritas | Operator |
+|-----------|----------|
+| 1 (tertinggi) | `^` |
+| 2 | `-` (unary, misal: `-5`) |
+| 3 | `*`, `/` |
+| 4 | `+`, `-` |
+| 5 | `<`, `>`, `<=`, `>=`, `==`, `!=` |
+| 6 | `!` |
+| 7 | `&` |
+| 8 (terendah) | `|` |
+
+```r
+# Tanpa kurung
+2 + 3 * 4      # 14 (bukan 20) — perkalian dulu
+
+# Dengan kurung — lebih jelas!
+(2 + 3) * 4    # 20
+```
+
+::: {.callout-tip}
+## Gunakan Kurung!
+Meskipun R punya aturan precedence, **selalu gunakan kurung** untuk kejelasan. Kode `(x > 5) & (x < 10)` jauh lebih mudah dibaca daripada `x > 5 & x < 10`.
+:::
+
+---
+
+## Latihan
+
+::: {.callout-caution}
+## Latihan 4.1 — Aritmatika
+```r
+# Tanpa menjalankan, prediksi hasilnya:
+7 %% 3
+7 %/% 3
+2^3^2         # Hint: ^ bersifat right-to-left
+(2^3)^2
+```
+:::
+
+::: {.callout-caution}
+## Latihan 4.2 — Logika
+```r
+x <- c(12, 5, 28, 3, 17, 45, 8, 31)
+
+# 1. Ambil elemen yang > 10 DAN < 30
+# 2. Ambil elemen yang < 5 ATAU > 40
+# 3. Ambil elemen yang BUKAN kelipatan 3 (hint: x %% 3 != 0)
+# 4. Berapa jumlah elemen yang > 20? (hint: sum())
+```
+:::
+
+::: {.callout-caution}
+## Latihan 4.3 — Filter Data
+```r
+data(mtcars)
+
+# 1. Mobil dengan mpg antara 20 dan 30 (inklusif)
+# 2. Mobil dengan cyl == 4 ATAU cyl == 6 (pakai %in%)
+# 3. Mobil dengan hp > 100 DAN berat (wt) < 3
+# 4. Berapa jumlah mobil yang memenuhi kondisi nomor 3?
+```
+:::
+
+---
+
+## Ringkasan
+
+| Operator | Fungsi | Contoh |
+|----------|--------|--------|
+| `+` `-` `*` `/` | Aritmatika dasar | `10 + 3` |
+| `%%` | Modulo (sisa bagi) | `10 %% 3` → 1 |
+| `%/%` | Floor division | `10 %/% 3` → 3 |
+| `^` | Pangkat | `2^3` → 8 |
+| `==` `!=` `>` `<` `>=` `<=` | Perbandingan | `5 == 5` → TRUE |
+| `&` `|` `!` | Logika (AND, OR, NOT) | `TRUE & FALSE` → FALSE |
+| `%in%` | Keanggotaan | `5 %in% c(1,3,5)` → TRUE |
+
+---
+
+*Sebelumnya: [Part 3 — Data Frame](../2026_02_26_03_dataframe/index.qmd)*
+*Selanjutnya: [Part 5 — Kontrol Alur: Conditional](../2026_02_26_05_conditional/index.qmd)*

@@ -1,0 +1,164 @@
+---
+title: "Part 7 — Fungsi"
+description: "Menulis fungsi sendiri, parameter, return value, default argument, dan scope di R."
+date: "2026-02-26"
+categories: [Fundamental, Fungsi]
+series: "Fundamental Programming"
+order: 7
+---
+
+## Fundamental Series — Part 7 of 20
+
+Fungsi adalah blok kode yang bisa **dipanggil berulang** dengan input berbeda. Membuat fungsi sendiri adalah skill fundamental yang membuat kode lebih rapi, reusable, dan mudah di-debug.
+
+---
+
+## Anatomi Fungsi
+
+```r
+nama_fungsi <- function(parameter1, parameter2) {
+  # body — kode yang dijalankan
+  hasil <- parameter1 + parameter2
+  return(hasil)
+}
+```
+
+### Contoh Sederhana
+
+```r
+hitung_luas <- function(panjang, lebar) {
+  luas <- panjang * lebar
+  return(luas)
+}
+
+hitung_luas(5, 3)      # 15
+hitung_luas(10, 7)     # 70
+```
+
+::: {.callout-note}
+## Return Implisit
+Di R, fungsi otomatis mengembalikan **ekspresi terakhir**. `return()` bersifat opsional:
+
+```r
+hitung_luas <- function(panjang, lebar) {
+  panjang * lebar    # otomatis di-return
+}
+```
+:::
+
+---
+
+## Default Arguments
+
+```r
+sapa <- function(nama, sapaan = "Halo") {
+  paste(sapaan, nama)
+}
+
+sapa("Budi")              # "Halo Budi"
+sapa("Budi", "Selamat pagi")  # "Selamat pagi Budi"
+```
+
+---
+
+## Multiple Return Values
+
+R tidak punya multiple return — tapi bisa mengembalikan **list**:
+
+```r
+statistik <- function(x) {
+  list(
+    mean = mean(x),
+    sd   = sd(x),
+    n    = length(x)
+  )
+}
+
+hasil <- statistik(c(10, 20, 30, 40, 50))
+hasil$mean    # 30
+hasil$sd      # 15.81
+```
+
+---
+
+## Scope: Local vs Global
+
+```r
+x <- 100    # variabel global
+
+ubah_x <- function() {
+  x <- 999  # x lokal — TIDAK mengubah x global
+  x
+}
+
+ubah_x()    # 999
+x           # 100 (tidak berubah!)
+```
+
+::: {.callout-important}
+## Fungsi Tidak Mengubah Variabel Luar
+Variabel yang dibuat di dalam fungsi bersifat **lokal** — hanya ada di dalam fungsi. Ini disebut *lexical scoping*.
+:::
+
+---
+
+## Fungsi Anonim (Lambda)
+
+```r
+# Fungsi tanpa nama — untuk penggunaan sekali pakai
+sapply(1:5, function(x) x^2)
+# 1 4 9 16 25
+
+# Sintaks baru R 4.1+
+sapply(1:5, \(x) x^2)
+```
+
+---
+
+## Latihan
+
+::: {.callout-caution}
+## Latihan 7.1 — Fungsi Dasar
+```r
+# 1. Buat fungsi celsius_ke_fahrenheit(c) → (c * 9/5) + 32
+# 2. Buat fungsi bmi(berat_kg, tinggi_m) → berat / tinggi^2
+# 3. Buat fungsi is_genap(x) → TRUE jika genap, FALSE jika ganjil
+```
+:::
+
+::: {.callout-caution}
+## Latihan 7.2 — Fungsi dengan Default
+```r
+# Buat fungsi standarisasi(x, method = "zscore"):
+# - "zscore": (x - mean) / sd
+# - "minmax": (x - min) / (max - min)
+# Test dengan x = c(10, 20, 30, 40, 50)
+```
+:::
+
+::: {.callout-caution}
+## Latihan 7.3 — Fungsi Return List
+```r
+# Buat fungsi ringkasan(x) yang mengembalikan list:
+# - mean, median, sd, min, max, n, n_missing
+# Test dengan x = c(5, NA, 10, 15, NA, 20)
+```
+:::
+
+---
+
+## Ringkasan
+
+| Konsep | Keterangan |
+|--------|-----------|
+| `function(x) { }` | Membuat fungsi |
+| `return(x)` | Mengembalikan nilai (opsional — R return otomatis) |
+| Default argument | `f <- function(x, y = 10) { }` |
+| Multiple return | Kembalikan `list(...)` |
+| Scope | Variabel di fungsi bersifat lokal |
+| `\(x)` | Fungsi anonim (shorthand R 4.1+) |
+
+---
+
+*Sebelumnya: [Part 6 — Loop](../2026_02_26_06_loop/index.qmd)*
+*Selanjutnya: [Part 8 — String & Teks](../2026_02_26_08_string/index.qmd)*

@@ -1,0 +1,163 @@
+---
+title: "Part 17 — Apply & Vectorisasi"
+description: "Operasi vectorized dan apply di Python: numpy vectorization, apply, map, list comprehension, dan kapan pakai loop."
+date: "2026-02-26"
+categories: [Fundamental, Apply]
+series: "Fundamental Programming"
+order: 17
+---
+
+## Fundamental Series — Part 17 of 20
+
+Python (dengan NumPy/Polars) mendukung **vectorized operations** — operasi pada seluruh array sekaligus tanpa loop. Part ini membahas kapan vectorized vs apply vs loop.
+
+---
+
+## Vectorized dengan NumPy
+
+```python
+import numpy as np
+
+x = np.array([1, 2, 3, 4, 5])
+
+# Sudah vectorized — tanpa loop
+x * 2          # array([2, 4, 6, 8, 10])
+x ** 2         # array([1, 4, 9, 16, 25])
+np.sqrt(x)     # array([1., 1.41, 1.73, 2., 2.24])
+x > 3          # array([False, False, False, True, True])
+np.where(x > 3, "besar", "kecil")
+```
+
+---
+
+## `apply()` di Pandas
+
+```python
+import pandas as pd
+
+df = pd.DataFrame({
+    "nama": ["A", "B", "C"],
+    "x": [10, 20, 30],
+    "y": [100, 200, 300]
+})
+
+# Apply ke kolom (axis=0)
+df[["x", "y"]].apply(np.mean)
+
+# Apply ke baris (axis=1)
+df[["x", "y"]].apply(sum, axis=1)
+
+# Apply fungsi custom
+df["x"].apply(lambda val: val ** 2)
+```
+
+::: {.callout-important}
+## `apply()` Pandas Lambat
+`apply()` iterasi baris per baris — **jauh lebih lambat** dari vectorized. Gunakan hanya jika tidak ada alternatif vectorized.
+:::
+
+---
+
+## `map()` dan `map_elements()` di Polars
+
+```python
+import polars as pl
+
+df_pl = pl.DataFrame({
+    "nama": ["A", "B", "C"],
+    "x": [10, 20, 30]
+})
+
+# Vectorized — CEPAT
+df_pl.with_columns(
+    (pl.col("x") ** 2).alias("x_squared")
+)
+
+# map_elements — LAMBAT (hanya jika terpaksa)
+df_pl.with_columns(
+    pl.col("x").map_elements(lambda v: v ** 2, return_dtype=pl.Int64).alias("x_squared")
+)
+```
+
+---
+
+## List Comprehension — Pythonic Apply
+
+```python
+# Alternatif apply untuk list biasa
+data = [1, 2, 3, 4, 5]
+
+[x ** 2 for x in data]                    # [1, 4, 9, 16, 25]
+[x for x in data if x > 3]                # [4, 5]
+[f"item_{x}" for x in data]               # ['item_1', ...]
+
+# Dict comprehension
+{k: v ** 2 for k, v in zip(["a","b","c"], [1,2,3])}
+```
+
+---
+
+## `map()` dan `filter()` Bawaan Python
+
+```python
+# map
+list(map(lambda x: x ** 2, [1, 2, 3, 4, 5]))
+# [1, 4, 9, 16, 25]
+
+# filter
+list(filter(lambda x: x > 3, [1, 2, 3, 4, 5]))
+# [4, 5]
+```
+
+---
+
+## Perbandingan Kecepatan
+
+```python
+import numpy as np
+
+x = np.random.randn(1_000_000)
+
+# LAMBAT — Python loop
+result = [xi ** 2 for xi in x]
+
+# CEPAT — NumPy vectorized
+result = x ** 2
+```
+
+::: {.callout-tip}
+## Aturan Praktis
+1. **NumPy/Polars vectorized** — tercepat
+2. **List comprehension** — cepat untuk list Python biasa
+3. **`apply()`** — lambat, gunakan terakhir
+:::
+
+---
+
+## Latihan
+
+::: {.callout-caution}
+## Latihan 17.1
+```python
+# 1. Buat fungsi standarisasi(x) = (x - mean) / std
+# 2. Apply ke dictionary {"a": [1..10], "b": [20..30]}
+# 3. Di polars DataFrame, standarisasi semua kolom numerik (vectorized)
+```
+:::
+
+---
+
+## Ringkasan
+
+| Metode | Speed | Keterangan |
+|--------|-------|-----------|
+| NumPy vectorized | ⚡⚡⚡ | Tercepat |
+| Polars expressions | ⚡⚡⚡ | Tercepat |
+| List comprehension | ⚡⚡ | Bagus untuk list Python |
+| `map()` built-in | ⚡⚡ | Functional style |
+| `pd.apply()` | ⚡ | Lambat — hindari jika bisa |
+
+---
+
+*Sebelumnya: [Part 16 — Reshape & Merge](../2026_02_26_16_reshape_merge/index.qmd)*
+*Selanjutnya: [Part 18 — Debugging & Error Handling](../2026_02_26_18_debugging/index.qmd)*

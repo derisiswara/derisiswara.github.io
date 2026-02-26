@@ -1,0 +1,230 @@
+---
+title: "Part 0 — Setup & Environment"
+description: "Instalasi Stata, mengenal antarmuka, working directory, dan menjalankan perintah pertama."
+date: "2026-02-26"
+categories: [Fundamental, Setup]
+series: "Fundamental Programming"
+order: 0
+---
+
+## Fundamental Series — Part 0 of 20
+
+Sebelum menulis kode apapun, kita perlu menyiapkan **tools**. Tutorial ini memandu mengenal Stata, antarmukanya, dan menjalankan perintah pertama.
+
+::: {.callout-tip}
+## Prasyarat
+Lisensi Stata aktif. Tidak perlu pengalaman coding sebelumnya.
+:::
+
+---
+
+## Apa itu Stata?
+
+Stata adalah software statistik komersial yang sangat populer di bidang **ekonometrika, epidemiologi, dan ilmu sosial**.
+
+- Antarmuka terintegrasi: data editor + output + grafik dalam satu aplikasi
+- Dokumentasi bawaan yang sangat lengkap
+- Sintaks yang konsisten dan ringkas
+- Standar di banyak universitas dan lembaga riset
+
+---
+
+## Instalasi Stata
+
+1. Beli lisensi di [stata.com](https://www.stata.com/) (ada versi mahasiswa)
+2. Download installer sesuai OS
+3. Masukkan serial number dan kode aktivasi saat pertama kali membuka
+
+::: {.callout-note}
+## Versi Stata
+| Versi | Keterangan |
+|-------|-----------|
+| **Stata/BE** | Basic Edition, maks 2.048 variabel |
+| **Stata/SE** | Standard, maks 32.767 variabel |
+| **Stata/MP** | Multi-processor, cepat untuk data besar |
+
+Untuk belajar, **Stata/BE** sudah lebih dari cukup.
+:::
+
+---
+
+## Mengenal Antarmuka Stata
+
+Stata memiliki 5 area utama:
+
+| Area | Fungsi |
+|------|--------|
+| **Command window** (bawah) | Tempat mengetik perintah satu per satu |
+| **Results window** (tengah) | Menampilkan output/hasil perintah |
+| **Variables window** (kanan) | Daftar variabel di dataset aktif |
+| **Properties** (kanan bawah) | Detail variabel terpilih |
+| **Review window** (kiri) | Riwayat perintah — bisa diklik untuk menjalankan ulang |
+
+### Do-file Editor
+
+Untuk menulis script (disebut **do-file**), buka: **Window → Do-file Editor** atau tekan `Ctrl + 9`.
+
+::: {.callout-tip}
+## Shortcut Penting
+- `Ctrl + D` → jalankan seluruh do-file
+- Seleksi kode + `Ctrl + D` → jalankan baris terpilih saja
+- `Ctrl + 9` → buka do-file editor
+:::
+
+---
+
+## Working Directory
+
+Working directory adalah folder tempat Stata mencari dan menyimpan file.
+
+```stata
+* Cek working directory saat ini
+pwd
+
+* Ubah working directory
+cd "C:\Users\nama\Documents\project-saya"
+
+* Atau di Mac/Linux
+cd "/Users/nama/Documents/project-saya"
+```
+
+::: {.callout-important}
+## Best Practice
+Selalu set working directory di **awal do-file**. Ini memastikan semua path file relatif terhadap folder proyek.
+:::
+
+---
+
+## Perintah Pertama
+
+Buka do-file editor (`Ctrl + 9`), ketik kode berikut, lalu jalankan dengan `Ctrl + D`:
+
+```stata
+* Ini adalah komentar — Stata mengabaikan baris ini
+* Komentar diawali tanda bintang (*)
+
+* Operasi aritmatika
+display 2 + 3
+display 10 / 3
+display 5^2
+
+* Menyimpan nilai ke local macro
+local x = 10
+local y = 3
+display `x' + `y'
+
+* Teks (string)
+local nama = "Deri"
+display "`nama'"
+```
+
+### Membaca Output
+
+Ketika kamu menjalankan `display 2 + 3`, Stata menampilkan:
+
+```
+. display 2 + 3
+5
+```
+
+- Baris dengan `.` di depan adalah **perintah** yang kamu jalankan (Stata menampilkan ulang perintahnya)
+- Baris selanjutnya adalah **output/hasil**
+
+::: {.callout-note}
+## Perbedaan Penting: Variabel vs Macro
+Di Stata, istilah "variabel" merujuk ke **kolom di dataset** (seperti `gdp`, `umur`). Untuk menyimpan nilai sementara di luar dataset, Stata menggunakan **macro** (`local` dan `global`). Ini berbeda dari R/Python di mana "variabel" bisa apa saja.
+:::
+
+---
+
+## Macro: Local vs Global
+
+```stata
+* Local macro — hanya berlaku di satu do-file / satu kali run
+local pi = 3.14159
+display `pi'
+
+* Global macro — berlaku di seluruh sesi Stata
+global proyek "Analisis Inflasi"
+display "$proyek"
+```
+
+- Akses local: `` `nama' `` (backtick + nama + quote)
+- Akses global: `$nama`
+
+---
+
+## Meminta Bantuan
+
+```stata
+* Membuka dokumentasi perintah
+help summarize
+
+* Mencari perintah berdasarkan kata kunci
+search regression
+
+* Dokumentasi singkat
+chelp summarize
+```
+
+::: {.callout-tip}
+## PDF Manual
+Stata memiliki manual PDF lengkap built-in. Akses via **Help → PDF Documentation**. Ini salah satu dokumentasi terbaik di antara semua software statistik.
+:::
+
+---
+
+## Latihan
+
+::: {.callout-caution}
+## Latihan 0.1
+1. Buka Stata dan do-file editor
+2. Set working directory ke folder `belajar-stata`
+3. Buat do-file `latihan_00.do` dan jalankan:
+
+```stata
+* Hitung luas lingkaran dengan jari-jari 7
+local r = 7
+local luas = c(pi) * `r'^2
+display `luas'
+
+* Cek konstanta bawaan Stata
+display c(pi)
+display c(current_date)
+display c(version)
+```
+
+4. Perhatikan output. Apa isi `c(current_date)` dan `c(version)`?
+:::
+
+::: {.callout-caution}
+## Latihan 0.2
+Gunakan `help display` untuk mempelajari format output. Lalu coba:
+
+```stata
+* Tampilkan angka dengan 2 desimal
+display %9.2f 3.14159265
+
+* Tampilkan dalam format koma
+display %12.0fc 1234567890
+```
+:::
+
+---
+
+## Ringkasan
+
+| Konsep | Keterangan |
+|--------|-----------|
+| Stata | Software statistik komersial, populer di ekonometrika |
+| Do-file | Script Stata (`.do`) — ditulis di do-file editor |
+| Command window | Tempat mengetik perintah langsung |
+| `*` | Komentar — diabaikan oleh Stata |
+| `local` / `global` | Macro untuk menyimpan nilai sementara |
+| `` `x' `` / `$x` | Mengakses local / global macro |
+| `display` | Menampilkan hasil perhitungan atau teks |
+| `help` | Membuka dokumentasi perintah |
+
+---
+
+*Selanjutnya: [Part 1 — Variabel & Tipe Data](../2026_02_26_01_variabel_tipe_data/index.qmd)*

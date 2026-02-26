@@ -1,0 +1,175 @@
+---
+title: "Part 14 — Manipulasi Data II: Generate & Sort"
+description: "Membuat variabel baru dan mengurutkan data di Stata: generate, replace, egen, sort, dan gsort."
+date: "2026-02-26"
+categories: [Fundamental, DataManipulation]
+series: "Fundamental Programming"
+order: 14
+---
+
+## Fundamental Series — Part 14 of 20
+
+Setelah filter dan select, operasi berikutnya yang paling sering: **membuat variabel baru** (generate) dan **mengurutkan data** (sort).
+
+---
+
+## Setup Data
+
+```stata
+clear
+input str10 nama str10 kota umur gaji
+"Andi"     "Jakarta"  25 5000
+"Budi"     "Bandung"  30 7000
+"Citra"    "Jakarta"  28 6000
+"Dina"     "Surabaya" 35 8000
+"Eko"      "Bandung"  22 4500
+end
+```
+
+---
+
+## `generate` — Buat Variabel Baru
+
+```stata
+* Kolom numerik baru
+generate gaji_ribu = gaji * 1000
+generate umur_next = umur + 1
+
+* Kolom string baru
+generate label = nama + " dari " + kota
+
+* Logaritma
+generate log_gaji = ln(gaji)
+```
+
+---
+
+## `replace` — Ubah Variabel yang Ada
+
+```stata
+* Ubah semua
+replace gaji = gaji * 1000
+
+* Ubah kondisional
+replace gaji = 0 if gaji < 5000
+```
+
+::: {.callout-important}
+## `generate` vs `replace`
+- `generate` = buat variabel **baru** (error jika sudah ada)
+- `replace` = ubah variabel **yang sudah ada**
+:::
+
+---
+
+## Conditional — `cond()` dan `if/else`
+
+```stata
+* 2 kondisi
+generate senior = cond(umur >= 30, "Ya", "Tidak")
+
+* Multiple kondisi
+generate kategori = ""
+replace kategori = "Muda" if umur < 25
+replace kategori = "Dewasa Awal" if umur >= 25 & umur < 30
+replace kategori = "Dewasa" if umur >= 30 & umur < 35
+replace kategori = "Senior" if umur >= 35
+```
+
+---
+
+## `egen` — Extended Generate
+
+```stata
+* Mean
+egen mean_gaji = mean(gaji)
+
+* Mean per grup
+bysort kota: egen mean_gaji_kota = mean(gaji)
+
+* Standardize
+egen z_gaji = std(gaji)
+
+* Min, max
+egen min_gaji = min(gaji)
+egen max_gaji = max(gaji)
+
+* Row operations
+generate total = umur + gaji
+egen row_mean = rowmean(umur gaji)
+```
+
+---
+
+## `sort` dan `gsort`
+
+```stata
+* Sort ascending
+sort gaji
+
+* Sort descending
+gsort -gaji
+
+* Multiple kolom
+sort kota gaji         // kota asc, gaji asc
+gsort kota -gaji       // kota asc, gaji desc
+```
+
+---
+
+## Ranking
+
+```stata
+* Rank
+sort gaji
+generate rank_gaji = _n     // rank ascending
+
+gsort -gaji
+generate rank_desc = _n     // rank descending
+
+* Atau pakai egen
+egen rank2 = rank(gaji)
+egen rank_desc2 = rank(-gaji)
+```
+
+---
+
+## Latihan
+
+::: {.callout-caution}
+## Latihan 14.1
+```stata
+* 1. Generate gaji_juta = gaji / 1000
+* 2. Generate kategori: "tinggi" jika gaji > 6000, else "rendah"
+* 3. Sort dari gaji tertinggi ke terendah
+* 4. List hasilnya
+```
+:::
+
+::: {.callout-caution}
+## Latihan 14.2
+```stata
+* 1. Hitung z-score gaji (pakai egen std)
+* 2. Ranking gaji (tertinggi = 1)
+* 3. List nama gaji z_gaji rank
+```
+:::
+
+---
+
+## Ringkasan
+
+| Perintah | Keterangan |
+|----------|-----------|
+| `generate` | Buat variabel baru |
+| `replace` | Ubah variabel yang ada |
+| `cond()` | Conditional (2 kondisi) |
+| `egen` | Extended generate (mean, std, rank, dll) |
+| `sort` | Urutkan ascending |
+| `gsort -var` | Urutkan descending |
+| `_n` | Nomor baris saat ini |
+
+---
+
+*Sebelumnya: [Part 13 — Filter & Select](../2026_02_26_13_filter_select/index.qmd)*
+*Selanjutnya: [Part 15 — Manipulasi Data III: Group & Summarise](../2026_02_26_15_group_summarise/index.qmd)*

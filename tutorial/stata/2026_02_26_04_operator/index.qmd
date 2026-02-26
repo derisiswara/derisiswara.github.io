@@ -1,0 +1,257 @@
+---
+title: "Part 4 — Operator & Ekspresi"
+description: "Operator aritmatika, perbandingan, logika, dan ekspresi di Stata."
+date: "2026-02-26"
+categories: [Fundamental, Operator]
+series: "Fundamental Programming"
+order: 4
+---
+
+## Fundamental Series — Part 4 of 20
+
+Operator adalah **simbol yang melakukan operasi** pada nilai. Part ini membahas operator aritmatika, perbandingan, dan logika di Stata.
+
+---
+
+## Operator Aritmatika
+
+```stata
+display 10 + 3     // 13
+display 10 - 3     // 7
+display 10 * 3     // 30
+display 10 / 3     // 3.3333...
+display mod(10, 3) // 1 — modulo (sisa bagi)
+display 2^3        // 8 — pangkat
+display int(10/3)  // 3 — floor division
+```
+
+### Pada Variabel (Otomatis Per Observasi)
+
+```stata
+clear
+set obs 5
+generate x = _n * 10      // 10 20 30 40 50
+
+generate x_tambah = x + 5   // 15 25 35 45 55
+generate x_kuadrat = x^2    // 100 400 900 1600 2500
+generate x_akar = sqrt(x)   // 3.16 4.47 5.48 6.32 7.07
+```
+
+### Fungsi Matematika
+
+```stata
+display abs(-5)            // 5
+display sqrt(16)           // 4
+display ln(100)            // 4.605 (natural log)
+display log10(100)         // 2
+display exp(1)             // 2.718
+display round(3.14159, .01)  // 3.14
+display ceil(3.2)          // 4
+display floor(3.8)         // 3
+```
+
+::: {.callout-note}
+## Nama Fungsi Berbeda
+| Operasi | R | Python | Stata |
+|---------|---|--------|-------|
+| Natural log | `log()` | `math.log()` | `ln()` |
+| Log base 10 | `log10()` | `math.log10()` | `log10()` |
+| Modulo | `%%` | `%` | `mod()` |
+| Floor division | `%/%` | `//` | `int(x/y)` |
+:::
+
+---
+
+## Operator Perbandingan
+
+Menghasilkan 1 (true) atau 0 (false):
+
+```stata
+display 5 == 5     // 1 (true)
+display 5 != 3     // 1
+display 5 > 3      // 1
+display 5 < 3      // 0
+display 5 >= 5     // 1
+display 5 <= 3     // 0
+```
+
+### Pada Variabel
+
+```stata
+clear
+set obs 5
+generate x = _n * 10
+
+generate besar = (x > 25)      // 0 0 1 1 1
+list
+```
+
+### Perbandingan String
+
+```stata
+* String pakai tanda kutip
+display "abc" == "abc"      // 1
+display "abc" < "abd"       // 1 (urutan alfabet)
+display "ABC" == "abc"      // 0 (case-sensitive!)
+```
+
+---
+
+## Operator Logika
+
+```stata
+* AND
+display (1 == 1) & (2 == 2)     // 1 (true)
+display (1 == 1) & (2 == 3)     // 0 (false)
+
+* OR
+display (1 == 1) | (2 == 3)     // 1
+display (1 == 2) | (2 == 3)     // 0
+
+* NOT
+display !(1 == 1)               // 0
+display !(1 == 2)               // 1
+```
+
+### Pada Variabel / Filter
+
+```stata
+sysuse auto, clear
+
+* AND
+list make mpg price if mpg > 25 & price < 5000
+
+* OR
+list make mpg if mpg > 30 | mpg < 15
+
+* NOT
+list make mpg if !(mpg > 20)
+
+* Kombinasi
+list make mpg price if (mpg > 20 & foreign == 1) | price < 4000
+```
+
+::: {.callout-warning}
+## Missing Values dan Logika
+Ingat: missing (`.`) dianggap **lebih besar dari semua angka**!
+
+```stata
+* BAHAYA: ini menyertakan missing!
+list if mpg > 30
+
+* AMAN: exclude missing
+list if mpg > 30 & !missing(mpg)
+```
+:::
+
+---
+
+## Operator `inlist()` dan `inrange()`
+
+Fungsi bawaan Stata untuk pengecekan keanggotaan:
+
+```stata
+* inlist — cek apakah nilai ada dalam daftar
+list if inlist(make, "BMW 320i", "Audi 5000", "VW Rabbit")
+
+* inrange — cek apakah nilai dalam rentang
+list if inrange(mpg, 20, 30)    // 20 <= mpg <= 30
+list if inrange(price, 5000, 10000)
+```
+
+::: {.callout-tip}
+## `inlist()` vs Banyak `==`
+```stata
+* Panjang dan repetitif:
+list if make == "A" | make == "B" | make == "C"
+
+* Ringkas:
+list if inlist(make, "A", "B", "C")
+```
+:::
+
+---
+
+## Ekspresi Kondisional: `cond()`
+
+Fungsi `cond()` untuk membuat variabel berdasarkan kondisi (mirip `ifelse()` di R):
+
+```stata
+sysuse auto, clear
+
+* Jika mpg > 25 maka "irit", jika tidak "boros"
+generate kategori = cond(mpg > 25, "irit", "boros")
+tabulate kategori
+```
+
+---
+
+## Latihan
+
+::: {.callout-caution}
+## Latihan 4.1 — Aritmatika
+```stata
+* Tanpa menjalankan, prediksi hasilnya:
+display mod(7, 3)
+display int(7 / 3)
+display 2^3^2
+display (2^3)^2
+display 10 / 3
+display int(10 / 3)
+```
+:::
+
+::: {.callout-caution}
+## Latihan 4.2 — Logika
+```stata
+clear
+input x
+12
+5
+28
+3
+17
+45
+8
+31
+end
+
+* 1. List elemen yang > 10 DAN < 30
+* 2. List elemen yang < 5 ATAU > 40
+* 3. List elemen yang BUKAN kelipatan 3 (hint: mod(x, 3) != 0)
+* 4. Berapa jumlah elemen yang > 20? (hint: count if ...)
+```
+:::
+
+::: {.callout-caution}
+## Latihan 4.3 — Filter Dataset
+```stata
+sysuse auto, clear
+
+* 1. Mobil dengan mpg antara 20 dan 30 (pakai inrange)
+* 2. Mobil dengan rep78 == 3 ATAU rep78 == 4 (pakai inlist)
+* 3. Mobil foreign dengan hp > 100 DAN price < 8000
+* 4. Berapa jumlah mobil yang memenuhi kondisi 3?
+```
+:::
+
+---
+
+## Ringkasan
+
+| Operator | Fungsi | Contoh |
+|----------|--------|--------|
+| `+` `-` `*` `/` | Aritmatika dasar | `10 + 3` |
+| `mod(x, y)` | Modulo | `mod(10, 3)` → 1 |
+| `int(x/y)` | Floor division | `int(10/3)` → 3 |
+| `^` | Pangkat | `2^3` → 8 |
+| `==` `!=` `>` `<` `>=` `<=` | Perbandingan | `5 == 5` → 1 |
+| `&` `|` `!` | Logika (AND, OR, NOT) | `x > 5 & x < 10` |
+| `inlist()` | Keanggotaan | `inlist(x, 1, 3, 5)` |
+| `inrange()` | Dalam rentang | `inrange(x, 10, 20)` |
+| `cond()` | Ekspresi kondisional | `cond(x>0, "pos", "neg")` |
+
+---
+
+*Sebelumnya: [Part 3 — Dataset sebagai DataFrame](../2026_02_26_03_dataframe/index.qmd)*
+*Selanjutnya: [Part 5 — Kontrol Alur: Conditional](../2026_02_26_05_conditional/index.qmd)*

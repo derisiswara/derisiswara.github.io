@@ -1,0 +1,283 @@
+---
+title: "Part 2 — Struktur Data I: Variabel, Macro & Scalar"
+description: "Memahami variabel dataset, local/global macro, scalar, dan matrix di Stata."
+date: "2026-02-26"
+categories: [Fundamental, Struktur Data]
+series: "Fundamental Programming"
+order: 2
+---
+
+## Fundamental Series — Part 2 of 20
+
+Stata memiliki pendekatan yang **berbeda** dari R/Python dalam menyimpan data. Di R/Python, kamu bisa membuat vektor, list, atau array sebebas-bebasnya. Di Stata, struktur data utama adalah **dataset** itu sendiri. Part ini membahas cara Stata menyimpan informasi.
+
+---
+
+## 1. Variabel Dataset = Kolom
+
+"Variabel" di Stata selalu berarti **kolom di dataset**. Tidak ada konsep "vektor bebas" di luar dataset.
+
+```stata
+clear
+set obs 5
+
+* Buat "vektor" sebagai variabel di dataset
+generate x = _n * 10      // 10 20 30 40 50
+
+* Akses elemen tertentu — pakai subscript [n]
+display x[1]               // 10
+display x[3]               // 30
+
+* Akses elemen terakhir
+display x[_N]              // 50
+```
+
+### Operasi Per Elemen (Otomatis)
+
+Seperti R, operasi di Stata berjalan otomatis per observasi:
+
+```stata
+generate y = x + 100       // 110 120 130 140 150
+generate z = x^2           // 100 400 900 1600 2500
+generate w = sqrt(x)       // 3.16 4.47 5.48 6.32 7.07
+list
+```
+
+### Fungsi Agregasi
+
+```stata
+* summarize — seperti summary() di R
+summarize x
+
+* Simpan hasil ke r()
+summarize x
+display r(mean)           // rata-rata
+display r(sd)             // std deviation
+display r(min)            // minimum
+display r(max)            // maximum
+display r(N)              // jumlah observasi
+```
+
+::: {.callout-note}
+## Return Values: `r()` dan `e()`
+Setelah menjalankan perintah, Stata menyimpan hasil di **return values**:
+
+- `r()` → dari perintah biasa (`summarize`, `tabulate`, dll.)
+- `e()` → dari perintah estimasi (`regress`, `logit`, dll.)
+
+Ketik `return list` atau `ereturn list` untuk melihat semua return values.
+:::
+
+---
+
+## 2. Macro: "Variabel" di Luar Dataset
+
+Macro menyimpan **teks atau angka** yang bisa digunakan dalam perintah.
+
+### Local Macro
+
+```stata
+* Simpan angka
+local alpha = 0.05
+display `alpha'              // 0.05
+
+* Simpan teks
+local varlist "umur pendapatan edukasi"
+summarize `varlist'
+
+* Simpan daftar
+local kota `""Jakarta" "Bandung" "Surabaya""'
+```
+
+### Global Macro
+
+```stata
+* Berlaku di seluruh sesi
+global datadir "C:/Users/nama/Data"
+use "$datadir/survey2025.dta"
+```
+
+::: {.callout-tip}
+## Local vs Global
+| | Local | Global |
+|---|---|---|
+| Akses | `` `nama' `` | `$nama` |
+| Scope | Hanya dalam do-file / program saat ini | Seluruh sesi Stata |
+| Best practice | **Prefer local** — lebih aman | Hanya untuk path/config |
+:::
+
+### Macro Berisi Hasil Perhitungan
+
+```stata
+summarize x
+local rata2 = r(mean)
+local sd = r(sd)
+
+display "Rata-rata = `rata2'"
+display "Std Dev   = `sd'"
+
+* Gunakan dalam perintah
+generate x_std = (x - `rata2') / `sd'
+```
+
+---
+
+## 3. Scalar: Angka Presisi Tinggi
+
+Scalar menyimpan **satu angka** dengan presisi penuh (tidak di-truncate seperti macro):
+
+```stata
+scalar pi_val = 3.141592653589793
+display pi_val
+
+scalar n = _N
+display n
+
+* Perbedaan scalar vs local
+local pi_local = 3.141592653589793
+display `pi_local'        // bisa kehilangan presisi
+display pi_val             // presisi penuh
+```
+
+::: {.callout-note}
+## Kapan Pakai Scalar?
+Gunakan scalar untuk **konstanta numerik** yang butuh presisi tinggi, misalnya hasil estimasi. Gunakan macro untuk **teks** dan variabel yang akan di-substitusi ke dalam perintah.
+:::
+
+---
+
+## 4. Matrix (Mata)
+
+Stata memiliki bahasa matriks bawaan bernama **Mata**, tapi untuk penggunaan sederhana:
+
+```stata
+* Buat matrix
+matrix A = (1, 2, 3 \ 4, 5, 6 \ 7, 8, 9)
+matrix list A
+
+* Akses elemen
+display A[1,2]        // 2 (baris 1, kolom 2)
+
+* Transpose
+matrix B = A'
+matrix list B
+
+* Setelah regresi, matrix koefisien
+sysuse auto, clear
+regress price mpg weight
+matrix beta = e(b)
+matrix list beta
+```
+
+---
+
+## 5. Contoh Alur Kerja
+
+Menggabungkan semua konsep:
+
+```stata
+* Load data bawaan
+sysuse auto, clear
+
+* Lihat variabel-variabel yang ada
+describe
+
+* Summary satu variabel
+summarize price, detail
+
+* Simpan statistik ke macro
+summarize price
+local harga_mean = r(mean)
+local harga_sd = r(sd)
+
+* Buat variabel baru berdasarkan macro
+generate price_std = (price - `harga_mean') / `harga_sd'
+
+* Verifikasi: mean harus ≈ 0, sd harus ≈ 1
+summarize price_std
+```
+
+---
+
+## Perbandingan Terminologi
+
+| Konsep | R | Python | Stata |
+|--------|---|--------|-------|
+| Koleksi angka | `c(1,2,3)` | `[1,2,3]` / `np.array()` | Variabel di dataset |
+| Key-value | `list(a=1)` | `{"a": 1}` | Macro / scalar |
+| Tabel data | `data.frame` | `DataFrame` | Dataset (langsung) |
+| Nilai skalar | `x <- 5` | `x = 5` | `local x = 5` / `scalar x = 5` |
+| Matrix | `matrix()` | `np.array()` 2D | `matrix A = (...)` |
+
+---
+
+## Latihan
+
+::: {.callout-caution}
+## Latihan 2.1 — Variabel & Subscript
+```stata
+clear
+set obs 7
+generate suhu = .
+replace suhu = 28.5 in 1
+replace suhu = 30.1 in 2
+replace suhu = 27.8 in 3
+replace suhu = 31.2 in 4
+replace suhu = 29.0 in 5
+replace suhu = 33.5 in 6
+replace suhu = 26.4 in 7
+
+* 1. Tampilkan elemen ke-3 (display suhu[3])
+* 2. Tampilkan elemen terakhir
+* 3. Hitung rata-rata dan simpan ke local macro
+* 4. Buat variabel suhu_deviasi = suhu - rata-rata
+* 5. List semua observasi yang suhu > 30
+```
+:::
+
+::: {.callout-caution}
+## Latihan 2.2 — Macro
+```stata
+* Buat local macro berisi:
+* - nama proyek: "Survei Inflasi 2026"
+* - jumlah sampel: 500
+* - alpha: 0.05
+
+* 1. Tampilkan masing-masing dengan display
+* 2. Gunakan macro jumlah sampel dalam perintah: set obs `n_sampel'
+* 3. Coba: apa yang terjadi jika local macro diakses setelah do-file selesai?
+```
+:::
+
+::: {.callout-caution}
+## Latihan 2.3 — Return Values
+```stata
+sysuse auto, clear
+
+* 1. Jalankan: summarize mpg
+* 2. Ketik: return list — apa saja yang tersimpan?
+* 3. Simpan mean dan sd ke local macro
+* 4. Buat variabel mpg_zscore = (mpg - mean) / sd
+* 5. Verifikasi: summarize mpg_zscore — mean harus ≈ 0
+```
+:::
+
+---
+
+## Ringkasan
+
+| Konsep | Keterangan |
+|--------|-----------|
+| Variabel | Kolom di dataset — akses elemen dengan `x[n]` |
+| `_n` / `_N` | Nomor observasi saat ini / total |
+| `local` | Macro lokal — akses `` `nama' `` |
+| `global` | Macro global — akses `$nama` |
+| `scalar` | Angka presisi tinggi |
+| `r()` / `e()` | Return values dari perintah |
+| `matrix` | Matriks — akses `A[i,j]` |
+| `summarize` | Statistik deskriptif + return values |
+
+---
+
+*Sebelumnya: [Part 1 — Variabel & Tipe Data](../2026_02_26_01_variabel_tipe_data/index.qmd)*
+*Selanjutnya: [Part 3 — Struktur Data II: DataFrame](../2026_02_26_03_dataframe/index.qmd)*

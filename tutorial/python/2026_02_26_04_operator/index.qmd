@@ -1,0 +1,231 @@
+---
+title: "Part 4 — Operator & Ekspresi"
+description: "Operator aritmatika, perbandingan, logika, dan precedence di Python."
+date: "2026-02-26"
+categories: [Fundamental, Operator]
+series: "Fundamental Programming"
+order: 4
+---
+
+## Fundamental Series — Part 4 of 20
+
+Operator adalah **simbol yang melakukan operasi** pada nilai. Part ini membahas operator aritmatika, perbandingan, dan logika di Python.
+
+---
+
+## Operator Aritmatika
+
+```python
+10 + 3     # 13  — penjumlahan
+10 - 3     # 7   — pengurangan
+10 * 3     # 30  — perkalian
+10 / 3     # 3.333... — pembagian (selalu float!)
+10 // 3    # 3   — floor division (bilangan bulat)
+10 % 3     # 1   — modulo (sisa bagi)
+2 ** 3     # 8   — pangkat
+```
+
+::: {.callout-note}
+## Python vs R
+| Operasi | R | Python |
+|---------|---|--------|
+| Pangkat | `^` | `**` |
+| Floor division | `%/%` | `//` |
+| Modulo | `%%` | `%` |
+| Pembagian | `/` (bisa int) | `/` (selalu float) |
+:::
+
+### Fungsi Matematika
+
+```python
+abs(-5)              # 5
+round(3.14159, 2)    # 3.14
+
+import math
+math.sqrt(16)        # 4.0
+math.log(100)        # 4.605 (natural log)
+math.log10(100)      # 2.0
+math.exp(1)          # 2.718
+math.ceil(3.2)       # 4
+math.floor(3.8)      # 3
+```
+
+---
+
+## Operator Perbandingan
+
+Menghasilkan `True` atau `False`:
+
+```python
+5 == 5     # True  — sama dengan
+5 != 3     # True  — tidak sama dengan
+5 > 3      # True  — lebih besar
+5 < 3      # False — lebih kecil
+5 >= 5     # True  — lebih besar atau sama
+5 <= 3     # False — lebih kecil atau sama
+```
+
+### Chained Comparison (unik Python!)
+
+```python
+# Python mendukung comparison berantai
+1 < 3 < 5       # True (sama dengan: 1 < 3 and 3 < 5)
+10 <= 10 < 20    # True
+```
+
+---
+
+## Operator Logika
+
+```python
+# and — keduanya harus True
+True and True      # True
+True and False     # False
+
+# or — salah satu cukup True
+True or False      # True
+False or False     # False
+
+# not — membalik
+not True           # False
+not False          # True
+```
+
+::: {.callout-warning}
+## `and/or/not` vs `&/|/~`
+| Konteks | Gunakan | Contoh |
+|---------|---------|--------|
+| Skalar / if-else | `and`, `or`, `not` | `if x > 0 and y > 0:` |
+| NumPy / pandas | `&`, `|`, `~` | `df[(df.x > 0) & (df.y > 0)]` |
+
+Untuk filter DataFrame, **harus pakai `&` `|` `~`** dan tambahkan kurung!
+:::
+
+### Contoh: Filter DataFrame
+
+```python
+import pandas as pd
+
+df = pd.DataFrame({
+    "kota": ["Jakarta", "Bandung", "Surabaya", "Medan"],
+    "populasi": [10.5, 2.4, 2.9, 2.1],
+    "pulau": ["Jawa", "Jawa", "Jawa", "Sumatera"]
+})
+
+# Kota di Jawa dengan populasi > 3 juta
+df[(df["pulau"] == "Jawa") & (df["populasi"] > 3)]
+
+# Kota di Sumatera ATAU populasi < 2.5
+df[(df["pulau"] == "Sumatera") | (df["populasi"] < 2.5)]
+```
+
+---
+
+## Operator Keanggotaan: `in`
+
+```python
+# Cek elemen dalam collection
+5 in [1, 3, 5, 7]         # True
+4 in [1, 3, 5, 7]         # False
+"a" in "abcdef"            # True
+"key" in {"key": "value"}  # True (cek di keys)
+```
+
+### Untuk pandas: `.isin()`
+
+```python
+df[df["kota"].isin(["Jakarta", "Surabaya"])]
+```
+
+---
+
+## Operator Precedence
+
+Dari prioritas tinggi ke rendah:
+
+| Prioritas | Operator |
+|-----------|----------|
+| 1 (tertinggi) | `**` |
+| 2 | `-` (unary) |
+| 3 | `*`, `/`, `//`, `%` |
+| 4 | `+`, `-` |
+| 5 | `<`, `>`, `<=`, `>=`, `==`, `!=`, `in` |
+| 6 | `not` |
+| 7 | `and` |
+| 8 (terendah) | `or` |
+
+```python
+2 + 3 * 4       # 14 (bukan 20) — perkalian dulu
+(2 + 3) * 4     # 20
+
+2 ** 3 ** 2     # 512 (= 2^9, bukan 8^2) — ** right-to-left!
+(2 ** 3) ** 2   # 64
+```
+
+::: {.callout-tip}
+## Gunakan Kurung!
+Selalu gunakan kurung untuk kejelasan: `(x > 5) and (x < 10)` jauh lebih aman daripada `x > 5 and x < 10`.
+:::
+
+---
+
+## Latihan
+
+::: {.callout-caution}
+## Latihan 4.1 — Aritmatika
+```python
+# Tanpa menjalankan, prediksi hasilnya:
+7 % 3
+7 // 3
+2 ** 3 ** 2
+(2 ** 3) ** 2
+10 / 3
+10 // 3
+```
+:::
+
+::: {.callout-caution}
+## Latihan 4.2 — Logika
+```python
+import numpy as np
+x = np.array([12, 5, 28, 3, 17, 45, 8, 31])
+
+# 1. Ambil elemen yang > 10 DAN < 30
+# 2. Ambil elemen yang < 5 ATAU > 40
+# 3. Ambil elemen yang BUKAN kelipatan 3 (hint: x % 3 != 0)
+# 4. Berapa jumlah elemen yang > 20? (hint: np.sum())
+```
+:::
+
+::: {.callout-caution}
+## Latihan 4.3 — Filter DataFrame
+```python
+import seaborn as sns
+tips = sns.load_dataset("tips")
+
+# 1. Bill antara 20 dan 30 (inklusif)
+# 2. Day == "Sun" ATAU day == "Sat" (pakai .isin())
+# 3. Tip > 5 DAN smoker == "No"
+# 4. Berapa jumlah baris yang memenuhi kondisi 3?
+```
+:::
+
+---
+
+## Ringkasan
+
+| Operator | Fungsi | Contoh |
+|----------|--------|--------|
+| `+` `-` `*` `/` | Aritmatika dasar | `10 + 3` |
+| `%` | Modulo | `10 % 3` → 1 |
+| `//` | Floor division | `10 // 3` → 3 |
+| `**` | Pangkat | `2 ** 3` → 8 |
+| `==` `!=` `>` `<` | Perbandingan | `5 == 5` → True |
+| `and` `or` `not` | Logika (skalar) | `True and False` |
+| `&` `|` `~` | Logika (array/DataFrame) | `(x > 5) & (x < 10)` |
+| `in` / `.isin()` | Keanggotaan | `5 in [1,3,5]` |
+
+---
+
+*Sebelumnya: [Part 3 — DataFrame](../2026_02_26_03_dataframe/index.qmd)*
+*Selanjutnya: [Part 5 — Kontrol Alur: Conditional](../2026_02_26_05_conditional/index.qmd)*

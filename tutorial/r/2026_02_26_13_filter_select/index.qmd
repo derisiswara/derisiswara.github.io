@@ -1,0 +1,158 @@
+---
+title: "Part 13 — Manipulasi Data I: Filter & Select"
+description: "Memilih baris dan kolom di R: filter, select, slice, pull, dan kombinasinya dengan dplyr."
+date: "2026-02-26"
+categories: [Fundamental, DataManipulation]
+series: "Fundamental Programming"
+order: 13
+---
+
+## Fundamental Series — Part 13 of 20
+
+Manipulasi data dimulai dari dua operasi paling dasar: **memilih baris** (filter) dan **memilih kolom** (select).
+
+---
+
+## Setup Data
+
+```r
+library(dplyr)
+
+df <- tibble(
+  nama   = c("Andi", "Budi", "Citra", "Dina", "Eko"),
+  kota   = c("Jakarta", "Bandung", "Jakarta", "Surabaya", "Bandung"),
+  umur   = c(25, 30, 28, 35, 22),
+  gaji   = c(5000, 7000, 6000, 8000, 4500),
+  status = c("aktif", "aktif", "nonaktif", "aktif", "nonaktif")
+)
+```
+
+---
+
+## `filter()` — Memilih Baris
+
+```r
+# Satu kondisi
+df |> filter(kota == "Jakarta")
+
+# Multiple kondisi (AND)
+df |> filter(kota == "Jakarta", umur > 25)
+df |> filter(kota == "Jakarta" & umur > 25)
+
+# OR
+df |> filter(kota == "Jakarta" | kota == "Bandung")
+
+# Pakai %in%
+df |> filter(kota %in% c("Jakarta", "Bandung"))
+
+# Negasi
+df |> filter(kota != "Surabaya")
+df |> filter(!kota %in% c("Surabaya"))
+```
+
+---
+
+## `select()` — Memilih Kolom
+
+```r
+# Pilih kolom tertentu
+df |> select(nama, gaji)
+
+# Range kolom
+df |> select(nama:umur)
+
+# Buang kolom
+df |> select(-status)
+df |> select(-c(umur, status))
+
+# Helper functions
+df |> select(starts_with("k"))     # kota
+df |> select(ends_with("a"))       # nama, kota
+df |> select(contains("aj"))       # gaji
+df |> select(where(is.numeric))    # umur, gaji
+```
+
+---
+
+## `slice()` — Memilih Baris by Position
+
+```r
+df |> slice(1:3)           # baris 1-3
+df |> slice_head(n = 2)    # 2 baris pertama
+df |> slice_tail(n = 2)    # 2 baris terakhir
+df |> slice_max(gaji, n = 3)  # 3 gaji tertinggi
+df |> slice_min(umur, n = 2)  # 2 umur termuda
+df |> slice_sample(n = 3)  # 3 baris acak
+```
+
+---
+
+## `pull()` — Ambil Satu Kolom sebagai Vector
+
+```r
+df |> pull(nama)
+# "Andi" "Budi" "Citra" "Dina" "Eko"
+
+# Berbeda dari select — pull return vector, select return tibble
+df |> select(nama)   # tibble 5x1
+df |> pull(nama)     # character vector
+```
+
+---
+
+## `rename()` — Ganti Nama Kolom
+
+```r
+df |> rename(salary = gaji, city = kota)
+```
+
+---
+
+## Kombinasi Filter + Select
+
+```r
+df |>
+  filter(status == "aktif", gaji > 5000) |>
+  select(nama, kota, gaji)
+```
+
+---
+
+## Latihan
+
+::: {.callout-caution}
+## Latihan 13.1
+```r
+# Dari df di atas:
+# 1. Filter karyawan aktif di Jakarta atau Bandung
+# 2. Pilih kolom nama, kota, gaji
+# 3. Siapa yang punya gaji tertinggi dari hasil filter?
+```
+:::
+
+::: {.callout-caution}
+## Latihan 13.2
+```r
+# 1. Pilih semua kolom numerik
+# 2. Filter baris di mana gaji di atas rata-rata
+# 3. Hitung berapa orang yang memenuhi kriteria
+```
+:::
+
+---
+
+## Ringkasan
+
+| Fungsi | Keterangan |
+|--------|-----------|
+| `filter()` | Memilih baris berdasarkan kondisi |
+| `select()` | Memilih kolom |
+| `slice()` | Memilih baris by posisi |
+| `pull()` | Ambil satu kolom sebagai vector |
+| `rename()` | Ganti nama kolom |
+| `starts_with()` / `where()` | Helper untuk select |
+
+---
+
+*Sebelumnya: [Part 12 — Import & Export](../2026_02_26_12_import_export/index.qmd)*
+*Selanjutnya: [Part 14 — Manipulasi Data II: Mutate & Arrange](../2026_02_26_14_mutate_arrange/index.qmd)*

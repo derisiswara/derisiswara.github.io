@@ -1,0 +1,183 @@
+---
+title: "Part 13 — Manipulasi Data I: Filter & Select"
+description: "Memilih baris dan kolom di Python: filter, select, query, dan loc/iloc dengan pandas dan polars."
+date: "2026-02-26"
+categories: [Fundamental, DataManipulation]
+series: "Fundamental Programming"
+order: 13
+---
+
+## Fundamental Series — Part 13 of 20
+
+Manipulasi data dimulai dari dua operasi paling dasar: **memilih baris** (filter) dan **memilih kolom** (select).
+
+---
+
+## Setup Data
+
+```python
+import pandas as pd
+import polars as pl
+
+data = {
+    "nama":   ["Andi", "Budi", "Citra", "Dina", "Eko"],
+    "kota":   ["Jakarta", "Bandung", "Jakarta", "Surabaya", "Bandung"],
+    "umur":   [25, 30, 28, 35, 22],
+    "gaji":   [5000, 7000, 6000, 8000, 4500],
+    "status": ["aktif", "aktif", "nonaktif", "aktif", "nonaktif"]
+}
+
+df_pd = pd.DataFrame(data)
+df_pl = pl.DataFrame(data)
+```
+
+---
+
+## Filter Baris — Pandas
+
+```python
+# Boolean indexing
+df_pd[df_pd["kota"] == "Jakarta"]
+
+# Multiple kondisi (AND — gunakan &)
+df_pd[(df_pd["kota"] == "Jakarta") & (df_pd["umur"] > 25)]
+
+# OR — gunakan |
+df_pd[(df_pd["kota"] == "Jakarta") | (df_pd["kota"] == "Bandung")]
+
+# isin
+df_pd[df_pd["kota"].isin(["Jakarta", "Bandung"])]
+
+# query() — lebih readable
+df_pd.query("kota == 'Jakarta' and umur > 25")
+df_pd.query("kota in ['Jakarta', 'Bandung']")
+```
+
+---
+
+## Filter Baris — Polars
+
+```python
+# filter
+df_pl.filter(pl.col("kota") == "Jakarta")
+
+# Multiple kondisi
+df_pl.filter(
+    (pl.col("kota") == "Jakarta") & (pl.col("umur") > 25)
+)
+
+# OR
+df_pl.filter(
+    pl.col("kota").is_in(["Jakarta", "Bandung"])
+)
+
+# Negasi
+df_pl.filter(~pl.col("kota").is_in(["Surabaya"]))
+```
+
+---
+
+## Select Kolom — Pandas
+
+```python
+# Satu kolom (Series)
+df_pd["nama"]
+
+# Multiple kolom (DataFrame)
+df_pd[["nama", "gaji"]]
+
+# loc — by label
+df_pd.loc[:, "nama":"umur"]
+
+# iloc — by position
+df_pd.iloc[:, 0:3]
+df_pd.iloc[:3]        # 3 baris pertama
+
+# Filter kolom numerik
+df_pd.select_dtypes(include="number")
+```
+
+---
+
+## Select Kolom — Polars
+
+```python
+df_pl.select("nama", "gaji")
+df_pl.select(pl.col("nama", "gaji"))
+
+# Semua kolom numerik
+df_pl.select(pl.col(pl.Int64, pl.Float64))
+
+# Exclude kolom
+df_pl.select(pl.all().exclude("status"))
+```
+
+---
+
+## Rename Kolom
+
+```python
+# Pandas
+df_pd.rename(columns={"gaji": "salary", "kota": "city"})
+
+# Polars
+df_pl.rename({"gaji": "salary", "kota": "city"})
+```
+
+---
+
+## Kombinasi Filter + Select
+
+```python
+# Pandas
+(df_pd
+    .query("status == 'aktif' and gaji > 5000")
+    [["nama", "kota", "gaji"]]
+)
+
+# Polars
+(df_pl
+    .filter((pl.col("status") == "aktif") & (pl.col("gaji") > 5000))
+    .select("nama", "kota", "gaji")
+)
+```
+
+---
+
+## Latihan
+
+::: {.callout-caution}
+## Latihan 13.1
+```python
+# 1. Filter karyawan aktif di Jakarta atau Bandung
+# 2. Pilih kolom nama, kota, gaji
+# 3. Siapa yang punya gaji tertinggi?
+# Kerjakan dengan pandas DAN polars
+```
+:::
+
+::: {.callout-caution}
+## Latihan 13.2
+```python
+# 1. Select semua kolom numerik
+# 2. Filter baris di mana gaji di atas rata-rata
+# 3. Berapa orang yang memenuhi?
+```
+:::
+
+---
+
+## Ringkasan
+
+| Operasi | Pandas | Polars |
+|---------|--------|--------|
+| Filter baris | `df[mask]` / `.query()` | `.filter()` |
+| Select kolom | `df[["col"]]` / `.loc` | `.select()` |
+| isin/is_in | `.isin([])` | `pl.col().is_in([])` |
+| Rename | `.rename(columns={})` | `.rename({})` |
+| Kolom numerik | `.select_dtypes()` | `pl.col(pl.Int64)` |
+
+---
+
+*Sebelumnya: [Part 12 — Import & Export](../2026_02_26_12_import_export/index.qmd)*
+*Selanjutnya: [Part 14 — Manipulasi Data II: Mutate & Arrange](../2026_02_26_14_mutate_arrange/index.qmd)*

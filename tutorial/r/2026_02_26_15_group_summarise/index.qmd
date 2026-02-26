@@ -1,0 +1,165 @@
+---
+title: "Part 15 — Manipulasi Data III: Group & Summarise"
+description: "Agregasi data per grup di R: group_by, summarise, .by, count, dan n()."
+date: "2026-02-26"
+categories: [Fundamental, DataManipulation]
+series: "Fundamental Programming"
+order: 15
+---
+
+## Fundamental Series — Part 15 of 20
+
+**Split-Apply-Combine** adalah pola paling fundamental di data analysis: pisahkan data per grup, hitung sesuatu, gabungkan hasilnya.
+
+---
+
+## Setup Data
+
+```r
+library(dplyr)
+
+df <- tibble(
+  nama   = c("Andi","Budi","Citra","Dina","Eko","Fani","Gita","Hadi"),
+  kota   = c("Jakarta","Bandung","Jakarta","Surabaya","Bandung","Jakarta","Surabaya","Bandung"),
+  dept   = c("IT","IT","HR","HR","IT","HR","IT","HR"),
+  gaji   = c(5000,7000,6000,8000,4500,5500,7500,6500)
+)
+```
+
+---
+
+## `summarise()` — Tanpa Grup
+
+```r
+df |> summarise(
+  mean_gaji = mean(gaji),
+  sd_gaji = sd(gaji),
+  n = n()
+)
+```
+
+---
+
+## `group_by()` + `summarise()`
+
+```r
+df |>
+  group_by(kota) |>
+  summarise(
+    mean_gaji = mean(gaji),
+    sd_gaji = sd(gaji),
+    n = n()
+  )
+```
+
+---
+
+## Sintaks `.by` (dplyr 1.1+)
+
+```r
+# Lebih ringkas — tanpa perlu ungroup
+df |>
+  summarise(
+    mean_gaji = mean(gaji),
+    n = n(),
+    .by = kota
+  )
+
+# Multiple grouping variables
+df |>
+  summarise(
+    mean_gaji = mean(gaji),
+    n = n(),
+    .by = c(kota, dept)
+  )
+```
+
+::: {.callout-tip}
+## `.by` vs `group_by()`
+`.by` tidak perlu `ungroup()` setelahnya — lebih aman dan bersih. Gunakan `.by` untuk summarise, `group_by()` jika perlu operasi beruntun per grup.
+:::
+
+---
+
+## `count()` dan `tally()`
+
+```r
+# Hitung frekuensi
+df |> count(kota)
+df |> count(kota, dept)
+df |> count(kota, sort = TRUE)   # urutkan descending
+
+# Dengan bobot
+df |> count(kota, wt = gaji)     # total gaji per kota
+```
+
+---
+
+## `mutate()` per Grup
+
+```r
+# Tambah kolom berdasarkan grup (tanpa collapse)
+df |>
+  mutate(
+    mean_gaji_kota = mean(gaji),
+    persen_gaji = gaji / sum(gaji) * 100,
+    .by = kota
+  )
+```
+
+---
+
+## Fungsi Ringkasan
+
+| Fungsi | Keterangan |
+|--------|-----------|
+| `n()` | Jumlah baris |
+| `n_distinct(x)` | Jumlah unik |
+| `mean(x)` | Rata-rata |
+| `median(x)` | Median |
+| `sd(x)` | Standar deviasi |
+| `sum(x)` | Total |
+| `min(x)` / `max(x)` | Min / Max |
+| `first(x)` / `last(x)` | Elemen pertama / terakhir |
+| `quantile(x, 0.25)` | Persentil |
+
+---
+
+## Latihan
+
+::: {.callout-caution}
+## Latihan 15.1
+```r
+# Dari df:
+# 1. Hitung mean gaji per departemen
+# 2. Hitung mean gaji per kombinasi kota + dept
+# 3. Kota mana yang punya total gaji tertinggi?
+```
+:::
+
+::: {.callout-caution}
+## Latihan 15.2
+```r
+# 1. Tambah kolom: gaji sebagai persen dari total gaji per dept
+# 2. Ranking gaji per dept (tertinggi = 1)
+# 3. Siapa yang rank 1 di setiap dept?
+```
+:::
+
+---
+
+## Ringkasan
+
+| Fungsi | Keterangan |
+|--------|-----------|
+| `summarise()` | Agregasi (collapse ke 1 baris per grup) |
+| `.by = col` | Inline grouping (dplyr 1.1+) |
+| `group_by()` | Grouping tradisional |
+| `count()` | Hitung frekuensi |
+| `n()` / `n_distinct()` | Jumlah / jumlah unik |
+| `mutate(.by = )` | Kolom baru per grup (tanpa collapse) |
+
+---
+
+*Sebelumnya: [Part 14 — Mutate & Arrange](../2026_02_26_14_mutate_arrange/index.qmd)*
+*Selanjutnya: [Part 16 — Reshape & Merge](../2026_02_26_16_reshape_merge/index.qmd)*

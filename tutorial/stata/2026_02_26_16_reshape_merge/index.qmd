@@ -1,0 +1,173 @@
+---
+title: "Part 16 — Reshape & Merge"
+description: "Mengubah bentuk data dan menggabungkan dataset di Stata: reshape, merge, append, dan joinby."
+date: "2026-02-26"
+categories: [Fundamental, Reshape]
+series: "Fundamental Programming"
+order: 16
+---
+
+## Fundamental Series — Part 16 of 20
+
+Dua operasi penting: **reshape** (wide ↔ long) dan **merge** (gabung dataset).
+
+---
+
+## Reshape: Wide → Long
+
+```stata
+clear
+input str10 nama math sains bahasa
+"Andi" 80 75 88
+"Budi" 90 85 92
+end
+
+reshape long, i(nama) j(mata_pelajaran) string
+* Hmm — Stata reshape perlu variabel bernama seragam.
+```
+
+Stata `reshape` butuh nama variabel yang **prefix-nya sama**:
+
+```stata
+clear
+input str10 nama nilai1 nilai2 nilai3
+"Andi" 80 75 88
+"Budi" 90 85 92
+end
+
+reshape long nilai, i(nama) j(mapel)
+list
+```
+
+---
+
+## Reshape: Long → Wide
+
+```stata
+* Dari hasil long di atas
+reshape wide nilai, i(nama) j(mapel)
+list
+```
+
+---
+
+## `merge` — Menggabungkan Dataset
+
+```stata
+* Dataset 1: siswa
+clear
+input id str10 nama
+1 "Andi"
+2 "Budi"
+3 "Citra"
+4 "Dina"
+end
+save siswa, replace
+
+* Dataset 2: nilai
+clear
+input id skor
+1 80
+2 90
+3 75
+5 85
+end
+save nilai, replace
+
+* Merge
+use siswa, clear
+merge 1:1 id using nilai
+list
+```
+
+### Tipe Merge
+
+| Tipe | Keterangan |
+|------|-----------|
+| `1:1` | Satu-ke-satu (setiap id unik di kedua file) |
+| `m:1` | Many-to-one (id bisa duplikat di master) |
+| `1:m` | One-to-many (id bisa duplikat di using) |
+
+### Variabel `_merge`
+
+```stata
+* Setelah merge, cek hasil match:
+tabulate _merge
+* 1 = hanya di master (siswa)
+* 2 = hanya di using (nilai)
+* 3 = match (ada di keduanya)
+
+* Hanya simpan yang match (inner join)
+keep if _merge == 3
+drop _merge
+```
+
+---
+
+## `append` — Tumpuk Vertikal
+
+```stata
+clear
+input str10 nama x
+"A" 1
+"B" 2
+end
+save part1, replace
+
+clear
+input str10 nama x
+"C" 3
+"D" 4
+end
+
+append using part1
+list
+```
+
+---
+
+## Latihan
+
+::: {.callout-caution}
+## Latihan 16.1 — Reshape
+```stata
+* Buat data GDP wide:
+clear
+input str15 negara gdp2020 gdp2021 gdp2022
+"Indonesia" 1060 1186 1319
+"Malaysia"  337  373  407
+"Thailand"  500  506  536
+end
+
+* 1. Reshape ke long (negara, tahun, gdp)
+* 2. Reshape kembali ke wide
+```
+:::
+
+::: {.callout-caution}
+## Latihan 16.2 — Merge
+```stata
+* 1. Buat dataset produk (id, nama)
+* 2. Buat dataset penjualan (id, jumlah)
+* 3. Merge 1:m
+* 4. Tabulate _merge — berapa yang match?
+```
+:::
+
+---
+
+## Ringkasan
+
+| Perintah | Keterangan |
+|----------|-----------|
+| `reshape long` | Wide → Long |
+| `reshape wide` | Long → Wide |
+| `merge 1:1` | Join satu-ke-satu |
+| `merge m:1` / `1:m` | Many-to-one / one-to-many |
+| `_merge` | Variabel hasil merge |
+| `append` | Tumpuk vertikal |
+
+---
+
+*Sebelumnya: [Part 15 — Group & Summarise](../2026_02_26_15_group_summarise/index.qmd)*
+*Selanjutnya: [Part 17 — Apply & Vectorisasi](../2026_02_26_17_apply/index.qmd)*

@@ -1,0 +1,153 @@
+---
+title: "Part 15 — Manipulasi Data III: Collapse & By"
+description: "Agregasi data per grup di Stata: collapse, by/bysort, tabstat, egen, dan table."
+date: "2026-02-26"
+categories: [Fundamental, DataManipulation]
+series: "Fundamental Programming"
+order: 15
+---
+
+## Fundamental Series — Part 15 of 20
+
+**Split-Apply-Combine** di Stata: pisahkan data per grup, hitung statistik, gabungkan. Stata punya beberapa pendekatan — `collapse`, `bysort` + `egen`, dan `tabstat`.
+
+---
+
+## Setup Data
+
+```stata
+clear
+input str10 nama str10 kota str5 dept gaji
+"Andi"     "Jakarta"  "IT" 5000
+"Budi"     "Bandung"  "IT" 7000
+"Citra"    "Jakarta"  "HR" 6000
+"Dina"     "Surabaya" "HR" 8000
+"Eko"      "Bandung"  "IT" 4500
+"Fani"     "Jakarta"  "HR" 5500
+"Gita"     "Surabaya" "IT" 7500
+"Hadi"     "Bandung"  "HR" 6500
+end
+```
+
+---
+
+## `collapse` — Collapse ke Summary
+
+::: {.callout-important}
+## `collapse` Menghapus Data Asli!
+`collapse` mengganti dataset di memori dengan hasil agregasi. Gunakan `preserve`/`restore` jika perlu data asli.
+:::
+
+```stata
+preserve
+
+collapse (mean) mean_gaji=gaji (sd) sd_gaji=gaji (count) n=gaji, by(kota)
+list
+
+restore
+```
+
+### Fungsi di `collapse`
+
+| Fungsi | Keterangan |
+|--------|-----------|
+| `(mean)` | Rata-rata |
+| `(median)` | Median |
+| `(sd)` | Standar deviasi |
+| `(sum)` | Total |
+| `(min)` / `(max)` | Min / Max |
+| `(count)` | Jumlah non-missing |
+| `(first)` / `(last)` | Pertama / terakhir |
+
+---
+
+## `bysort` + `egen` — Tanpa Collapse
+
+```stata
+* Tambah kolom statistik per grup (data tetap utuh)
+bysort kota: egen mean_gaji = mean(gaji)
+bysort kota: egen sd_gaji = sd(gaji)
+bysort kota: egen total_gaji = total(gaji)
+
+* Persen dari total per grup
+generate persen = gaji / total_gaji * 100
+
+list nama kota gaji mean_gaji persen
+```
+
+---
+
+## `tabstat` — Tabel Statistik
+
+```stata
+* Statistik per grup (output tabel, tidak ubah data)
+tabstat gaji, by(kota) statistics(mean sd min max n)
+
+* Multiple variabel
+tabstat gaji, by(dept) statistics(mean sd n) columns(statistics)
+```
+
+---
+
+## `table` — Cross Tabulation
+
+```stata
+* Frekuensi
+table kota
+table kota dept
+
+* Dengan statistik
+table kota, statistic(mean gaji) statistic(count gaji)
+table kota dept, statistic(mean gaji)
+```
+
+---
+
+## `tab` (tabulate) — Frekuensi
+
+```stata
+tabulate kota
+tabulate kota dept
+tabulate kota, summarize(gaji)
+```
+
+---
+
+## Latihan
+
+::: {.callout-caution}
+## Latihan 15.1
+```stata
+* 1. Collapse: mean gaji per departemen
+* 2. Collapse: mean gaji per kota + dept
+* 3. Kota mana total gajinya tertinggi?
+```
+:::
+
+::: {.callout-caution}
+## Latihan 15.2
+```stata
+* (Tanpa collapse — pakai bysort + egen)
+* 1. Buat variabel: gaji sebagai persen total gaji per dept
+* 2. Ranking gaji per dept
+* 3. List nama yang rank 1 di setiap dept
+```
+:::
+
+---
+
+## Ringkasan
+
+| Perintah | Keterangan |
+|----------|-----------|
+| `collapse` | Agregasi (collapse data) |
+| `bysort: egen` | Statistik per grup (data utuh) |
+| `tabstat` | Tabel statistik per grup |
+| `table` | Cross tabulation |
+| `tabulate` | Frekuensi |
+| `preserve`/`restore` | Simpan data sebelum collapse |
+
+---
+
+*Sebelumnya: [Part 14 — Mutate & Arrange](../2026_02_26_14_mutate_arrange/index.qmd)*
+*Selanjutnya: [Part 16 — Reshape & Merge](../2026_02_26_16_reshape_merge/index.qmd)*

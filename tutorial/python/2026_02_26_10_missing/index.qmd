@@ -1,0 +1,194 @@
+---
+title: "Part 10 — Missing Values"
+description: "Memahami dan menangani missing values (NaN/None) di Python: deteksi, filter, imputation, dan best practices."
+date: "2026-02-26"
+categories: [Fundamental, MissingValues]
+series: "Fundamental Programming"
+order: 10
+---
+
+## Fundamental Series — Part 10 of 20
+
+Data dunia nyata selalu punya **missing values**. Python punya beberapa representasi missing: `None`, `NaN`, dan `pd.NA`. Memahami perbedaannya penting.
+
+---
+
+## None vs NaN vs pd.NA
+
+```python
+import numpy as np
+import pandas as pd
+
+# None — objek Python asli
+x = None
+x is None     # True
+
+# NaN — Not a Number (float)
+y = np.nan
+np.isnan(y)   # True
+
+# pd.NA — pandas NA (eksperimental, lebih konsisten)
+z = pd.NA
+pd.isna(z)    # True
+```
+
+::: {.callout-important}
+## `NaN != NaN`
+```python
+np.nan == np.nan    # False (!)
+```
+Jangan pernah cek missing dengan `==`. Gunakan `np.isnan()` atau `pd.isna()`.
+:::
+
+---
+
+## NaN itu "Menular"
+
+```python
+1 + np.nan        # nan
+np.nan > 5        # False (berbeda dari R!)
+np.mean([1, 2, np.nan, 4])   # nan
+np.nanmean([1, 2, np.nan, 4]) # 2.333
+```
+
+---
+
+## Deteksi Missing — Pandas
+
+```python
+import pandas as pd
+
+df = pd.DataFrame({
+    "nama": ["A", "B", "C", "D"],
+    "nilai": [80, None, 70, None],
+    "umur": [20, 21, None, 22]
+})
+
+# Cek per elemen
+df.isna()
+
+# Hitung NA per kolom
+df.isna().sum()
+
+# Hitung NA total
+df.isna().sum().sum()
+
+# Persen missing per kolom
+df.isna().mean() * 100
+
+# Baris mana yang complete?
+df.notna().all(axis=1)
+```
+
+---
+
+## Filter Missing
+
+```python
+# Buang baris dengan NA di kolom mana saja
+df.dropna()
+
+# Buang baris dengan NA di kolom tertentu
+df.dropna(subset=["nilai"])
+
+# Buang kolom yang punya NA
+df.dropna(axis=1)
+
+# Buang baris yang semuanya NA
+df.dropna(how="all")
+```
+
+---
+
+## Mengisi Missing
+
+```python
+# Isi dengan nilai tetap
+df.fillna(0)
+df.fillna({"nilai": 0, "umur": 99})
+
+# Isi dengan mean/median
+df["nilai"].fillna(df["nilai"].mean())
+
+# Forward fill / backward fill (time series)
+df.ffill()    # isi ke bawah
+df.bfill()    # isi ke atas
+```
+
+---
+
+## Polars Missing Values
+
+```python
+import polars as pl
+
+df = pl.DataFrame({
+    "nama": ["A", "B", "C", "D"],
+    "nilai": [80, None, 70, None],
+    "umur": [20, 21, None, 22]
+})
+
+# Hitung null per kolom
+df.null_count()
+
+# Filter: buang baris dengan null
+df.drop_nulls()
+df.drop_nulls(subset=["nilai"])
+
+# Isi null
+df.fill_null(0)
+df.with_columns(
+    pl.col("nilai").fill_null(pl.col("nilai").mean())
+)
+```
+
+---
+
+## Latihan
+
+::: {.callout-caution}
+## Latihan 10.1 — Deteksi & Hitung
+```python
+import pandas as pd
+import numpy as np
+
+df = pd.DataFrame({
+    "id": range(1, 11),
+    "x": [5, np.nan, 3, np.nan, 7, 8, np.nan, 2, 9, np.nan],
+    "y": [np.nan, 10, np.nan, 20, 30, np.nan, 40, 50, np.nan, 60]
+})
+
+# 1. Berapa total NA di seluruh dataframe?
+# 2. Kolom mana yang paling banyak NA?
+# 3. Berapa persen baris yang complete?
+```
+:::
+
+::: {.callout-caution}
+## Latihan 10.2 — Handle Missing
+```python
+# Dari df di atas:
+# 1. Buat df_complete: hanya baris tanpa NA
+# 2. Buat df_filled: isi NA di x dengan mean, NA di y dengan median
+# 3. Bandingkan mean(x) di df_complete vs df_filled
+```
+:::
+
+---
+
+## Ringkasan
+
+| Fitur | Keterangan |
+|-------|-----------|
+| `None` / `np.nan` / `pd.NA` | Missing values |
+| `pd.isna()` / `np.isnan()` | Cek missing |
+| `.isna().sum()` | Hitung missing per kolom |
+| `.dropna()` | Buang baris/kolom NA |
+| `.fillna()` | Isi NA |
+| `.ffill()` / `.bfill()` | Forward/backward fill |
+| `np.nanmean()` | Mean yang skip NaN |
+
+---
+
+*Sebelumnya: [Part 9 — Date & Time](../2026_02_26_09_datetime/index.qmd)*
+*Selanjutnya: [Part 11 — Package & Library](../2026_02_26_11_package/index.qmd)*
