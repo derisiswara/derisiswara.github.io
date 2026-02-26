@@ -2,19 +2,53 @@
   {
     "listing": "/tutorial/stata/index.html",
     "items": [
-      "/tutorial/stata/2026_02_25_panel_data/index.html"
-    ]
-  },
-  {
-    "listing": "/tutorial/r/index.html",
-    "items": [
-      "/tutorial/r/2026_02_25_regresi_linear/index.html"
+      "/tutorial/stata/2026_02_26_00_setup/index.html",
+      "/tutorial/stata/2026_02_26_01_variabel_tipe_data/index.html",
+      "/tutorial/stata/2026_02_26_02_vektor_list/index.html",
+      "/tutorial/stata/2026_02_26_03_dataframe/index.html",
+      "/tutorial/stata/2026_02_26_04_operator/index.html",
+      "/tutorial/stata/2026_02_26_05_conditional/index.html",
+      "/tutorial/stata/2026_02_26_06_loop/index.html",
+      "/tutorial/stata/2026_02_26_07_fungsi/index.html",
+      "/tutorial/stata/2026_02_26_08_string/index.html",
+      "/tutorial/stata/2026_02_26_09_datetime/index.html",
+      "/tutorial/stata/2026_02_26_10_missing/index.html",
+      "/tutorial/stata/2026_02_26_11_package/index.html",
+      "/tutorial/stata/2026_02_26_12_import_export/index.html",
+      "/tutorial/stata/2026_02_26_13_filter_select/index.html",
+      "/tutorial/stata/2026_02_26_14_mutate_arrange/index.html",
+      "/tutorial/stata/2026_02_26_15_group_summarise/index.html",
+      "/tutorial/stata/2026_02_26_16_reshape_merge/index.html",
+      "/tutorial/stata/2026_02_26_17_apply/index.html",
+      "/tutorial/stata/2026_02_26_18_debugging/index.html",
+      "/tutorial/stata/2026_02_26_19_workflow/index.html",
+      "/tutorial/stata/2026_02_26_20_mini_project/index.html"
     ]
   },
   {
     "listing": "/tutorial/python/index.html",
     "items": [
-      "/tutorial/python/2026_02_25_dml_causal/index.html"
+      "/tutorial/python/2026_02_26_00_setup/index.html",
+      "/tutorial/python/2026_02_26_01_variabel_tipe_data/index.html",
+      "/tutorial/python/2026_02_26_02_vektor_list/index.html",
+      "/tutorial/python/2026_02_26_03_dataframe/index.html",
+      "/tutorial/python/2026_02_26_04_operator/index.html",
+      "/tutorial/python/2026_02_26_05_conditional/index.html",
+      "/tutorial/python/2026_02_26_06_loop/index.html",
+      "/tutorial/python/2026_02_26_07_fungsi/index.html",
+      "/tutorial/python/2026_02_26_08_string/index.html",
+      "/tutorial/python/2026_02_26_09_datetime/index.html",
+      "/tutorial/python/2026_02_26_10_missing/index.html",
+      "/tutorial/python/2026_02_26_11_package/index.html",
+      "/tutorial/python/2026_02_26_12_import_export/index.html",
+      "/tutorial/python/2026_02_26_13_filter_select/index.html",
+      "/tutorial/python/2026_02_26_14_mutate_arrange/index.html",
+      "/tutorial/python/2026_02_26_15_group_summarise/index.html",
+      "/tutorial/python/2026_02_26_16_reshape_merge/index.html",
+      "/tutorial/python/2026_02_26_17_apply/index.html",
+      "/tutorial/python/2026_02_26_18_debugging/index.html",
+      "/tutorial/python/2026_02_26_19_workflow/index.html",
+      "/tutorial/python/2026_02_26_20_mini_project/index.html"
     ]
   },
   {

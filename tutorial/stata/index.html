@@ -91,9 +91,9 @@ ul.task-list li input[type="checkbox"] {
     }
 
     const options = {
-      valueNames: ['listing-project','listing-execute','listing-lang','listing-website','listing-format','listing-bibliography','listing-_quarto-vars','listing-language','listing-title-block-banner','listing-comments','listing-title','listing-path','listing-outputHref','listing-author','listing-description','listing-filename','listing-file-modified','listing-reading-time','listing-word-count',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-file-modified-sort'] },{ data: ['listing-reading-time-sort'] },{ data: ['listing-word-count-sort'] }],
+      valueNames: ['listing-title','listing-description','listing-date','listing-categories','listing-order',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-date-modified-sort'] },{ data: ['listing-file-modified-sort'] },{ data: ['listing-reading-time-sort'] },{ data: ['listing-word-count-sort'] }],
       
-      searchColumns: ["listing-project","listing-execute","listing-lang","listing-website","listing-format","listing-bibliography","listing-_quarto-vars","listing-language","listing-title-block-banner","listing-comments","listing-title","listing-path","listing-outputHref","listing-author","listing-description","listing-filename","listing-file-modified","listing-reading-time","listing-word-count"],
+      searchColumns: ["listing-project","listing-execute","listing-lang","listing-website","listing-format","listing-bibliography","listing-_quarto-vars","listing-language","listing-title-block-banner","listing-comments","listing-title","listing-description","listing-date","listing-categories","listing-series","listing-order","listing-path","listing-outputHref","listing-date-modified","listing-author","listing-filename","listing-file-modified","listing-reading-time","listing-word-count"],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
@@ -416,7 +416,7 @@ window.Quarto = {
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-    <h5 class="quarto-listing-category-title">Kategori</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">Semua <span class="quarto-category-count">(1)</span></div></div></div>
+    <h5 class="quarto-listing-category-title">Kategori</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">Semua <span class="quarto-category-count">(21)</span></div><div class="category" data-category="QXBwbHk=">Apply <span class="quarto-category-count">(1)</span></div><div class="category" data-category="RGF0YU1hbmlwdWxhdGlvbg==">DataManipulation <span class="quarto-category-count">(3)</span></div><div class="category" data-category="RGF0ZVRpbWU=">DateTime <span class="quarto-category-count">(1)</span></div><div class="category" data-category="RGVidWdnaW5n">Debugging <span class="quarto-category-count">(1)</span></div><div class="category" data-category="RnVuZGFtZW50YWw=">Fundamental <span class="quarto-category-count">(21)</span></div><div class="category" data-category="RnVuZ3Np">Fungsi <span class="quarto-category-count">(1)</span></div><div class="category" data-category="SW1wb3J0RXhwb3J0">ImportExport <span class="quarto-category-count">(1)</span></div><div class="category" data-category="S29udHJvbCUyMEFsdXI=">Kontrol Alur <span class="quarto-category-count">(2)</span></div><div class="category" data-category="TWluaVByb2plY3Q=">MiniProject <span class="quarto-category-count">(1)</span></div><div class="category" data-category="TWlzc2luZ1ZhbHVlcw==">MissingValues <span class="quarto-category-count">(1)</span></div><div class="category" data-category="T3BlcmF0b3I=">Operator <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UGFja2FnZQ==">Package <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UmVzaGFwZQ==">Reshape <span class="quarto-category-count">(1)</span></div><div class="category" data-category="U2V0dXA=">Setup <span class="quarto-category-count">(1)</span></div><div class="category" data-category="U3RyaW5n">String <span class="quarto-category-count">(1)</span></div><div class="category" data-category="U3RydWt0dXIlMjBEYXRh">Struktur Data <span class="quarto-category-count">(2)</span></div><div class="category" data-category="VGlwZSUyMERhdGE=">Tipe Data <span class="quarto-category-count">(1)</span></div><div class="category" data-category="V29ya2Zsb3c=">Workflow <span class="quarto-category-count">(1)</span></div></div></div>
 <!-- main -->
 <main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
 
@@ -428,14 +428,506 @@ window.Quarto = {
 <div id="listing-tutorial-stata" class="quarto-listing quarto-listing-container-custom">
 <div class="list blog">
     
-    <div class="blog-entry" data-index="0" data-listing-file-modified-sort="1772005448777" data-listing-reading-time-sort="3" data-listing-word-count-sort="452">
+    <div class="blog-entry" data-index="0" data-categories="RnVuZGFtZW50YWwlMkNTZXR1cA==" data-listing-date-sort="1772038800000" data-listing-file-modified-sort="1772073230450" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="649">
         <div class="metadata">          
-            <p class="date listing-date"></p>
+            <p class="date listing-date">26 Februari 2026</p>
         </div>
         <div class="body">
-            <p class="title listing-title"><a href="../../tutorial/stata/2026_02_25_panel_data/index.html">Pendahuluan</a></p>
+            <p class="title listing-title"><a href="../../tutorial/stata/2026_02_26_00_setup/index.html">Part 0 — Setup &amp; Environment</a></p>
             
-            <p class="description listing-description">Data panel menggabungkan dimensi <em>cross-section</em> dan <em>time series</em>, memungkinkan kita mengontrol heterogenitas individu yang tidak terobservasi. Tutorial ini membahas estimasi…</p>
+            <div class="post-categories listing-categories">
+                
+                <div class="post-category listing-category" onclick="window.quartoListingCategory('Fundamental'); return false;">
+                    Fundamental
+                </div>
+                
+                <div class="post-category listing-category" onclick="window.quartoListingCategory('Setup'); return false;">
+                    Setup
+                </div>
+                
+            </div>
+            
+            <p class="description listing-description">Instalasi Stata, mengenal antarmuka, working directory, dan menjalankan perintah pertama.</p>
+        </div>
+        
+    </div>
+    
+    <div class="blog-entry" data-index="1" data-categories="RnVuZGFtZW50YWwlMkNUaXBlJTIwRGF0YQ==" data-listing-date-sort="1772038800000" data-listing-file-modified-sort="1772073232068" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1059">
+        <div class="metadata">          
+            <p class="date listing-date">26 Februari 2026</p>
+        </div>
+        <div class="body">
+            <p class="title listing-title"><a href="../../tutorial/stata/2026_02_26_01_variabel_tipe_data/index.html">Part 1 — Variabel &amp; Tipe Data</a></p>
+            
+            <div class="post-categories listing-categories">
+                
+                <div class="post-category listing-category" onclick="window.quartoListingCategory('Fundamental'); return false;">
+                    Fundamental
+                </div>
+                
+                <div class="post-category listing-category" onclick="window.quartoListingCategory('Tipe Data'); return false;">
+                    Tipe Data
+                </div>
+                
+            </div>
+            
+            <p class="description listing-description">Variabel di dataset, tipe data (numeric, string, date), generate, dan konversi tipe di Stata.</p>
+        </div>
+        
+    </div>
+    
+    <div class="blog-entry" data-index="2" data-categories="RnVuZGFtZW50YWwlMkNTdHJ1a3R1ciUyMERhdGE=" data-listing-date-sort="1772038800000" data-listing-file-modified-sort="1772073233043" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1014">
+        <div class="metadata">          
+            <p class="date listing-date">26 Februari 2026</p>
+        </div>
+        <div class="body">
+            <p class="title listing-title"><a href="../../tutorial/stata/2026_02_26_02_vektor_list/index.html">Part 2 — Struktur Data I: Variabel, Macro &amp; Scalar</a></p>
+            
+            <div class="post-categories listing-categories">
+                
+                <div class="post-category listing-category" onclick="window.quartoListingCategory('Fundamental'); return false;">
+                    Fundamental
+                </div>
+                
+                <div class="post-category listing-category" onclick="window.quartoListingCategory('Struktur Data'); return false;">
+                    Struktur Data
+                </div>
+                
+            </div>
+            
+            <p class="description listing-description">Memahami variabel dataset, local/global macro, scalar, dan matrix di Stata.</p>
+        </div>
+        
+    </div>
+    
+    <div class="blog-entry" data-index="3" data-categories="RnVuZGFtZW50YWwlMkNTdHJ1a3R1ciUyMERhdGE=" data-listing-date-sort="1772038800000" data-listing-file-modified-sort="1772073233494" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1229">
+        <div class="metadata">          
+            <p class="date listing-date">26 Februari 2026</p>
+        </div>
+        <div class="body">
+            <p class="title listing-title"><a href="../../tutorial/stata/2026_02_26_03_dataframe/index.html">Part 3 — Struktur Data II: Dataset sebagai DataFrame</a></p>
+            
+            <div class="post-categories listing-categories">
+                
+                <div class="post-category listing-category" onclick="window.quartoListingCategory('Fundamental'); return false;">
+                    Fundamental
+                </div>
+                
+                <div class="post-category listing-category" onclick="window.quartoListingCategory('Struktur Data'); return false;">
+                    Struktur Data
+                </div>
+                
+            </div>
+            
+            <p class="description listing-description">Memahami dataset Stata sebagai tabel data — describe, list, browse, input, dan operasi dasar.</p>
+        </div>
+        
+    </div>
+    
+    <div class="blog-entry" data-index="4" data-categories="RnVuZGFtZW50YWwlMkNPcGVyYXRvcg==" data-listing-date-sort="1772038800000" data-listing-file-modified-sort="1772073233961" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="940">
+        <div class="metadata">          
+            <p class="date listing-date">26 Februari 2026</p>
+        </div>
+        <div class="body">
+            <p class="title listing-title"><a href="../../tutorial/stata/2026_02_26_04_operator/index.html">Part 4 — Operator &amp; Ekspresi</a></p>
+            
+            <div class="post-categories listing-categories">
+                
+                <div class="post-category listing-category" onclick="window.quartoListingCategory('Fundamental'); return false;">
+                    Fundamental
+                </div>
+                
+                <div class="post-category listing-category" onclick="window.quartoListingCategory('Operator'); return false;">
+                    Operator
+                </div>
+                
+            </div>
+            
+            <p class="description listing-description">Operator aritmatika, perbandingan, logika, dan ekspresi di Stata.</p>
+        </div>
+        
+    </div>
+    
+    <div class="blog-entry" data-index="5" data-categories="RnVuZGFtZW50YWwlMkNLb250cm9sJTIwQWx1cg==" data-listing-date-sort="1772038800000" data-listing-file-modified-sort="1772073234444" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="638">
+        <div class="metadata">          
+            <p class="date listing-date">26 Februari 2026</p>
+        </div>
+        <div class="body">
+            <p class="title listing-title"><a href="../../tutorial/stata/2026_02_26_05_conditional/index.html">Part 5 — Kontrol Alur: Conditional</a></p>
+            
+            <div class="post-categories listing-categories">
+                
+                <div class="post-category listing-category" onclick="window.quartoListingCategory('Fundamental'); return false;">
+                    Fundamental
+                </div>
+                
+                <div class="post-category listing-category" onclick="window.quartoListingCategory('Kontrol Alur'); return false;">
+                    Kontrol Alur
+                </div>
+                
+            </div>
+            
+            <p class="description listing-description">if/else dalam do-file, cond(), recode, dan generate bersyarat di Stata.</p>
+        </div>
+        
+    </div>
+    
+    <div class="blog-entry" data-index="6" data-categories="RnVuZGFtZW50YWwlMkNLb250cm9sJTIwQWx1cg==" data-listing-date-sort="1772038800000" data-listing-file-modified-sort="1772073234895" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="699">
+        <div class="metadata">          
+            <p class="date listing-date">26 Februari 2026</p>
+        </div>
+        <div class="body">
+            <p class="title listing-title"><a href="../../tutorial/stata/2026_02_26_06_loop/index.html">Part 6 — Kontrol Alur: Loop</a></p>
+            
+            <div class="post-categories listing-categories">
+                
+                <div class="post-category listing-category" onclick="window.quartoListingCategory('Fundamental'); return false;">
+                    Fundamental
+                </div>
+                
+                <div class="post-category listing-category" onclick="window.quartoListingCategory('Kontrol Alur'); return false;">
+                    Kontrol Alur
+                </div>
+                
+            </div>
+            
+            <p class="description listing-description">forvalues, foreach, while, dan loop idiomatik di Stata.</p>
+        </div>
+        
+    </div>
+    
+    <div class="blog-entry" data-index="7" data-categories="RnVuZGFtZW50YWwlMkNGdW5nc2k=" data-listing-date-sort="1772038800000" data-listing-file-modified-sort="1772073235350" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="438">
+        <div class="metadata">          
+            <p class="date listing-date">26 Februari 2026</p>
+        </div>
+        <div class="body">
+            <p class="title listing-title"><a href="../../tutorial/stata/2026_02_26_07_fungsi/index.html">Part 7 — Fungsi (Program)</a></p>
+            
+            <div class="post-categories listing-categories">
+                
+                <div class="post-category listing-category" onclick="window.quartoListingCategory('Fundamental'); return false;">
+                    Fundamental
+                </div>
+                
+                <div class="post-category listing-category" onclick="window.quartoListingCategory('Fungsi'); return false;">
+                    Fungsi
+                </div>
+                
+            </div>
+            
+            <p class="description listing-description">Menulis program/ado, arguments, return values, dan tempfile di Stata.</p>
+        </div>
+        
+    </div>
+    
+    <div class="blog-entry" data-index="8" data-categories="RnVuZGFtZW50YWwlMkNTdHJpbmc=" data-listing-date-sort="1772038800000" data-listing-file-modified-sort="1772073235811" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="451">
+        <div class="metadata">          
+            <p class="date listing-date">26 Februari 2026</p>
+        </div>
+        <div class="body">
+            <p class="title listing-title"><a href="../../tutorial/stata/2026_02_26_08_string/index.html">Part 8 — String &amp; Teks</a></p>
+            
+            <div class="post-categories listing-categories">
+                
+                <div class="post-category listing-category" onclick="window.quartoListingCategory('Fundamental'); return false;">
+                    Fundamental
+                </div>
+                
+                <div class="post-category listing-category" onclick="window.quartoListingCategory('String'); return false;">
+                    String
+                </div>
+                
+            </div>
+            
+            <p class="description listing-description">Manipulasi string di Stata: string functions, regex, split, trim, dan format.</p>
+        </div>
+        
+    </div>
+    
+    <div class="blog-entry" data-index="9" data-categories="RnVuZGFtZW50YWwlMkNEYXRlVGltZQ==" data-listing-date-sort="1772038800000" data-listing-file-modified-sort="1772073236277" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="537">
+        <div class="metadata">          
+            <p class="date listing-date">26 Februari 2026</p>
+        </div>
+        <div class="body">
+            <p class="title listing-title"><a href="../../tutorial/stata/2026_02_26_09_datetime/index.html">Part 9 — Date &amp; Time</a></p>
+            
+            <div class="post-categories listing-categories">
+                
+                <div class="post-category listing-category" onclick="window.quartoListingCategory('Fundamental'); return false;">
+                    Fundamental
+                </div>
+                
+                <div class="post-category listing-category" onclick="window.quartoListingCategory('DateTime'); return false;">
+                    DateTime
+                </div>
+                
+            </div>
+            
+            <p class="description listing-description">Bekerja dengan tanggal dan waktu di Stata: date functions, %td format, clock time, dan aritmetika tanggal.</p>
+        </div>
+        
+    </div>
+    
+    <div class="blog-entry" data-index="10" data-categories="RnVuZGFtZW50YWwlMkNNaXNzaW5nVmFsdWVz" data-listing-date-sort="1772038800000" data-listing-file-modified-sort="1772073236760" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="414">
+        <div class="metadata">          
+            <p class="date listing-date">26 Februari 2026</p>
+        </div>
+        <div class="body">
+            <p class="title listing-title"><a href="../../tutorial/stata/2026_02_26_10_missing/index.html">Part 10 — Missing Values</a></p>
+            
+            <div class="post-categories listing-categories">
+                
+                <div class="post-category listing-category" onclick="window.quartoListingCategory('Fundamental'); return false;">
+                    Fundamental
+                </div>
+                
+                <div class="post-category listing-category" onclick="window.quartoListingCategory('MissingValues'); return false;">
+                    MissingValues
+                </div>
+                
+            </div>
+            
+            <p class="description listing-description">Memahami dan menangani missing values di Stata: system missing, extended missing, deteksi, dan imputasi.</p>
+        </div>
+        
+    </div>
+    
+    <div class="blog-entry" data-index="11" data-categories="RnVuZGFtZW50YWwlMkNQYWNrYWdl" data-listing-date-sort="1772038800000" data-listing-file-modified-sort="1772073237142" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="391">
+        <div class="metadata">          
+            <p class="date listing-date">26 Februari 2026</p>
+        </div>
+        <div class="body">
+            <p class="title listing-title"><a href="../../tutorial/stata/2026_02_26_11_package/index.html">Part 11 — Package &amp; Library</a></p>
+            
+            <div class="post-categories listing-categories">
+                
+                <div class="post-category listing-category" onclick="window.quartoListingCategory('Fundamental'); return false;">
+                    Fundamental
+                </div>
+                
+                <div class="post-category listing-category" onclick="window.quartoListingCategory('Package'); return false;">
+                    Package
+                </div>
+                
+            </div>
+            
+            <p class="description listing-description">Install dan mengelola package di Stata: ssc, net install, ado files, dan community packages.</p>
+        </div>
+        
+    </div>
+    
+    <div class="blog-entry" data-index="12" data-categories="RnVuZGFtZW50YWwlMkNJbXBvcnRFeHBvcnQ=" data-listing-date-sort="1772038800000" data-listing-file-modified-sort="1772073855945" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="456">
+        <div class="metadata">          
+            <p class="date listing-date">26 Februari 2026</p>
+        </div>
+        <div class="body">
+            <p class="title listing-title"><a href="../../tutorial/stata/2026_02_26_12_import_export/index.html">Part 12 — Import &amp; Export Data</a></p>
+            
+            <div class="post-categories listing-categories">
+                
+                <div class="post-category listing-category" onclick="window.quartoListingCategory('Fundamental'); return false;">
+                    Fundamental
+                </div>
+                
+                <div class="post-category listing-category" onclick="window.quartoListingCategory('ImportExport'); return false;">
+                    ImportExport
+                </div>
+                
+            </div>
+            
+            <p class="description listing-description">Membaca dan menyimpan data di Stata: import delimited, use, save, export, dan format lainnya.</p>
+        </div>
+        
+    </div>
+    
+    <div class="blog-entry" data-index="13" data-categories="RnVuZGFtZW50YWwlMkNEYXRhTWFuaXB1bGF0aW9u" data-listing-date-sort="1772038800000" data-listing-file-modified-sort="1772073855945" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="405">
+        <div class="metadata">          
+            <p class="date listing-date">26 Februari 2026</p>
+        </div>
+        <div class="body">
+            <p class="title listing-title"><a href="../../tutorial/stata/2026_02_26_13_filter_select/index.html">Part 13 — Manipulasi Data I: Filter &amp; Select</a></p>
+            
+            <div class="post-categories listing-categories">
+                
+                <div class="post-category listing-category" onclick="window.quartoListingCategory('Fundamental'); return false;">
+                    Fundamental
+                </div>
+                
+                <div class="post-category listing-category" onclick="window.quartoListingCategory('DataManipulation'); return false;">
+                    DataManipulation
+                </div>
+                
+            </div>
+            
+            <p class="description listing-description">Memilih baris dan kolom di Stata: keep, drop, if, in, dan kombinasinya.</p>
+        </div>
+        
+    </div>
+    
+    <div class="blog-entry" data-index="14" data-categories="RnVuZGFtZW50YWwlMkNEYXRhTWFuaXB1bGF0aW9u" data-listing-date-sort="1772038800000" data-listing-file-modified-sort="1772073855945" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="426">
+        <div class="metadata">          
+            <p class="date listing-date">26 Februari 2026</p>
+        </div>
+        <div class="body">
+            <p class="title listing-title"><a href="../../tutorial/stata/2026_02_26_14_mutate_arrange/index.html">Part 14 — Manipulasi Data II: Generate &amp; Sort</a></p>
+            
+            <div class="post-categories listing-categories">
+                
+                <div class="post-category listing-category" onclick="window.quartoListingCategory('Fundamental'); return false;">
+                    Fundamental
+                </div>
+                
+                <div class="post-category listing-category" onclick="window.quartoListingCategory('DataManipulation'); return false;">
+                    DataManipulation
+                </div>
+                
+            </div>
+            
+            <p class="description listing-description">Membuat variabel baru dan mengurutkan data di Stata: generate, replace, egen, sort, dan gsort.</p>
+        </div>
+        
+    </div>
+    
+    <div class="blog-entry" data-index="15" data-categories="RnVuZGFtZW50YWwlMkNEYXRhTWFuaXB1bGF0aW9u" data-listing-date-sort="1772038800000" data-listing-file-modified-sort="1772073855945" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="381">
+        <div class="metadata">          
+            <p class="date listing-date">26 Februari 2026</p>
+        </div>
+        <div class="body">
+            <p class="title listing-title"><a href="../../tutorial/stata/2026_02_26_15_group_summarise/index.html">Part 15 — Manipulasi Data III: Collapse &amp; By</a></p>
+            
+            <div class="post-categories listing-categories">
+                
+                <div class="post-category listing-category" onclick="window.quartoListingCategory('Fundamental'); return false;">
+                    Fundamental
+                </div>
+                
+                <div class="post-category listing-category" onclick="window.quartoListingCategory('DataManipulation'); return false;">
+                    DataManipulation
+                </div>
+                
+            </div>
+            
+            <p class="description listing-description">Agregasi data per grup di Stata: collapse, by/bysort, tabstat, egen, dan table.</p>
+        </div>
+        
+    </div>
+    
+    <div class="blog-entry" data-index="16" data-categories="RnVuZGFtZW50YWwlMkNSZXNoYXBl" data-listing-date-sort="1772038800000" data-listing-file-modified-sort="1772073855945" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="322">
+        <div class="metadata">          
+            <p class="date listing-date">26 Februari 2026</p>
+        </div>
+        <div class="body">
+            <p class="title listing-title"><a href="../../tutorial/stata/2026_02_26_16_reshape_merge/index.html">Part 16 — Reshape &amp; Merge</a></p>
+            
+            <div class="post-categories listing-categories">
+                
+                <div class="post-category listing-category" onclick="window.quartoListingCategory('Fundamental'); return false;">
+                    Fundamental
+                </div>
+                
+                <div class="post-category listing-category" onclick="window.quartoListingCategory('Reshape'); return false;">
+                    Reshape
+                </div>
+                
+            </div>
+            
+            <p class="description listing-description">Mengubah bentuk data dan menggabungkan dataset di Stata: reshape, merge, append, dan joinby.</p>
+        </div>
+        
+    </div>
+    
+    <div class="blog-entry" data-index="17" data-categories="RnVuZGFtZW50YWwlMkNBcHBseQ==" data-listing-date-sort="1772038800000" data-listing-file-modified-sort="1772073855945" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="321">
+        <div class="metadata">          
+            <p class="date listing-date">26 Februari 2026</p>
+        </div>
+        <div class="body">
+            <p class="title listing-title"><a href="../../tutorial/stata/2026_02_26_17_apply/index.html">Part 17 — Vectorisasi &amp; Efisiensi</a></p>
+            
+            <div class="post-categories listing-categories">
+                
+                <div class="post-category listing-category" onclick="window.quartoListingCategory('Fundamental'); return false;">
+                    Fundamental
+                </div>
+                
+                <div class="post-category listing-category" onclick="window.quartoListingCategory('Apply'); return false;">
+                    Apply
+                </div>
+                
+            </div>
+            
+            <p class="description listing-description">Operasi vectorized di Stata: generate vs loop, egen, gtools, dan tips performa.</p>
+        </div>
+        
+    </div>
+    
+    <div class="blog-entry" data-index="18" data-categories="RnVuZGFtZW50YWwlMkNEZWJ1Z2dpbmc=" data-listing-date-sort="1772038800000" data-listing-file-modified-sort="1772073855945" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="508">
+        <div class="metadata">          
+            <p class="date listing-date">26 Februari 2026</p>
+        </div>
+        <div class="body">
+            <p class="title listing-title"><a href="../../tutorial/stata/2026_02_26_18_debugging/index.html">Part 18 — Debugging &amp; Error Handling</a></p>
+            
+            <div class="post-categories listing-categories">
+                
+                <div class="post-category listing-category" onclick="window.quartoListingCategory('Fundamental'); return false;">
+                    Fundamental
+                </div>
+                
+                <div class="post-category listing-category" onclick="window.quartoListingCategory('Debugging'); return false;">
+                    Debugging
+                </div>
+                
+            </div>
+            
+            <p class="description listing-description">Menangani error dan debugging di Stata: capture, error codes, assert, trace, dan log files.</p>
+        </div>
+        
+    </div>
+    
+    <div class="blog-entry" data-index="19" data-categories="RnVuZGFtZW50YWwlMkNXb3JrZmxvdw==" data-listing-date-sort="1772038800000" data-listing-file-modified-sort="1772073855945" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="453">
+        <div class="metadata">          
+            <p class="date listing-date">26 Februari 2026</p>
+        </div>
+        <div class="body">
+            <p class="title listing-title"><a href="../../tutorial/stata/2026_02_26_19_workflow/index.html">Part 19 — Reproducible Workflow</a></p>
+            
+            <div class="post-categories listing-categories">
+                
+                <div class="post-category listing-category" onclick="window.quartoListingCategory('Fundamental'); return false;">
+                    Fundamental
+                </div>
+                
+                <div class="post-category listing-category" onclick="window.quartoListingCategory('Workflow'); return false;">
+                    Workflow
+                </div>
+                
+            </div>
+            
+            <p class="description listing-description">Workflow reproducible di Stata: do-files, project structure, log files, version, dan best practices.</p>
+        </div>
+        
+    </div>
+    
+    <div class="blog-entry" data-index="20" data-categories="RnVuZGFtZW50YWwlMkNNaW5pUHJvamVjdA==" data-listing-date-sort="1772038800000" data-listing-file-modified-sort="1772073855945" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="574">
+        <div class="metadata">          
+            <p class="date listing-date">26 Februari 2026</p>
+        </div>
+        <div class="body">
+            <p class="title listing-title"><a href="../../tutorial/stata/2026_02_26_20_mini_project/index.html">Part 20 — Mini Project: Analisis Data Lengkap</a></p>
+            
+            <div class="post-categories listing-categories">
+                
+                <div class="post-category listing-category" onclick="window.quartoListingCategory('Fundamental'); return false;">
+                    Fundamental
+                </div>
+                
+                <div class="post-category listing-category" onclick="window.quartoListingCategory('MiniProject'); return false;">
+                    MiniProject
+                </div>
+                
+            </div>
+            
+            <p class="description listing-description">Menggabungkan semua skill di Stata: import, clean, manipulasi, visualisasi, dan export dalam satu analisis end-to-end.</p>
         </div>
         
     </div>

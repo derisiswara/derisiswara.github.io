@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="description" content="Workflow reproducible di R: project structure, renv, here, Quarto, seed, dan best practices.">
 
-<title>Pendahuluan – Deri Siswara</title>
+<title>Part 19 — Reproducible Workflow – Deri Siswara</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -113,38 +114,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
-
-<meta property="og:title" content="Pendahuluan – Deri Siswara">
-<meta property="og:description" content="">
+<meta property="og:title" content="Part 19 — Reproducible Workflow – Deri Siswara">
+<meta property="og:description" content="Workflow reproducible di R: project structure, renv, here, Quarto, seed, dan best practices.">
 <meta property="og:site_name" content="Deri Siswara">
 </head>
 
@@ -396,14 +368,29 @@ window.Quarto = {
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Pendahuluan</h1>
-                      </div>
+      <div class="quarto-title-block"><div><h1 class="title">Part 19 — Reproducible Workflow</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Kode</button></div></div>
+                  <div>
+        <div class="description">
+          Workflow reproducible di R: project structure, renv, here, Quarto, seed, dan best practices.
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">Fundamental</div>
+                <div class="quarto-category">Workflow</div>
+              </div>
+                  </div>
   </div>
     
   
   <div class="quarto-title-meta">
 
       
+      <div>
+      <div class="quarto-title-meta-heading">Diterbitkan</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">26 Februari 2026</p>
+      </div>
+    </div>
     
       
     </div>
@@ -421,198 +408,189 @@ window.Quarto = {
 
 
 
-<p>Data panel menggabungkan dimensi <em>cross-section</em> dan <em>time series</em>, memungkinkan kita mengontrol heterogenitas individu yang tidak terobservasi. Tutorial ini membahas estimasi model data panel di STATA secara lengkap.</p>
-<section id="notasi-model" class="level3">
-<h3 class="anchored" data-anchor-id="notasi-model">Notasi Model</h3>
-<p><span class="math display">\[
-y_{it} = \alpha_i + \mathbf{x}_{it}'\boldsymbol{\beta} + \varepsilon_{it}
-\]</span></p>
+<section id="fundamental-series-part-19-of-20" class="level2">
+<h2 class="anchored" data-anchor-id="fundamental-series-part-19-of-20">Fundamental Series — Part 19 of 20</h2>
+<p>Analisis yang baik harus bisa <strong>direproduksi</strong> — oleh orang lain, atau oleh diri sendiri 6 bulan kemudian. Part ini membahas praktik-praktik yang membuat workflow R reproducible.</p>
+<hr>
+</section>
+<section id="struktur-folder-project" class="level2">
+<h2 class="anchored" data-anchor-id="struktur-folder-project">Struktur Folder Project</h2>
+<pre><code>my_project/
+├── my_project.Rproj      # RStudio/Positron project file
+├── R/                     # Script R
+│   ├── 01_import.R
+│   ├── 02_clean.R
+│   └── 03_analisis.R
+├── data/
+│   ├── raw/               # Data mentah (JANGAN diubah)
+│   └── processed/         # Data bersih
+├── output/
+│   ├── figures/
+│   └── tables/
+├── renv.lock              # Package versions
+└── README.md</code></pre>
+<hr>
+</section>
+<section id="rproj-gunakan-r-project" class="level2">
+<h2 class="anchored" data-anchor-id="rproj-gunakan-r-project"><code>.Rproj</code> — Gunakan R Project</h2>
+<p>Selalu bekerja dalam <strong>R Project</strong>:</p>
 <ul>
-<li><span class="math inline">\(\alpha_i\)</span>: efek individu (fixed atau random)</li>
-<li><span class="math inline">\(\mathbf{x}_{it}\)</span>: vektor variabel independen</li>
-<li><span class="math inline">\(\varepsilon_{it}\)</span>: error term idiosinkratik</li>
-</ul>
-</section>
-<section id="setup-data" class="level2">
-<h2 class="anchored" data-anchor-id="setup-data">Setup Data</h2>
-<p>Kita gunakan dataset <code>nlswork</code> (National Longitudinal Survey) bawaan STATA.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>* Load <span class="kw">data</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">webuse</span> nlswork, <span class="kw">clear</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>* Lihat struktur</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="kw">describe</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="kw">summarize</span> ln_wage age tenure hours</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>* Deklarasi <span class="kw">data</span> panel</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>xtset idcode <span class="fu">year</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>* Ringkasan panel</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>xtdescribe</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="kw">xtsum</span> ln_wage age tenure hours</span></code></pre></div><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></div>
-<blockquote class="blockquote">
-<p><strong><code>xtsum</code></strong> memberikan dekomposisi between vs within variation — penting untuk memahami sumber variasi data.</p>
-</blockquote>
-</section>
-<section id="estimasi-model" class="level2">
-<h2 class="anchored" data-anchor-id="estimasi-model">Estimasi Model</h2>
-<section id="pooled-ols-baseline" class="level3">
-<h3 class="anchored" data-anchor-id="pooled-ols-baseline">Pooled OLS (Baseline)</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">reg</span> ln_wage age c.age#c.age tenure hours i.race, <span class="kw">robust</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">estimates</span> <span class="kw">store</span> pooled</span></code></pre></div><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="fixed-effects-fe" class="level3">
-<h3 class="anchored" data-anchor-id="fixed-effects-fe">Fixed Effects (FE)</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">xtreg</span> ln_wage age c.age#c.age tenure hours, <span class="kw">fe</span> <span class="kw">robust</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">estimates</span> <span class="kw">store</span> <span class="kw">fe</span></span></code></pre></div><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></div>
-<blockquote class="blockquote">
-<p><strong>Catatan:</strong> Variabel time-invariant (seperti <code>race</code>) otomatis tereliminasi di FE.</p>
-</blockquote>
-</section>
-<section id="random-effects-re" class="level3">
-<h3 class="anchored" data-anchor-id="random-effects-re">Random Effects (RE)</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">xtreg</span> ln_wage age c.age#c.age tenure hours i.race, re <span class="kw">robust</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="kw">estimates</span> <span class="kw">store</span> re</span></code></pre></div><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="perbandingan-output" class="level3">
-<h3 class="anchored" data-anchor-id="perbandingan-output">Perbandingan Output</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">estimates</span> <span class="kw">table</span> pooled <span class="kw">fe</span> re, <span class="kw">star</span> <span class="kw">stats</span>(<span class="kw">N</span> r2 r2_a r2_w r2_b r2_o)</span></code></pre></div><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-</section>
-<section id="hausman-test-fe-vs-re" class="level2">
-<h2 class="anchored" data-anchor-id="hausman-test-fe-vs-re">Hausman Test: FE vs RE</h2>
-<p>Hipotesis: - <span class="math inline">\(H_0\)</span>: RE konsisten dan efisien (gunakan RE) - <span class="math inline">\(H_1\)</span>: RE tidak konsisten (gunakan FE)</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>* Estimasi ulang tanpa <span class="kw">robust</span> untuk Hausman <span class="kw">test</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="kw">quietly</span> <span class="kw">xtreg</span> ln_wage age c.age#c.age tenure hours, <span class="kw">fe</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="kw">estimates</span> <span class="kw">store</span> fe_haus</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="kw">quietly</span> <span class="kw">xtreg</span> ln_wage age c.age#c.age tenure hours, re</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="kw">estimates</span> <span class="kw">store</span> re_haus</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="kw">hausman</span> fe_haus re_haus</span></code></pre></div><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></div>
-<blockquote class="blockquote">
-<p>Jika <span class="math inline">\(p &lt; 0.05\)</span>, tolak <span class="math inline">\(H_0\)</span> → gunakan <strong>Fixed Effects</strong>.</p>
-</blockquote>
-</section>
-<section id="uji-asumsi" class="level2">
-<h2 class="anchored" data-anchor-id="uji-asumsi">Uji Asumsi</h2>
-<section id="heteroskedastisitas-modified-wald-test" class="level3">
-<h3 class="anchored" data-anchor-id="heteroskedastisitas-modified-wald-test">1. Heteroskedastisitas (Modified Wald Test)</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>* Setelah <span class="kw">xtreg</span>, <span class="kw">fe</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="kw">quietly</span> <span class="kw">xtreg</span> ln_wage age c.age#c.age tenure hours, <span class="kw">fe</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>xttest3</span></code></pre></div><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="autokorelasi-wooldridge-test" class="level3">
-<h3 class="anchored" data-anchor-id="autokorelasi-wooldridge-test">2. Autokorelasi (Wooldridge Test)</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>xtserial ln_wage age tenure hours</span></code></pre></div><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="cross-sectional-dependence-pesaran-cd-test" class="level3">
-<h3 class="anchored" data-anchor-id="cross-sectional-dependence-pesaran-cd-test">3. Cross-Sectional Dependence (Pesaran CD Test)</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">quietly</span> <span class="kw">xtreg</span> ln_wage age c.age#c.age tenure hours, <span class="kw">fe</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>xtcsd, pesaran <span class="fu">abs</span></span></code></pre></div><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="solusi-jika-asumsi-dilanggar" class="level3">
-<h3 class="anchored" data-anchor-id="solusi-jika-asumsi-dilanggar">Solusi jika Asumsi Dilanggar</h3>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Masalah</th>
-<th>Solusi</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Heteroskedastisitas</td>
-<td><code>robust</code> atau <code>vce(cluster idcode)</code></td>
-</tr>
-<tr class="even">
-<td>Autokorelasi</td>
-<td><code>vce(cluster idcode)</code></td>
-</tr>
-<tr class="odd">
-<td>Keduanya</td>
-<td>Driscoll-Kraay: <code>xtscc</code></td>
-</tr>
-</tbody>
-</table>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>* Cluster-<span class="kw">robust</span> standard errors (solusi umum)</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="kw">xtreg</span> ln_wage age c.age#c.age tenure hours, <span class="kw">fe</span> <span class="kw">vce</span>(<span class="kw">cluster</span> idcode)</span></code></pre></div><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-</section>
-<section id="visualisasi" class="level2">
-<h2 class="anchored" data-anchor-id="visualisasi">Visualisasi</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>* Marginal <span class="kw">effects</span> <span class="kw">of</span> age (quadratic)</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="kw">quietly</span> <span class="kw">xtreg</span> ln_wage c.age##c.age tenure hours, <span class="kw">fe</span> <span class="kw">robust</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>margins, <span class="fu">at</span>(age=(18(2)46)) vsquish</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>marginsplot, <span class="co">///</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="bn">title</span>(<span class="st">"Predicted Log Wage by Age"</span>) <span class="co">///</span></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    <span class="bn">ytitle</span>(<span class="st">"Predicted ln(wage)"</span>) <span class="co">///</span></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    <span class="bn">xtitle</span>(<span class="st">"Age"</span>) <span class="co">///</span></span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    <span class="dv">scheme</span>(s2color)</span></code></pre></div><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="ringkasan-perintah" class="level2">
-<h2 class="anchored" data-anchor-id="ringkasan-perintah">Ringkasan Perintah</h2>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Langkah</th>
-<th>Perintah STATA</th>
-<th>Keterangan</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Setup panel</td>
-<td><code>xtset id time</code></td>
-<td>Deklarasi struktur panel</td>
-</tr>
-<tr class="even">
-<td>Deskriptif</td>
-<td><code>xtsum</code>, <code>xtdescribe</code></td>
-<td>Statistik between/within</td>
-</tr>
-<tr class="odd">
-<td>Fixed Effects</td>
-<td><code>xtreg y x, fe</code></td>
-<td>Eliminasi efek individu</td>
-</tr>
-<tr class="even">
-<td>Random Effects</td>
-<td><code>xtreg y x, re</code></td>
-<td>Efek individu sebagai random</td>
-</tr>
-<tr class="odd">
-<td>Hausman test</td>
-<td><code>hausman fe re</code></td>
-<td>Pilih FE vs RE</td>
-</tr>
-<tr class="even">
-<td>Heteroskedastisitas</td>
-<td><code>xttest3</code></td>
-<td>Modified Wald test</td>
-</tr>
-<tr class="odd">
-<td>Autokorelasi</td>
-<td><code>xtserial</code></td>
-<td>Wooldridge test</td>
-</tr>
-<tr class="even">
-<td>Robust SE</td>
-<td><code>vce(cluster id)</code></td>
-<td>Cluster-robust</td>
-</tr>
-</tbody>
-</table>
-<section id="referensi" class="level3">
-<h3 class="anchored" data-anchor-id="referensi">Referensi</h3>
-<ul>
-<li>Baltagi, B. H. (2021). <em>Econometric Analysis of Panel Data.</em> 6th ed.&nbsp;Springer.</li>
-<li>Wooldridge, J. M. (2010). <em>Econometric Analysis of Cross Section and Panel Data.</em> 2nd ed.&nbsp;MIT Press.</li>
+<li>Working directory otomatis = folder project</li>
+<li>Tidak perlu <code>setwd()</code> (jangan pernah pakai!)</li>
 </ul>
 <hr>
-<p><em>Tutorial selanjutnya: Dynamic Panel Data — GMM Estimation di STATA.</em></p>
-
-
 </section>
+<section id="here-path-yang-portable" class="level2">
+<h2 class="anchored" data-anchor-id="here-path-yang-portable"><code>here</code> — Path yang Portable</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Relatif dari root project</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"raw"</span>, <span class="st">"input.csv"</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># "C:/Users/.../my_project/data/raw/input.csv"</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"raw"</span>, <span class="st">"input.csv"</span>))</span></code></pre></div><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Penting</span>Jangan Pakai <code>setwd()</code> atau Path Absolut
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># SALAH</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">"C:/Users/Budi/Documents/project"</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">read.csv</span>(<span class="st">"C:/Users/Budi/data.csv"</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># BENAR</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="fu">read.csv</span>(<span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"input.csv"</span>))</span></code></pre></div><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<hr>
+</section>
+<section id="renv-lock-package-versions" class="level2">
+<h2 class="anchored" data-anchor-id="renv-lock-package-versions"><code>renv</code> — Lock Package Versions</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Inisialisasi (sekali di awal project)</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">init</span>()</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Install packages seperti biasa</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"dplyr"</span>)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Snapshot — catat versi semua package</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">snapshot</span>()</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Orang lain clone project, lalu:</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">restore</span>()   <span class="co"># install versi yang sama persis</span></span></code></pre></div><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></div>
+<hr>
+</section>
+<section id="set.seed-reproducible-randomness" class="level2">
+<h2 class="anchored" data-anchor-id="set.seed-reproducible-randomness"><code>set.seed()</code> — Reproducible Randomness</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>, <span class="dv">5</span>)    <span class="co"># 49 65 25 74 18</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>, <span class="dv">5</span>)    <span class="co"># 49 65 25 74 18 (sama!)</span></span></code></pre></div><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></div>
+<hr>
+</section>
+<section id="quarto-r-markdown-literate-programming" class="level2">
+<h2 class="anchored" data-anchor-id="quarto-r-markdown-literate-programming">Quarto / R Markdown — Literate Programming</h2>
+<p>Gabungkan kode + narasi + output dalam satu dokumen:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Analisis Data"</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span><span class="co"> html</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="fu">## Import Data</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"input.csv"</span>))</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="fu">## Hasil</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>...</span></code></pre></div><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></div>
+<hr>
+</section>
+<section id="best-practices" class="level2">
+<h2 class="anchored" data-anchor-id="best-practices">Best Practices</h2>
+<ol type="1">
+<li><strong>Jangan simpan workspace</strong> — Matikan “Save .RData on exit”</li>
+<li><strong>Restart R sering</strong> — Ctrl+Shift+F10 (fresh environment)</li>
+<li><strong>Script harus runnable dari atas ke bawah</strong></li>
+<li><strong>Data mentah read-only</strong> — jangan edit, simpan hasil di folder terpisah</li>
+<li><strong>Gunakan relative paths</strong> (via <code>here</code>)</li>
+<li><strong>Comment secukupnya</strong> — kode yang baik bisa dibaca tanpa banyak comment</li>
+<li><strong>Version control</strong> — gunakan Git</li>
+</ol>
+<hr>
+</section>
+<section id="latihan" class="level2">
+<h2 class="anchored" data-anchor-id="latihan">Latihan</h2>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Bahaya</span>Latihan 19.1
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Buat folder structure project baru:</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co">#    - data/raw/, data/processed/, output/figures/, R/</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Gunakan here() untuk reference semua path</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Buat script 01_import.R yang:</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co">#    - Load library</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co">#    - Import data dengan here()</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co">#    - Simpan ke data/processed/ sebagai .rds</span></span></code></pre></div><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<hr>
+</section>
+<section id="ringkasan" class="level2">
+<h2 class="anchored" data-anchor-id="ringkasan">Ringkasan</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Praktik</th>
+<th>Tool</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Project-based workflow</td>
+<td><code>.Rproj</code></td>
+</tr>
+<tr class="even">
+<td>Portable paths</td>
+<td><code>here</code></td>
+</tr>
+<tr class="odd">
+<td>Package management</td>
+<td><code>renv</code></td>
+</tr>
+<tr class="even">
+<td>Reproducible random</td>
+<td><code>set.seed()</code></td>
+</tr>
+<tr class="odd">
+<td>Literate programming</td>
+<td>Quarto / R Markdown</td>
+</tr>
+<tr class="even">
+<td>Version control</td>
+<td>Git</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<p><em>Sebelumnya: <a href="../../../tutorial/r/2026_02_26_18_debugging/index.html">Part 18 — Debugging &amp; Error Handling</a></em> <em>Selanjutnya: <a href="../../../tutorial/r/2026_02_26_20_mini_project/index.html">Part 20 — Mini Project</a></em></p>
+
+
+<!-- -->
+
 </section>
 
 </main> <!-- /main -->
@@ -1111,7 +1089,177 @@ y_{it} = \alpha_i + \mathbf{x}_{it}'\boldsymbol{\beta} + \varepsilon_{it}
     document.getElementById("quarto-content").appendChild(script);
   }
   loadGiscus();
-</script>
+</script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Kode Sumber</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Part 19 — Reproducible Workflow"</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="an">description:</span><span class="co"> "Workflow reproducible di R: project structure, renv, here, Quarto, seed, dan best practices."</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> "2026-02-26"</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="an">categories:</span><span class="co"> [Fundamental, Workflow]</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="an">series:</span><span class="co"> "Fundamental Programming"</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="an">order:</span><span class="co"> 19</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="fu">## Fundamental Series — Part 19 of 20</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>Analisis yang baik harus bisa **direproduksi** — oleh orang lain, atau oleh diri sendiri 6 bulan kemudian. Part ini membahas praktik-praktik yang membuat workflow R reproducible.</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="fu">## Struktur Folder Project</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a><span class="in">my_project/</span></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a><span class="in">├── my_project.Rproj      # RStudio/Positron project file</span></span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a><span class="in">├── R/                     # Script R</span></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a><span class="in">│   ├── 01_import.R</span></span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a><span class="in">│   ├── 02_clean.R</span></span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a><span class="in">│   └── 03_analisis.R</span></span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a><span class="in">├── data/</span></span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a><span class="in">│   ├── raw/               # Data mentah (JANGAN diubah)</span></span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a><span class="in">│   └── processed/         # Data bersih</span></span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a><span class="in">├── output/</span></span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a><span class="in">│   ├── figures/</span></span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a><span class="in">│   └── tables/</span></span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a><span class="in">├── renv.lock              # Package versions</span></span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a><span class="in">└── README.md</span></span>
+<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a><span class="fu">## `.Rproj` — Gunakan R Project</span></span>
+<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a>Selalu bekerja dalam **R Project**:</span>
+<span id="cb8-40"><a href="#cb8-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-41"><a href="#cb8-41" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Working directory otomatis = folder project</span>
+<span id="cb8-42"><a href="#cb8-42" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Tidak perlu <span class="in">`setwd()`</span> (jangan pernah pakai!)</span>
+<span id="cb8-43"><a href="#cb8-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-44"><a href="#cb8-44" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb8-45"><a href="#cb8-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-46"><a href="#cb8-46" aria-hidden="true" tabindex="-1"></a><span class="fu">## `here` — Path yang Portable</span></span>
+<span id="cb8-47"><a href="#cb8-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-48"><a href="#cb8-48" aria-hidden="true" tabindex="-1"></a><span class="in">```r</span></span>
+<span id="cb8-49"><a href="#cb8-49" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
+<span id="cb8-50"><a href="#cb8-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-51"><a href="#cb8-51" aria-hidden="true" tabindex="-1"></a><span class="co"># Relatif dari root project</span></span>
+<span id="cb8-52"><a href="#cb8-52" aria-hidden="true" tabindex="-1"></a><span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"raw"</span>, <span class="st">"input.csv"</span>)</span>
+<span id="cb8-53"><a href="#cb8-53" aria-hidden="true" tabindex="-1"></a><span class="co"># "C:/Users/.../my_project/data/raw/input.csv"</span></span>
+<span id="cb8-54"><a href="#cb8-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-55"><a href="#cb8-55" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"raw"</span>, <span class="st">"input.csv"</span>))</span>
+<span id="cb8-56"><a href="#cb8-56" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb8-57"><a href="#cb8-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-58"><a href="#cb8-58" aria-hidden="true" tabindex="-1"></a>::: {.callout-important}</span>
+<span id="cb8-59"><a href="#cb8-59" aria-hidden="true" tabindex="-1"></a><span class="fu">## Jangan Pakai `setwd()` atau Path Absolut</span></span>
+<span id="cb8-60"><a href="#cb8-60" aria-hidden="true" tabindex="-1"></a><span class="in">```r</span></span>
+<span id="cb8-61"><a href="#cb8-61" aria-hidden="true" tabindex="-1"></a><span class="co"># SALAH</span></span>
+<span id="cb8-62"><a href="#cb8-62" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">"C:/Users/Budi/Documents/project"</span>)</span>
+<span id="cb8-63"><a href="#cb8-63" aria-hidden="true" tabindex="-1"></a><span class="fu">read.csv</span>(<span class="st">"C:/Users/Budi/data.csv"</span>)</span>
+<span id="cb8-64"><a href="#cb8-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-65"><a href="#cb8-65" aria-hidden="true" tabindex="-1"></a><span class="co"># BENAR</span></span>
+<span id="cb8-66"><a href="#cb8-66" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
+<span id="cb8-67"><a href="#cb8-67" aria-hidden="true" tabindex="-1"></a><span class="fu">read.csv</span>(<span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"input.csv"</span>))</span>
+<span id="cb8-68"><a href="#cb8-68" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb8-69"><a href="#cb8-69" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb8-70"><a href="#cb8-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-71"><a href="#cb8-71" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb8-72"><a href="#cb8-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-73"><a href="#cb8-73" aria-hidden="true" tabindex="-1"></a><span class="fu">## `renv` — Lock Package Versions</span></span>
+<span id="cb8-74"><a href="#cb8-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-75"><a href="#cb8-75" aria-hidden="true" tabindex="-1"></a><span class="in">```r</span></span>
+<span id="cb8-76"><a href="#cb8-76" aria-hidden="true" tabindex="-1"></a><span class="co"># Inisialisasi (sekali di awal project)</span></span>
+<span id="cb8-77"><a href="#cb8-77" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">init</span>()</span>
+<span id="cb8-78"><a href="#cb8-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-79"><a href="#cb8-79" aria-hidden="true" tabindex="-1"></a><span class="co"># Install packages seperti biasa</span></span>
+<span id="cb8-80"><a href="#cb8-80" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"dplyr"</span>)</span>
+<span id="cb8-81"><a href="#cb8-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-82"><a href="#cb8-82" aria-hidden="true" tabindex="-1"></a><span class="co"># Snapshot — catat versi semua package</span></span>
+<span id="cb8-83"><a href="#cb8-83" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">snapshot</span>()</span>
+<span id="cb8-84"><a href="#cb8-84" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-85"><a href="#cb8-85" aria-hidden="true" tabindex="-1"></a><span class="co"># Orang lain clone project, lalu:</span></span>
+<span id="cb8-86"><a href="#cb8-86" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">restore</span>()   <span class="co"># install versi yang sama persis</span></span>
+<span id="cb8-87"><a href="#cb8-87" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb8-88"><a href="#cb8-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-89"><a href="#cb8-89" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb8-90"><a href="#cb8-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-91"><a href="#cb8-91" aria-hidden="true" tabindex="-1"></a><span class="fu">## `set.seed()` — Reproducible Randomness</span></span>
+<span id="cb8-92"><a href="#cb8-92" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-93"><a href="#cb8-93" aria-hidden="true" tabindex="-1"></a><span class="in">```r</span></span>
+<span id="cb8-94"><a href="#cb8-94" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
+<span id="cb8-95"><a href="#cb8-95" aria-hidden="true" tabindex="-1"></a><span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>, <span class="dv">5</span>)    <span class="co"># 49 65 25 74 18</span></span>
+<span id="cb8-96"><a href="#cb8-96" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-97"><a href="#cb8-97" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
+<span id="cb8-98"><a href="#cb8-98" aria-hidden="true" tabindex="-1"></a><span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>, <span class="dv">5</span>)    <span class="co"># 49 65 25 74 18 (sama!)</span></span>
+<span id="cb8-99"><a href="#cb8-99" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb8-100"><a href="#cb8-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-101"><a href="#cb8-101" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb8-102"><a href="#cb8-102" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-103"><a href="#cb8-103" aria-hidden="true" tabindex="-1"></a><span class="fu">## Quarto / R Markdown — Literate Programming</span></span>
+<span id="cb8-104"><a href="#cb8-104" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-105"><a href="#cb8-105" aria-hidden="true" tabindex="-1"></a>Gabungkan kode + narasi + output dalam satu dokumen:</span>
+<span id="cb8-106"><a href="#cb8-106" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-107"><a href="#cb8-107" aria-hidden="true" tabindex="-1"></a><span class="in">````markdown</span></span>
+<span id="cb8-108"><a href="#cb8-108" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb8-109"><a href="#cb8-109" aria-hidden="true" tabindex="-1"></a>title: "Analisis Data"</span>
+<span id="cb8-110"><a href="#cb8-110" aria-hidden="true" tabindex="-1"></a>format: html</span>
+<span id="cb8-111"><a href="#cb8-111" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb8-112"><a href="#cb8-112" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-113"><a href="#cb8-113" aria-hidden="true" tabindex="-1"></a><span class="fu">## Import Data</span></span>
+<span id="cb8-114"><a href="#cb8-114" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-115"><a href="#cb8-115" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb8-116"><a href="#cb8-116" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb8-117"><a href="#cb8-117" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"input.csv"</span>))</span>
+<span id="cb8-118"><a href="#cb8-118" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb8-119"><a href="#cb8-119" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-120"><a href="#cb8-120" aria-hidden="true" tabindex="-1"></a><span class="fu">## Hasil</span></span>
+<span id="cb8-121"><a href="#cb8-121" aria-hidden="true" tabindex="-1"></a>...</span>
+<span id="cb8-122"><a href="#cb8-122" aria-hidden="true" tabindex="-1"></a><span class="in">````</span></span>
+<span id="cb8-123"><a href="#cb8-123" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-124"><a href="#cb8-124" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb8-125"><a href="#cb8-125" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-126"><a href="#cb8-126" aria-hidden="true" tabindex="-1"></a><span class="fu">## Best Practices</span></span>
+<span id="cb8-127"><a href="#cb8-127" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-128"><a href="#cb8-128" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**Jangan simpan workspace** — Matikan "Save .RData on exit"</span>
+<span id="cb8-129"><a href="#cb8-129" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>**Restart R sering** — Ctrl+Shift+F10 (fresh environment)</span>
+<span id="cb8-130"><a href="#cb8-130" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>**Script harus runnable dari atas ke bawah**</span>
+<span id="cb8-131"><a href="#cb8-131" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>**Data mentah read-only** — jangan edit, simpan hasil di folder terpisah</span>
+<span id="cb8-132"><a href="#cb8-132" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>**Gunakan relative paths** (via <span class="in">`here`</span>)</span>
+<span id="cb8-133"><a href="#cb8-133" aria-hidden="true" tabindex="-1"></a><span class="ss">6. </span>**Comment secukupnya** — kode yang baik bisa dibaca tanpa banyak comment</span>
+<span id="cb8-134"><a href="#cb8-134" aria-hidden="true" tabindex="-1"></a><span class="ss">7. </span>**Version control** — gunakan Git</span>
+<span id="cb8-135"><a href="#cb8-135" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-136"><a href="#cb8-136" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb8-137"><a href="#cb8-137" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-138"><a href="#cb8-138" aria-hidden="true" tabindex="-1"></a><span class="fu">## Latihan</span></span>
+<span id="cb8-139"><a href="#cb8-139" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-140"><a href="#cb8-140" aria-hidden="true" tabindex="-1"></a>::: {.callout-caution}</span>
+<span id="cb8-141"><a href="#cb8-141" aria-hidden="true" tabindex="-1"></a><span class="fu">## Latihan 19.1</span></span>
+<span id="cb8-142"><a href="#cb8-142" aria-hidden="true" tabindex="-1"></a><span class="in">```r</span></span>
+<span id="cb8-143"><a href="#cb8-143" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Buat folder structure project baru:</span></span>
+<span id="cb8-144"><a href="#cb8-144" aria-hidden="true" tabindex="-1"></a><span class="co">#    - data/raw/, data/processed/, output/figures/, R/</span></span>
+<span id="cb8-145"><a href="#cb8-145" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Gunakan here() untuk reference semua path</span></span>
+<span id="cb8-146"><a href="#cb8-146" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Buat script 01_import.R yang:</span></span>
+<span id="cb8-147"><a href="#cb8-147" aria-hidden="true" tabindex="-1"></a><span class="co">#    - Load library</span></span>
+<span id="cb8-148"><a href="#cb8-148" aria-hidden="true" tabindex="-1"></a><span class="co">#    - Import data dengan here()</span></span>
+<span id="cb8-149"><a href="#cb8-149" aria-hidden="true" tabindex="-1"></a><span class="co">#    - Simpan ke data/processed/ sebagai .rds</span></span>
+<span id="cb8-150"><a href="#cb8-150" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb8-151"><a href="#cb8-151" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb8-152"><a href="#cb8-152" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-153"><a href="#cb8-153" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb8-154"><a href="#cb8-154" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-155"><a href="#cb8-155" aria-hidden="true" tabindex="-1"></a><span class="fu">## Ringkasan</span></span>
+<span id="cb8-156"><a href="#cb8-156" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-157"><a href="#cb8-157" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Praktik <span class="pp">|</span> Tool <span class="pp">|</span></span>
+<span id="cb8-158"><a href="#cb8-158" aria-hidden="true" tabindex="-1"></a><span class="pp">|---------|------|</span></span>
+<span id="cb8-159"><a href="#cb8-159" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Project-based workflow <span class="pp">|</span> <span class="in">`.Rproj`</span> <span class="pp">|</span></span>
+<span id="cb8-160"><a href="#cb8-160" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Portable paths <span class="pp">|</span> <span class="in">`here`</span> <span class="pp">|</span></span>
+<span id="cb8-161"><a href="#cb8-161" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Package management <span class="pp">|</span> <span class="in">`renv`</span> <span class="pp">|</span></span>
+<span id="cb8-162"><a href="#cb8-162" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Reproducible random <span class="pp">|</span> <span class="in">`set.seed()`</span> <span class="pp">|</span></span>
+<span id="cb8-163"><a href="#cb8-163" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Literate programming <span class="pp">|</span> Quarto / R Markdown <span class="pp">|</span></span>
+<span id="cb8-164"><a href="#cb8-164" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Version control <span class="pp">|</span> Git <span class="pp">|</span></span>
+<span id="cb8-165"><a href="#cb8-165" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-166"><a href="#cb8-166" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb8-167"><a href="#cb8-167" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-168"><a href="#cb8-168" aria-hidden="true" tabindex="-1"></a>*Sebelumnya: [Part 18 — Debugging &amp; Error Handling](../2026_02_26_18_debugging/index.qmd)*</span>
+<span id="cb8-169"><a href="#cb8-169" aria-hidden="true" tabindex="-1"></a>*Selanjutnya: [Part 20 — Mini Project](../2026_02_26_20_mini_project/index.qmd)*</span></code></pre></div><button title="Salin ke Papan Klip" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+</div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
