@@ -1,3 +1,14 @@
+- title: "Manajemen Investasi"
+  date: 2026-03-10
+  language: Bahasa Indonesia
+  description: Materi kuliah Manajemen Investasi untuk mahasiswa Fakultas Ekonomi di Perbanas Institute. Website kuliah tersedia di bawah.
+  location: Perbanas Institute
+  feature: /materi/img/manves.png 
+  links:
+  - name: Website Kuliah
+    url: https://derisiswara.art/manves_v2/
+    icon: fa-solid fa-chalkboard-user
+
 - title: "Probabilitas dan Statistika"
   date: 2025-11-29
   language: Bahasa Indonesia
