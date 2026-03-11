@@ -57,7 +57,7 @@ comments: false
   ></iframe>
   <p style="margin-top: 0.75rem;">
     Jika halaman tidak tampil, buka langsung di
-    <a href="https://derisiswara.art/portfolios/" target="_blank" rel="noopener">tautan ini</a>.
+    <a href="https://derisiswara.art/portfolios/" target="_blank" rel="noopener">tautan ini</a>. Jika dibuka di perangkat mobile, gunakan mode desktop untuk pengalaman terbaik.
   </p>
 </div>
 ```

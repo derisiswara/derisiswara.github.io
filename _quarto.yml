@@ -62,6 +62,7 @@ website:
       
 format:
   html:
+    respect-user-color-scheme: false
     theme: 
       light: 
         - static/html/custom.scss
