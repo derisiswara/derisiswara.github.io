@@ -22,7 +22,7 @@ title-block-banner: false
   </div>
 
   <div class="hero-cta">
-    <a href="tulisan/index.html" class="btn-primary-custom">Blog</a>
+    <a href="layanan/index.html" class="btn-primary-custom">Layanan Data</a>
     <a href="materi/index.html" class="btn-outline-custom">Presentasi & Kuliah</a>
   </div>
 
@@ -93,7 +93,7 @@ title-block-banner: false
 <div class="services-section">
   <div class="services-inner">
     <div class="services-icon"><i class="fa-solid fa-headset"></i></div>
-    <h2>Layanan Konsultasi dan Olah Data</h2>
+    <h2><a href="layanan/index.html">Layanan Konsultasi dan Olah Data</a></h2>
     <p>
       Saya menyediakan layanan <strong>konsultasi dan data</strong> untuk kebutuhan riset, tugas akhir (skripsi/tesis/disertasi), maupun analisis data profesional. Metode yang tersedia meliputi ekonometrika, statistika, spasial, machine learning, dan lainnya.
     </p>
