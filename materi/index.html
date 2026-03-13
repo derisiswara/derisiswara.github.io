@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="">
+<meta name="description" content="Materi presentasi, kuliah, seminar, dan workshop.">
 
-<title>Blog – Deri Siswara</title>
+<title>Presentasi &amp; Kuliah – Deri Siswara</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -83,20 +83,20 @@ ul.task-list li input[type="checkbox"] {
 <script>
 
   window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-blog .list');
+    const listingTargetEl = window.document.querySelector('#listing-materi .list');
     if (!listingTargetEl) {
       // No listing discovered, do not attach.
       return; 
     }
 
     const options = {
-      valueNames: ['listing-project','listing-execute','listing-lang','listing-website','listing-format','listing-bibliography','listing-_quarto-vars','listing-language','listing-title-block-banner','listing-comments','listing-title','listing-description','listing-date','listing-author','listing-toc','listing-categories','listing-path','listing-outputHref','listing-date-modified','listing-filename','listing-file-modified','listing-reading-time','listing-word-count',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-date-modified-sort'] },{ data: ['listing-file-modified-sort'] },{ data: ['listing-reading-time-sort'] },{ data: ['listing-word-count-sort'] }],
+      valueNames: ['listing-title','listing-date','listing-language','listing-description','listing-location','listing-feature','listing-links',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] }],
       
-      searchColumns: ["listing-project","listing-execute","listing-lang","listing-website","listing-format","listing-bibliography","listing-_quarto-vars","listing-language","listing-title-block-banner","listing-comments","listing-title","listing-description","listing-date","listing-author","listing-toc","listing-categories","listing-path","listing-outputHref","listing-date-modified","listing-filename","listing-file-modified","listing-reading-time","listing-word-count"],
+      searchColumns: ["listing-title","listing-date","listing-language","listing-description","listing-location","listing-feature","listing-links"],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-blog'] = new List('listing-blog', options);
+    window['quarto-listings']['listing-materi'] = new List('listing-materi', options);
 
     if (window['quarto-listing-loaded']) {
       window['quarto-listing-loaded']();
@@ -140,8 +140,13 @@ window.Quarto = {
 };
 </script>
 
-<meta property="og:title" content="Blog – Deri Siswara">
+<meta property="og:title" content="Presentasi &amp; Kuliah – Deri Siswara">
+<meta property="og:description" content="Materi presentasi, kuliah, seminar, dan workshop.">
+<meta property="og:image" content="https://derisiswara.art/materi/img/manves.png">
 <meta property="og:site_name" content="Deri Siswara">
+<meta property="og:image:alt" content="Manajemen Investasi">
+<meta property="og:image:height" content="1621">
+<meta property="og:image:width" content="2789">
 </head>
 
 <body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
@@ -373,7 +378,7 @@ window.Quarto = {
     </ul>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="../materi/index.html"> 
+    <a class="nav-link active" href="../materi/index.html" aria-current="page"> 
 <span class="menu-text">Presentasi &amp; Kuliah</span></a>
   </li>  
   <li class="nav-item">
@@ -392,20 +397,24 @@ window.Quarto = {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-    <h5 class="quarto-listing-category-title">Kategori</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">Semua <span class="quarto-category-count">(8)</span></div><div class="category" data-category="RGF0YQ==">Data <span class="quarto-category-count">(1)</span></div><div class="category" data-category="RGF0YSUyMFNjaWVuY2U=">Data Science <span class="quarto-category-count">(1)</span></div><div class="category" data-category="RWtvbm9tZXRyaWth">Ekonometrika <span class="quarto-category-count">(2)</span></div><div class="category" data-category="TWFjaGluZSUyMExlYXJuaW5n">Machine Learning <span class="quarto-category-count">(3)</span></div><div class="category" data-category="UHl0aG9u">Python <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Ug==">R <span class="quarto-category-count">(2)</span></div><div class="category" data-category="UmlzZXQ=">Riset <span class="quarto-category-count">(1)</span></div><div class="category" data-category="U1RBVEE=">STATA <span class="quarto-category-count">(2)</span></div><div class="category" data-category="VG9vbHM=">Tools <span class="quarto-category-count">(2)</span></div><div class="category" data-category="VmlzdWFsaXNhc2k=">Visualisasi <span class="quarto-category-count">(1)</span></div></div></div>
+    
 <!-- main -->
-<main class="content column-page-left" id="quarto-document-content">
+<main class="content column-page" id="quarto-document-content">
 
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Blog</h1>
+<h1 class="title">Presentasi &amp; Kuliah</h1>
+</div>
+
+<div>
+  <div class="description">
+    Materi presentasi, kuliah, seminar, dan workshop.
+  </div>
 </div>
 
 
-
-<div class="quarto-title-meta column-page-left">
+<div class="quarto-title-meta column-page">
 
     
   
@@ -417,199 +426,247 @@ window.Quarto = {
 </header>
 
 
-<div id="listing-blog" class="quarto-listing quarto-listing-container-custom">
-<div class="list blog">
+<div id="listing-materi" class="quarto-listing quarto-listing-container-custom">
+<div class="materi-grid">
     
-    <div class="blog-entry" data-index="0" data-categories="RGF0YSUyQ01hY2hpbmUlMjBMZWFybmluZw==" data-listing-date-sort="1754586000000" data-listing-file-modified-sort="1772003590371" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="884">
-        <div class="metadata">          
-            <p class="date listing-date">8 Agustus 2025</p>
-        </div>
-        <div class="body">
-            <p class="title listing-title"><a href="../blog/2025_08_08_data_pendapatan/index.html">{Data} Survei Pendapatan Indonesia</a></p>
+    <div class="materi-card">
+        
+        <div class="materi-card-img">
             
-            <div class="post-categories listing-categories">
+            <a href="https://derisiswara.art/manves_v2/"><img src="../materi/img/manves.png" alt="Manajemen Investasi"></a>
+            
+        </div>
+        
+        <div class="materi-card-body">
+            <p class="materi-card-title">
                 
-                <div class="post-category listing-category" onclick="window.quartoListingCategory('Data'); return false;">
-                    Data
-                </div>
+                <a href="https://derisiswara.art/manves_v2/">Manajemen Investasi</a>
                 
-                <div class="post-category listing-category" onclick="window.quartoListingCategory('Machine Learning'); return false;">
-                    Machine Learning
-                </div>
+            </p>
+            <p class="materi-card-meta">
+                <span>10 Maret 2026</span> · <span>Perbanas Institute</span>
+            </p>
+            <p class="materi-card-desc">Materi kuliah Manajemen Investasi untuk mahasiswa Fakultas Ekonomi di Perbanas Institute. Website kuliah tersedia di bawah.</p>
+            
+            <div class="materi-card-links">
+                
+                <a href="https://derisiswara.art/manves_v2/" class="materi-card-link">
+                    <i class="fa-solid fa-chalkboard-user"></i> Website Kuliah
+                </a>
                 
             </div>
             
-            <p class="description listing-description"><!-- desc(5A0113B34292)[max=175]:blog/2025_08_08_data_pendapatan/index.html --></p>
         </div>
-        
     </div>
     
-    <div class="blog-entry" data-index="1" data-categories="U1RBVEElMkNNYWNoaW5lJTIwTGVhcm5pbmc=" data-listing-date-sort="1754586000000" data-listing-file-modified-sort="1772003590373" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="697">
-        <div class="metadata">          
-            <p class="date listing-date">8 Agustus 2025</p>
-        </div>
-        <div class="body">
-            <p class="title listing-title"><a href="../blog/2025_08_08_stata_h2o/index.html">Hands-On Machine Learning di STATA 19</a></p>
+    <div class="materi-card">
+        
+        <div class="materi-card-img">
             
-            <div class="post-categories listing-categories">
+            <a href="https://derisiswara.art/webstatprob/"><img src="../materi/img/statprob.png" alt="Probabilitas dan Statistika"></a>
+            
+        </div>
+        
+        <div class="materi-card-body">
+            <p class="materi-card-title">
                 
-                <div class="post-category listing-category" onclick="window.quartoListingCategory('STATA'); return false;">
-                    STATA
-                </div>
+                <a href="https://derisiswara.art/webstatprob/">Probabilitas dan Statistika</a>
                 
-                <div class="post-category listing-category" onclick="window.quartoListingCategory('Machine Learning'); return false;">
-                    Machine Learning
-                </div>
+            </p>
+            <p class="materi-card-meta">
+                <span>29 November 2025</span> · <span>Perbanas Institute</span>
+            </p>
+            <p class="materi-card-desc">Materi kuliah Probabilitas dan Statistika untuk mahasiswa Ilmu Komputer dan Data Science di Perbanas Institute. Website kuliah tersedia di bawah.</p>
+            
+            <div class="materi-card-links">
+                
+                <a href="https://derisiswara.art/webstatprob/" class="materi-card-link">
+                    <i class="fa-solid fa-chalkboard-user"></i> Website Kuliah
+                </a>
                 
             </div>
             
-            <p class="description listing-description"><!-- desc(5A0113B34292)[max=175]:blog/2025_08_08_stata_h2o/index.html --></p>
         </div>
-        
     </div>
     
-    <div class="blog-entry" data-index="2" data-categories="VG9vbHMlMkNEYXRhJTIwU2NpZW5jZQ==" data-listing-date-sort="1754413200000" data-listing-file-modified-sort="1772003590371" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="641">
-        <div class="metadata">          
-            <p class="date listing-date">6 Agustus 2025</p>
-        </div>
-        <div class="body">
-            <p class="title listing-title"><a href="../blog/2025_08_06_review_positron/index.html">Review Positron: Generasi Baru IDE/Software untuk Data Science</a></p>
+    <div class="materi-card">
+        
+        <div class="materi-card-img">
             
-            <div class="post-categories listing-categories">
+            <a href="https://derisiswara.art/kuliah_ml"><img src="../materi/img/kuliahml.png" alt="Machine Learning untuk Mahasiswa Ekonomi"></a>
+            
+        </div>
+        
+        <div class="materi-card-body">
+            <p class="materi-card-title">
                 
-                <div class="post-category listing-category" onclick="window.quartoListingCategory('Tools'); return false;">
-                    Tools
-                </div>
+                <a href="https://derisiswara.art/kuliah_ml">Machine Learning untuk Mahasiswa Ekonomi</a>
                 
-                <div class="post-category listing-category" onclick="window.quartoListingCategory('Data Science'); return false;">
-                    Data Science
-                </div>
+            </p>
+            <p class="materi-card-meta">
+                <span>29 Agustus 2025</span> · <span>IPB University</span>
+            </p>
+            <p class="materi-card-desc">Pengantar Machine Learning untuk mahasiswa Ekonomi di IPB University. Slides tersedia di bawah.</p>
+            
+            <div class="materi-card-links">
+                
+                <a href="https://derisiswara.art/kuliah_ml" class="materi-card-link">
+                    <i class="fa-solid fa-chalkboard-user"></i> Slides
+                </a>
                 
             </div>
             
-            <p class="description listing-description"><!-- desc(5A0113B34292)[max=175]:blog/2025_08_06_review_positron/index.html --></p>
         </div>
-        
     </div>
     
-    <div class="blog-entry" data-index="3" data-categories="U1RBVEElMkNUb29scw==" data-listing-date-sort="1754067600000" data-listing-file-modified-sort="1772003771962" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="586">
-        <div class="metadata">          
-            <p class="date listing-date">2 Agustus 2025</p>
-        </div>
-        <div class="body">
-            <p class="title listing-title"><a href="../blog/2025_08_02_statavscode/index.html">Cara Baru Menggunakan {Stata}</a></p>
+    <div class="materi-card">
+        
+        <div class="materi-card-img">
             
-            <div class="post-categories listing-categories">
+            <a href="https://derisiswara.art/belajarR-quarto/"><img src="../materi/img/quarto.png" alt="Pengantar Quarto"></a>
+            
+        </div>
+        
+        <div class="materi-card-body">
+            <p class="materi-card-title">
                 
-                <div class="post-category listing-category" onclick="window.quartoListingCategory('STATA'); return false;">
-                    STATA
-                </div>
+                <a href="https://derisiswara.art/belajarR-quarto/">Pengantar Quarto</a>
                 
-                <div class="post-category listing-category" onclick="window.quartoListingCategory('Tools'); return false;">
-                    Tools
-                </div>
+            </p>
+            <p class="materi-card-meta">
+                <span>11 Mei 2025</span> · <span>Online</span>
+            </p>
+            <p class="materi-card-desc">Berbagi tentang framework Quarto di komunitas BelajaR. Slides dan latihan kode tersedia di bawah.</p>
+            
+            <div class="materi-card-links">
+                
+                <a href="https://derisiswara.art/belajarR-quarto/" class="materi-card-link">
+                    <i class="fa-solid fa-chalkboard-user"></i> Slides
+                </a>
                 
             </div>
             
-            <p class="description listing-description"><!-- desc(5A0113B34292)[max=175]:blog/2025_08_02_statavscode/index.html --></p>
         </div>
-        
     </div>
     
-    <div class="blog-entry" data-index="4" data-categories="UiUyQ0Vrb25vbWV0cmlrYQ==" data-listing-date-sort="1753981200000" data-listing-file-modified-sort="1772003756587" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="590">
-        <div class="metadata">          
-            <p class="date listing-date">1 Agustus 2025</p>
-        </div>
-        <div class="body">
-            <p class="title listing-title"><a href="../blog/2025_08_01_pcm/index.html">Price-Cost Margin</a></p>
+    <div class="materi-card">
+        
+        <div class="materi-card-img">
             
-            <div class="post-categories listing-categories">
+            <a href="https://derisiswara.art/2025-rstudio-workshop-jambi/"><img src="../materi/img/workshop.png" alt="Workshop RStudio 2025"></a>
+            
+        </div>
+        
+        <div class="materi-card-body">
+            <p class="materi-card-title">
                 
-                <div class="post-category listing-category" onclick="window.quartoListingCategory('R'); return false;">
-                    R
-                </div>
+                <a href="https://derisiswara.art/2025-rstudio-workshop-jambi/">Workshop RStudio 2025</a>
                 
-                <div class="post-category listing-category" onclick="window.quartoListingCategory('Ekonometrika'); return false;">
-                    Ekonometrika
-                </div>
+            </p>
+            <p class="materi-card-meta">
+                <span>6 Mei 2025</span> · <span>Jambi, Indonesia</span>
+            </p>
+            <p class="materi-card-desc">Peningkatan Research Quality dengan RStudio.</p>
+            
+            <div class="materi-card-links">
+                
+                <a href="https://derisiswara.art/2025-rstudio-workshop-jambi/" class="materi-card-link">
+                    <i class="fa-solid fa-chalkboard-user"></i> Materi
+                </a>
                 
             </div>
             
-            <p class="description listing-description"><!-- desc(5A0113B34292)[max=175]:blog/2025_08_01_pcm/index.html --></p>
         </div>
-        
     </div>
     
-    <div class="blog-entry" data-index="5" data-categories="UmlzZXQ=" data-listing-date-sort="1753203600000" data-listing-file-modified-sort="1772003661068" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="9" data-listing-word-count-sort="1616">
-        <div class="metadata">          
-            <p class="date listing-date">23 Juli 2025</p>
-        </div>
-        <div class="body">
-            <p class="title listing-title"><a href="../blog/apecmanus/index.html">APEC Manuscript</a></p>
+    <div class="materi-card">
+        
+        <div class="materi-card-img">
             
-            <div class="post-categories listing-categories">
+            <a href="https://derisiswara.art/machinelearning-perbanas/"><img src="../materi/img/ml.png" alt="Machine Learning"></a>
+            
+        </div>
+        
+        <div class="materi-card-body">
+            <p class="materi-card-title">
                 
-                <div class="post-category listing-category" onclick="window.quartoListingCategory('Riset'); return false;">
-                    Riset
-                </div>
+                <a href="https://derisiswara.art/machinelearning-perbanas/">Machine Learning</a>
+                
+            </p>
+            <p class="materi-card-meta">
+                <span>14 Februari 2025</span> · <span>Perbanas Institute</span>
+            </p>
+            <p class="materi-card-desc">Slides dan materi untuk mata kuliah Machine Learning.</p>
+            
+            <div class="materi-card-links">
+                
+                <a href="https://derisiswara.art/machinelearning-perbanas/" class="materi-card-link">
+                    <i class="fa-solid fa-chalkboard-user"></i> Slides dan Materi
+                </a>
                 
             </div>
             
-            <p class="description listing-description"><!-- desc(5A0113B34292)[max=175]:blog/apecmanus/index.html --></p>
         </div>
-        
     </div>
     
-    <div class="blog-entry" data-index="6" data-categories="UHl0aG9uJTJDRWtvbm9tZXRyaWthJTJDTWFjaGluZSUyMExlYXJuaW5n" data-listing-date-sort="1752858000000" data-listing-file-modified-sort="1772003590377" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="672">
-        <div class="metadata">          
-            <p class="date listing-date">19 Juli 2025</p>
-        </div>
-        <div class="body">
-            <p class="title listing-title"><a href="../blog/2025_07_19_econML/index.html">Mengenal {EconML}: Menggabungkan Ekonometrika &amp; Machine Learning untuk Estimasi Efek Kausal</a></p>
+    <div class="materi-card">
+        
+        <div class="materi-card-img">
             
-            <div class="post-categories listing-categories">
+            <a href="https://derisiswara.art/outliers_analysis/"><img src="../materi/img/out.png" alt="Studi Anomali Data Bank Indonesia (Analisis Outlier)"></a>
+            
+        </div>
+        
+        <div class="materi-card-body">
+            <p class="materi-card-title">
                 
-                <div class="post-category listing-category" onclick="window.quartoListingCategory('Python'); return false;">
-                    Python
-                </div>
+                <a href="https://derisiswara.art/outliers_analysis/">Studi Anomali Data Bank Indonesia (Analisis Outlier)</a>
                 
-                <div class="post-category listing-category" onclick="window.quartoListingCategory('Ekonometrika'); return false;">
-                    Ekonometrika
-                </div>
+            </p>
+            <p class="materi-card-meta">
+                <span>6 Februari 2025</span> · <span>Bank Indonesia</span>
+            </p>
+            <p class="materi-card-desc">Slides dan latihan kode untuk studi deteksi anomali pada data Bank Indonesia menggunakan pendekatan statistik.</p>
+            
+            <div class="materi-card-links">
                 
-                <div class="post-category listing-category" onclick="window.quartoListingCategory('Machine Learning'); return false;">
-                    Machine Learning
-                </div>
+                <a href="https://derisiswara.art/outliers_analysis/" class="materi-card-link">
+                    <i class="fa-solid fa-chalkboard-user"></i> Slides
+                </a>
                 
             </div>
             
-            <p class="description listing-description">Tutorial singkat memakai Python package {EconML} dengan contoh data e-commerce Indonesia</p>
         </div>
-        
     </div>
     
-    <div class="blog-entry" data-index="7" data-categories="UiUyQ1Zpc3VhbGlzYXNp" data-listing-date-sort="1752771600000" data-listing-file-modified-sort="1772003762478" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="117">
-        <div class="metadata">          
-            <p class="date listing-date">18 Juli 2025</p>
-        </div>
-        <div class="body">
-            <p class="title listing-title"><a href="../blog/2025_07_18_quartomonothemer/index.html">Mengenal paket `quartomonothemer` untuk `ggplot2` dan `gt`</a></p>
+    <div class="materi-card">
+        
+        <div class="materi-card-img">
             
-            <div class="post-categories listing-categories">
+            <a href="../materi/slides/Catatan Panel Data Baltagi 2021.pdf"><img src="../materi/img/baltagi.png" alt="Analisis Ekonometrika Data Panel"></a>
+            
+        </div>
+        
+        <div class="materi-card-body">
+            <p class="materi-card-title">
                 
-                <div class="post-category listing-category" onclick="window.quartoListingCategory('R'); return false;">
-                    R
-                </div>
+                <a href="../materi/slides/Catatan Panel Data Baltagi 2021.pdf">Analisis Ekonometrika Data Panel</a>
                 
-                <div class="post-category listing-category" onclick="window.quartoListingCategory('Visualisasi'); return false;">
-                    Visualisasi
-                </div>
+            </p>
+            <p class="materi-card-meta">
+                <span>6 Februari 2023</span> · <span>IPB University</span>
+            </p>
+            <p class="materi-card-desc">Mengajar sebagai asisten dosen Muhammad Firdaus PhD di mata kuliah Ekonometrika pada program Doktoral Manajemen Bisnis IPB University.</p>
+            
+            <div class="materi-card-links">
+                
+                <a href="../materi/slides/Catatan Panel Data Baltagi 2021.pdf" class="materi-card-link">
+                    <i class="fa-solid fa-chalkboard-user"></i> Slides
+                </a>
                 
             </div>
             
-            <p class="description listing-description">Alternatif tema monotone untuk visualisasi data di R</p>
         </div>
-        
     </div>
     
 </div>

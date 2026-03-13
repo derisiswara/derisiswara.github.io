@@ -4,7 +4,7 @@ project:
   preview: 
     port: 5556
     browser: true
-    watch-inputs: true
+    watch-inputs: false
     navigate: true
 
 execute:
