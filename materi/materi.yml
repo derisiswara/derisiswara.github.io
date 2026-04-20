@@ -1,3 +1,14 @@
+- title: "ISEI Workshop: Analisis Regresi dan Structural Equation Modelling (SEM) dengan RStudio"
+  date: 2026-04-18
+  language: Bahasa Indonesia
+  description: Slides dan Rscipts untuk workshop ISEI tentang  Regresi dan SEM dengan RStudio.
+  location: Kantor PP ISEI
+  feature: /materi/img/isei.png 
+  links:
+  - name: Website Workshop
+    url: https://derisiswara.art/iseiworkshop/
+    icon: fa-solid fa-chalkboard-user
+
 - title: "Manajemen Investasi"
   date: 2026-03-10
   language: Bahasa Indonesia
