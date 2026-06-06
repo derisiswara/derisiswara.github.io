@@ -6,7 +6,7 @@
   feature: /materi/img/isei.png 
   links:
   - name: Website Workshop
-    url: https://derisiswara.art/iseiworkshop/
+    url: https://derisiswara.github.io/iseiworkshop/
     icon: fa-solid fa-chalkboard-user
 
 - title: "Manajemen Investasi"
@@ -17,7 +17,7 @@
   feature: /materi/img/manves.png 
   links:
   - name: Website Kuliah
-    url: https://derisiswara.art/manves_v2/
+    url: https://derisiswara.github.io/manves_v2/
     icon: fa-solid fa-chalkboard-user
 
 - title: "Probabilitas dan Statistika"
@@ -28,7 +28,7 @@
   feature: /materi/img/statprob.png 
   links:
   - name: Website Kuliah
-    url: https://derisiswara.art/webstatprob/
+    url: https://derisiswara.github.io/webstatprob/
     icon: fa-solid fa-chalkboard-user
 
 - title: "Machine Learning untuk Mahasiswa Ekonomi"
@@ -39,7 +39,7 @@
   feature: /materi/img/kuliahml.png 
   links:
   - name: Slides
-    url: https://derisiswara.art/kuliah_ml
+    url: https://derisiswara.github.io/kuliah_ml
     icon: fa-solid fa-chalkboard-user
 
 - title: "Pengantar Quarto"
@@ -50,7 +50,7 @@
   feature: /materi/img/quarto.png 
   links:
   - name: Slides
-    url: https://derisiswara.art/belajarR-quarto/
+    url: https://derisiswara.github.io/belajarR-quarto/
     icon: fa-solid fa-chalkboard-user
 
 - title: "Workshop RStudio 2025"
@@ -61,7 +61,7 @@
   feature: /materi/img/workshop.png 
   links:
   - name: Materi
-    url: https://derisiswara.art/2025-rstudio-workshop-jambi/
+    url: https://derisiswara.github.io/2025-rstudio-workshop-jambi/
     icon: fa-solid fa-chalkboard-user
 
 - title: "Machine Learning"
@@ -72,7 +72,7 @@
   feature: /materi/img/ml.png 
   links:
   - name: Slides dan Materi
-    url: https://derisiswara.art/machinelearning-perbanas/
+    url: https://derisiswara.github.io/machinelearning-perbanas/
     icon: fa-solid fa-chalkboard-user
 
 - title: "Studi Anomali Data Bank Indonesia (Analisis Outlier)"
@@ -83,7 +83,7 @@
   feature: /materi/img/out.png 
   links:
   - name: Slides
-    url: https://derisiswara.art/outliers_analysis/
+    url: https://derisiswara.github.io/outliers_analysis/
     icon: fa-solid fa-chalkboard-user
 
 - title: "Analisis Ekonometrika Data Panel"

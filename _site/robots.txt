@@ -1,1 +1,1 @@
-Sitemap: https://derisiswara.art/sitemap.xml
+Sitemap: https://derisiswara.github.io/sitemap.xml

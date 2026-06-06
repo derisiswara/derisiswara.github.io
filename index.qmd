@@ -82,7 +82,7 @@ title-block-banner: false
       <div class="card-title">CV &amp; Publikasi</div>
       <div class="card-desc">CV akademik lengkap dan profil Google Scholar.</div>
       <div style="margin-top: 1rem; display: flex; gap: 1rem;">
-        <a href="https://derisiswara.art/cv/cv.pdf" class="card-link">CV (PDF) →</a>
+        <a href="https://derisiswara.github.io/cv/cv.pdf" class="card-link">CV (PDF) →</a>
         <a href="https://scholar.google.co.id/citations?user=NNhhI5IAAAAJ&hl=en" class="card-link">Google Scholar →</a>
       </div>
 
@@ -93,7 +93,7 @@ title-block-banner: false
       <div class="card-title">One-Page Portfolio</div>
       <div class="card-desc">Portofolio satu halaman yang menampilkan proyek dan pengalaman.</div>
       <div style="margin-top: 1rem; display: flex; gap: 1rem;">
-        <a href="https://derisiswara.art/portfolios" class="card-link">Portfolio →</a>
+        <a href="https://derisiswara.github.io/portfolios" class="card-link">Portfolio →</a>
       </div>      
 
     </div>

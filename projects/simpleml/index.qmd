@@ -4,7 +4,7 @@ subtitle: Tutorial on building a machine learning application using R, Python, Q
 date: 2025-04-20
 author:
   - name: Deri Siswara
-    url: https://derisiswara.art
+    url: https://derisiswara.github.io
 categories:
   - Machine Learning
   - R
@@ -14,6 +14,6 @@ hide-detail: true
 pub-info:
   links:
     - name: Documentation
-      url: https://derisiswara.art/simpleml/
+      url: https://derisiswara.github.io/simpleml/
       icon: fa-solid fa-globe
 ---

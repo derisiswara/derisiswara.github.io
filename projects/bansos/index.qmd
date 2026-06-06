@@ -7,14 +7,14 @@ authors:
 #    url: https://..
     affiliation: IPB University
   - name: Deri Siswara
-    url: https://derisiswara.art
+    url: https://derisiswara.github.io
 categories:
   - Survey Data Analysis
 pub-info:
   coauthor: Tony Irawan
   links:
     - name: Survey Website
-      url: https://derisiswara.art/juknissurveybansos/
+      url: https://derisiswara.github.io/juknissurveybansos/
       icon: fa-solid fa-globe
 hide-detail: true
 image: cover.png

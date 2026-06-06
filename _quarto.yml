@@ -16,7 +16,7 @@ lang: id
 website:
   title: "Deri Siswara"
   favicon: static/img/logods2.webp
-  site-url: https://derisiswara.art
+  site-url: https://derisiswara.github.io
   repo-url: https://github.com/derisiswara/derisiswara.github.io
   open-graph: true
   navbar:
@@ -48,7 +48,7 @@ website:
       - text: Presentasi & Kuliah
         file: materi/index.qmd
       - text: CV
-        href: https://derisiswara.art/cv/cv.pdf
+        href: https://derisiswara.github.io/cv/cv.pdf
   page-footer:
     left: |
       <span class="faux-block">{{< fa copyright >}} 2025–2026 Deri Siswara</span>

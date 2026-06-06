@@ -17,7 +17,7 @@ My name is **Deri Siswara** from **IPB University**, Indonesia. I'm **currently*
 
 However, I’m here to present our study or research on the **implementation of food safety in the APEC economies**.  Specifically, we conducted a simple survey to evaluate how food-safety practices are applied in **MSMEs** and **street-food businesses** across the APEC.
 
-All materials are available on the my website: **derisiswara.art/apec-2025**
+All materials are available on the my website: **derisiswara.github.io/apec-2025**
 
 Let’s begin with **Why does food safety matter for MSMEs and street-food businesses in the APEC economies?**
 

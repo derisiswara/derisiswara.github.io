@@ -6,7 +6,7 @@ authors:
   - name: Nafisa Berliana Indah Pratiwi
   - name: Daffa Aqomal Haq 
   - name: Deri Siswara
-    url: https://derisiswara.art
+    url: https://derisiswara.github.io
 categories:
   - Econometrics
   - Paper

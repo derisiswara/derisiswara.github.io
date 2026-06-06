@@ -5,7 +5,7 @@ date: 2023-03-01
 authors:
   - name: Commission for the Supervision of Business Competition (Komisi Pengawas Persaingan Usaha) (KPPU), Indonesia.
   - name: Deri Siswara
-    url: https://derisiswara.art
+    url: https://derisiswara.github.io
 categories:
   - Econometrics
 image: cover.png   
